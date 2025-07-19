@@ -1,0 +1,8 @@
+---
+title: "Willkommen in meinem Blog"
+author: "Norman Markgraf"
+date: "2025-07-19"
+categories: [news]
+---
+
+Das ist mein erster Blog-Eintrag!
