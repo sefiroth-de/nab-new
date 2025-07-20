@@ -1,0 +1,83 @@
+---
+title: "Gedankenstütze zu wichtigen Funktionsbegriffen in der Statistik"
+author: "Norman Markgraf"
+date: "2021-02-12"
+categories: [Statistisches]
+---
+
+# Eine kleine Liste von fundermentalen Begriffen in der Statistik.
+
+Gilt für eine reelle Funktion $f: \mathbf{R} \to \mathbf{R}$:
+
+-   $f(x)$ ist *nichtnegativ*, d.h., $f(x) \geq 0$, für alle $x \in \mathbf{R}$.
+-   $f(x)$ ist *integrierbar*.
+-   $f(x)$ ist *normiert* in dem Sinne, dass $$\int_{-\infty}^\infty f(x) \,\text{d}x = 1$$
+
+Dann nennen wir $f(x)$ eine **Wahrscheinlichkeitsdichtefunktion** (engl. **probability density funktion** kurz **pdf**) oder kurz **Dichte** (engl. **density**).
+
+Durch $$P([a, b]) := \int_a^b f(x) \text{d} x$$ definiert $f$ eine *Wahrscheinlichkeitsverteilung* auf den reellen Zahlen.
+
+Ist $X$ eine reelwertige *Zufallsvariable* (kurz **ZV**) und existiert eine reelle Funktion $f_X(x)$ der Art, dass für alle $a \in \mathbf{R}$
+
+$$P(X \leq a) = \int_{-\infty}^a f_X(x) \text{d}x$$
+
+gilt, so nennt man $f$ die **Wahrscheinlichkeitsdichtefunktion von** $X$.
+
+Die Funktion
+
+$$F_X(a) = P(X \leq a)$$
+
+nenen wir **(Wahrscheinlichkeits-)Verteilung(-sfunktion)** (engl. **cumulative distribution function** kurz **cdf** aber auch nur **distribution function**) **von** $X$.
+
+Genau dann ist eine Funktion $F: \mathbf{R} \to [0, 1]$ eine **Verteilungsfunktion**, wenngilt:
+
+-   Es ist $\lim_{t \to -\infty} F(t)=0$ und $\lim_{t \to +\infty} F(t)=1$
+-   Die Funktion $\overline{F}(t)$ ist **monoton wachsend**.
+-   Die Funktion $\overline{F}(t)$ ist **rechtsseitig stetig**
+
+Die Funktion
+
+$$\overline{F}_X(a) = 1 - F_X(a)$$
+
+nennen wir **Überlebensfunktion** (engl. **survival function**, **complementarey cumulative distribution funktion** kurz **ccdf**, **tail distribution**, **exceedance** oder **reliability function**).
+
+Es gilt $\overline{F}_X(a) + F_X(a) = 1$.
+
+Genau dann ist eine Funktion $\overline{F}: \mathbf{R} \to [0, 1]$ eine **Überlebensfunktion**, wenn gilt:
+
+-   Es ist $\lim_\limits{t \to -\infty} \overline{F}(t)=1$ und $\lim_{t \to + \infty}\overline{F}(t)=0$
+-   Die Funktion $\overline{F}(t)$ ist **monoton fallend**.
+-   Die Funktion $\overline{F}(t)$ ist **rechtsseitig stetig**
+
+Ein paar weitere Eigenschaften von *Überlebensfunktionen*:
+
+-   Nicht-negative stetige ZV $X$ mit Erwartungswert, also $\int_0^\infty x f(x) \text{d} x = \mu < \infty$, erfüllen die [Markov-Ungleichung](https://de.wikipedia.org/wiki/Markow-Ungleichung_(Stochastik))
+
+$$\overline{F}_X(x) \leq \frac{\operatorname{E}(X)}{x}$$ 
+
+-    Ist $X$ eine ZV und $\overline{F}_X$ die zugehörige Überlebensfunktion. Existiert $E(X)$, dann gilt $\lim_{t \to +\infty}\overline{F}(x)=0 = o\left(\frac{1}{x}\right)$.
+
+**Beweisskizze:** Sei $f_X$ die Dichtefunktion von $F_X$ zur ZV $X$. Für jedes $c>0$ ist dann 
+$$
+\begin{aligned}
+      E(X) = \int_0^\infty x \cdot f_X(x) \text{d}x &=  \int_0^cx \cdot f_X(x) \text{d}x +\int_c^\infty x \cdot f_X(x) \text{d}x \\
+      &\geq  \int_0^cx \cdot f_X(x) \text{d}x +\int_c^\infty c \cdot f_X(x) \text{d}x \\
+      &=  \int_0^cx \cdot f_X(x) \text{d}x + c \cdot \int_c^\infty f_X(x) \text{d}x \\
+      &=  \int_0^cx \cdot f_X(x) \text{d}x +c \cdot \overline{F}(c)
+  \end{aligned}
+$$
+
+Damit gilt nun: 
+$$
+0 \leq c \cdot \overline{F}(c) \leq E(X) - \int_0^cx \cdot f_X(x) \text{d}x
+$$ 
+Wegen $\lim\limits_{c \to +\infty} \int_0^cx \cdot f_X(x) \text{d}x = E(X)$ folgt: 
+
+$$0 \leq c \cdot \overline{F}(c) \leq E(X) - \int_0^cx \cdot f_X(x) \text{d}x\to 0 \text{ wenn } c \to \infty
+$$ 
+
+Für nicht-negative ZV $X$ gilt: 
+
+$$
+E(X) = \int_0^\infty \overline{F}_X(x) \,\text{d} x
+$$

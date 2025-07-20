@@ -1,0 +1,755 @@
+---
+title: "Über die Koeffizienten einer linearen Regression"
+author: "Norman Markgraf"
+date: "2021-06-09"
+lang: de-DE
+categories: 
+  - Statistik
+---
+
+```{r, setup, echo=FALSE, include=FALSE}
+library(mosaic)
+library(tidyr)
+library(quantreg)
+knitr::opts_chunk$set(
+  #comment = '', 
+  comment = "#>",
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  #out.width = "100%",
+  out.width = "90%",  # Für PDF: 50% !
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold"
+  # size = "tiny"
+)
+```
+
+Bei einer *einfachen Regression* versuchen wir zu gegebenen Datenpunkten $(x_1, y_1), ..., (x_n, y_n)$ eine *möglichst passende* Funktion $g(x)$ zu finden, so dass $$y_i = g(x_i) + e_i$$ gilt. Dabei tolerieren wir eine (kleine) Abweichung $e_i$.
+
+Bei einer *einfachen **linearen** Regression* gehen wir davon aus, dass die Datenpunkte (im wesentlichen) auf einer Geraden liegen. Mit $g(x)=\beta_0 + \beta1 \cdot x$ ergibt sich dann für die Datenpunkte die Gleichung:
+
+$$y_i = \beta_0 + \beta_1 \cdot x_i + e_i$$
+
+Unsere Aufgabe besteht nun darin die Parameter $\beta_0$ (y-Achsenabschnitt) und $\beta_1$ (Steigung) an Hand der $n$ Datenpunkte zu schätzen. Alle unsere Schätzungen kennzeichnen wir mit einem Dach ($\hat{.}$), um sie von den (in der Regel unbekannten) Parametern besser zu unterscheiden.
+
+Wir suchen somit nach $\hat\beta= \left(\hat\beta_0,\, \hat\beta_1\right)$, so dass die Gerade $\hat\beta_0 + \hat\beta_1 \cdot x$ zu gegebenem $x_i$ eine möglichst gute Schätzung von $y_i$ (genannt $\hat{y}_i$) hat:
+
+$$
+\hat{y_i} = \hat\beta_0 + \hat\beta_1 \cdot x_i
+$$
+
+Die Abweichung $\hat{e_i}$ unserer Schätzung $\hat{y}_i$ von dem gegebenen Wert $y_i$ lässt sich schreiben als:
+
+$$
+\hat{e_i} =  \hat{y_i} - y_i =  \hat\beta_0 + \hat\beta_1 \cdot x_i - y_i
+$$
+
+Wenn wir diese Abweichung über alle $i$ minimieren, finden wir unser $\hat\beta$.
+
+Doch das wirft eine Frage auf: *Wie genau messen wir die möglichst **kleinste Abweichung** der* $\hat{e_i}$ konkret?
+
+Wir betrachten zunächst drei einfache Ideen:
+
+1.  Idee: *Betrag der Summe der Abweichungen*
+
+2.  Idee: *Summe der absoluten Abweichungen*
+
+3.  Idee: *Summe der quadratischen Abweichungen*
+
+Gewöhnlich nutzen wir die *quadratischen Abweichungen*, weshalb wir die drei Ideen ebenso in umgekehrter Reihenfolge betrachten wollen:
+
+## 3. Idee: Summe der quadratischen Abweichungen
+
+Wir bezeichnen mit
+
+$$\begin{aligned}
+QS &= QS(\hat\beta) = QS(\hat\beta_0, \hat\beta_1) \\
+  &= \sum\limits_{i=1}^n \hat{e_i}^2 = \sum\limits_{i=1}^n \left(\hat{y_i} - y_i \right)^2 \\
+  &= \sum\limits_{i=1}^n \left(\hat\beta_0 + \hat\beta_1 \cdot x_i - y_i \right)^2
+\end{aligned}$$
+
+die **Q**uadrat-**S**umme der Abweichungen.
+
+Gesucht wird $\hat\beta=\left(\hat\beta_0,\,\hat\beta_1\right)$, so das $QS$ minimiert wird.
+
+Dies ist ein Minimierungsproblem, bei dem wir zu mindestens eine (exakte) mathematisch-algebraisch Lösung in Form eines stationären Punktes finden können. Dazu berechnen wir die Nullstelle der ersten partiellen Ableitung von $QS$ nach $\hat\beta_0$ bzw. $\hat\beta_1$.
+
+### Vorbemerkungen
+
+Wegen $\bar{x} = \frac{1}{n} \sum\limits_{i=1}^n x_i$ ist $n \cdot \bar{x} =\sum\limits_{i=1}^n x_i$ und analog $n \cdot \bar{y} =\sum\limits_{i=1}^n y_i$
+
+### Schätzen des y-Achenabschnitts $\hat\beta_0$
+
+Es ist:
+
+$$\begin{aligned}
+ \frac{\partial}{\partial \hat\beta_0} \, QS &= 2 \cdot \sum\limits_{i=1}^n \left(\hat\beta_0 + \hat\beta_1 \cdot x_i - y_i \right) \cdot 1 \\
+  &= 2 \cdot \left(\sum\limits_{i=1}^n \hat\beta_0 + \sum\limits_{i=1}^n\hat\beta_1 \cdot x_i - \sum\limits_{i=1}^n y_i\right) \\
+  &= 2 \cdot \left( n \cdot \hat\beta_0 + \hat\beta_1\cdot\sum\limits_{i=1}^n x_i - \sum\limits_{i=1}^n y_i \right) \\
+  &= 2 \cdot \left( n \cdot \hat\beta_0 + \hat\beta_1\cdot n \cdot \bar{x} - n \cdot\bar{y} \right) \\
+  &= 2 \cdot n \cdot \left( \hat\beta_0 + \hat\beta_1\cdot \bar{x} -\bar{y} \right)
+\end{aligned}$$
+
+Um stationäre Punkte zu ermitteln, müssen wir den Ausdruck nun gleich Null setzen und erhalten:
+
+$$\begin{aligned}
+  0 &= \frac{\partial}{\partial \hat\beta_0} \, QS \\
+  &= 2 \cdot n \cdot \left( \hat\beta_0 + \hat\beta_1\cdot \bar{x} -\bar{y} \right) \qquad | : (2 \cdot n) \\
+  &= \hat\beta_0 + \hat\beta_1\cdot \bar{x} -\bar{y}
+\end{aligned}$$
+
+Stellen wir nach $\hat\beta_0$ um, erhalten wir:
+
+$$\begin{aligned}
+  \hat\beta_0 &= - \hat\beta_1\cdot\bar{x} + \bar{y} \\
+  \hat\beta_0 &= \bar{y} - \hat\beta_1\cdot\bar{x}
+\end{aligned}$$
+
+Um $\hat\beta_0$ zu bestimmen, benötigen wir $\hat\beta_1$.
+
+### Schätzen der Steigung $\hat\beta_1$
+
+Es ist:
+
+$$\begin{aligned}
+  \frac{\partial}{\partial \hat\beta_1} \, QS &= 2 \cdot \sum\limits_{i=1}^n \left(\hat\beta_0 + \hat\beta_1 \cdot x_i - y_i \right) \cdot x_i \\
+  &= 2 \cdot \left(\sum\limits_{i=1}^n \hat\beta_0 \cdot x_i + \sum\limits_{i=1}^n \hat\beta_1 \cdot x_i\cdot x_i- \sum\limits_{i=1}^n y_i \cdot x_i\right) \\
+    &= 2 \cdot \left(\hat\beta_0 \cdot \sum\limits_{i=1}^n  x_i + \hat\beta_1 \cdot\sum\limits_{i=1}^n x_i^2- \sum\limits_{i=1}^n y_i \cdot x_i\right) \\
+    &= 2 \cdot \left(\hat\beta_0 \cdot n \cdot \bar{x} + \hat\beta_1 \cdot\sum\limits_{i=1}^n x_i^2- \sum\limits_{i=1}^n y_i \cdot x_i\right)
+\end{aligned}$$
+
+Wir ersetzen nun $\hat\beta_0$ durch $\bar{y} - \hat\beta_1\cdot \bar{x}$ und erhalten:
+
+$$\begin{aligned}
+  \frac{\partial}{\partial \hat\beta_1} \, QS  &=
+  2 \cdot \left(\hat\beta_0 \cdot n \cdot \bar{x} + \hat\beta_1 \cdot\sum\limits_{i=1}^n x_i^2- \sum\limits_{i=1}^n y_i \cdot x_i\right) \\
+  &= 2 \cdot \left(\left(\bar{y} - \hat\beta_1\cdot \bar{x}\right) \cdot n \cdot \bar{x} + \hat\beta_1 \cdot\sum\limits_{i=1}^n  x_i^2- \sum\limits_{i=1}^n y_i \cdot x_i\right) \\
+  &= 2 \cdot \left(n \cdot\bar{y} \cdot \bar{x} - n \cdot \hat\beta_1 \cdot  \bar{x}^2  + \hat\beta_1 \cdot\sum\limits_{i=1}^n  x_i^2- \sum\limits_{i=1}^n y_i \cdot x_i\right) \\
+  &= 2 \cdot \left(n \cdot\bar{y} \cdot \bar{x} - \sum\limits_{i=1}^n y_i \cdot x_i  + \hat\beta_1 \cdot \left(\sum\limits_{i=1}^n  x_i^2- n \cdot  \bar{x}^2\right)\right) \\
+\end{aligned}$$
+
+Mit Hilfe des [*Verschiebesatzes von Steiner*](https://de.wikipedia.org/wiki/Verschiebungssatz_(Statistik)) (zweimal angewendet) erhalten wir:
+
+$$\begin{aligned}
+  \frac{\partial}{\partial \hat\beta_1} \, QS  
+    &=2 \cdot \left(n \cdot\bar{y} \cdot \bar{x} - \sum\limits_{i=1}^n y_i \cdot x_i  + \hat\beta_1 \cdot \left(\sum\limits_{i=1}^n  x_i^2- n \cdot  \bar{x}^2\right)\right) \\
+    &=2 \cdot \left(- \left(\sum\limits_{i=1}^n y_i \cdot x_i - n \cdot \bar{y} \cdot \bar{x}   \right)+ \hat\beta_1 \cdot \left(\sum\limits_{i=1}^n  x_i^2- n \cdot  \bar{x}^2\right)\right) \\
+    &=2 \cdot \left(\hat\beta_1 \cdot \left(\sum\limits_{i=1}^n  x_i^2- n \cdot  \bar{x}^2\right)- \left(\sum\limits_{i=1}^n y_i \cdot x_i - n \cdot \bar{y} \cdot \bar{x}   \right)\right) \\
+    &= 2 \cdot \left(\hat\beta_1 \cdot \sum\limits_{i=1}^n(x_i-\bar{x})^2 - \sum\limits_{i=1}^n (x_i-\bar{x}) \cdot (y_i-\bar{y})\right)
+\end{aligned}$$
+
+Wir setzen nun wieder den Ausdruck gleich Null:
+
+$$\begin{aligned}
+ 0 &= 2 \cdot \left(\hat\beta_1 \cdot \sum\limits_{i=1}^n(x_i-\bar{x})^2 - \sum\limits_{i=1}^n (x_i-\bar{x}) \cdot (y_i-\bar{y})\right)  \qquad | : 2\\
+   &= \hat\beta_1 \cdot \sum\limits_{i=1}^n(x_i-\bar{x})^2 - \sum\limits_{i=1}^n (x_i-\bar{x}) \cdot (y_i-\bar{y})
+ \end{aligned}$$
+
+Und stellen dann nach $\hat\beta_1$ um:
+
+$$\begin{aligned}
+  \hat\beta_1 \cdot \sum\limits_{i=1}^n(x_i-\bar{x})^2 
+    &= \sum\limits_{i=1}^n (x_i-\bar{x}) \cdot (y_i-\bar{y}) \\
+  \hat\beta_1 
+    &= \frac{\sum\limits_{i=1}^n (x_i-\bar{x}) \cdot (y_i-\bar{y})}{\sum\limits_{i=1}^n(x_i-\bar{x})^2}
+\end{aligned}$$
+
+Wir können nun Zähler und Nenner der rechten Seite mit $\frac{1}{n}$ erweitern und erhalten so:
+
+$$\begin{aligned}
+\hat\beta_1 
+      &= \frac{\frac{1}{n} \cdot\sum\limits_{i=1}^n (x_i-\bar{x}) \cdot (y_i-\bar{y})}{\frac{1}{n} \cdot\sum\limits_{i=1}^n  (x_i-\bar{x})^2} \\
+      &= \frac{\sigma_{x,y}}{\sigma^2_x} \\
+\end{aligned}$$
+
+Oder aber wir erweitern mit $\frac{1}{n-1}$ und erhalten:
+
+$$\begin{aligned}
+\hat\beta_1 
+      &= \frac{\frac{1}{n-1} \cdot\sum\limits_{i=1}^n (x_i-\bar{x}) \cdot (y_i-\bar{y})}{\frac{1}{n-1} \cdot\sum\limits_{i=1}^n  (x_i-\bar{x})^2} \\
+      &= \frac{s_{x,y}}{s^2_{x}}
+\end{aligned}$$
+
+Damit können wir zur Berechnung sowohl die Kovarianz der Grundgesamtheit $\sigma_{x,y}$ und die Varianz $\sigma^2_x$ von $x$, als auch deren Schätzer $s_{x,y}$ und $s^2_x$ verwendet werden!
+
+Diese Methode nennt sich **Methode der kleinsten Quadrate** (engl. *ordenary least square method*) und wir sprechen dann auch von den **Kleinste-Quadrate-Schätzern** (oder kurz **KQ-Schätzer** bzw. **OLS-Schätzer**) $\hat\beta_0$ und $\hat\beta_1$.
+
+Erweitern wir den Ausdruck mit Standardabweichung $\sigma_y$ bzw. $s_y$, so erhalten wir:
+
+$$\begin{aligned}
+\hat\beta_1 &= \frac{\sigma_{x,y}}{\sigma^2_x} \cdot \frac{\sigma_y}{\sigma_y} = \frac{\sigma_{x,y}}{\sigma_x \cdot \sigma_x} \cdot \frac{\sigma_y}{\sigma_y} = \frac{\sigma_{x,y}}{\sigma_x \cdot \sigma_y} \cdot \frac{\sigma_y}{\sigma_x} \\
+ &= \rho_{x,y} \cdot \frac{\sigma_y}{\sigma_x} \\
+\end{aligned}$$
+
+und analog für die Schätzer:
+
+$$\begin{aligned}
+\hat\beta_1 &= \frac{s_{x,y}}{s^2_x} \cdot \frac{s_y}{s_y} 
+  = \frac{s_{x,y}}{s_x \cdot s_x} \cdot \frac{s_y}{s_y}
+  = \frac{s_{x,y}}{s_x \cdot s_y} \cdot \frac{s_y}{s_x} \\
+ &= r_{x,y} \cdot \frac{s_y}{s_x} \\
+\end{aligned}$$
+
+Die Steigung $\hat\beta_1$ hat somit eine direkte Beziehung mit dem *Korrelationskoeffizenten* $\rho$ (der Grundgesamtheit) bzw. $r$ (der Stichprobe).
+
+Für eine Berechnung in **R** heißt dies: wir können die Regressionskoeffizienten $\hat\beta_0$ und $\hat\beta_1$ direkt algebraisch ausrechnen, wenn wir
+
+a)  die Standardabweichungen von $x$ und $y$ und den Korrelationskoeffizienten oder
+
+b)  die Varianz von $x$ und Kovarianz von $x$ und $y$
+
+haben.
+
+### Ein Beispiel in R:
+
+Auf Grundlage der Datentabelle *mtcars* wollen wir Prüfen wie ein linearer Zusammenhang zwischen dem Verbrauch (in Meilen pro Gallone *mpg*) und der Leistung (Pferdestärke *hp*) modelliert werden kann.[^1]
+
+[^1]: Das "Cookbook" zur Datentabelle können Sie mit Hilfe von `help("mtcars")` aufrufen!
+
+```{r}
+library(mosaic)
+
+# Wir nehmen die Datentabelle 'mtcars':
+mtcars %>%
+  select(hp, mpg) -> dt
+
+# Ein kurzer Blick auf die Daten:
+favstats(~ hp, data = dt)[c("mean","sd")]
+favstats(~ mpg, data = dt)[c("mean","sd")]
+
+# Wir vergleichen den Verbrauch (mpg, miles per gallon) 
+# mit den Pferdestärken (hp) mit Hilfe eines Streudiagramms:
+gf_point(mpg ~ hp, data = dt) %>%
+  gf_lims(y = c(5,35))
+```
+
+Berechnen wir zunächst die Mittelwerte von $x$ (also 'hp') und $y$ (also 'mpg')
+
+```{r}
+(mean_hp <- mean(~ hp, data = dt))
+(mean_mpg <- mean(~ mpg, data = dt))
+```
+
+und zeichnen die Punkt $(\bar{x}, \bar{y}) = (`r round(mean_hp,2)`, `r round(mean_mpg,2)`)$ in unser Streudiagramm ein:
+
+```{r}
+gf_point(mpg ~ hp, data = dt) %>%
+  gf_hline(yintercept = ~ mean_mpg, color = "grey60", linetype = "dashed") %>%
+  gf_vline(xintercept = ~ mean_hp, color = "grey60", linetype = "dashed") %>%
+  gf_point(mean_mpg ~ mean_hp, color = "red", size = 5, alpha = 0.2) %>%
+  gf_lims(y = c(5,35))
+```
+
+Berechnen wir nun die Schätzwerte für die Regressionsgerade
+
+```{r}
+(beta_1 <- cov(mpg ~ hp, data = dt) / var(~ hp, data = dt))
+(beta_0 <- mean_mpg - beta_1 * mean_hp)
+```
+
+und zeichnen diese in unser Streudiagramm ein:
+
+```{r}
+gf_point(mpg ~ hp, data = dt) %>%
+  gf_hline(yintercept = ~ mean_mpg, color = "grey60", linetype = "dashed") %>%
+  gf_vline(xintercept = ~ mean_hp, color = "grey60", linetype = "dashed") %>%
+  gf_point(mean_mpg ~ mean_hp, color = "red", size = 5, alpha = 0.2) %>%
+  gf_abline(slope = ~ beta_1, intercept = ~beta_0, color = "dodgerblue") %>%
+  gf_lims(y = c(5,35))
+```
+
+Die Funktionsvorschrift für die (blaue) Regressionsgerade lautet:
+
+$$
+\begin{aligned}
+  \hat{y} &= \hat\beta_0 + \hat\beta_1 \cdot x \\ 
+          &\approx `r beta_0` -`r abs(beta_1)` \cdot x \\
+          &\approx `r round(beta_0, 3)` -`r round(abs(beta_1),3)` \cdot x
+\end{aligned}
+$$
+
+### Studentisieren -- einmal hin und einmal zurück
+
+Was passiert eigentlich, wenn wir unsere $x$ und $y$ Werte studentisieren (aka standardisieren oder z-transformieren)?
+
+Zur Erinnerung, studentisieren geht so: 
+$$
+x^{stud} = \frac{x - \bar{x}}{s_x}
+$$
+
+In **R** können wir das mit der Funktion 'zscore' wie folgt machen:
+
+```{r}
+dt %>%
+  mutate(
+    hp_stud = zscore(hp),
+    mpg_stud = zscore(mpg)
+  ) -> dt
+```
+
+Natürlich sind die Mittelwerte nun Null und die Standardabweichungen Eins:
+
+```{r}
+favstats(~ hp_stud, data = dt)[c("mean","sd")]
+favstats(~ mpg_stud, data = dt)[c("mean","sd")]
+```
+
+Der Grund für die kleinen Abweichungen von der Null bei den Mittelwerten sind unumgängliche Rundungsfehler, die der Computer macht!
+
+Schauen wir uns nun das Streudiagramm an, zusammen mit dem Mittelpunkt $(0,0)$
+
+```{r, warning=FALSE}
+gf_point(mpg_stud ~ hp_stud, data = dt) %>%
+  gf_point(0 ~ 0, color = "red", size = 5, alpha = 0.2) %>%
+  gf_lims(y = c(-2, 2))
+```
+
+Auch wenn die Skalierungen sich geändert haben, die Diagramme sind sehr ähnlich.
+
+Bestimmen wir die Koeffizienten der Regressionsgerade
+
+```{r}
+(beta_stud_1 <- cov(mpg_stud ~ hp_stud, data = dt))
+(beta_stud_0 <- 0 - beta_stud_1 * 0)
+```
+
+und setzen sie in das Streudiagramm ein:
+
+```{r echo=FALSE, warning=FALSE}
+gf_point(mpg_stud ~ hp_stud, data = dt) %>%
+  gf_hline(yintercept = ~ 0, color = "grey60", linetype = "dashed") %>%
+  gf_vline(xintercept = ~ 0, color = "grey60", linetype = "dashed") %>%
+  gf_point(0 ~ 0, color = "red", size = 5, alpha = 0.2) %>%
+  gf_abline(slope = ~ beta_stud_1, intercept = ~beta_stud_0, 
+            color = "dodgerblue") %>%
+  gf_lims(y = c(-2, 2))
+```
+
+Wir können das studentisierte Problem auch wieder auf unser ursprüngliches zurück rechnen.
+
+Die Regressionsgerade im studentisierten Problem lautet:
+
+$$
+\begin{aligned}
+  \hat{y}^{stud} &= \hat\beta^{stud}_0 + \hat\beta_1^{stud} \cdot x^{stud} \\ 
+          &\approx `r beta_stud_0` -`r abs(beta_stud_1)` \cdot x^{stud} \\
+          &\approx `r round(beta_stud_0, 3)` -`r round(abs(beta_stud_1),3)` \cdot x^{stud}
+\end{aligned}
+$$
+
+Rechnen wir nun mittels der Formel $$\hat\beta_1 = \hat\beta_1^{stud} \cdot \frac{s_y}{s_x}$$
+
+die Steigung um, so erhalten wir:
+
+```{r}
+(b1 <- beta_stud_1 * sd(dt$mpg) / sd(dt$hp))
+```
+
+Und setzen wir das in unsere Gleichung zur Bestimmung von $\hat\beta_0$ ein:
+
+```{r}
+(b0 <- mean(dt$mpg) - b1 * mean(dt$hp))
+```
+
+so erhalten wir die Schätzwerte des ursprünglichen Problem.
+
+### Ein anderer Weg um die Regressionskoeffizenten zu bestimmen...
+
+Gehen wir das Problem noch einmal neu an. Wir suchen $\hat\beta=(\hat\beta_0, \hat\beta_1)$ welches $QS(\hat\beta) = QS(\hat\beta_0, \hat\beta_1) = \sum\limits_{i=1}^n \left(\hat\beta_0 + \hat\beta_1 \cdot x_i - y_i \right)^2$ minimiert.
+
+Statt es direkt, wie oben durch Null setzen der partiellen Ableitungen, zu bestimmen, wählen wir nun einen mathematisch-*numerischen* Ansatz und wollen $\hat\beta \in \mathbf{R}^2$ als *Optimierungsproblem* mit Hilfe des *Gradientenverfahrens* lösen.
+
+Beim Gradientenverfahren wird versucht, ausgehend von einem Startwert $\hat\beta^0 \in \mathbf{R}^2$, gemäß der Iterationsvorschrift
+
+$$
+\hat\beta^{k+1} = \hat\beta^{k} + \alpha^k \cdot d^k
+$$
+
+für alle $k=0,1, ...$ eine Näherungslösung für $\hat\beta$ zu finden. Dabei ist $\alpha^k > 0$ eine *positive Schrittweite* und $d^k\in\mathbf{R}^n$ eine *Abstiegsrichtung*, welche wir in jedem Iterationsschritt $k$ so bestimmen, dass die Folge $\hat\beta^k$ zu einem stationären Punkt, unserer Näherungslösung, konvergiert.
+
+Im einfachsten Fall, dem **Verfahren des steilsten Abstieges**, wird der Abstiegsvektor $d^k$ aus dem Gradienten $\nabla QS$ wie folgt bestimmt:
+
+$$
+d^k = -\nabla QS\left(\hat\beta^k\right)
+$$
+
+Wegen 
+$$
+\frac{\partial}{\partial \hat\beta_0} \, QS = 2 \cdot n \cdot \left(  \hat\beta_0 + \hat\beta_1\cdot\bar{x} - \bar{y} \right)
+$$
+
+und
+
+$$
+\frac{\partial}{\partial \hat\beta_1} \, QS = 2 \cdot \left(\hat\beta_1 \cdot \sum\limits_{i=1}^n(x_i-\bar{x})^2 - \sum\limits_{i=1}^n (x_i-\bar{x}) \cdot (y_i-\bar{y}) \right)
+$$
+
+gilt:
+
+$$
+\begin{aligned}
+\nabla QS(\hat\beta) &= \nabla QS(\hat\beta_0, \hat\beta_1) \\
+&= 2 \cdot \begin{pmatrix}
+n \cdot(\hat\beta_0 + \hat\beta_1\cdot\bar{x} - \bar{y})  \\
+\hat\beta_1 \cdot \sum\limits_{i=1}^n(x_i-\bar{x})^2 - \sum\limits_{i=1}^n (x_i-\bar{x}) \cdot (y_i-\bar{y})
+\end{pmatrix}
+\end{aligned}
+$$
+
+Wir wollen hier von Anfang an mit den studentisierten Werten arbeiten, weil diese numerisch viele Vorteile haben. Darum vereinfachen sich die beiden partiellen Ableitungen noch einmal zu:
+
+$$
+\frac{\partial}{\partial \hat\beta_0} \, QS = 2 \cdot v
+$$
+
+und
+
+$$
+\begin{aligned}
+\frac{\partial}{\partial \hat\beta_1} \, QS &= 2 \cdot \left(\hat\beta_1 \cdot \sum\limits_{i=1}^n(x_i-\bar{x})^2 - \sum\limits_{i=1}^n (x_i-\bar{x}) \cdot (y_i-\bar{y})\right) \\
+ &= 2 \cdot (n-1) \left(\hat\beta_1 \cdot s^2_{x} - s_{x,y}\right)
+\end{aligned}
+$$
+
+Somit gilt:
+
+$$
+\begin{aligned}
+\nabla QS(\hat\beta) &= \nabla QS(\hat\beta_0, \hat\beta_1) \\
+&= 2 \cdot \begin{pmatrix}
+n \cdot \hat\beta_0 \\
+ (n-1) \left(\hat\beta_1 \cdot s^2_{x} - s_{x,y}\right) 
+\end{pmatrix}
+\end{aligned}
+$$
+
+Um die Varianz und die Kovarianz nicht jedesmal neu zu berechnen, speichern wir die Ergebnisse vorab. Ebenso, damit der Quellcode kürzer wird, speichern wir in $x$ und $y$ die studentisierten Werte von $hp$ und $mpg$:
+
+```{r}
+# Vorbereitungen 
+var_x <- var(~ hp_stud, data = dt)
+cov_xy <- cov(mpg_stud ~ hp_stud, data = dt)
+
+n <- length(dt$hp_stud)
+
+x <- dt$hp_stud
+y <- dt$mpg_stud
+```
+
+Nun erstellen wir die $QS$ und $\nabla QS$ Funktionen: Wir definieren diese Funktion wie folgt in **R**:
+
+```{r}
+qs <- function(b_0, b_1) {
+  sum((b_1 * x - y)**2)
+}
+
+nabla_qs <- function(b_0, b_1) {
+  c(2 * n * b_0,
+    2 * (n - 1) * (b_1 * var_x - cov_xy)
+  )
+}
+```
+
+Die Schrittweite $alpha$ bestimmen wir mit Hilfe der *Armijo-Bedingung* und der *Backtracking Liniensuche*: Diese formalisiert das Konzept "genügend" in der geforderten Verringerung des Funktionswertes. Die Bedingung $f(x^k + \alpha d^k) < f(x^k)$ wird modifiziert zu $$f(x^k + \alpha d^k) \leq f(x^k) + \sigma \alpha \left(\nabla f(x^k)\right)^T d^k,$$ mit $\sigma\in (0,1)$. Die Armijo-Bedingung umgeht Konvergenzprobleme der einfachen Bedingung, indem sie fordert, dass die Verringerung zumindest proportional zur Schrittweite und zur Richtungsableitung $\left(\nabla f(x^k)\right)^T d^k$ ist, mit Hilfe der Proportionalitätskonstante $\sigma$. In der Praxis werden oft sehr kleine Werte verwendet, z.B. $\sigma=0.0001$.
+
+Die *Backtracking-Liniensuche* verringert die Schrittweite wiederholt um den Faktor $\rho$ (`rho`) , bis die Armijo-Bedingung erfüllt ist. Sie terminiert garantiert nach einer endlichen Anzahl von Schritten. Weshalb wir sie hier einsetzen:
+
+```{r}
+alpha_k <- function(b_0, b_1, d_k, alpha = 1, sigma = 0.0001, rho = 0.5) {
+  d_0 <- d_k[1]
+  d_1 <- d_k[2]
+  nabla <- nabla_qs(b_0, b_1)
+  n_0 <- nabla[1]
+  n_1 <- nabla[2]
+
+  lhs <- qs(b_0 + alpha*d_0, b_1 + alpha*d_1)
+  rhs <- qs(b_0, b_1) + sigma*alpha*(n_0*d_0 + n_1*d_1)
+
+  while (lhs > rhs) {
+    alpha <- rho * alpha
+    lhs <- qs(b_0 + alpha*d_0, b_1 + alpha*d_1)
+    rhs <- qs(b_0, b_1) + sigma*alpha*(n_0*d_0 + n_1*d_1)
+  }
+  return(alpha)
+}
+```
+
+Ein paar Einstellungen vorab:
+
+```{r}
+# maximale Anzahl an Iterationen
+max_iter <- 1000
+iter <- 0
+
+# Genauigkeit
+eps <- 10**-6
+
+# Startwerte
+b_0 <- 0 
+b_1 <- -1 
+```
+
+Für eine vorgegebene Genauigkeit $eps=`r eps`$, den Startwerten $\hat\beta_0^0 = `r b_0`$ und $\hat\beta_1^0 = `r b_1`$ können wir somit das Verfahren starten:
+
+```{r}
+while (TRUE) {
+  iter <- iter + 1
+
+  d_k <- -nabla_qs(b_0, b_1)
+
+  ad_ <- alpha_k(b_0, b_1, d_k) * d_k
+
+  x0 <- b_0 + ad_[1]
+  x1 <- b_1 + ad_[2]
+
+  if ((abs(b_0 - x0) < eps) & (abs(b_1 - x1) < eps) | (iter > max_iter)) {
+    break
+  }
+  b_0 <- x0
+  b_1 <- x1
+}
+
+```
+
+Wir haben in $`r iter`$ Iterationsschritten das folgende Ergebnis für die Regressionskoeffizienten:
+
+$$
+\hat\beta_0^{stud} = `r b_0` \qquad \hat\beta_1^{stud} = `r b_1`
+$$
+
+Betrachten wir die daraus erstellte Regressionsgerade:
+
+```{r echo=FALSE, warning=FALSE}
+gf_point(mpg_stud ~ hp_stud, data = dt) %>%
+  gf_hline(yintercept = ~ 0, color = "grey60", linetype = "dashed") %>%
+  gf_vline(xintercept = ~ 0, color = "grey60", linetype = "dashed") %>%
+  gf_point(0 ~ 0, color = "red", size = 5, alpha = 0.2) %>%
+  gf_abline(slope = ~ b_1, intercept = ~ b_0, 
+            color = "dodgerblue") %>%
+  gf_abline(slope = ~ beta_stud_1, intercept = ~beta_stud_0, 
+            color = "darkgreen", linetype = "dashed", alpha = 0.7) %>%
+  gf_lims(y = c(-2, 2))
+```
+
+Um die Regressionskoeffizienten für unser ursprüngliches Problem zu erhalten müssen wir wie folgt zurück rechnen:
+
+```{r}
+(b1 <- b_1 * sd(dt$mpg) / sd(dt$hp))
+(b0 <- mean(dt$mpg) -  b1 * mean(dt$hp))
+```
+
+Die Geradengleichung für das ursprüngliches Problem lautet somit:
+
+$$
+\begin{aligned}
+  \hat{y} &= \hat\beta_0 + \hat\beta_1 \cdot x \\ 
+          &\approx `r b0` -`r abs(b1)` \cdot x \\
+          &\approx `r round(b0, 3)` -`r round(abs(b1),3)` \cdot x
+\end{aligned}
+$$
+
+### Die R Funktion `optim`
+
+In **R** gibt es bessere Optimierungsmethoden, als die hier verwendete. Zum Beispiel können wir die Funktion `optim` verwenden. Die Funktion `optim` benötigt die zu optimierende $f(x)$ und ggf. die Gradientenfunktion $gf(x)$ sowie einen Startpunkt $x^0$:
+
+```{r}
+f <- function(beta) {
+  qs(beta[1], beta[2])
+}
+
+grf <- function(beta) {
+  nabla_qs(beta[1], beta[2])
+}
+
+# Der eigentliche Aufruf von optim:
+ergb <- optim(c(0,-0.5),f ,grf, method = "CG")
+
+# Auslesen der Schätzer aus dem Ergebnis:
+(optim_beta_0 <- ergb$par[1])
+(optim_beta_1 <- ergb$par[2])
+```
+
+Wir erhalten somit für das studentisierte Problem die Gerade:
+
+$$
+\begin{aligned}
+  \hat{y}^{stud} &= \hat\beta_0^{stud} + \hat\beta_1^{stud} \cdot x^{stud} \\ 
+          &\approx `r optim_beta_0` -`r abs(optim_beta_1)` \cdot  x^{stud} \\
+          &\approx `r round(optim_beta_0, 3)` -`r round(abs(optim_beta_1),3)` \cdot  x^{stud}
+\end{aligned}
+$$
+
+Für das ursprüngliche Problem rechnen wir mittels
+
+```{r}
+optim_b1 <- optim_beta_1 * sd(dt$mpg) / sd(dt$hp)
+optim_b0 <- mean(dt$mpg) -  optim_b1 * mean(dt$hp)
+```
+
+um und erhalten:
+
+$$
+\begin{aligned}
+  \hat{y} &= \hat\beta_0 + \hat\beta_1 \cdot x \\ 
+          &\approx `r optim_b0` -`r abs(optim_b1)` \cdot x \\
+          &\approx `r round(optim_b0, 3)` -`r round(abs(optim_b1), 3)` \cdot x
+\end{aligned}
+$$
+
+## 2. Idee: Summe der absoluten Abweichungen
+
+Wir ändern nun die Abweichungsmessfunktion von der *Q*uadrat-*S*umme hin zu den **A**bsolut-*S*ummen:
+
+$$
+AS = AS(\hat\beta) = AS(\hat\beta_0, \hat\beta_1) = \sum_{i=1}^n |\hat{y}_i - y_i|
+$$
+
+Auch hier wollen wir mit den studentisierten Daten arbeiten und stellen die Funktion der *A*bsolut-*S*ummen auf:
+
+```{r}
+# Absolute Abweichungssummen
+as <- function(b_0, b_1) {
+  return(sum(abs(b_0 + b_1 * x - y)))
+}
+```
+
+Danach konstruieren wir die zu optimierende Funktion $f$:
+
+```{r}
+# Zu optimierende Funktion
+f <- function(beta) {
+  as(beta[1], beta[2])
+}
+```
+
+Diesmal nutzen wir `optim` ohne eine Gradientenfunktion:
+
+```{r}
+ergb <- optim(c(0,-1), f)
+
+# Schätzer auslesen
+(opti_as_beta_0 <- ergb$par[1])
+(opti_as_beta_1 <- ergb$par[2])
+```
+
+Schauen wir uns nun die so erhaltene Gerade im Vergleich mit der 'normalen' Regressionsgerade an:
+
+```{r echo=FALSE, warning=FALSE}
+gf_point(mpg_stud ~ hp_stud, data = dt) %>%
+  gf_hline(yintercept = ~ 0, color = "grey60", linetype = "dashed") %>%
+  gf_vline(xintercept = ~ 0, color = "grey60", linetype = "dashed") %>%
+  gf_point(0 ~ 0, color = "red", size = 5, alpha = 0.2) %>%
+  gf_abline(slope = ~ opti_as_beta_1, intercept = ~ opti_as_beta_0, 
+            color = "dodgerblue") %>%
+  gf_abline(slope = ~ beta_stud_1, intercept = ~beta_stud_0, 
+            color = "darkgreen", linetype = "dashed", alpha = 0.7) %>%
+  gf_lims(y = c(-2, 2))
+```
+
+In grün und gestrichelt sehen wir die Gerade aus der *Idee der quadratischen Abweichungssummen*, in blau die aus der *Idee der absoluten Abweichungssummen*.
+
+Für unser ursprüngliches Problem rechnen wir um:
+
+```{r}
+# Umrechnen in die ursprüngliche Fragestellung
+(as_b1 <- opti_as_beta_1 * sd(dt$mpg) / sd(dt$hp))
+(as_b0 <- (mean(dt$mpg) - as_b1 * mean(dt$hp)) + opti_as_beta_0 * sd(dt$mpg))
+```
+
+Und die dazu gehörige Darstellung:
+
+```{r echo=FALSE, warning=FALSE}
+gf_point(mpg ~ hp, data = dt) %>%
+  gf_hline(yintercept = ~ mean(mpg), color = "grey60", linetype = "dashed") %>%
+  gf_vline(xintercept = ~ mean(hp), color = "grey60", linetype = "dashed") %>%
+  gf_point(mean(mpg) ~ mean(hp), color = "red", size = 5, alpha = 0.2)  %>%
+  gf_abline(slope = ~ as_b1, intercept = ~ as_b0, color = "dodgerblue") %>%
+  gf_lims(y = c(5, 35))
+```
+
+Die Funktionsvorschrift für die (blaue) Regressionsgerade lautet:
+
+$$
+\begin{aligned}
+  \hat{y} &= \hat\beta_0 + \hat\beta_1 \cdot x \\ 
+          &\approx `r as_b0` -`r abs(as_b1)` \cdot x \\
+          &\approx `r round(as_b0, 3)` -`r round(abs(as_b1), 3)` \cdot x
+\end{aligned}
+$$
+
+Diese Methode nennt sich **Median-Regression** und ein ein Spezialfall der **Quantilsregression**, die sich u.a. mit dem R-Paket [*quantreg*](https://cran.r-project.org/web/packages/quantreg/index.html) unmittelbar umsetzen lässt:
+
+```{r}
+library(quantreg)
+ergmedianreg <- rq(mpg ~ hp, data = dt)
+coef(ergmedianreg)
+```
+
+## 1. Idee: Betrag der Summe der Abweichungen
+
+Wenn wir die Summe der Abweichungen $\sum\limits_{i=1}^n \hat{e}_i$ minimieren wollen, dann ist es sinnvoll den Betrag davon zu minimieren. Wir suchen also die Schätzer $\hat\beta_0$ und $\hat\beta_1$, so dass der Ausdruck
+
+$$
+\left| \sum_{i=1}^n \hat{e}_i \right| = \left| \sum_{i=1}^n (\hat\beta_0 + \hat\beta_1 \cdot x_i - y_i) \right|
+$$
+
+minimal ist.
+
+Wegen:
+
+$$
+\begin{aligned}
+\sum_{i=1}^n (\hat\beta_0 + \hat\beta_1 \cdot x_i - y_i)
+&= \sum_{i=1}^n \hat\beta_0 + \sum_{i=1}^n \hat\beta_1 \cdot x_i - \sum_{i=1}^n y_i \\
+&= n \cdot \hat\beta_0 + \hat\beta_1 \cdot \sum_{i=1}^n x_i - \sum_{i=1}^n y_i \\
+&= n \cdot \hat\beta_0 + \hat\beta_1 \cdot n \cdot \bar{x} - n \cdot \bar{y} \\
+&= n \cdot \left( \hat\beta_0 + \hat\beta_1 \cdot \bar{x} - \bar{y} \right) \\
+&= n \cdot \left( \hat\beta_0 - \bar{y} + \hat\beta_1 \cdot \bar{x}  \right)
+\end{aligned}
+$$
+
+können wir das absolute Minimum bei $\hat\beta_0 - \bar{y} =0$ und $\hat\beta_1 \cdot \bar{x}=0$ erreichen, was zur Lösung $\hat\beta_0 =\bar{y}$ und $\hat\beta_1 = 0$ führt. Dies ist unser *Nullmodel* in dem die $x_i$ keinen Einfluss auf die $y_i$ haben und wir daher pauschal die $y_i$ mit $\hat{y}_i=\bar{y}$, also dem Mittelwert der $y_i$ abschätzen.
+
+## Zusammenfassung
+
+Als Vergleich können wir uns die Quadratsumme $QS$ und Absolutsumme $AS$ der drei Modelle einmal ansehen:
+
+```{r}
+# Quadratische Abweichungssummen
+qs <- function(b_0, b_1) {
+  sum(((b_0 + b_1 * dt$hp) - dt$mpg )**2)
+}
+
+# Absolute Abweichungssummen
+as <- function(b_0, b_1) {
+  sum(abs((b_0 + b_1 * dt$hp) - dt$mpg))
+}
+
+```
+
+```{r}
+# Quadratsummen:
+quad_sum <- c(qs(b0, b1), qs(as_b0, as_b1), qs(mean_mpg, 0))
+
+# Absolutsummen:
+abs_sum <- c(as(b0, b1), as(as_b0, as_b1), as(mean_mpg, 0))
+
+tab <- tibble(
+  sums = c(quad_sum, abs_sum),
+  sum_type = rep(c("quad", "abs"), each = 3),
+  methode = rep(c("Idee 3", "Idee 2", "Idee 1"), 2)
+)
+
+pivot_wider(tab, names_from=sum_type, values_from=sums, names_sort=T)
+```
+
+## Reproduzierbarkeitsinformationen
+
+```{r reproducibility, echo = FALSE}
+options(width = 120)
+xfun::session_info(c("mosaic", "tidyr","quantreg", "xfun"), dependencies = F)
+```

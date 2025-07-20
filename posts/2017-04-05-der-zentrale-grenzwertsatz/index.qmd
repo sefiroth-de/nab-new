@@ -1,0 +1,174 @@
+---
+title: "Der Zentrale Grenzwertsatz"
+author: "Norman Markgraf"
+lang: de-DE
+date: "2017-04-05"
+categories: 
+  - Statistik
+---
+
+```{r, include=FALSE}
+library(mosaic)
+library(gridExtra)
+```
+
+## Der **Zentrale Grenzwertsatz** der Statistik bei identischer Verteilung.
+
+### Zentraler Grenzwertsatz
+
+Seien $X_1, X_2, ..., X_n$ unabhängige und identisch verteilte Zufallsvariablen mit bekanntem Erwartungswert $E(X_i) = \mu$ und bekannter Varianz $Var(X_i)=\sigma^2$.
+
+Für die Summe $S_n = \sum_{i=1}^n X_i$ ist dann der Erwartungswert $E(S_n)= n \cdot \mu$ und die Varianz $Var(S_n)= n \cdot \sigma^2$.
+
+Dann gilt für die *standardisierte* Zufallsvariable
+
+$$
+\begin{align*}
+Z_n &= \frac{\left(\sum\limits_{i=1}^n X_i\right) - n \cdot \mu}{\sqrt{n\cdot \sigma^2}}
+    = \frac{S_n - n \cdot \mu}{\sigma \cdot \sqrt{n}} 
+    = \frac{n \cdot \bar{X}_n-n \cdot \mu}{\sigma \cdot n / \sqrt{n}} \\
+    &= \frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} 
+    = \frac{\bar{X}_n - \mu}{\sigma} \cdot \sqrt{n},
+\end{align*}
+$$
+
+dass sie für wachsendes $n$ immer besser durch die *Standardnormalverteilung* $N(0, 1)$ approximiert werden kann.
+
+Mit anderen Worten:
+
+$$
+P(Z_n \leq x) \longrightarrow \Phi(x), \quad \text{ für }\; n \rightarrow \infty
+$$
+
+## Ein Beispiel:
+
+Nehmen wir drei Verteilungen mit Zufallsvariable $U$, $X$, $Y$ und jeweils $n$ Realisationen $u_1,\dots, u_n$, $x_1,\dots, x_n$, $y_1,\dots, y_n$.
+
+Wählen wir zunächst $n=5$:
+
+```{r, init_5, echo=FALSE}
+set.seed(2009)
+
+n_max <- 1000
+n <- 5
+u <- round(runif(n, 0, 100), 3)
+x <- round(rchisq(n, 10, ncp = 5), 3)
+y <- round(rnorm(n, 50, 15), 3)
+```
+
+```{r}
+u
+x
+y
+```
+
+Standardisieren wir die Werte:
+
+```{r}
+library(mosaic)
+zscore(u)
+zscore(x)
+zscore(y)
+```
+
+Die Behauptung des Zentralengrenzwertsatzes ist nun, dass mit steigender Anzahl an Werten $n$ die standardisierten Werte in der empirischen Verteilungsfunktion sich immer mehr der Verteilungsfunktion der Standardnormalverteilung annähern:
+
+```{r eval=T, echo=F}
+library(ggplot2)
+library(gtable)
+library(grid)
+library(gridExtra)
+
+set.seed(2009)
+
+n_max <- 100
+step <- 5
+start <- 5
+
+nn <- c(5, 25, 100, 500)
+
+
+set.seed(2009)
+
+i = 1
+u <- zscore(round(runif(nn[i], 0, 100), 3))
+x <- zscore(round(rchisq(nn[i], 10, ncp = 5), 3))
+y <- zscore(round(rnorm(nn[i], 50, 15), 3))
+
+p <- gf_function(fun = pnorm, xlim = c(-3,3), col="red") 
+
+p1 <- p  %>% 
+        gf_function(fun = ecdf(u), xlim = c(-3,3), col = "blue") + ggtitle("U")
+
+p2 <- p  %>% 
+        gf_function(fun = ecdf(x), xlim = c(-3,3), col = "green") + ggtitle("X")
+
+p3 <- p  %>% 
+        gf_function(fun = ecdf(y), xlim = c(-3,3), col = "yellow") + ggtitle("Y")
+
+grid.arrange(p1, p2, p3, ncol = 3, top = textGrob(paste0("Vergleich der (empirischen) Verteilungsfunktionen n=", nn[i])))
+
+
+i = 2
+
+set.seed(2009)
+u <- zscore(round(runif(nn[i], 0, 100), 3))
+x <- zscore(round(rchisq(nn[i], 10, ncp = 5), 3))
+y <- zscore(round(rnorm(nn[i], 50, 15), 3))
+
+p <- gf_function(fun = pnorm, xlim = c(-3,3), col = "red") 
+
+p1 <- p  %>% 
+        gf_function(fun = ecdf(u), xlim = c(-3,3), col = "blue") + ggtitle("U")
+
+p2 <- p  %>% 
+        gf_function(fun = ecdf(x), xlim = c(-3,3), col = "green") + ggtitle("X")
+
+p3 <- p  %>% 
+        gf_function(fun = ecdf(y), xlim = c(-3,3), col = "yellow") + ggtitle("Y")
+
+grid.arrange(p1, p2, p3, ncol=3, top=textGrob(paste0("Vergleich der (empirischen) Verteilungsfunktionen n=", nn[i])))
+
+i = 3
+
+set.seed(2009)
+u <- zscore(round(runif(nn[i], 0, 100), 3))
+x <- zscore(round(rchisq(nn[i], 10, ncp = 5), 3))
+y <- zscore(round(rnorm(nn[i], 50, 15), 3))
+
+p <- gf_function(fun = pnorm, xlim = c(-3,3), col = "red") 
+
+p1 <- p  %>% 
+        gf_function(fun = ecdf(u), xlim = c(-3,3), col = "blue") + ggtitle("U")
+
+p2 <- p  %>% 
+        gf_function(fun = ecdf(x), xlim = c(-3,3), col = "green") + ggtitle("X")
+
+p3 <- p  %>% 
+        gf_function(fun = ecdf(y), xlim=  c(-3,3), col = "yellow") + ggtitle("Y")
+
+grid.arrange(p1, p2, p3, ncol = 3, top = textGrob(paste0("Vergleich der (empirischen) Verteilungsfunktionen n=", nn[i])))
+
+i = 4
+
+set.seed(2009)
+u <- zscore(round(runif(nn[i], 0, 100), 3))
+x <- zscore(round(rchisq(nn[i], 10, ncp= 5), 3))
+y <- zscore(round(rnorm(nn[i], 50, 15), 3))
+
+p <- gf_function(fun = pnorm, xlim=c(-3,3), col="red") 
+
+p1 <- p  %>% 
+        gf_function(fun = ecdf(u), xlim=c(-3,3), col="blue") + ggtitle("U")
+
+p2 <- p  %>% 
+        gf_function(fun = ecdf(x), xlim=c(-3,3), col="green") + ggtitle("X")
+
+p3 <- p  %>% 
+        gf_function(fun = ecdf(y), xlim=c(-3,3), col="yellow") + ggtitle("Y")
+
+grid.arrange(p1, p2, p3, ncol=3, top=textGrob(paste0("Vergleich der (empirischen) Verteilungsfunktionen n=", nn[i])))
+
+```
+
+**Weiterführende Literatur und Quellen dieses Eintrags:**

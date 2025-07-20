@@ -1,0 +1,214 @@
+---
+title: "Dinge die man in zwei Dimensionen machen kann - Multiple lineare Regression"
+author: "Norman Markgraf"
+date: "2021-06-24"
+lang: de-DE
+categories: 
+  - Statistik
+---
+
+```{r setup, echo=FALSE, include=FALSE}
+library(mosaic)
+knitr::opts_chunk$set(
+  #comment = '', 
+  comment = "#>",
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  #out.width = "100%",
+  out.width = "90%",  # Für PDF: 50% !
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  size = "small"
+)
+round_digits <- 3
+```
+
+Wir wollen den Fall unterschen bei dem wir mit zwei statistischen Variabeln ($X$ und $Y$) eine dritte Variable ($Z$) mittels einer multiplen linearen Regression modellieren.
+
+Es seien die Datenpunkte $(x_1, y_1, z_1), \dots, (x_n, y_n, z_n)$ gegeben und wir wollen eine lineare Funktion $g(x,y)$ finden, so dass
+
+$$
+z_i = g(x_i,y_i)+ \epsilon_i =\beta_0 + \beta_1 \cdot x_i + \beta_2 \cdot y_i + \epsilon_i
+$$
+
+gilt und der Abweichungsterm $\epsilon_i$ möglichst klein ist.
+
+Auf Grundlage unserer Datenpunkt wollen wir die Koeffizienten so schätzen, dass die Summe der quadratische Abweichungen minimal ist. 
+$$
+  QS = QS(\hat\beta_0, \hat\beta_1, \hat\beta_2) 
+  = \sum\limits_{i=1}^n (z_i - \hat\beta_0 - \hat\beta_1 \cdot x_i - \hat\beta_2 \cdot y_i )^2
+$$
+
+Das führt zu der folgenden, notwendigen Bedingen (für stationäre Punkte):
+
+$$
+\nabla QS(\hat\beta_0, \hat\beta_1, \hat\beta_2) = \begin{pmatrix} 0\\ 0\\ 0\end{pmatrix}
+$$
+
+Im einzelnen heißt das:
+
+$$
+\begin{aligned}
+\frac{\partial}{\partial \hat\beta_0} QS(\hat\beta_0, \hat\beta_1, \hat\beta_2) &= -2 \cdot\sum\limits_{i=1}^n \left(z_i - \hat\beta_0 - \hat\beta_1 \cdot x_i - \hat\beta_2 \cdot y_i \right) \\
+&= -2 \cdot n \cdot \left(\bar{z} - \hat\beta_0 - \hat\beta_1 \cdot\bar{x} - \hat\beta_2 \cdot\bar{y} \right) \\
+\\
+\frac{\partial}{\partial \hat\beta_1} QS(\hat\beta_0, \hat\beta_1, \hat\beta_2) &= -2 \cdot \sum\limits_{i=1}^n \left( z_i\cdot x_i - \hat\beta_0 \cdot x_i - \hat\beta_1 \cdot x_i\cdot x_i - \hat\beta_2 \cdot y_i\cdot x_i \right) \\
+&= -2 \cdot \left(\sum\limits_{i=1}^n  z_i\cdot x_i -  \hat\beta_0 \cdot n \cdot \bar{x}- \hat\beta_1 \cdot \sum\limits_{i=1}^n x_i^2 - \hat\beta_2 \cdot \sum\limits_{i=1}^n y_i\cdot x_i \right) \\
+\\
+\frac{\partial}{\partial \hat\beta_2} QS(\hat\beta_0, \hat\beta_1, \hat\beta_2) &= -2 \cdot \sum\limits_{i=1}^n \left( z_i\cdot y_i - \hat\beta_0 \cdot y_i - \hat\beta_1 \cdot x_i\cdot y_i - \hat\beta_2 \cdot y_i\cdot y_i \right) \\
+&= -2 \cdot \left(\sum\limits_{i=1}^n  z_i\cdot y_i -  \hat\beta_0 \cdot n \cdot \bar{y}- \hat\beta_1 \cdot \sum\limits_{i=1}^n x_i\cdot y_i - \hat\beta_2 \cdot \sum\limits_{i=1}^n y_i^2 \right) \\
+\end{aligned}
+$$
+
+Wir setzen die 1. Gleichung gleich Null und stellen nach $\hat\beta_0$ um:
+
+$$
+  \hat\beta_0 = \bar{z}  - \hat\beta_1 \cdot \bar{x} - \hat\beta_2 \cdot \bar{y}
+$$ Nun ersetzen wir $\hat\beta_0$ in den verbleibenden Gleichungen durch $z_i - \hat\beta_1 \cdot x_i - \hat\beta_2 \cdot y_i$ und nutzen den Verschiebesatz: 
+
+
+$$
+\begin{aligned}
+\frac{\partial}{\partial \hat\beta_1} QS
+&= -2 \cdot \left(\sum\limits_{i=1}^n  z_i\cdot x_i - (\bar{z}  - \hat\beta_1 \cdot \bar{x} - \hat\beta_2 \cdot \bar{y}) \cdot n \cdot \bar{x}- \hat\beta_1 \cdot \sum\limits_{i=1}^n x_i^2 - \hat\beta_2 \cdot \sum\limits_{i=1}^n y_i\cdot x_i \right) \\
+&= -2 \cdot \left(\sum\limits_{i=1}^n (z_i-\bar{z})(x_i - \bar{x}) - \hat\beta_1 \cdot \sum\limits_{i=1}^n (x_i -\bar{x})^2 - \hat\beta_2 \cdot \sum\limits_{i=1}^n (y_i-\bar{y})(x_i- \bar{x}) \right) \\
+\\
+\frac{\partial}{\partial \hat\beta_2} QS 
+&= -2 \cdot \left(\sum\limits_{i=1}^n  z_i\cdot y_i - (\bar{z}  - \hat\beta_1 \cdot \bar{x} - \hat\beta_2 \cdot \bar{y}) \cdot n \cdot \bar{y}- \hat\beta_1 \cdot \sum\limits_{i=1}^n x_i\cdot y_i - \hat\beta_2 \cdot \sum\limits_{i=1}^n y_i^2 \right) \\
+&= -2 \cdot \left(\sum\limits_{i=1}^n (z_i-\bar{z})(y_i - \bar{y}) - \hat\beta_2 \cdot \sum\limits_{i=1}^n (y_i -\bar{y})^2 - \hat\beta_1 \cdot \sum\limits_{i=1}^n (y_i-\bar{y})(x_i- \bar{x}) \right) \\
+\end{aligned}
+$$
+
+Wir setzen die beiden Gleichungen nun gleich Null und formen nach $\hat\beta_1$ und $\hat\beta_2$ um:
+
+$$
+\begin{aligned}
+  \hat\beta_1 
+  &= \frac{\sum\limits_{i=1}^n (z_i-\bar{z})(x_i - \bar{x}) - \hat\beta_2 \cdot \sum\limits_{i=1}^n (y_i-\bar{y})(x_i- \bar{x})}{\sum\limits_{i=1}^n (x_i -\bar{x})^2} \\
+  \\
+  \hat\beta_2 
+  &= \frac{\sum\limits_{i=1}^n (z_i-\bar{z})(y_i - \bar{y}) - \hat\beta_1 \cdot \sum\limits_{i=1}^n (y_i-\bar{y})(x_i- \bar{x})}{\sum\limits_{i=1}^n (y_i -\bar{y})^2}
+\end{aligned}
+$$
+
+Durch Erweiterung von Zähler nun Nenner mit $\frac{1}{n-1}$ erhalten wir:
+
+$$
+\begin{aligned}
+  \hat\beta_1 
+  &= \frac{\frac{1}{n-1}\cdot\sum\limits_{i=1}^n (z_i-\bar{z})(x_i - \bar{x}) - \hat\beta_2 \cdot \frac{1}{n-1}\cdot\sum\limits_{i=1}^n (y_i-\bar{y})(x_i- \bar{x})}{\frac{1}{n-1}\cdot\sum\limits_{i=1}^n (x_i -\bar{x})^2} \\
+  &= \frac{s_{x,z}-\hat\beta_2\cdot s_{x,y}}{s^2_{x}} = \frac{s_{x,z}}{s^2_x}-\hat\beta_2 \frac{s_{x,y}}{s^2_{x}} \\
+  \\
+  \hat\beta_2 
+  &= \frac{\frac{1}{n-1}\cdot\sum\limits_{i=1}^n (z_i-\bar{z})(y_i - \bar{y}) - \hat\beta_1 \cdot \frac{1}{n-1}\cdot\sum\limits_{i=1}^n (y_i-\bar{y})(x_i - \bar{x})}{\frac{1}{n-1}\cdot\sum\limits_{i=1}^n (y_i -\bar{y})^2} \\
+  &= \frac{s_{y,z}-\hat\beta_1\cdot s_{x,y}}{s^2_{y}} = \frac{s_{y,z}}{s^2_y}-\hat\beta_1 \frac{s_{x,y}}{s^2_{y}} \\
+\end{aligned}
+$$
+
+wir setzen nun die erste in die zweite Gleichung ein und erhalten:
+
+$$
+\begin{aligned}
+\hat\beta_2 
+  &= \frac{s_{y,z}}{s^2_y} - \left(\frac{s_{x,z}}{s^2_x}-\hat\beta_2 \frac{s_{x,y}}{s^2_{x}}\right) \frac{s_{x,y}}{s^2_{y}} \\
+  &= \frac{s_{y,z}}{s^2_y} - \frac{s_{x,z}}{s^2_x}\frac{s_{x,y}}{s^2_{y}} + \hat\beta_2 \frac{s_{x,y}}{s^2_{x}}\frac{s_{x,y}}{s^2_{y}} \\
+  &= \frac{\frac{s_{y,z}}{s^2_y} - \frac{s_{x,z}}{s^2_x}\frac{s_{x,y}}{s^2_{y}}}{1-\frac{s_{x,y}}{s^2_{x}}\frac{s_{x,y}}{s^2_{y}}} \\
+  &= \frac{\frac{s_{y,z}\cdot s^2_x - s_{x,z} s_{x,y}}{s^2_x\cdot s^2_y}}{\frac{s^2_x s^2_y-(s_{x,y})^2}{s^2_x \cdot s^2_y}}
+  = \frac{s_{y,z}\cdot s^2_x - s_{x,z} s_{x,y}}{s^2_x s^2_y-(s_{x,y})^2}
+\end{aligned}
+$$
+
+Und damit weiter:
+
+$$
+\begin{aligned}
+\hat\beta_1  
+  &= \frac{s_{x,z}}{s^2_x}-\hat\beta_2 \frac{s_{x,y}}{s^2_{x}} \\
+  &= \frac{s_{x,z}}{s^2_x} - \frac{s_{y,z}\cdot s^2_x - s_{x,z} s_{x,y}}{s^2_x s^2_y-(s_{x,y})^2} \frac{s_{x,y}}{s^2_{x}} \\
+  &= \frac{s_{x,z} (s^2_x s^2_y - (s_{x,y})^2) - s_{y,z}s_{x,y}s^2_x + s_{x,z}s_{x,y}s_{x,y}}{s^2_x (s^2_x s^2_y - (s_{x,y})^2)} \\
+    &= \frac{s_{x,z}s^2_x s^2_y - s_{x,z}(s_{x,y})^2 - s_{y,z}s_{x,y}s^2_x + s_{x,z}(s_{x,y})^2}{s^2_x s^2_x s^2_y- s^2_x(s_{x,y})^2} \\
+\end{aligned}
+$$
+
+```{r}
+library(mosaic)
+
+mtcars %>%
+  select(mpg, hp, wt) -> dt
+
+# Von R berechnete Koeffizienten:
+coef(lm(mpg ~ hp + wt, data = dt))
+
+mean_x = mean( ~ hp, data = dt)
+mean_y = mean( ~ wt, data = dt)
+mean_z = mean( ~ mpg, data = dt)
+
+s_xy <- cov(hp ~ wt, data = dt)
+s_xz <- cov(hp ~ mpg, data = dt)
+s_yz <- cov(wt ~ mpg, data = dt)
+
+var_x <- var(~ hp, data = dt)
+var_y <- var(~ wt, data = dt)
+b1z <- s_xz*var_x*var_y - s_xz*(s_xy)**2 - s_yz*s_xy*var_x + s_xz*s_xy**2
+b1n <- var_x*var_x*var_y - var_x*s_xy**2
+b1 <- b1z / b1n
+b2 <- (s_yz*var_x - s_xz*s_xy) / (var_x * var_y - s_xy*s_xy)
+b0 <- mean_z - b1 * mean_x - b2 * mean_y
+
+# Koeffizienten zur Ausgabe aufbereiten:
+my_coef <- c(b0, b1, b2)
+names(my_coef) <- c("(Intercept)", "hp", "wt")
+
+# Von Hand berechnete Koeffizienten:
+my_coef
+```
+
+## Was passiert, wenn wir alle Datenpunkte studentisieren?
+
+Wir rechnen um in:
+
+$$
+x_i^{\text{stud}} = \frac{x_i-\bar{x}}{s_x}; \quad y_i^{\text{stud}} = \frac{y_i-\bar{y}}{s_y}; \quad z_i^{\text{stud}} = \frac{z_i-\bar{z}}{s_z}
+$$ 
+
+Damit ist 
+
+$$
+\bar{x_i}^\text{stud} = 0; \quad \bar{y_i}^\text{stud} = 0;\quad \bar{z_i}^\text{stud} = 0
+$$ und
+
+$$
+s_{{x_i}^\text{stud}} = 1; \quad s_{{y_i}^\text{stud}} = 1;\quad s_{{z_i}^\text{stud}} = 1
+$$ 
+
+Zur Vereinfachung lassen wir die Kennzeichnung "stud" weg. Damit ist dann:
+
+$$
+\begin{aligned}
+\hat\beta_0
+  &= 0\\
+\\
+\hat\beta_1
+  &= \frac{s_{x,z} \cdot s^2_x \cdot s^2_y - s_{x,z} \cdot (s_{x,y})^2 - s_{y,z} \cdot s_{x,y}s^2_x + s_{x,z} \cdot (s_{x,y})^2}{s^2_x \cdot s^2_x s^2_y- s^2_x \cdot (s_{x,y})^2} \\ 
+  &= \frac{s_{x,z} \cdot 1 \cdot 1 -  s_{x,z} \cdot (s_{x,y})^2 - s_{y,z} \cdot s_{x,y} \cdot 1 + s_{x,z} \cdot (s_{x,y})^2}{1 \cdot 1 \cdot 1 - 1 \cdot (s_{x,y})^2}\\
+  &= \frac{s_{x,z} -  s_{x,z} \cdot (s_{x,y})^2 - s_{y,z} \cdot s_{x,y} + s_{x,z} \cdot (s_{x,y})^2}{1 - (s_{x,y})^2} \\
+  &= \frac{s_{x,z} - s_{y,z} \cdot s_{x,y} }{1 - (s_{x,y})^2} \\
+\\
+\hat\beta_2
+  &= \frac{s_{y,z} \cdot s^2_x - s_{x,z} \cdot s_{x,y}}{s^2_x \cdot s^2_y - (s_{x,y})^2} \\ 
+  &= \frac{s_{y,z} \cdot 1 - s_{x,z} \cdot s_{x,y}}{1 \cdot 1 - (s_{x,y})^2} \\
+  &= \frac{s_{y,z} - s_{x,z} \cdot s_{x,y}}{1 - (s_{x,y})^2} \\
+\end{aligned}
+$$
+
+Wir schauen uns ein paar Fälle genauer an:
+
+1.  Fall: $X$ und $Y$ sind unabhängig. Dann ist $s_{x,y}=0$ und wir erhalten $\hat\beta_1=s_{x,z}\in[-1;1]$ und $\hat\beta_2=s_{y,z}\in[-1;1]$.
+
+2.  Fall: $X$ und $Y$ sind abhängig. Dann ist $|s_{x,y}|=1$ und es gibt keine Lösung für $\hat\beta_1$ und $\hat\beta_2$.
+
+3.  Fall: $0 < |s_{x,y}| < 1$. ...

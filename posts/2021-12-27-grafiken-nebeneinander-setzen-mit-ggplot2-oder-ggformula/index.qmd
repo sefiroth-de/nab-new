@@ -1,0 +1,62 @@
+---
+title: "Grafiken nebeneinander setzen mit ggplot2 oder ggformula"
+author: "Norman Markgraf"
+date: "2021-12-27"
+lang: de-DE
+categories: 
+  - Statistik
+---
+
+## Wie menschen Grafiken von ggplot2 oder ggformula nebeneinander setzten kann
+
+```{r, echo=FALSE, include=FALSE}
+library(mosaic)
+library(grid)
+library(gridExtra)
+```
+
+Ab und zu möchte mensch zwei (oder mehr) Grafiken neben- oder übereinander setzen.
+
+Hier ein kurzes Beispiel, wie das gelingen kann. Zunächst bereiten wir alles vor, in dem wir die Pakete laden und die Daten freigeben.
+
+```{r}
+library(mosaic)
+# ggf. einmal vorher den Befehl:
+# install.packages("gridExtra")
+# ausführen oder das Paket "gridExtra" installieren.
+library(gridExtra)
+data(iris)  # Datensatz bereitstellen
+```
+
+Dann erstellen nun vier Plots und speichern diese in vier Variablen:
+
+```{r}
+# Ersten Plot erstellen
+plot1 <- gf_point(Sepal.Length ~ Sepal.Width, data = iris)
+
+# Zweiten Plot erstellen
+plot2 <- gf_point(Petal.Length ~ Petal.Width, data = iris)
+
+# Dritten Plot erstellen
+plot3 <- gf_point(Sepal.Length ~ Petal.Width, data = iris)
+
+# Vierten Plot erstellen
+plot4 <- gf_point(Petal.Length ~ Sepal.Width, data = iris)
+```
+
+Nun arrangieren wir die Plots entsprechend:
+
+```{r}
+# Zwei Plots nebeneinander in einer Zeile: 
+grid.arrange(plot1, plot2, ncol = 2)
+```
+
+```{r}
+# Zwei Plots untereinander in einer Spalte
+grid.arrange(plot1, plot2, nrow = 2)
+```
+
+```{r}
+# Vier Plots in einer Matrix:
+grid.arrange(plot1, plot2, plot3, plot4, ncol = 2, nrow = 2) 
+```

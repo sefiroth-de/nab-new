@@ -1,0 +1,217 @@
+---
+title: "Interaktionseffekte leichter interpretieren durch Transformationen"
+author: "Norman Markgraf"
+date: "2021-06-23"
+lang: de-DE
+categories: 
+  - Statistik
+---
+
+```{r, setup, echo=FALSE, include=FALSE}
+library(mosaic)
+knitr::opts_chunk$set(
+  #comment = '', 
+  comment = "#>",
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  #out.width = "100%",
+  out.width = "90%",  # Für PDF: 50% !
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  size = "small"
+)
+round_digits <- 3
+```
+
+### Einleitung
+
+Bei einer multiplen linearen Regression kann man den Einfluss einer unabhägigen Variable auf das Verhalten einer anderen unabhägigen Variable in Bezug auf die abhägige Variable mit modellieren.
+
+Wir wollen das einmal an dem Beispiel der folgenden Datentabelle [*Impact of Beauty on Instructor's Teaching Ratings*](https://vincentarelbundock.github.io/Rdatasets/doc/AER/TeachingRatings.html) und der Fragestellung in wie weit das Alter und das Geschlecht einen Einfluss auf das Evaluationsergebnis haben.
+
+Dazu stellen laden wir die Daten aus dem Internet:
+
+```{r}
+library(mosaic)
+url <- paste0("https://vincentarelbundock.github.io/Rdatasets/csv/AER/",
+              "TeachingRatings.csv")
+teacherratings <- read.csv(url)
+```
+
+und betrachten das Streudiagramm:
+
+```{r}
+gf_point(eval ~ age, color = ~gender, data = teacherratings)
+```
+
+### Ein lineares Modell
+
+Ein klassisches lineares Modell sieht wie folgt aus:
+
+```{r}
+erglm <- lm(eval ~ age + gender + age:gender, data = teacherratings)
+coef(erglm)
+```
+
+Doch was bedeuten diese Werte konkret:
+
+-   (Intercept) = `r coef(erglm)[1]`: Gibt das (theoretische) Evaluationsergebnis für einer Frau im Alter von 0 Jahren an.
+
+-   age = `r coef(erglm)[2]`: Gibt an, um wie viele Punkte im Schnitt sich eine Frau pro Lebensjahr mehr verändert. (Da der Wert negativ ist, also verschlechtert.)
+
+-   gendermale = `r coef(erglm)[3]`: Gibt an, um wie viel sich das Startwert bei 0 Jahren verändert, wenn es ein Mann gewesen wäre. Wir kommen damit auf einen Startwert bei 0 Jahren für Männer von `r coef(erglm)[1] + coef(erglm)[3]`
+
+-   age:gendermale = `r coef(erglm)[4]`: Gibt an um wie viel sich die Steigung ändert, wenn statt einer Frau ein Mann betrachtet wird. Statt einer Änderung um `r coef(erglm)[2]` bei Frauen beträgt sie bei Männern $`r coef(erglm)[2]`-`r abs(coef(erglm)[4])` = `r coef(erglm)[2] + coef(erglm)[4]`$.
+
+```{r}
+coef_female = c(coef(erglm)[1], coef(erglm)[2])
+coef_male = c(
+  coef(erglm)[1] + coef(erglm)[3],
+  coef(erglm)[2] + coef(erglm)[4]
+)
+gf_point(eval ~ age, color = ~gender, data = teacherratings) %>%
+  gf_coefline(coef = coef_female, color = ~"female") %>%
+  gf_coefline(coef = coef_male, color = ~"male") 
+  
+```
+
+Wir können so die folgenden Modellgleichungen aufstellen:
+
+1.  Für Frauen: $$
+    \begin{aligned}
+      \widehat{eval}_{\text{female}} 
+      & = `r coef(erglm)[1]` - `r abs(coef(erglm)[2])` \cdot age \\
+      &\approx `r round(coef(erglm)[1], round_digits)` - `r round(abs(coef(erglm)[2]), round_digits)` \cdot age
+    \end{aligned}
+    $$
+
+2.  Für Männer: $$
+    \begin{aligned}
+    \widehat{eval}_{\text{male}} 
+      &= `r coef(erglm)[1]+coef(erglm)[3]` - `r abs(coef(erglm)[2]+ coef(erglm)[4])` \cdot age\\
+      &\approx `r round(coef(erglm)[1]+coef(erglm)[3], round_digits)` - `r round(abs(coef(erglm)[2]+ coef(erglm)[4]), round_digits)` \cdot age
+    \end{aligned}
+    $$
+
+### Besserer Blick durch gute Transformation der Daten
+
+Spannender wäre es aber, wenn die y-Achenabschnitte nicht so weit ausserhalb unseres Betrachungsbereichs (`r min(~ age, data = teacherratings)`; `r max(~ age, data = teacherratings)`) liegen würde.
+
+Wir zentrieren daher einmal unsere Altersangaben mit der Transformation:
+
+$$age_i^\text{center} =  age_i - \overline{age}$$
+
+In **R**:
+
+```{r}
+# Mittelwert bestimmen und speichern:
+mean_age = mean( ~ age, data = teacherratings)
+
+# Transformation durchführen:
+teacherratings %>%
+  mutate(
+    age_center = age - mean_age
+  ) -> teacherratings
+
+# Das Ergebnis kurz zusammenfassen:
+df_stats(~ age + age_center, min, mean, sd, max, 
+         data = teacherratings)
+```
+
+Das der Mittelwert bei den zentrierten Daten nicht exakt Null ist liegt an den numerischen Besonderheiten des Rechners. Kurz: Computer können gar nicht richtig rechnen und haben daher hier einen kleinen Rundungsfehler!
+
+Betrachten wir die gerundeten Werte, so ergibt sich das folgende, etwas übersichtlichere Bild:
+
+```{r}
+# Wir bauen uns gerundete Funktionen:
+round_digits <- 3  # Anzahl der Nachkommastellen
+
+mean_r <- function(x) round(mean(x), round_digits)
+sd_r <- function(x) round(sd(x), round_digits)
+min_r <- function(x) round(min(x), round_digits)
+max_r <- function(x) round(max(x), round_digits)
+
+# Wir benutzen nun die gerundeten Werte:
+df_stats(~ age + age_center, min_r, mean_r, sd_r, max_r, 
+         data = teacherratings)
+```
+
+Im Mittel sind unsere Lehrer:innen also $`r round(mean(~ age, data = teacherratings), round_digits)`$ alt, die Jüngsten mit `r min(~ age, data =  teacherratings)` etwa $`r abs(round(min(~ age_center, data = teacherratings), round_digits))`$ jünger und die Ältesten mit `r max(~ age, data =  teacherratings)` etwa $`r abs(round(max(~ age_center, data = teacherratings), round_digits))`$ älter als der Altersdurchschnitt.
+
+Ein Blick auf die Koeffizenten des linearen Modells bzgl. der zentrierten Daten:
+
+```{r}
+erglm_c <- lm(eval ~ age_center + gender + age_center:gender, 
+              data = teacherratings)
+coef(erglm_c)
+```
+
+Das dazu passende Streudiagramm mit den Regressionsgeraden:
+
+```{r}
+coef_c_female = c(coef(erglm_c)[1], coef(erglm_c)[2])
+coef_c_male = c(
+  coef(erglm_c)[1] + coef(erglm_c)[3],
+  coef(erglm_c)[2] + coef(erglm_c)[4]
+)
+gf_point(eval ~ age_center, color = ~gender, 
+         data = teacherratings) %>%
+  gf_coefline(coef = coef_c_female, color = ~"female") %>%
+  gf_coefline(coef = coef_c_male, color = ~"male") 
+  
+```
+
+Was bedeuten nun diese Werte konkret:
+
+-   (Intercept) = `r coef(erglm_c)[1]`: Gibt das Evaluationsergebnis für einer Frau mit Durchschnittsalter (`r round(mean( ~age, data=teacherratings))`) an.
+
+-   age = `r coef(erglm_c)[2]`: Gibt an, um wie viele Punkte im Schnitt sich eine Frau pro Lebensjahr mehr verändert.
+
+-   gendermale = `r coef(erglm)[3]`: Gibt an, um wie viel sich das Evaluationsergebnis eines Mannes im Durchschnittsalter ändert gegenüber dem einer Frau. Für das Durchschnittalter liegen Männer im Schnitt bei `r coef(erglm_c)[1] + coef(erglm_c)[3]`
+
+-   age:gendermale = `r coef(erglm)[4]`: Gibt an, um wie viel sich die Steigung ändert, wenn statt einer Frau ein Mann betrachtet wird. Statt einer Änderung um `r coef(erglm)[2]` bei Frauen beträgt sie bei Männern $`r coef(erglm)[2]`-`r abs(coef(erglm_c)[4])` = `r coef(erglm_c)[2] + coef(erglm)[4]`$.
+
+Wir können daher die folgenden Modellgleichungen aufstellen:
+
+1.  Für Frauen: $$
+    \begin{aligned}
+      \widehat{eval}_{\text{female}} 
+      & = `r coef(erglm_c)[1]` - `r abs(coef(erglm_c)[2])` \cdot (age - `r mean( ~age, data=teacherratings)`) \\
+      &\approx `r round(coef(erglm_c)[1], round_digits)` - `r round(abs(coef(erglm_c)[2]), round_digits)` \cdot (age - `r round(mean( ~age, data=teacherratings), round_digits)`) 
+    \end{aligned}
+    $$
+
+2.  Für Männer: $$
+    \begin{aligned}
+    \widehat{eval}_{\text{male}} 
+      &= `r coef(erglm_c)[1]+coef(erglm_c)[3]` - `r abs(coef(erglm_c)[2]+ coef(erglm_c)[4])` \cdot (age - `r mean( ~age, data=teacherratings)`) \\
+      &\approx `r round(coef(erglm_c)[1]+coef(erglm_c)[3], round_digits)` - `r round(abs(coef(erglm_c)[2]+ coef(erglm_c)[4]), round_digits)` \cdot (age - `r round(mean( ~age, data=teacherratings), round_digits)`)
+    \end{aligned}
+    $$
+
+### Zur Interpretation
+
+Im durchschnittlichen Alter ist das erwartete Evaluationsergebnis bei Frauen ($`r coef(erglm_c)[1]`$) um rund $`r abs(round(coef(erglm_c)[3], round_digits))`$ Punkte schlechter als bei Männern ($`r coef(erglm_c)[1]+coef(erglm_c)[3]`$). Mit jedem Lebensjahr sinkt dabei in beiden Fällen, also sowohl bei Frauen als auch bei Männern, das Evaluationsergbnis. Bei den Frauen aber mit ca. $-`r round(abs(coef(erglm_c)[2]), round_digits)`$ deutlich stärker als mit ca. $-`r round(abs(coef(erglm_c)[2]+ coef(erglm_c)[4]), round_digits)`$ bei den Männern .
+
+### Fazit
+
+Eine gute Transformation einiger Daten kann, dank der angepassten Modellgleichungen, die Interpretation der Ergebnisse deutlich vereinfachen!
+
+## Nachtrag und Danksagung
+
+Die Idee zu diesem Blog-Post verdanke ich dem Blog von *Prof. Dr. Sebastian Sauer*. Hier der Link zum Orginal-Blog: <https://data-se.netlify.app/2021/06/17/beispiel-zur-interpretation-des-interaktionseffekts/>
+
+Danke auch für die kritische Durchsicht und die hilfreichen Anmerkungen.
+
+<!--
+## Reproduzierbarkeitsinformationen
+
+```{r reproducibility, echo = FALSE}
+options(width = 120)
+xfun::session_info(c("mosaic", "xfun"), dependencies = F)
+```
+-->

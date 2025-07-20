@@ -1,0 +1,192 @@
+---
+title:  "Datenjudo für Fragebögen"
+author: "Norman Markgraf"
+date: "2021-06-27"
+lang: de-DE
+categories: 
+  - Statistik
+---
+
+```{r, setup, echo=FALSE, include=FALSE}
+library(mosaic)
+library(likert)
+knitr::opts_chunk$set(
+  #comment = '', 
+  comment = "#>",
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = FALSE,
+  #out.width = "100%",
+  out.width = "90%",  # Für PDF: 50% !
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  size = "small"
+)
+```
+
+Ab und zu bekomme ich die Frage, wie man einen Fragebogen mit Likert-Scalen-Items auswerten kann.
+
+Dazu kann etwas gezieltes Datenjudo helfen. Wir schauen uns das folgende generierte Mini-Beispiel an:
+
+```{r}
+library(mosaic)  # Basis Paket
+library(tibble)  # Eine modernere Variante der data.frames!
+set.seed(2009)   # Reproduzierbarkeit
+
+N <- 25  # Anzahl der Testzeileneinträge in den "testdaten"!
+
+# Wir wollen eine Likert-Scale 
+minLikert <- 1  # bis
+maxLikert <- 6  # erstellen.
+
+# Zum späteren Umrechnen der inversen Items:
+maxInvItem <- maxLikert + 1
+
+# Wir bauen uns eine Testumfrage mit zwei Itemserien 
+# (AS1-AS6 und BS1-BS6) und N Beobachtungen.
+# Die Items AS3, AS4  und BS1 und BS5 sind dabei 
+# inverse Items, welche später umgerechnet werden:
+testdaten <- tibble(
+    ID = 1:N,
+    # AS1-AS6 bilden ein Itemset:
+    AS1 = sample(minLikert:maxLikert, N, replace = TRUE),
+    AS2 = sample(minLikert:maxLikert, N, replace = TRUE),
+    AS3 = sample(minLikert:maxLikert, N, replace = TRUE),
+    AS4 = sample(minLikert:maxLikert, N, replace = TRUE),
+    AS5 = sample(minLikert:maxLikert, N, replace = TRUE),
+    AS6 = sample(minLikert:maxLikert, N, replace = TRUE),
+    # BS1-BS5 bilden ein Itemset:
+    BS1 = sample(minLikert:maxLikert, N, replace = TRUE),
+    BS2 = sample(minLikert:maxLikert, N, replace = TRUE),
+    BS3 = sample(minLikert:maxLikert, N, replace = TRUE),
+    BS4 = sample(minLikert:maxLikert, N, replace = TRUE),
+    BS5 = sample(minLikert:maxLikert, N, replace = TRUE),
+    # Geschlecht als sex mit (1 für Frauen und 2 für Männer)
+    sex = sample(1:2, N, replace = TRUE)
+)
+
+# Orinal testdaten einmal ausgeben:
+head(testdaten)
+```
+
+Die Spalten AS3, AS4 und BS1, BS5 waren inverse Items, die wir noch umrechnen müssen:
+
+```{r}
+# Inverse Item umrechnen:
+testdaten |>
+    mutate(
+        AS3 = maxInvItem - AS3,
+        AS4 = maxInvItem - AS4,
+        BS1 = maxInvItem - BS1,
+        BS5 = maxInvItem - BS5
+    ) -> testdaten_korrigiert 
+
+# Die Daten mit den umgerechnetern inversen Items:
+head(testdaten_korrigiert)
+```
+
+Die jeweiligen Itemsets werden nun zur einem Wert (Gesamtscore) zusammengefasst, in dem wir jeweils den Mittelwert von `AS1`-`AS6` und `BS1`-`BS5` bildenund in `AS` bzw. `BS` speichern:
+
+```{r}
+# Wir fassen nun die AS1-AS6 und die BS1-BS5 zusammen 
+# und bilden die jeweiligen Mittelwerte:
+testdaten_korrigiert |>
+    group_by(ID, sex) |>  # Damit wird für jede Zeile die Zusammenfassung gemacht!
+    summarise(
+        AS = mean(c(AS1, AS2, AS3, AS4, AS5, AS6)),
+        BS = mean(c(BS1, BS2, BS3, BS4, BS5))
+    ) -> testdaten_sum
+
+# Ausgabe der Mittelwerte der AS und BS
+head(testdaten_sum)
+```
+
+Die Datentabelle `testdaten_sum` enthält nun die Spalten `AS` und `BS` mit den entsprechenden Mittelwerten der einzelnen Items `AS1`-`AS6` sowieso `BS1`- `BS5`.
+
+Wir wollen nun die Ergebnisse als Boxplots anzeigen lassen. Dafür benennen wir die Geschlechter von 1,2 auf "Frau", "Mann" um:
+
+```{r}
+testdaten_sum |>
+    mutate(sex = factor(sex, levels = c(1, 2),
+                             labels = c("Frau", "Mann"))
+    ) -> testdaten_sex 
+```
+
+Nun können wir die Boxplots erstellen:
+
+```{r}
+# Darstellung der Ergebnisse als Boxplot AS ~ sex:
+gf_boxplot(AS ~ sex, data = testdaten_sex) %>%
+    gf_labs(
+        title = "Boxplot von AS nach Geschlechtern",
+        x = "Geschlechter",
+        y = "Item AS"
+    ) |>
+  gf_refine(
+    scale_y_continuous(
+      breaks = 1:6, 
+      label = 1:6,
+      limits = c(2.5, 4.5)  # Gibt den Bereich von 2.5 bis 4.5 aus!
+    )  
+  )
+
+# Darstellung der Ergebnisse als Boxplot BS ~ sex:
+gf_boxplot(BS ~ sex, data = testdaten_sex) %>%
+    gf_labs(
+        title = "Boxplot von BS nach Geschlechtern",
+        x = "Geschlechter",
+        y = "Item BS"
+    ) |>
+  gf_refine(
+    scale_y_continuous(
+      breaks = 1:6, 
+      label = 1:6,
+      limits = c(1, 6)  # Gibt den ganzen Bereich von 1 bis 6 aus!
+    )  
+  )
+```
+
+Die Kennzahlen dazu erhalten wir mit `favstats`. Dabei wählen wir die ersten sechs Einträge (Variabelbezeichnung und Q0 bis Q4) aus:
+
+```{r}
+favstats(AS ~ sex, data = testdaten_sex)[1:6]
+favstats(BS ~ sex, data = testdaten_sex)[1:6]
+```
+
+Unter der Verwendung des Pakets `likert` (https://github.com/jbryer/likert) können wir die Ausgaben auch noch etwas schöner gestalten:
+
+```{r, warning=FALSE}
+library(likert)
+
+# Wir wählen nur den Itemset BS aus und speichern in in items2:
+testdaten_korrigiert |>
+  select(
+    starts_with("BS")
+  ) -> items2
+
+# Leider mag likert tibbels nicht so gerne, daher:
+items2 <- as.data.frame(items2)
+
+# Wir geben den Items noch ein paar Buzzwords:
+names(items2) <- c("Gesundheit", "Familie", "Geld", "Freunde", "Langes Leben")
+
+# Vorbereitung:
+l2 <- likert(items2, nlevels = 5)
+
+# Zusammenfassung
+summary(l2)
+
+# Graphische Ausgaben:
+plot(l2)
+
+plot(l2,"bar")
+
+plot(l2,"heat")
+
+plot(l2,"density")
+```
+
+Voilà!

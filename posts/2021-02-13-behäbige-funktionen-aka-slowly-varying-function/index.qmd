@@ -1,0 +1,72 @@
+---
+title: "Behäbige Funktionen aka slowly varying function"
+author: "Norman Markgraf"
+date: "2021-02-13"
+lang: de-DE
+categories: 
+  - Statistik
+---
+
+Reelle Funktionen, die ihren Funktionswert kaum ändern, kann man mit Fug und Recht durchaus behäbig nennen, korrekter wäre aber von **langsam variierenden** Funktionen zu sprechen
+
+Im Kontext von potenzgesetzlichen Verteilungen kommt der Begriff **slowly varying function** vor, der Funktionen beschreibt die nur sehr gering auf Änderungen ihres Parameters reagieren.
+
+Die Definition dieser *behäbigen* besser **langsam variierenden** Funktionen stammt von [Jovan Karamata](https://de.wikipedia.org/wiki/Jovan_Karamata):
+
+Eine positive stetige Funktion $L$[^1] auf den positiven reelen Zahlen ist **langsam variierend (im unendlichen)**, falls für alle reellen $t>0$
+
+[^1]: $L$ oder auch $l$ wird (angeblich) hier für den Begriff *lente* (serb. für **faul**) verwendet. Behäbig ist also doch nicht so falsch. ;-)
+
+$$\lim_{x \to +\infty} \frac{L(t\cdot x)}{L(x)} = 1$$
+
+gilt.
+
+**Beispiele:**
+
+1)  Jede konstante Funktionen ($\neq 0$) ist *langsam variierend*.
+
+**Beweisskizze:** Mit $L(x) = c$ ist $L(x) = L(t x) = c$ und damit $\frac{L(t x)}{L(x)}= 1$.
+
+2)  Jeder Funktion $L(x)$ mit einem Grenzwert $b>0$ ist *langsam variierend*.
+
+**Beweisskizze:** Da $\lim\limits_{x \to +\infty} L(x) = b = \lim\limits_{x \to +\infty} L(t\cdot x)$ ist $\lim\limits_{x \to +\infty} \frac{L(t\cdot x)}{L(x)} = \frac{\lim\limits_{x \to +\infty} L(t\cdot x)}{\lim\limits_{x \to +\infty} L(x)} = \frac{b}{b} = 1$
+
+3)  Für jedes reellwertige $\beta$ ist $L(x) = log_\beta(x)$ *langsam variierend*.
+
+**Beweisskizze:** Es gilt: - Für jede reelle Zahl $x>0$ ist $\log_x(x) = 1$. - Für reelle Zahlen $a, b$ gilt: $\frac{log(a)}{\log(b)} = \log_b(a)$ - Für reelle Zahlen $a, b$ gilt. $\log(a \cdot b) = log(a) + log(b)$ - Für jede Konstante $k$ gilt $\lim_{x \to +\infty} \log_x (k) = 0$ Somit gilt $\frac{\log_\beta(k \cdot x)}{\log_\beta(x)} = \log_x(k\cdot x) = \log_x(k) + \log_x(x) = \log_x(k) +1 \to 1$ wenn $x \to +\infty$
+
+4)  Die Funktion $x^\beta$ ist für alle $\beta \neq 0$ ***nicht** langsam variierend*. **Beweisskizze:** Für $t \neq 1$ gilt: $$\lim_{x \to +\infty} \frac{(tx)^\beta}{x^\beta} = t^\beta \neq 1$$ Damit sind die Funktionen zwar (s.u.) *regulär variierend*, aber nicht *langsam variierend*.
+
+Eine **regulär variierende** Funktion $L:(0,+\infty) \to (0,+\infty)$ ist eine Funktion für die der Term
+
+$$\lim_{x \to +\infty} \frac{L(t\cdot x)}{L(x)} = g(t)$$
+
+mit $g(t)$ für alle $t>0$ einen endlichen aber nicht verschwindenen Wert (m.a.W.: $g(t) \neq 0$) hat .
+
+Karamata hat die regulär variierenden Funktionen nun wie folgt charaterisiert:
+
+### Charakterisierungssatz von Karamata {.theorem}
+
+Jede *regulär variierende* Funktion $f:(0,+\infty) \to (0,+\infty)$ ist von der Form
+
+$$f(x) = x^\beta \cdot L(x),$$
+
+wobei $\beta \in \mathbf{R}$ eine reelle Zahl und $L(x)$ eine *langsam variiernde* Funktion ist.
+
+<!-- ENDE THEOREM-->
+
+Eine Konsequenz aus dem *Charakterisierungssatz von Karamata* ist, das die Funktion $g(t)$ aus der Definition der *regulär variierenden* Funktionen notwendigerweise die Gestalt
+
+$$g(t) = t^\rho,$$
+
+mit einem $\rho \in \mathbf{R}$, haben muss.
+
+Dieser Wert $\rho$ wird **Index der Variation** (engl. *index of variation*) genannt.
+
+Die Katamata Theorie ist eine Theorie "erster Ordnung" für reguläre Variation. Weiterführend gibt es mit der [de Haan Theorie](https://encyclopediaofmath.org/wiki/De_Haan_theory) als Theorie "zweiter Ordnung".
+
+**Quellen:**
+
+-   [Encylopedia of Math](https://encyclopediaofmath.org/index.php?title=Karamata_theory&direction=next&oldid=25937)
+
+-   [Bingham, N. H.; Goldie, C. M.; Teugels, J. L. (1987), Regular Variation, Encyclopedia of Mathematics and its Applications, 27, Cambridge: Cambridge University Press, ISBN 0-521-30787-2, MR 0898871, Zbl 0617.26001](https://archive.org/details/regularvariation0000bing)
