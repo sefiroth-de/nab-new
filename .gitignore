@@ -5,3 +5,5 @@
 
 /.quarto/
 __pycache__/
+_freeze/
+.DS_Store
