@@ -29,10 +29,11 @@ Den Quellcode findet man hier: <https://github.com/sol-prog/N-Queens-Puzzle>
 Die Ergebnisse für n = 11 wurden mit der Zeile
 
 ```bash
-python -m timeit -r 5 -n 1 ‘import nqueens; nqueens.main()’
+python -m timeit -r 50 -n 1 ‘import nqueens; nqueens.main()’
 ```
 erzeugt.
 
+<!-- Unglaubwürdige Ergebnisse!!!
 
 ### Die Ergebnisse des Test vom 8.6.2021
 
@@ -40,6 +41,7 @@ erzeugt.
 - PyPy (3.7-7.3.4): ***keine Ergebnisse***
 - GraalPython (21.1.0): 1 loops, best of 5: 7.01 sec per loop
 
+-->
 
 ### Die Ergebnisse des Test vom 20.7.2025
 
