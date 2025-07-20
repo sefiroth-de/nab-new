@@ -1,0 +1,36 @@
+---
+title: "CSV Dateien bearbeiten mit Miller"
+author: "Norman Markgraf"
+lang: de-DE
+date: "2021-08-27"
+categories: 
+  - Allgemeines
+  - Miller
+  - CSV
+  - Datenjudo
+  - Datenformate
+---
+
+Miller beschreibt sich selbst folgendermaßen:
+
+> Miller is like awk, sed, cut, join, and sort for name-indexed data such as CSV, TSV, and tabular JSON. You get to work with your data using named fields, without needing to count positional column indices.
+
+Miller kombiniert die Funktionalität von awk, sed und cut und eignet sich besonders für feldbasierte Datenmanipulation.
+
+### Beispiel 1: Erstellung einer Markdown-Tabelle
+
+```bash
+> mlr --icsv --fs semicolon --otsv cat tips.csv | \
+  sed 's/,/./g' | mlr --itsv --omd cat
+```
+
+Mit diesem Befehl wird eine durch Semikolon getrennte CSV-Datei in eine durch Tabulator getrennte TSV-Datei umgewandelt, anschließend werden alle Kommata durch Punkte ersetzt und schließlich wird daraus eine Markdown-Tabelle erzeugt.
+
+### Beispiel 2: Gerahmte Darstellung
+
+```bash
+> mlr --icsv --fs semicolon --otsv cat tips.csv | \
+  sed 's/,/./g' | mlr --itsv --opprint --barred cat
+```
+
+Mit diesem Befehl wird ebenfalls eine durch Semikolon getrennte CSV-Datei in eine durch Tabulator getrennte TSV-Datei umgewandelt, alle Kommata werden durch Punkte ersetzt und am Ende wird eine eingerahmte Tabelle erzeugt.

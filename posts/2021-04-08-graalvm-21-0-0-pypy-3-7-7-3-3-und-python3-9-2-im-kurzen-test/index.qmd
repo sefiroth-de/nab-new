@@ -1,0 +1,56 @@
+---
+title: "GraalVM 21.0.0, PyPy 3.7-7.3.3 und Python 3.9.4 im kurzen Test"
+author: "Norman Markgraf"
+lang: de-DE
+date: "2021-04-08"
+categories: 
+  - Python
+  - PyPy
+  - GraalPython
+  - Speedtest
+---
+
+## Kleiner Geschwindigkeitstest mit Python3, PyPy und GraalPython
+
+Heute habe ich mit Hilfe von Pyenv einen kompakten Performance-Vergleich zwischen CPython3, PyPy und GraalPython durchgeführt.
+
+Als Testfall diente das klassische n-Damen-Problem, dessen Lösungsalgorithmus ich als Basis verwendet habe. 
+
+Den Quellcode findet man hier: <https://github.com/sol-prog/N-Queens-Puzzle>
+
+### Die Ergebnisse des Test vom 8.4.2021
+
+- CPython (3.9.4): Calculation took 316.97 seconds
+- PyPy (3.7-7.3.3): Calculation took 10.14 seconds
+- GraalPython (21.0.0): Calculation took 15.75 seconds
+
+## Neues Setup
+Die Ergebnisse für n = 11 wurden mit der Zeile
+
+```bash
+python -m timeit -r 5 -n 1 ‘import nqueens; nqueens.main()’
+```
+erzeugt.
+
+
+### Die Ergebnisse des Test vom 8.6.2021
+
+- CPython (3.9.4): 1 loops, best of 5: 7.03 sec per loop
+- PyPy (3.7-7.3.4): ***keine Ergebnisse***
+- GraalPython (21.1.0): 1 loops, best of 5: 7.01 sec per loop
+
+
+### Die Ergebnisse des Test vom 20.7.2025
+
+- CPython:
+  - 3.13.1: 1 loop, best of 50: 673 msec per loop
+  - 3.13.5: 1 loop, best of 50: 661 msec per loop
+- PyPy:
+  - 3.10-7.3.17: 1 loops, average of 50: 75.6 +- 2.9 msec per loop (using standard deviation)
+  - 3.11-7.3.19: 1 loops, average of 50: 74.9 +- 2.89 msec per loop (using standard deviation)
+- GraalPython/GraalPy 
+  - GraalPy 3.11.7 (Oracle GraalVM Native 24.1.1):1 loop, best of 50: 24.9 msec per loop
+  - GraalPy 3.11.7 (GraalVM CE Native 24.1.1): 1 loop, best of 50: 30 msec per loop
+  - GraalPy 3.11.7 (Oracle GraalVM Native 24.2.1): 1 loop, best of 50: 24.5 msec per loop
+  - GraalPy 3.11.7 (GraalVM CE Native 24.2.1): 1 loop, best of 50: 28.1 msec per loop
+

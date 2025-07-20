@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de-DE" xml:lang="de-DE"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Norman Markgraf">
 
-<title>Norman’s Academic Blog</title>
+<title>GraalVM 21.0.0, PyPy 3.7-7.3.3 und Python 3.9.4 im kurzen Test – Norman’s Academic Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,28 +21,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -56,105 +90,47 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Norman’s Academic Blog</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Suchen"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navigation umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./blog.html" aria-current="page"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Norman’s Academic Blog</span></a>
   </li>  
 </ul>
@@ -167,180 +143,103 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Norman’s Academic Blog</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">GraalVM 21.0.0, PyPy 3.7-7.3.3 und Python 3.9.4 im kurzen Test</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Python</div>
+                <div class="quarto-category">PyPy</div>
+                <div class="quarto-category">GraalPython</div>
+                <div class="quarto-category">Speedtest</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Autor:in</div>
+      <div class="quarto-title-meta-contents">
+               <p>Norman Markgraf </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Veröffentlichungsdatum</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">8. April 2021</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="QWxsZ2VtZWluZXM=">Allgemeines <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YW5hbHlzaXM=">analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q1NW">CSV <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0ZW5mb3JtYXRl">Datenformate <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0ZW5qdWRv">Datenjudo <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R3JhYWxQeXRob24=">GraalPython <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWlsbGVy">Miller <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UHlQeQ==">PyPy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3BlZWR0ZXN0">Speedtest <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<section id="kleiner-geschwindigkeitstest-mit-python3-pypy-und-graalpython" class="level2">
+<h2 class="anchored" data-anchor-id="kleiner-geschwindigkeitstest-mit-python3-pypy-und-graalpython">Kleiner Geschwindigkeitstest mit Python3, PyPy und GraalPython</h2>
+<p>Heute habe ich mit Hilfe von Pyenv einen kompakten Performance-Vergleich zwischen CPython3, PyPy und GraalPython durchgeführt.</p>
+<p>Als Testfall diente das klassische n-Damen-Problem, dessen Lösungsalgorithmus ich als Basis verwendet habe.</p>
+<p>Den Quellcode findet man hier: <a href="https://github.com/sol-prog/N-Queens-Puzzle" class="uri">https://github.com/sol-prog/N-Queens-Puzzle</a></p>
+<section id="die-ergebnisse-des-test-vom-8.4.2021" class="level3">
+<h3 class="anchored" data-anchor-id="die-ergebnisse-des-test-vom-8.4.2021">Die Ergebnisse des Test vom 8.4.2021</h3>
+<ul>
+<li>CPython (3.9.4): Calculation took 316.97 seconds</li>
+<li>PyPy (3.7-7.3.3): Calculation took 10.14 seconds</li>
+<li>GraalPython (21.0.0): Calculation took 15.75 seconds</li>
+</ul>
+</section>
+</section>
+<section id="neues-setup" class="level2">
+<h2 class="anchored" data-anchor-id="neues-setup">Neues Setup</h2>
+<p>Die Ergebnisse für n = 11 wurden mit der Zeile</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> timeit <span class="at">-r</span> 5 <span class="at">-n</span> 1 ‘import nqueens<span class="kw">;</span> <span class="fu">nqueens.main()</span><span class="ex">’</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>erzeugt.</p>
+<section id="die-ergebnisse-des-test-vom-8.6.2021" class="level3">
+<h3 class="anchored" data-anchor-id="die-ergebnisse-des-test-vom-8.6.2021">Die Ergebnisse des Test vom 8.6.2021</h3>
+<ul>
+<li>CPython (3.9.4): 1 loops, best of 5: 7.03 sec per loop</li>
+<li>PyPy (3.7-7.3.4): <strong><em>keine Ergebnisse</em></strong></li>
+<li>GraalPython (21.1.0): 1 loops, best of 5: 7.01 sec per loop</li>
+</ul>
+</section>
+<section id="die-ergebnisse-des-test-vom-20.7.2025" class="level3">
+<h3 class="anchored" data-anchor-id="die-ergebnisse-des-test-vom-20.7.2025">Die Ergebnisse des Test vom 20.7.2025</h3>
+<ul>
+<li>CPython:
+<ul>
+<li>3.13.1: 1 loop, best of 50: 673 msec per loop</li>
+<li>3.13.5: 1 loop, best of 50: 661 msec per loop</li>
+</ul></li>
+<li>PyPy:
+<ul>
+<li>3.10-7.3.17: 1 loops, average of 50: 75.6 +- 2.9 msec per loop (using standard deviation)</li>
+<li>3.11-7.3.19: 1 loops, average of 50: 74.9 +- 2.89 msec per loop (using standard deviation)</li>
+</ul></li>
+<li>GraalPython/GraalPy
+<ul>
+<li>GraalPy 3.11.7 (Oracle GraalVM Native 24.1.1):1 loop, best of 50: 24.9 msec per loop</li>
+<li>GraalPy 3.11.7 (GraalVM CE Native 24.1.1): 1 loop, best of 50: 30 msec per loop</li>
+<li>GraalPy 3.11.7 (Oracle GraalVM Native 24.2.1): 1 loop, best of 50: 24.5 msec per loop</li>
+<li>GraalPy 3.11.7 (GraalVM CE Native 24.2.1): 1 loop, best of 50: 28.1 msec per loop</li>
+</ul></li>
+</ul>
 
 
+</section>
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="bmV3cyUyQ2NvZGUlMkNhbmFseXNpcw==" data-listing-date-sort="1752876000000" data-listing-file-modified-sort="1752940104176" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="9">
-<div class="thumbnail"><a href="./posts/post-with-code/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/post-with-code/image.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/post-with-code/index.html" class="no-external">Post With Code</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">code</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('YW5hbHlzaXM='); return false;">analysis</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/post-with-code/index.html" class="no-external">
-This is a post with executable code.
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/post-with-code/index.html" class="no-external">
-<div class="listing-date">
-Jul 19, 2025
-</div>
-<div class="listing-author">
-Harlow Malloc
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="bmV3cw==" data-listing-date-sort="1752876000000" data-listing-file-modified-sort="1752992034916" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="46">
-<div class="thumbnail"><a href="./posts/Willkommen/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Willkommen/index.html" class="no-external">Willkommen in meinem Blog</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/Willkommen/index.html" class="no-external">
-Das ist mein erster Blog-Eintrag! Ich werde nun hoffentlich (langsam) meinen Blog von Hugo aus Quarto umstellen. Ich arbeite viel mit R und eine extra Sprache nur für den…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/Willkommen/index.html" class="no-external">
-<div class="listing-date">
-Jul 19, 2025
-</div>
-<div class="listing-author">
-Norman Markgraf
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="QWxsZ2VtZWluZXMlMkNNaWxsZXIlMkNDU1YlMkNEYXRlbmp1ZG8lMkNEYXRlbmZvcm1hdGU=" data-listing-date-sort="1630015200000" data-listing-file-modified-sort="1753005963146" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="154">
-<div class="thumbnail"><a href="./posts/csv-dateien-bearbeiten-mit-miller/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/csv-dateien-bearbeiten-mit-miller/index.html" class="no-external">CSV Dateien bearbeiten mit Miller</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('QWxsZ2VtZWluZXM='); return false;">Allgemeines</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWlsbGVy'); return false;">Miller</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q1NW'); return false;">CSV</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGF0ZW5qdWRv'); return false;">Datenjudo</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGF0ZW5mb3JtYXRl'); return false;">Datenformate</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/csv-dateien-bearbeiten-mit-miller/index.html" class="no-external">
-Miller beschreibt sich selbst folgendermaßen:
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/csv-dateien-bearbeiten-mit-miller/index.html" class="no-external">
-<div class="listing-date">
-Aug 27, 2021
-</div>
-<div class="listing-author">
-Norman Markgraf
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="UHl0aG9uJTJDUHlQeSUyQ0dyYWFsUHl0aG9uJTJDU3BlZWR0ZXN0" data-listing-date-sort="1617832800000" data-listing-file-modified-sort="1753008700101" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="245">
-<div class="thumbnail"><a href="./posts/2021-04-08-graalvm-21-0-0-pypy-3-7-7-3-3-und-python3-9-2-im-kurzen-test/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2021-04-08-graalvm-21-0-0-pypy-3-7-7-3-3-und-python3-9-2-im-kurzen-test/index.html" class="no-external">GraalVM 21.0.0, PyPy 3.7-7.3.3 und Python 3.9.4 im kurzen Test</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHlQeQ=='); return false;">PyPy</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('R3JhYWxQeXRob24='); return false;">GraalPython</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3BlZWR0ZXN0'); return false;">Speedtest</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2021-04-08-graalvm-21-0-0-pypy-3-7-7-3-3-und-python3-9-2-im-kurzen-test/index.html" class="no-external">
-Heute habe ich mit Hilfe von Pyenv einen kompakten Performance-Vergleich zwischen CPython3, PyPy und GraalPython durchgeführt.
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2021-04-08-graalvm-21-0-0-pypy-3-7-7-3-3-und-python3-9-2-im-kurzen-test/index.html" class="no-external">
-<div class="listing-date">
-Apr 8, 2021
-</div>
-<div class="listing-author">
-Norman Markgraf
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -366,12 +265,12 @@ Norman Markgraf
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Kopiert");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Kopiert");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",

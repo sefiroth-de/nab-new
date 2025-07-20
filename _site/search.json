@@ -11,7 +11,7 @@
     "href": "blog.html",
     "title": "Norman’s Academic Blog",
     "section": "",
-    "text": "Post With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nJul 19, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWillkommen in meinem Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nJul 19, 2025\n\n\nNorman Markgraf\n\n\n\n\n\nNo matching items"
+    "text": "Post With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nJul 19, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWillkommen in meinem Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nJul 19, 2025\n\n\nNorman Markgraf\n\n\n\n\n\n\n\n\n\n\n\n\nCSV Dateien bearbeiten mit Miller\n\n\n\nAllgemeines\n\nMiller\n\nCSV\n\nDatenjudo\n\nDatenformate\n\n\n\n\n\n\n\n\n\nAug 27, 2021\n\n\nNorman Markgraf\n\n\n\n\n\n\n\n\n\n\n\n\nGraalVM 21.0.0, PyPy 3.7-7.3.3 und Python 3.9.4 im kurzen Test\n\n\n\nPython\n\nPyPy\n\nGraalPython\n\nSpeedtest\n\n\n\n\n\n\n\n\n\nApr 8, 2021\n\n\nNorman Markgraf\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/post-with-code/index.html",
@@ -67,6 +67,34 @@
     "href": "posts/Willkommen/index.html",
     "title": "Willkommen in meinem Blog",
     "section": "",
-    "text": "Das ist mein erster Blog-Eintrag!"
+    "text": "Das ist mein erster Blog-Eintrag! Ich werde nun hoffentlich (langsam) meinen Blog von Hugo aus Quarto umstellen. Ich arbeite viel mit R und eine extra Sprache nur für den Blog ist mir einfach auf Dauer zu umständlich. Aber mal sehen, wann ich Zeit finde dieses Projekt umzustezen."
+  },
+  {
+    "objectID": "posts/csv-dateien-bearbeiten-mit-miller/index.html",
+    "href": "posts/csv-dateien-bearbeiten-mit-miller/index.html",
+    "title": "CSV Dateien bearbeiten mit Miller",
+    "section": "",
+    "text": "Miller beschreibt sich selbst folgendermaßen:\n\nMiller is like awk, sed, cut, join, and sort for name-indexed data such as CSV, TSV, and tabular JSON. You get to work with your data using named fields, without needing to count positional column indices.\n\nMiller kombiniert die Funktionalität von awk, sed und cut und eignet sich besonders für feldbasierte Datenmanipulation.\n\nBeispiel 1: Erstellung einer Markdown-Tabelle\n&gt; mlr --icsv --fs semicolon --otsv cat tips.csv | \\\n  sed 's/,/./g' | mlr --itsv --omd cat\nMit diesem Befehl wird eine durch Semikolon getrennte CSV-Datei in eine durch Tabulator getrennte TSV-Datei umgewandelt, anschließend werden alle Kommata durch Punkte ersetzt und schließlich wird daraus eine Markdown-Tabelle erzeugt.\n\n\nBeispiel 2: Gerahmte Darstellung\n&gt; mlr --icsv --fs semicolon --otsv cat tips.csv | \\\n  sed 's/,/./g' | mlr --itsv --opprint --barred cat\nMit diesem Befehl wird ebenfalls eine durch Semikolon getrennte CSV-Datei in eine durch Tabulator getrennte TSV-Datei umgewandelt, alle Kommata werden durch Punkte ersetzt und am Ende wird eine eingerahmte Tabelle erzeugt."
+  },
+  {
+    "objectID": "posts/2021-04-08-graalvm-21-0-0-pypy-3-7-7-3-3-und-python3-9-2-im-kurzen-test/index.html",
+    "href": "posts/2021-04-08-graalvm-21-0-0-pypy-3-7-7-3-3-und-python3-9-2-im-kurzen-test/index.html",
+    "title": "GraalVM 21.0.0, PyPy 3.7-7.3.3 und Python 3.9.4 im kurzen Test",
+    "section": "",
+    "text": "Heute habe ich mit Hilfe von Pyenv einen kompakten Performance-Vergleich zwischen CPython3, PyPy und GraalPython durchgeführt.\nAls Testfall diente das klassische n-Damen-Problem, dessen Lösungsalgorithmus ich als Basis verwendet habe.\nDen Quellcode findet man hier: https://github.com/sol-prog/N-Queens-Puzzle\n\n\n\nCPython (3.9.4): Calculation took 316.97 seconds\nPyPy (3.7-7.3.3): Calculation took 10.14 seconds\nGraalPython (21.0.0): Calculation took 15.75 seconds"
+  },
+  {
+    "objectID": "posts/2021-04-08-graalvm-21-0-0-pypy-3-7-7-3-3-und-python3-9-2-im-kurzen-test/index.html#kleiner-geschwindigkeitstest-mit-python3-pypy-und-graalpython",
+    "href": "posts/2021-04-08-graalvm-21-0-0-pypy-3-7-7-3-3-und-python3-9-2-im-kurzen-test/index.html#kleiner-geschwindigkeitstest-mit-python3-pypy-und-graalpython",
+    "title": "GraalVM 21.0.0, PyPy 3.7-7.3.3 und Python 3.9.4 im kurzen Test",
+    "section": "",
+    "text": "Heute habe ich mit Hilfe von Pyenv einen kompakten Performance-Vergleich zwischen CPython3, PyPy und GraalPython durchgeführt.\nAls Testfall diente das klassische n-Damen-Problem, dessen Lösungsalgorithmus ich als Basis verwendet habe.\nDen Quellcode findet man hier: https://github.com/sol-prog/N-Queens-Puzzle\n\n\n\nCPython (3.9.4): Calculation took 316.97 seconds\nPyPy (3.7-7.3.3): Calculation took 10.14 seconds\nGraalPython (21.0.0): Calculation took 15.75 seconds"
+  },
+  {
+    "objectID": "posts/2021-04-08-graalvm-21-0-0-pypy-3-7-7-3-3-und-python3-9-2-im-kurzen-test/index.html#neues-setup",
+    "href": "posts/2021-04-08-graalvm-21-0-0-pypy-3-7-7-3-3-und-python3-9-2-im-kurzen-test/index.html#neues-setup",
+    "title": "GraalVM 21.0.0, PyPy 3.7-7.3.3 und Python 3.9.4 im kurzen Test",
+    "section": "Neues Setup",
+    "text": "Neues Setup\nDie Ergebnisse für n = 11 wurden mit der Zeile\npython -m timeit -r 5 -n 1 ‘import nqueens; nqueens.main()’\nerzeugt.\n\nDie Ergebnisse des Test vom 8.6.2021\n\nCPython (3.9.4): 1 loops, best of 5: 7.03 sec per loop\nPyPy (3.7-7.3.4): keine Ergebnisse\nGraalPython (21.1.0): 1 loops, best of 5: 7.01 sec per loop\n\n\n\nDie Ergebnisse des Test vom 20.7.2025\n\nCPython:\n\n3.13.1: 1 loop, best of 50: 673 msec per loop\n3.13.5: 1 loop, best of 50: 661 msec per loop\n\nPyPy:\n\n3.10-7.3.17: 1 loops, average of 50: 75.6 +- 2.9 msec per loop (using standard deviation)\n3.11-7.3.19: 1 loops, average of 50: 74.9 +- 2.89 msec per loop (using standard deviation)\n\nGraalPython/GraalPy\n\nGraalPy 3.11.7 (Oracle GraalVM Native 24.1.1):1 loop, best of 50: 24.9 msec per loop\nGraalPy 3.11.7 (GraalVM CE Native 24.1.1): 1 loop, best of 50: 30 msec per loop\nGraalPy 3.11.7 (Oracle GraalVM Native 24.2.1): 1 loop, best of 50: 24.5 msec per loop\nGraalPy 3.11.7 (GraalVM CE Native 24.2.1): 1 loop, best of 50: 28.1 msec per loop"
   }
 ]
