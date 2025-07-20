@@ -2,7 +2,9 @@
 title: "Regression mit studentisierten Daten"
 author: "Norman Markgraf"
 date: "2021-06-23"
-categories: [Statistisches, statistic]
+lang: de-DE
+categories: 
+  - Statistik
 ---
 
 ```{r, setuo, echo=FALSE, include=FALSE}

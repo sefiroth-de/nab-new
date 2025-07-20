@@ -2,7 +2,9 @@
 title: "Gedankenstütze zu wichtigen Funktionsbegriffen in der Statistik"
 author: "Norman Markgraf"
 date: "2021-02-12"
-categories: [Statistisches]
+lang: de-DE
+categories: 
+  - Statistik
 ---
 
 # Eine kleine Liste von fundermentalen Begriffen in der Statistik.
