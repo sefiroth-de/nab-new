@@ -1,5 +1,5 @@
 ---
-title: "GraalVM 21.0.0, PyPy 3.7-7.3.3 und Python 3.9.4 im kurzen Test"
+title: "GraalPy , PyPy und (C)Python im kurzen Geschwindigkeitstest"
 author: "Norman Markgraf"
 lang: de-DE
 date: "2021-04-08"
@@ -7,12 +7,13 @@ categories:
   - Python
   - PyPy
   - GraalPython
+  - GraalPy
   - Speedtest
 ---
 
 ## Kleiner Geschwindigkeitstest mit Python3, PyPy und GraalPython
 
-Heute habe ich mit Hilfe von Pyenv einen kompakten Performance-Vergleich zwischen CPython3, PyPy und GraalPython durchgeführt.
+Heute habe ich mit Hilfe von Pyenv einen kompakten Performance-Vergleich zwischen (C)Python3, PyPy und GraalPython durchgeführt.
 
 Als Testfall diente das klassische n-Damen-Problem, dessen Lösungsalgorithmus ich als Basis verwendet habe. 
 
