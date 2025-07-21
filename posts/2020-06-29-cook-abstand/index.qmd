@@ -13,23 +13,27 @@ library(mosaic)
 set.seed(2009)
 ```
 
-Frage: *Was macht einen Wert zum Ausreißer?*
+**Frage: Was macht einen Wert zum Ausreißer?**
 
-Eine mögliche Antwort wäre: *Er liegt weit weg von den anderen Werten **und** hat einen (starken) Einfluss auf unser Modell.*
+Eine mögliche Antwort lautet:
+_Ein Wert gilt als Ausreißer, wenn er deutlich von den übrigen Werten abweicht **und** einen (starken) Einfluss auf das Modell ausübt._
 
-Eine Möglichkeit solche Ausreißer zu finden ist der *Cook Abstand* (eng.: *Cook's distance*). Die Idee dabei ist es zu messen welchen Einfluss ein Wert auf das Modell hat. Dazu schauen wir uns das Modell einmal mit und einmal ohne diesen Wert an und vergleicht diese Ergebnisse.
+Ein Verfahren zur Identifikation solcher Ausreißer ist der **Cook-Abstand** (engl.: **Cook's distance**). 
+Die zugrunde liegende Idee besteht darin zu messen, wie stark ein einzelner Wert das Modell beeinflusst. 
+Dazu vergleicht man das Modell einmal mit und einmal ohne diesen Wert.
 
-Schauen wir uns den Cook Abstand einmal für ein (einfaches) lineares Regressionmodell konkret an:
+Sehen wir uns den Cook-Abstand anhand eines einfachen linearen Regressionsmodells näher an:
+
 
 ### Vorbereitungen
 
-Wir wollen mit `mosaic` arbeiten, also laden wir das Paket als erstes:
+Wir nutzen das Paket `mosaic`, daher laden wir es zunächst:
 
 ```{r}
 library(mosaic)
 ```
 
-Falls die **tipping**-Daten noch nicht im Verzeichnis liegen, laden wir diese aus dem Internet nach:
+Falls die **tipping**-Daten nicht lokal vorliegen, werden sie aus dem Internet geladen:
 
 ```{r tipping_daten_ggf_herunterladen}
 if (!file.exists("tips.csv")) {
@@ -37,13 +41,13 @@ if (!file.exists("tips.csv")) {
 }
 ```
 
-Nun laden wir die **tipping**-Daten in den Datenrahmen `tips`:
+Nun werden die Daten eingelesen:
 
 ```{r tipping_daten_in_de_speicher_laden}
 tips <- read.csv2("tips.csv")
 ```
 
-Wir brauchen für unser Modell nur den Rechnungsbetrag `total_bill` und den Trinkgeldbetrag `tip` für unser Modell:
+Für unser Modell verwenden wir nur die Variablen `total_bill` und `tip`:
 
 ```{r tippings_daten_kürzen}
 tips %>% select(c("total_bill", "tip")) -> tips
@@ -51,20 +55,20 @@ tips %>% select(c("total_bill", "tip")) -> tips
 
 ## Unser Modell:
 
-Werfen wir zunächst einen Blick auf das Streudiagramm unserer Daten:
+Zuerst ein Streudiagramm zur Visualisierung der Daten:
 
 ```{r}
 gf_point(tip ~ total_bill, data = tips)
 ```
 
-Und erstellen dann ein lineares Modell:
+Dann erstellen wir ein lineares Regressionsmodell:
 
 ```{r}
 erg_lm <- lm(tip ~ total_bill, data = tips)
 summary(erg_lm)
 ```
 
-Betrachten wir nun die Regressionsgerade in unseren Daten:
+Visualisierung der Regressionsgeraden:
 
 ```{r, warning=FALSE}
 gf_point(tip ~ total_bill, data = tips) %>%
@@ -75,9 +79,9 @@ gf_point(tip ~ total_bill, data = tips) %>%
   ) 
 ```
 
-Für lineare Regressionsmodell können einflussreiche Ausreißer sehr hinderlich sein. Was ändert sich, wenn wir einen Wert, z.B. einen potentiellen Ausreißer, nicht betrachten?
+Einflussreiche Ausreißer können bei linearen Modellen problematisch sein. Was passiert, wenn wir einen potenziellen Ausreißer entfernen?
 
-Als Beispiel wählen wir die folgende Beobachtung aus:
+Beispiel: Wir eliminieren die Beobachtung mit dem Index 173
 
 ```{r}
 tips %>% slice(173) -> tips_removed
@@ -89,6 +93,8 @@ tips %>% slice(-173) -> tips_red
 erg_lm_red <- lm(tip ~ total_bill, data = tips_red)
 summary(erg_lm_red)
 ```
+
+Grafischer Vergleich:
 
 ```{r}
 gf_point(tip ~ total_bill, data = tips_red) %>%
@@ -102,7 +108,9 @@ gf_point(tip ~ total_bill, data = tips_red) %>%
     data = tips_removed)
 ```
 
-Um zu messen was diese Änderung bewirkt hat, schaut sich der Cook Abstand zunächst die Summe der quadrierten Differenzen der vorhergesagten Werte in beiden Modellen an:
+## Berechnung des Cook-Abstands
+
+Wir vergleichen die Prognosen beider Modelle:
 
 ```{r}
 new_data <- tibble(total_bill = tips$total_bill)
@@ -110,7 +118,12 @@ prognose_lm <- predict(erg_lm, newdata = new_data)
 prognose_lm_red <- predict(erg_lm_red, newdata = new_data)
 ```
 
-$$d_j = \sum_{i=1}^n \left(\hat{y}_i - \hat{y}_{i(j)}\right)^2$$ Dabei ist $\hat{y}_i$ die Prognose des Wertes $y_i$ auf Basis von $x_i$ mit dem Originalmodell und $\hat{y}_{i(j)}$ die Prognose wenn man die $j$-te Beobachtung aus dem Modell gestrichen hat.
+Berechnung:
+
+$$
+d_j = \sum_{i=1}^n \left(\hat{y}_i - \hat{y}_{i(j)}\right)^2
+$$ 
+Dabei ist $\hat{y}_i$ die Prognose des Wertes $y_i$ auf Basis von $x_i$ mit dem Originalmodell und $\hat{y}_{i(j)}$ die Prognose wenn man die $j$-te Beobachtung aus dem Modell gestrichen hat.
 
 ```{r d_j_berechnen}
 d_j <- sum((prognose_lm - prognose_lm_red)^2)
@@ -119,9 +132,12 @@ d_j
 
 Der Cook Abstand $D_j$ wird nun noch *normiert* durch $${\text{var}_{\text{cook}}} = p \cdot s_{\epsilon_i^2}^2$$ Dabei ist $s_{\epsilon_i^2}^2$ der erwartungstreue Schätzer der Varianz der Residuen und $p$ die Anzahl aller erklärenden Variablen plus Eins, also: \$ 1 + 1 = 2\$.
 
-Es ist also:
+Normierung des Cook-Abstands:
 
-$$D_j = \frac{d_j}{\text{var}_{\text{cook}}} = \frac{\sum\limits_{i=1}^n \left(\hat{y}_i - \hat{y}_{i(j)}\right)^2}{p \cdot s_{\epsilon_i^2}^2}$$
+$$
+  D_j = \frac{d_j}{\text{var}_{\text{cook}}} = \frac{\sum\limits_{i=1}^n \left(\hat{y}_i - \hat{y}_{i(j)}\right)^2}{p \cdot s_{\epsilon_i^2}^2}
+$$
+
 
 ```{r}
 # Summary des Modells
@@ -139,13 +155,15 @@ D_j = d_j / var_cook
 D_j
 ```
 
-Wir können den Wert aber auch viel einfacher direkt berechnen lassen und dass für alle $j$ mit Hilfe von `cooks.distance(..)`:
+Alternativ kann der Wert direkt mit cooks.distance() berechnet werden:
 
 ```{r}
 cooks.distance(erg_lm)[173]
 ```
 
 Wann aber ist nun ein Wert ein *einflussreicher* Ausreißer?
+
+## Entscheidungskriterien
 
 Cook selber gibt dafür die Bedingung $D_j > 1$ an. Andere Autor\*innen schreiben $D_j > 4/n$, wobei $n$ die Anzahl der Beobachtung ist.
 
@@ -175,7 +193,7 @@ Die Indices dieser finden wir mit:
 which(cooks > 4/n)
 ```
 
-Bereinigen wir nun unsere Daten um genau diese Werte:
+Daten bereinigen:
 
 ```{r}
 remove <- which(cooks > 4/n)
@@ -184,11 +202,12 @@ tips %>% slice(remove) -> tips_removed
 erg_lm_no_outliers <- lm(tip ~ total_bill, data = tips_no_outliers)
 ```
 
-Und schauen uns das Ergebnis an:
+Ergebnis des Modells:
 
 ```{r}
 summary(erg_lm_no_outliers)
 ```
+Daten bereinigen:
 
 ```{r}
 gf_point(tip ~ total_bill, data = erg_lm_no_outliers) %>%
@@ -198,7 +217,7 @@ gf_point(tip ~ total_bill, data = erg_lm_no_outliers) %>%
   )
 ```
 
-Im direkten Vergleich:
+Grafischer Vergleich beider Modelle:
 
 ```{r}
 gf_point(tip ~ total_bill, data = erg_lm) %>%
@@ -217,8 +236,16 @@ gf_point(tip ~ total_bill, data = erg_lm) %>%
   )
 ```
 
-## Unsere beiden Modelle als Formeln
+## Modelle in Gleichungsform
 
-Das ursprüngliche Modell: $$\widehat{tips}_{lm} = `r coef(erg_lm)[1]` + `r coef(erg_lm)[2]` \cdot total\_bill$$
+Das ursprüngliche Modell: 
 
-Das um pot. Ausreißer bereinigte Modell: $$\widehat{tips}_{lm\_no} `r coef(erg_lm_no_outliers)[1]` + `r coef(erg_lm_no_outliers)[2]` \cdot total\_bill$$
+$$
+  \widehat{tips}_{lm} = `r coef(erg_lm)[1]` + `r coef(erg_lm)[2]` \cdot total\_bill
+$$
+
+Das um pot. Ausreißer bereinigte Modell: 
+
+$$
+  \widehat{tips}_{lm\_no} `r coef(erg_lm_no_outliers)[1]` + `r coef(erg_lm_no_outliers)[2]` \cdot total\_bill
+$$
