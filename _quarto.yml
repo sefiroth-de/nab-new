@@ -14,6 +14,11 @@ website:
         href: blog.qmd
       - text: "Veröffentlichungen"
         href: publications.qmd
+    right:
+      - icon: rss
+        href: blog.xml
+  site-url: https://www.sefiroth.de
+  description: "Norman's Academic Blog"
 format:
   html:
     theme:

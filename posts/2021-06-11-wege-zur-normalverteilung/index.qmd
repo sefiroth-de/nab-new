@@ -2,6 +2,7 @@
 title: "Wege zur Normalverteilung"
 author: "Norman Markgraf"
 date: "2021-06-11"
+date-modified: "2021-06-11"
 lang: de-DE
 categories: 
   - Statistik
