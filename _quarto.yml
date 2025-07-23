@@ -1,7 +1,11 @@
 project:
   type: website
+
 filters:
   - convert-to-webp
+webp-delete-originals: false
+webp-disable: false
+
 website:
   title: "Norman's Academic Blog"
   navbar:
@@ -19,6 +23,7 @@ website:
         href: blog.xml
   site-url: https://www.sefiroth.de
   description: "Norman's Academic Blog"
+
 format:
   html:
     theme:
