@@ -1,6 +1,7 @@
 project:
   type: website
-
+filters:
+  - convert-to-webp
 website:
   title: "Norman's Academic Blog"
   navbar:
@@ -9,7 +10,8 @@ website:
     left:
       - text: "Home"
         href: index.qmd
-      - blog.qmd
+      - text: "Blog"
+        href: blog.qmd
       - text: "Veröffentlichungen"
         href: publications.qmd
 format:
