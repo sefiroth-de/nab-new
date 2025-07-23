@@ -1,0 +1,11 @@
+---
+title: "LEARN2CONTROL"
+subtitle: "Projektorientiertes Lernen für ein besseres Gesamtverständnis in der regelungstechnischen Ausbildung"
+author: "Andreas Liefeld, Marten Völker, Manuel Remelhe, Kai Dadhe, Sebastian Engell, Carsten Fritsch, Norman Markgaf"
+date: '2004-09-01'
+lang: de-DE
+---
+
+## Zusammenfassung
+
+LEARN2CONTROL ist eine computergestützte Lernumgebung, die es ermöglicht, vorhandenes Grundlagenwissen im Bereich der Regelungstechnik durch selbstständiges Lernen in einem projektorientierten Umfeld zu vertiefen. Der Lernschwerpunkt liegt dabei besonders auf der Vermittlung der inneren Abhängigkeiten und Wechselwirkungen der unterschiedlichen Verfahren und Methoden der Regelungstechnik

@@ -10,6 +10,8 @@ website:
       - text: "Home"
         href: index.qmd
       - blog.qmd
+      - text: "Veröffentlichungen"
+        href: publications.qmd
 format:
   html:
     theme:

@@ -1,0 +1,10 @@
+---
+title: "Statistik21"
+author: "Karsten Lübke, Matthias Gehrke, Norman Markgaf"
+date: '2014-09-01'
+lang: de-DE
+---
+
+## Zusammenfassung
+
+Statistik21 ist ein Projekt der FOM mit dem Ziel, die Passgenauigkeit der Statistik-Lehre an der FOM in Bezug auf die notwendigen Methodenkennnisse von Studierenden didaktisch und konzeptionell kontinuierlich weiter zu verbessern.

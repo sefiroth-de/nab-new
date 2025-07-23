@@ -9,7 +9,7 @@
   {
     "objectID": "blog.html",
     "href": "blog.html",
-    "title": "Norman’s Academic Blog",
+    "title": "Blog",
     "section": "",
     "text": "Willkommen in meinem Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nJul 19, 2025\n\n\nNorman Markgraf\n\n\n\n\n\n\n\n\n\n\n\n\nGrafiken nebeneinander setzen mit ggplot2 oder ggformula\n\n\n\nStatistik\n\n\n\n\n\n\n\n\n\nDec 27, 2021\n\n\nNorman Markgraf\n\n\n\n\n\n\n\n\n\n\n\n\nCSV Dateien bearbeiten mit Miller\n\n\n\nAllgemeines\n\nMiller\n\nCSV\n\nDatenjudo\n\nDatenformate\n\n\n\n\n\n\n\n\n\nAug 27, 2021\n\n\nNorman Markgraf\n\n\n\n\n\n\n\n\n\n\n\n\nDatenjudo für Fragebögen\n\n\n\nStatistik\n\n\n\n\n\n\n\n\n\nJun 27, 2021\n\n\nNorman Markgraf\n\n\n\n\n\n\n\n\n\n\n\n\nDinge die man in zwei Dimensionen machen kann - Multiple lineare Regression\n\n\n\nStatistik\n\n\n\n\n\n\n\n\n\nJun 24, 2021\n\n\nNorman Markgraf\n\n\n\n\n\n\n\n\n\n\n\n\nRegression mit studentisierten Daten\n\n\n\nStatistik\n\n\n\n\n\n\n\n\n\nJun 23, 2021\n\n\nNorman Markgraf\n\n\n\n\n\n\n\n\n\n\n\n\nInteraktionseffekte leichter interpretieren durch Transformationen\n\n\n\nStatistik\n\n\n\n\n\n\n\n\n\nJun 23, 2021\n\n\nNorman Markgraf\n\n\n\n\n\n\n\n\n\n\n\n\nWege zur Normalverteilung\n\n\n\nStatistik\n\n\n\n\n\n\n\n\n\nJun 11, 2021\n\n\nNorman Markgraf\n\n\n\n\n\n\n\n\n\n\n\n\nÜber die Koeffizienten einer linearen Regression\n\n\n\nStatistik\n\n\n\n\n\n\n\n\n\nJun 9, 2021\n\n\nNorman Markgraf\n\n\n\n\n\n\n\n\n\n\n\n\nGraalPy , PyPy und (C)Python im kurzen Geschwindigkeitstest\n\n\n\nPython\n\nPyPy\n\nGraalPython\n\nGraalPy\n\nSpeedtest\n\n\n\n\n\n\n\n\n\nApr 8, 2021\n\n\nNorman Markgraf\n\n\n\n\n\n\n\n\n\n\n\n\nÜber die t-Verteilung mit einem bzw. zwei Freiheitsgraden\n\n\n\nStatistik\n\n\n\n\n\n\n\n\n\nFeb 17, 2021\n\n\nNorman Markgraf\n\n\n\n\n\n\n\n\n\n\n\n\nBehäbige Funktionen aka slowly varying function\n\n\n\nStatistik\n\n\n\n\n\n\n\n\n\nFeb 13, 2021\n\n\nNorman Markgraf\n\n\n\n\n\n\n\n\n\n\n\n\nEin paar Gedanken über potenzgesetzliche Verteilungen (power law distributions)\n\n\n\nStatistik\n\n\n\n\n\n\n\n\n\nFeb 12, 2021\n\n\nNorman Markgraf\n\n\n\n\n\n\n\n\n\n\n\n\nGedankenstütze zu wichtigen Funktionsbegriffen in der Statistik\n\n\n\nStatistik\n\n\n\n\n\n\n\n\n\nFeb 12, 2021\n\n\nNorman Markgraf\n\n\n\n\n\n\n\n\n\n\n\n\nCook Abstand\n\n\n\nStatistik\n\n\n\n\n\n\n\n\n\nJun 29, 2020\n\n\nNorman Markgraf\n\n\n\n\n\n\n\n\n\n\n\n\nDer Zentrale Grenzwertsatz\n\n\n\nStatistik\n\n\n\n\n\n\n\n\n\nApr 5, 2017\n\n\nNorman Markgraf\n\n\n\n\n\nNo matching items"
   },
@@ -551,5 +551,40 @@
     "title": "Behäbige Funktionen aka slowly varying function",
     "section": "Fußnoten",
     "text": "Fußnoten\n\n\n\\(L\\) oder auch \\(l\\) wird (angeblich) hier für den Begriff lente (serb. für faul) verwendet. Behäbig ist also doch nicht so falsch. ;-)↩︎"
+  },
+  {
+    "objectID": "publications/2004-09-XX_LEARN2CONTROL/index.html",
+    "href": "publications/2004-09-XX_LEARN2CONTROL/index.html",
+    "title": "LEARN2CONTROL",
+    "section": "",
+    "text": "LEARN2CONTROL ist eine computergestützte Lernumgebung, die es ermöglicht, vorhandenes Grundlagenwissen im Bereich der Regelungstechnik durch selbstständiges Lernen in einem projektorientierten Umfeld zu vertiefen. Der Lernschwerpunkt liegt dabei besonders auf der Vermittlung der inneren Abhängigkeiten und Wechselwirkungen der unterschiedlichen Verfahren und Methoden der Regelungstechnik"
+  },
+  {
+    "objectID": "publications/2004-09-XX_LEARN2CONTROL/index.html#zusammenfassung",
+    "href": "publications/2004-09-XX_LEARN2CONTROL/index.html#zusammenfassung",
+    "title": "LEARN2CONTROL",
+    "section": "",
+    "text": "LEARN2CONTROL ist eine computergestützte Lernumgebung, die es ermöglicht, vorhandenes Grundlagenwissen im Bereich der Regelungstechnik durch selbstständiges Lernen in einem projektorientierten Umfeld zu vertiefen. Der Lernschwerpunkt liegt dabei besonders auf der Vermittlung der inneren Abhängigkeiten und Wechselwirkungen der unterschiedlichen Verfahren und Methoden der Regelungstechnik"
+  },
+  {
+    "objectID": "publications.html",
+    "href": "publications.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Statistik21\n\n\n\n\n\n\n\n\n\n\n\nSep 1, 2014\n\n\nKarsten Lübke, Matthias Gehrke, Norman Markgaf\n\n\n\n\n\n\n\n\n\n\n\n\nLEARN2CONTROL\n\n\nProjektorientiertes Lernen für ein besseres Gesamtverständnis in der regelungstechnischen Ausbildung\n\n\n\n\n\n\n\n\nSep 1, 2004\n\n\nAndreas Liefeld, Marten Völker, Manuel Remelhe, Kai Dadhe, Sebastian Engell, Carsten Fritsch, Norman Markgaf\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "publications/STATISTIK21/index.html",
+    "href": "publications/STATISTIK21/index.html",
+    "title": "Statistik21",
+    "section": "",
+    "text": "Statistik21 ist ein Projekt der FOM mit dem Ziel, die Passgenauigkeit der Statistik-Lehre an der FOM in Bezug auf die notwendigen Methodenkennnisse von Studierenden didaktisch und konzeptionell kontinuierlich weiter zu verbessern."
+  },
+  {
+    "objectID": "publications/STATISTIK21/index.html#zusammenfassung",
+    "href": "publications/STATISTIK21/index.html#zusammenfassung",
+    "title": "Statistik21",
+    "section": "",
+    "text": "Statistik21 ist ein Projekt der FOM mit dem Ziel, die Passgenauigkeit der Statistik-Lehre an der FOM in Bezug auf die notwendigen Methodenkennnisse von Studierenden didaktisch und konzeptionell kontinuierlich weiter zu verbessern."
   }
 ]
