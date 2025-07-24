@@ -2,6 +2,8 @@
 title: "Willkommen in meinem Blog"
 author: "Norman Markgraf"
 date: "2025-07-19"
+date-modified: last-modified
+lang: de-DE
 categories: [news]
 ---
 
