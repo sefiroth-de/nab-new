@@ -1,0 +1,27 @@
+---
+title: "Workshop zum Thema quarto"
+author: "Norman Markgraf"
+date: "2024-07-06"
+date-modified: last-modified
+lang: de-DE
+categories: 
+  - workshop
+  - quarto
+code-links:
+  text: "Link zu GitHub Repository"
+  repo: https://github.com/FOM-NM-Lehre/WS-quarto
+---
+
+Workshop rund um das Thema "quarto". Mit den Themen:
+
+- Was ist quarto und was ist es nicht
+- Wie installiere ich quarto
+- Auswahl der Ausgabe-formate in quarto
+- Wie erzeuge ich die Ausgaben (aka rendern von Dokumenten)
+- Die quarto CLI
+- Aufbau der YAML-Kopf eines quarto markdown documents (=.qmd)
+- Grundlagen des markdowns
+- Implizite und expliziete Formatierung mittels quarto
+- Erstellung von Webseiten, RevealJS-Präsentationen und PDF Dokumente
+
+

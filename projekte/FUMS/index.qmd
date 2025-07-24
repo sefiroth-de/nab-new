@@ -1,0 +1,23 @@
+---
+title: "FUMS - Fresh Up your Maths Skills"
+author: "Norman Markgraf"
+date: "2020-10-19"
+date-modified: last-modified
+lang: de-DE
+categories: 
+  - Vorlesungsskript
+  - Mathematik
+code-links:
+  text: "Link zu GitHub Repository"
+  repo: https://github.com/NMarkgraf/FUMS
+---
+
+## FUMS - Fresh Up your Maths Skills 
+
+Crash-Kurs durch die Mathematik für Studierende der Informatik / Wirtschaftsinformatik. Quasi ein kleiner Vorkurs mit den wichtistens Wiederholungen der Schulmathematik.
+
+Auf Grund der aktuellen Lage besteht ein striktes Nutzungsverbot durch Dozent:innen der FOM. Das Werk und kein Teil dieses Werkes darf von Dozent:innen der FOM ohne mein ausdrückliches und schriftliches Einverständnis benutzt werden.
+
+Für alle anderen gilt:
+
+&copy; by N.Markgraf published under CC-BY-SA-NC 3.0 de
