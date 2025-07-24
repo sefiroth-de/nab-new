@@ -21,21 +21,20 @@
     ]
   },
   {
-    "listing": "/publications.html",
-    "items": [
-      "/publications/STATISTIK21/index.html",
-      "/publications/2004-09-XX_LEARN2CONTROL/index.html"
-    ]
-  },
-  {
     "listing": "/projekte.html",
     "items": [
       "/projekte/WS-Quarto/index.html",
       "/projekte/DozWS-MqF-Einstieg-in-die-Datenanalyse-mit-R/index.html",
       "/projekte/FUMS/index.html",
-      "/projekte/FUSS/index.html",
       "/projekte/MathematischeGrundelagenDerInformatik/index.html",
       "/projekte/NPBT/index.html"
+    ]
+  },
+  {
+    "listing": "/publications.html",
+    "items": [
+      "/publications/STATISTIK21/index.html",
+      "/publications/2004-09-XX_LEARN2CONTROL/index.html"
     ]
   }
 ]
