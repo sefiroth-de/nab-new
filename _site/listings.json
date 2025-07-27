@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/2025-07-27-Beweisverfahren/index.html",
       "/posts/Willkommen/index.html",
       "/posts/2021-12-27-grafiken-nebeneinander-setzen-mit-ggplot2-oder-ggformula/index.html",
       "/posts/csv-dateien-bearbeiten-mit-miller/index.html",
@@ -15,7 +16,7 @@
       "/posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/index.html",
       "/posts/2021-02-13-behaebige-funktionen-aka-slowly-varying-function/index.html",
       "/posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/index.html",
-      "/posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/index.html",
+      "/posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/index.html",
       "/posts/2020-06-29-cook-abstand/index.html",
       "/posts/2017-04-05-der-zentrale-grenzwertsatz/index.html"
     ]

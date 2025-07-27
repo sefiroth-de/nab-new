@@ -8,7 +8,7 @@
 
 <meta name="author" content="Norman Markgraf">
 
-<title>Behäbige Funktionen aka slowly varying function – Norman’s Academic Blog</title>
+<title>Beweisverfahren in der Mathematik – Norman’s Academic Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -153,9 +153,10 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Behäbige Funktionen aka slowly varying function</h1>
+      <h1 class="title">Beweisverfahren in der Mathematik</h1>
+            <p class="subtitle lead">Aus dem Internet frei übersetzt.</p>
                                 <div class="quarto-categories">
-                <div class="quarto-category">Statistik</div>
+                <div class="quarto-category">Mathematik</div>
               </div>
                   </div>
   </div>
@@ -173,14 +174,14 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Veröffentlichungsdatum</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">13. Februar 2021</p>
+        <p class="date">27. Juli 2025</p>
       </div>
     </div>
     
       <div>
       <div class="quarto-title-meta-heading">Geändert</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">25. Juli 2025</p>
+        <p class="date-modified">27. Juli 2025</p>
       </div>
     </div>
       
@@ -198,59 +199,61 @@ window.Quarto = {
 
 
 
-<p>Reelle Funktionen, die ihren Funktionswert kaum ändern, kann man mit Fug und Recht durchaus behäbig nennen, korrekter wäre aber von <strong>langsam variierenden</strong> Funktionen zu sprechen</p>
-<p>Im Kontext von potenzgesetzlichen Verteilungen kommt der Begriff <strong>slowly varying function</strong> vor, der Funktionen beschreibt die nur sehr gering auf Änderungen ihres Parameters reagieren.</p>
-<p>Die Definition dieser <em>behäbigen</em> besser <strong>langsam variierenden</strong> Funktionen stammt von <a href="https://de.wikipedia.org/wiki/Jovan_Karamata">Jovan Karamata</a>:</p>
-<p>Eine positive stetige Funktion <span class="math inline">\(L\)</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> auf den positiven reelen Zahlen ist <strong>langsam variierend (im unendlichen)</strong>, falls für alle reellen <span class="math inline">\(t&gt;0\)</span></p>
-<p><span class="math display">\[\lim_{x \to +\infty} \frac{L(t\cdot x)}{L(x)} = 1\]</span></p>
-<p>gilt.</p>
-<p><strong>Beispiele:</strong></p>
-<ol type="1">
-<li>Jede konstante Funktionen (<span class="math inline">\(\neq 0\)</span>) ist <em>langsam variierend</em>.</li>
-</ol>
-<p><strong>Beweisskizze:</strong> Mit <span class="math inline">\(L(x) = c\)</span> ist <span class="math inline">\(L(x) = L(t x) = c\)</span> und damit <span class="math inline">\(\frac{L(t x)}{L(x)}= 1\)</span>.</p>
-<ol start="2" type="1">
-<li>Jeder Funktion <span class="math inline">\(L(x)\)</span> mit einem Grenzwert <span class="math inline">\(b&gt;0\)</span> ist <em>langsam variierend</em>.</li>
-</ol>
-<p><strong>Beweisskizze:</strong> Da <span class="math inline">\(\lim\limits_{x \to +\infty} L(x) = b = \lim\limits_{x \to +\infty} L(t\cdot x)\)</span> ist <span class="math inline">\(\lim\limits_{x \to +\infty} \frac{L(t\cdot x)}{L(x)} = \frac{\lim\limits_{x \to +\infty} L(t\cdot x)}{\lim\limits_{x \to +\infty} L(x)} = \frac{b}{b} = 1\)</span></p>
-<ol start="3" type="1">
-<li>Für jedes reellwertige <span class="math inline">\(\beta\)</span> ist <span class="math inline">\(L(x) = log_\beta(x)\)</span> <em>langsam variierend</em>.</li>
-</ol>
-<p><strong>Beweisskizze:</strong> Es gilt: - Für jede reelle Zahl <span class="math inline">\(x&gt;0\)</span> ist <span class="math inline">\(\log_x(x) = 1\)</span>. - Für reelle Zahlen <span class="math inline">\(a, b\)</span> gilt: <span class="math inline">\(\frac{log(a)}{\log(b)} = \log_b(a)\)</span> - Für reelle Zahlen <span class="math inline">\(a, b\)</span> gilt. <span class="math inline">\(\log(a \cdot b) = log(a) + log(b)\)</span> - Für jede Konstante <span class="math inline">\(k\)</span> gilt <span class="math inline">\(\lim_{x \to +\infty} \log_x (k) = 0\)</span> Somit gilt <span class="math inline">\(\frac{\log_\beta(k \cdot x)}{\log_\beta(x)} = \log_x(k\cdot x) = \log_x(k) + \log_x(x) = \log_x(k) +1 \to 1\)</span> wenn <span class="math inline">\(x \to +\infty\)</span></p>
-<ol start="4" type="1">
-<li>Die Funktion <span class="math inline">\(x^\beta\)</span> ist für alle <span class="math inline">\(\beta \neq 0\)</span> <em><strong>nicht</strong> langsam variierend</em>. <strong>Beweisskizze:</strong> Für <span class="math inline">\(t \neq 1\)</span> gilt: <span class="math display">\[\lim_{x \to +\infty} \frac{(tx)^\beta}{x^\beta} = t^\beta \neq 1\]</span> Damit sind die Funktionen zwar (s.u.) <em>regulär variierend</em>, aber nicht <em>langsam variierend</em>.</li>
-</ol>
-<p>Eine <strong>regulär variierende</strong> Funktion <span class="math inline">\(L:(0,+\infty) \to (0,+\infty)\)</span> ist eine Funktion für die der Term</p>
-<p><span class="math display">\[\lim_{x \to +\infty} \frac{L(t\cdot x)}{L(x)} = g(t)\]</span></p>
-<p>mit <span class="math inline">\(g(t)\)</span> für alle <span class="math inline">\(t&gt;0\)</span> einen endlichen aber nicht verschwindenen Wert (m.a.W.: <span class="math inline">\(g(t) \neq 0\)</span>) hat .</p>
-<p>Karamata hat die regulär variierenden Funktionen nun wie folgt charaterisiert:</p>
-<section id="charakterisierungssatz-von-karamata" class="level3 theorem">
-<h3 class="theorem anchored" data-anchor-id="charakterisierungssatz-von-karamata">Charakterisierungssatz von Karamata</h3>
-<p>Jede <em>regulär variierende</em> Funktion <span class="math inline">\(f:(0,+\infty) \to (0,+\infty)\)</span> ist von der Form</p>
-<p><span class="math display">\[f(x) = x^\beta \cdot L(x),\]</span></p>
-<p>wobei <span class="math inline">\(\beta \in \mathbf{R}\)</span> eine reelle Zahl und <span class="math inline">\(L(x)\)</span> eine <em>langsam variiernde</em> Funktion ist.</p>
-<!-- ENDE THEOREM-->
-<p>Eine Konsequenz aus dem <em>Charakterisierungssatz von Karamata</em> ist, das die Funktion <span class="math inline">\(g(t)\)</span> aus der Definition der <em>regulär variierenden</em> Funktionen notwendigerweise die Gestalt</p>
-<p><span class="math display">\[g(t) = t^\rho,\]</span></p>
-<p>mit einem <span class="math inline">\(\rho \in \mathbf{R}\)</span>, haben muss.</p>
-<p>Dieser Wert <span class="math inline">\(\rho\)</span> wird <strong>Index der Variation</strong> (engl. <em>index of variation</em>) genannt.</p>
-<p>Die Katamata Theorie ist eine Theorie “erster Ordnung” für reguläre Variation. Weiterführend gibt es mit der <a href="https://encyclopediaofmath.org/wiki/De_Haan_theory">de Haan Theorie</a> als Theorie “zweiter Ordnung”.</p>
-<p><strong>Quellen:</strong></p>
-<ul>
-<li><p><a href="https://encyclopediaofmath.org/index.php?title=Karamata_theory&amp;direction=next&amp;oldid=25937">Encylopedia of Math</a></p></li>
-<li><p><a href="https://archive.org/details/regularvariation0000bing">Bingham, N. H.; Goldie, C. M.; Teugels, J. L. (1987), Regular Variation, Encyclopedia of Mathematics and its Applications, 27, Cambridge: Cambridge University Press, ISBN 0-521-30787-2, MR 0898871, Zbl 0617.26001</a></p></li>
-</ul>
+<section id="allgemeine-beweistechniken" class="level2">
+<h2 class="anchored" data-anchor-id="allgemeine-beweistechniken">Allgemeine Beweistechniken</h2>
+<section id="beweis-durch-einschüchterung" class="level3">
+<h3 class="anchored" data-anchor-id="beweis-durch-einschüchterung">Beweis durch Einschüchterung</h3>
+<p>Trivial!</p>
+</section>
+<section id="beweis-durch-umständliche-notation" class="level3">
+<h3 class="anchored" data-anchor-id="beweis-durch-umständliche-notation">Beweis durch umständliche Notation</h3>
+<p>Der Satz folgt sofort aus dem Fakt</p>
+<p><span class="math display">\[
+  \left|
+    \oplus_{k \in S}
+      \left(
+       \mathfrak{K}^{\mathbb{F}^\alpha(i)}  
+      \right)_{i \in \mathcal{U}_k}
+  \right|
+  \preceq \aleph_1
+  \text{ wenn }
+  \left[
+    \mathfrak{H}_\mathcal{W}
+  \right]     
+  \cap \mathbb{F}^\alpha(\mathbb{N}) \neq \emptyset.
+\]</span></p>
+</section>
+<section id="beweis-durch-unzugreifbare-literatur" class="level3">
+<h3 class="anchored" data-anchor-id="beweis-durch-unzugreifbare-literatur">Beweis durch unzugreifbare Literatur</h3>
+<p>Der Satz ist ein einfaches Korrollat eines Ergebnis bewiesen in einer handgeschriebenen Anmerkung ausgehändigt in einer Vorlesun bei der Jugoslawischen Mathematischen Gesellschaft 1973.</p>
+</section>
+<section id="beweis-durch-geisterhafte-zitate" class="level3">
+<h3 class="anchored" data-anchor-id="beweis-durch-geisterhafte-zitate">Beweis durch geisterhafte Zitate</h3>
+<p>Der Beweis kann auf Seite 478 gefunden werden, in einem Buch, welches nur 396 Seiten hat.</p>
+</section>
+<section id="beweis-durch-circularer-argumentation" class="level3">
+<h3 class="anchored" data-anchor-id="beweis-durch-circularer-argumentation">Beweis durch circularer Argumentation</h3>
+<p>Proposition 5.18 in [BL] ist ein einfaches Korollar zm Satz 7.18 in [C], welches wiederum auf Korollar 2.14 in [K] basiert. Dieses wiederum wird unter Bezugnahme auf Proposition 5.18 in [BL] hergeleitet.</p>
+</section>
+<section id="beweis-durch-autorität" class="level3">
+<h3 class="anchored" data-anchor-id="beweis-durch-autorität">Beweis durch Autorität</h3>
+<p>Mein guter Kollege Andrew meinte, er glaube, er hätte dafür vor ein paar Jahren einen Beweis finden können …</p>
+</section>
+<section id="beweis-durch-internet-referenz" class="level3">
+<h3 class="anchored" data-anchor-id="beweis-durch-internet-referenz">Beweis durch Internet Referenz</h3>
+<p>Für Interessierte ist das Ergebnis auf der Webseite zu diesem Buch zu sehen. – Die es leider nicht mehr gibt.</p>
+</section>
+<section id="beweis-durch-vermeidung" class="level3">
+<h3 class="anchored" data-anchor-id="beweis-durch-vermeidung">Beweis durch Vermeidung</h3>
+<p>Kapitel 3: Der Beweis hierfür wird erst in Kapitel 7 erbracht, wenn wir die Theorie weiterentwickelt haben.</p>
+<p>Kapitel 7: Der Einfachheit halber beweisen wir dies nur für den Fall z = 0. Der allgemeine Fall wird jedoch in Anhang C behandelt.</p>
+<p>Anhang C: Der formale Beweis geht über den Rahmen dieses Buches hinaus, aber unsere Intuition sagt uns natürlich, dass dies wahr ist.</p>
 
 
 </section>
+</section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Fußnoten</h2>
-
-<ol>
-<li id="fn1"><p><span class="math inline">\(L\)</span> oder auch <span class="math inline">\(l\)</span> wird (angeblich) hier für den Begriff <em>lente</em> (serb. für <strong>faul</strong>) verwendet. Behäbig ist also doch nicht so falsch. ;-)<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

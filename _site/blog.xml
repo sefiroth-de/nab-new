@@ -10,7 +10,63 @@
 <atom:link href="https://www.sefiroth.de/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Norman&#39;s Academic Blog</description>
 <generator>quarto-1.7.32</generator>
-<lastBuildDate>Fri, 18 Jul 2025 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 26 Jul 2025 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Beweisverfahren in der Mathematik</title>
+  <dc:creator>Norman Markgraf</dc:creator>
+  <link>https://www.sefiroth.de/posts/2025-07-27-Beweisverfahren/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="allgemeine-beweistechniken" class="level2">
+<h2 class="anchored" data-anchor-id="allgemeine-beweistechniken">Allgemeine Beweistechniken</h2>
+<section id="beweis-durch-einschüchterung" class="level3">
+<h3 class="anchored" data-anchor-id="beweis-durch-einschüchterung">Beweis durch Einschüchterung</h3>
+<p>Trivial!</p>
+</section>
+<section id="beweis-durch-umständliche-notation" class="level3">
+<h3 class="anchored" data-anchor-id="beweis-durch-umständliche-notation">Beweis durch umständliche Notation</h3>
+<p>Der Satz folgt sofort aus dem Fakt</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%20%20%5Cleft%7C%0A%20%20%20%20%5Coplus_%7Bk%20%5Cin%20S%7D%0A%20%20%20%20%20%20%5Cleft(%0A%20%20%20%20%20%20%20%5Cmathfrak%7BK%7D%5E%7B%5Cmathbb%7BF%7D%5E%5Calpha(i)%7D%20%20%0A%20%20%20%20%20%20%5Cright)_%7Bi%20%5Cin%20%5Cmathcal%7BU%7D_k%7D%0A%20%20%5Cright%7C%0A%20%20%5Cpreceq%20%5Caleph_1%0A%20%20%5Ctext%7B%20wenn%20%7D%0A%20%20%5Cleft%5B%0A%20%20%20%20%5Cmathfrak%7BH%7D_%5Cmathcal%7BW%7D%0A%20%20%5Cright%5D%20%20%20%20%20%0A%20%20%5Ccap%20%5Cmathbb%7BF%7D%5E%5Calpha(%5Cmathbb%7BN%7D)%20%5Cneq%20%5Cemptyset.%0A"></p>
+</section>
+<section id="beweis-durch-unzugreifbare-literatur" class="level3">
+<h3 class="anchored" data-anchor-id="beweis-durch-unzugreifbare-literatur">Beweis durch unzugreifbare Literatur</h3>
+<p>Der Satz ist ein einfaches Korrollat eines Ergebnis bewiesen in einer handgeschriebenen Anmerkung ausgehändigt in einer Vorlesun bei der Jugoslawischen Mathematischen Gesellschaft 1973.</p>
+</section>
+<section id="beweis-durch-geisterhafte-zitate" class="level3">
+<h3 class="anchored" data-anchor-id="beweis-durch-geisterhafte-zitate">Beweis durch geisterhafte Zitate</h3>
+<p>Der Beweis kann auf Seite 478 gefunden werden, in einem Buch, welches nur 396 Seiten hat.</p>
+</section>
+<section id="beweis-durch-circularer-argumentation" class="level3">
+<h3 class="anchored" data-anchor-id="beweis-durch-circularer-argumentation">Beweis durch circularer Argumentation</h3>
+<p>Proposition 5.18 in [BL] ist ein einfaches Korollar zm Satz 7.18 in [C], welches wiederum auf Korollar 2.14 in [K] basiert. Dieses wiederum wird unter Bezugnahme auf Proposition 5.18 in [BL] hergeleitet.</p>
+</section>
+<section id="beweis-durch-autorität" class="level3">
+<h3 class="anchored" data-anchor-id="beweis-durch-autorität">Beweis durch Autorität</h3>
+<p>Mein guter Kollege Andrew meinte, er glaube, er hätte dafür vor ein paar Jahren einen Beweis finden können …</p>
+</section>
+<section id="beweis-durch-internet-referenz" class="level3">
+<h3 class="anchored" data-anchor-id="beweis-durch-internet-referenz">Beweis durch Internet Referenz</h3>
+<p>Für Interessierte ist das Ergebnis auf der Webseite zu diesem Buch zu sehen. – Die es leider nicht mehr gibt.</p>
+</section>
+<section id="beweis-durch-vermeidung" class="level3">
+<h3 class="anchored" data-anchor-id="beweis-durch-vermeidung">Beweis durch Vermeidung</h3>
+<p>Kapitel 3: Der Beweis hierfür wird erst in Kapitel 7 erbracht, wenn wir die Theorie weiterentwickelt haben.</p>
+<p>Kapitel 7: Der Einfachheit halber beweisen wir dies nur für den Fall z = 0. Der allgemeine Fall wird jedoch in Anhang C behandelt.</p>
+<p>Anhang C: Der formale Beweis geht über den Rahmen dieses Buches hinaus, aber unsere Intuition sagt uns natürlich, dass dies wahr ist.</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>Mathematik</category>
+  <guid>https://www.sefiroth.de/posts/2025-07-27-Beweisverfahren/</guid>
+  <pubDate>Sat, 26 Jul 2025 22:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Willkommen in meinem Blog</title>
   <dc:creator>Norman Markgraf</dc:creator>
@@ -6143,7 +6199,7 @@ font-style: inherit;">scale_y_log10</span>()</span>
 <item>
   <title>Gedankenstütze zu wichtigen Funktionsbegriffen in der Statistik</title>
   <dc:creator>Norman Markgraf</dc:creator>
-  <link>https://www.sefiroth.de/posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/</link>
+  <link>https://www.sefiroth.de/posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/</link>
   <description><![CDATA[ 
 
 
@@ -6201,7 +6257,7 @@ font-style: inherit;">scale_y_log10</span>()</span>
 
  ]]></description>
   <category>Statistik</category>
-  <guid>https://www.sefiroth.de/posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/</guid>
+  <guid>https://www.sefiroth.de/posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/</guid>
   <pubDate>Thu, 11 Feb 2021 23:00:00 GMT</pubDate>
 </item>
 <item>

@@ -2,114 +2,118 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.sefiroth.de/blog.html</loc>
-    <lastmod>2025-07-24T07:12:06.731Z</lastmod>
+    <lastmod>2025-07-25T13:31:02.402Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/projekte.html</loc>
-    <lastmod>2025-07-24T06:47:22.414Z</lastmod>
+    <lastmod>2025-07-25T13:31:02.422Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/index.html</loc>
-    <lastmod>2025-07-23T16:04:48.963Z</lastmod>
+    <lastmod>2025-07-25T13:31:02.403Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/projekte/NPBT/index.html</loc>
-    <lastmod>2025-07-24T06:30:00.342Z</lastmod>
+    <lastmod>2025-07-25T13:31:02.422Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/projekte/DozWS-MqF-Einstieg-in-die-Datenanalyse-mit-R/index.html</loc>
-    <lastmod>2025-07-24T06:38:51.602Z</lastmod>
+    <lastmod>2025-07-25T13:31:02.422Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/projekte/MathematischeGrundelagenDerInformatik/index.html</loc>
-    <lastmod>2025-07-24T06:13:39.302Z</lastmod>
+    <lastmod>2025-07-25T13:31:02.422Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/publications/STATISTIK21/index.html</loc>
-    <lastmod>2025-07-23T08:59:50.782Z</lastmod>
+    <lastmod>2025-07-25T13:31:02.423Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/posts/2021-06-24-dinge-die-man-in-zwei-dimensionen-machen-kann-multiple-lineare-regression/index.html</loc>
-    <lastmod>2025-07-20T14:45:55.925Z</lastmod>
+    <lastmod>2025-07-25T13:31:02.420Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/posts/2021-06-23-interaktionseffekte-leichter-interpretieren-durch-transformationen/index.html</loc>
-    <lastmod>2025-07-20T14:49:19.608Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.sefiroth.de/posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/index.html</loc>
-    <lastmod>2025-07-20T14:56:14.725Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.sefiroth.de/posts/2021-06-09-ueber-die-koeffizienten-einer-linearen-regression/index.html</loc>
-    <lastmod>2025-07-20T14:44:39.242Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.sefiroth.de/posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/index.html</loc>
-    <lastmod>2025-07-20T14:44:03.505Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.sefiroth.de/posts/2021-02-13-behaebige-funktionen-aka-slowly-varying-function/index.html</loc>
-    <lastmod>2025-07-20T14:44:14.046Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.sefiroth.de/posts/2021-06-27-datenjudo-fuer-frageboegen/index.html</loc>
-    <lastmod>2025-07-20T14:46:29.067Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.sefiroth.de/posts/csv-dateien-bearbeiten-mit-miller/index.html</loc>
-    <lastmod>2025-07-20T10:06:03.146Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.sefiroth.de/posts/2020-06-29-cook-abstand/index.html</loc>
-    <lastmod>2025-07-24T07:07:17.547Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.sefiroth.de/posts/2021-06-23-regression-mit-studentisierten-daten/index.html</loc>
-    <lastmod>2025-07-20T14:54:20.866Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/index.html</loc>
-    <lastmod>2025-07-23T15:27:27.770Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.sefiroth.de/posts/2017-04-05-der-zentrale-grenzwertsatz/index.html</loc>
-    <lastmod>2025-07-24T07:05:53.680Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.sefiroth.de/posts/Willkommen/index.html</loc>
-    <lastmod>2025-07-24T07:16:34.982Z</lastmod>
+    <lastmod>2025-07-25T13:31:02.414Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/index.html</loc>
-    <lastmod>2025-07-20T14:44:22.428Z</lastmod>
+    <lastmod>2025-07-25T13:31:02.404Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.sefiroth.de/posts/Willkommen/index.html</loc>
+    <lastmod>2025-07-25T13:31:02.421Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.sefiroth.de/posts/2017-04-05-der-zentrale-grenzwertsatz/index.html</loc>
+    <lastmod>2025-07-25T13:31:02.403Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/index.html</loc>
+    <lastmod>2025-07-25T13:31:02.414Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.sefiroth.de/posts/2021-06-23-regression-mit-studentisierten-daten/index.html</loc>
+    <lastmod>2025-07-25T13:31:02.418Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.sefiroth.de/posts/2020-06-29-cook-abstand/index.html</loc>
+    <lastmod>2025-07-25T13:31:02.403Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.sefiroth.de/posts/csv-dateien-bearbeiten-mit-miller/index.html</loc>
+    <lastmod>2025-07-25T13:31:02.422Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.sefiroth.de/posts/2021-06-27-datenjudo-fuer-frageboegen/index.html</loc>
+    <lastmod>2025-07-25T13:31:02.421Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.sefiroth.de/posts/2021-02-13-behaebige-funktionen-aka-slowly-varying-function/index.html</loc>
+    <lastmod>2025-07-25T13:31:02.404Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.sefiroth.de/posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/index.html</loc>
+    <lastmod>2025-07-25T13:31:02.403Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.sefiroth.de/posts/2021-06-09-ueber-die-koeffizienten-einer-linearen-regression/index.html</loc>
+    <lastmod>2025-07-25T13:31:02.404Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.sefiroth.de/posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/index.html</loc>
+    <lastmod>2025-07-25T13:31:02.403Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.sefiroth.de/posts/2025-07-27-Beweisverfahren/index.html</loc>
+    <lastmod>2025-07-27T14:09:14.472Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/posts/2021-12-27-grafiken-nebeneinander-setzen-mit-ggplot2-oder-ggformula/index.html</loc>
-    <lastmod>2025-07-20T14:46:06.764Z</lastmod>
+    <lastmod>2025-07-25T13:31:02.421Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/posts/2021-04-08-graalpy-pypy--und-python-geschwindigkeitstest/index.html</loc>
-    <lastmod>2025-07-20T11:02:25.449Z</lastmod>
+    <lastmod>2025-07-25T13:31:02.404Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/publications/2004-09-XX_LEARN2CONTROL/index.html</loc>
-    <lastmod>2025-07-23T08:56:51.467Z</lastmod>
+    <lastmod>2025-07-25T13:31:02.423Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/projekte/FUMS/index.html</loc>
-    <lastmod>2025-07-24T06:18:48.712Z</lastmod>
+    <lastmod>2025-07-25T13:31:02.422Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/projekte/WS-Quarto/index.html</loc>
-    <lastmod>2025-07-24T06:05:55.008Z</lastmod>
+    <lastmod>2025-07-25T13:31:02.422Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/publications.html</loc>
-    <lastmod>2025-07-23T08:51:35.884Z</lastmod>
+    <lastmod>2025-07-25T13:31:02.422Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/Datenschutzerklaerung.html</loc>
-    <lastmod>2025-07-20T10:58:07.189Z</lastmod>
+    <lastmod>2025-07-25T13:31:02.363Z</lastmod>
   </url>
 </urlset>
