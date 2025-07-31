@@ -1,0 +1,25 @@
+---
+title: "Mathematische Grundlagen der Informatik"
+author: "Norman Markgraf"
+date: "2019-10-18"
+date-modified: last-modified
+lang: de-DE
+categories: 
+  - Vorlesungsskript
+  - Mathematik
+  - Informatik
+code-links:
+  text: "Link zu GitHub Repository"
+  repo: https://github.com/FOM-NM-Lehre/MathematischeGrundlagenDerInformatik
+---
+
+## Vorlesungsskript: Mathematische Grundlagen der Informatik 
+
+Die ist das Skript zu den von mir an der FOM gehaltenen Vorlesungen im Fach "Mathematische Grundlagen der Informatik".
+
+Auf Grund der aktuellen Lage besteht ein striktes Nutzungsverbot durch Dozent:innen der FOM. Das Werk und kein Teil dieses Werkes darf von Dozent:innen der FOM ohne mein ausdrückliches und schriftliches Einverständnis benutzt werden.
+
+Für alle anderen gilt:
+
+&copy; by N.Markgraf published under CC-BY-SA-NC 3.0 de
+

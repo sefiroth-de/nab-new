@@ -79,9 +79,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-image','listing-date','listing-title','listing-reading-time','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -130,7 +130,7 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="styles.css">
-</head>
+<link rel="alternate" type="application/rss+xml" title="Norman's Academic Blog" href="blog.xml" data-external="1"></head>
 
 <body class="nav-fixed quarto-light">
 
@@ -161,6 +161,17 @@ window.Quarto = {
     <a class="nav-link" href="./publications.html"> 
 <span class="menu-text">Veröffentlichungen</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./projekte.html"> 
+<span class="menu-text">Projekte</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="./blog.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -190,7 +201,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(16)</span></div><div class="category" data-category="QWxsZ2VtZWluZXM=">Allgemeines <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q1NW">CSV <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0ZW5mb3JtYXRl">Datenformate <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0ZW5qdWRv">Datenjudo <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R3JhYWxQeQ==">GraalPy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R3JhYWxQeXRob24=">GraalPython <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWlsbGVy">Miller <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHlQeQ==">PyPy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3BlZWR0ZXN0">Speedtest <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3RhdGlzdGlr">Statistik <span class="quarto-category-count">(13)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(17)</span></div><div class="category" data-category="QWxsZ2VtZWluZXM=">Allgemeines <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q1NW">CSV <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0ZW5mb3JtYXRl">Datenformate <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0ZW5qdWRv">Datenjudo <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R3JhYWxQeQ==">GraalPy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R3JhYWxQeXRob24=">GraalPython <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWF0aGVtYXRpaw==">Mathematik <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWlsbGVy">Miller <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHlQeQ==">PyPy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3BlZWR0ZXN0">Speedtest <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3RhdGlzdGlr">Statistik <span class="quarto-category-count">(13)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -204,23 +215,41 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="bmV3cw==" data-listing-date-sort="1752876000000" data-listing-file-modified-sort="1753276811466" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="46">
+<div class="quarto-post image-right" data-index="0" data-categories="TWF0aGVtYXRpaw==" data-listing-date-sort="1753567200000" data-listing-file-modified-sort="1753625354472" data-listing-date-modified-sort="1753625354000" data-listing-reading-time-sort="2" data-listing-word-count-sort="260">
+<div class="thumbnail"><a href="./posts/2025-07-27-Beweisverfahren/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-07-27-Beweisverfahren/index.html" class="no-external">Beweisverfahren in der Mathematik</a>
+</h3>
+<div class="delink listing-description"><a href="./posts/2025-07-27-Beweisverfahren/index.html" class="no-external">
+Trivial!
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/2025-07-27-Beweisverfahren/index.html" class="no-external">
+<div class="listing-date">
+Jul 27, 2025
+</div>
+<div class="listing-reading-time">2 min</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="bmV3cw==" data-listing-date-sort="1752876000000" data-listing-file-modified-sort="1753450262421" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="1" data-listing-word-count-sort="46">
 <div class="thumbnail"><a href="./posts/Willkommen/index.html" class="no-external">
 
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:posts/Willkommen/index.html -->
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/Willkommen/index.html" class="no-external">Willkommen in meinem Blog</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/Willkommen/index.html" class="no-external">
-<!-- desc(5A0113B34292)[max=175]:posts/Willkommen/index.html -->
+Das ist mein erster Blog-Eintrag! Ich werde nun hoffentlich (langsam) meinen Blog von Hugo aus Quarto umstellen. Ich arbeite viel mit R und eine extra Sprache nur für den…
 </a></div>
 </div>
 <div class="metadata">
@@ -228,29 +257,22 @@ window.Quarto = {
 <div class="listing-date">
 Jul 19, 2025
 </div>
-<div class="listing-author">
-Norman Markgraf
-</div>
+<div class="listing-reading-time">1 min</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1640559600000" data-listing-file-modified-sort="1753276811434" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="144">
+<div class="quarto-post image-right" data-index="2" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1640559600000" data-listing-file-modified-sort="1753450262421" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="1" data-listing-word-count-sort="144">
 <div class="thumbnail"><a href="./posts/2021-12-27-grafiken-nebeneinander-setzen-mit-ggplot2-oder-ggformula/index.html" class="no-external">
 
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:posts/2021-12-27-grafiken-nebeneinander-setzen-mit-ggplot2-oder-ggformula/index.html -->
+<p class="card-img-top"><img src="posts/2021-12-27-grafiken-nebeneinander-setzen-mit-ggplot2-oder-ggformula/index_files/figure-html/unnamed-chunk-4-1.webp"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/2021-12-27-grafiken-nebeneinander-setzen-mit-ggplot2-oder-ggformula/index.html" class="no-external">Grafiken nebeneinander setzen mit ggplot2 oder ggformula</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGlr'); return false;">Statistik</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/2021-12-27-grafiken-nebeneinander-setzen-mit-ggplot2-oder-ggformula/index.html" class="no-external">
-<!-- desc(5A0113B34292)[max=175]:posts/2021-12-27-grafiken-nebeneinander-setzen-mit-ggplot2-oder-ggformula/index.html -->
+Ab und zu möchte mensch zwei (oder mehr) Grafiken neben- oder übereinander setzen.
 </a></div>
 </div>
 <div class="metadata">
@@ -258,37 +280,22 @@ Norman Markgraf
 <div class="listing-date">
 Dec 27, 2021
 </div>
-<div class="listing-author">
-Norman Markgraf
-</div>
+<div class="listing-reading-time">1 min</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="QWxsZ2VtZWluZXMlMkNNaWxsZXIlMkNDU1YlMkNEYXRlbmp1ZG8lMkNEYXRlbmZvcm1hdGU=" data-listing-date-sort="1630015200000" data-listing-file-modified-sort="1753276811549" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="154">
+<div class="quarto-post image-right" data-index="3" data-categories="QWxsZ2VtZWluZXMlMkNNaWxsZXIlMkNDU1YlMkNEYXRlbmp1ZG8lMkNEYXRlbmZvcm1hdGU=" data-listing-date-sort="1630015200000" data-listing-file-modified-sort="1753450262422" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="1" data-listing-word-count-sort="154">
 <div class="thumbnail"><a href="./posts/csv-dateien-bearbeiten-mit-miller/index.html" class="no-external">
 
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:posts/csv-dateien-bearbeiten-mit-miller/index.html -->
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/csv-dateien-bearbeiten-mit-miller/index.html" class="no-external">CSV Dateien bearbeiten mit Miller</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('QWxsZ2VtZWluZXM='); return false;">Allgemeines</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWlsbGVy'); return false;">Miller</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q1NW'); return false;">CSV</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGF0ZW5qdWRv'); return false;">Datenjudo</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGF0ZW5mb3JtYXRl'); return false;">Datenformate</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/csv-dateien-bearbeiten-mit-miller/index.html" class="no-external">
-<!-- desc(5A0113B34292)[max=175]:posts/csv-dateien-bearbeiten-mit-miller/index.html -->
+Miller beschreibt sich selbst folgendermaßen:
 </a></div>
 </div>
 <div class="metadata">
@@ -296,29 +303,22 @@ Norman Markgraf
 <div class="listing-date">
 Aug 27, 2021
 </div>
-<div class="listing-author">
-Norman Markgraf
-</div>
+<div class="listing-reading-time">1 min</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1624744800000" data-listing-file-modified-sort="1753276811387" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="936">
+<div class="quarto-post image-right" data-index="4" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1624744800000" data-listing-file-modified-sort="1753450262421" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="5" data-listing-word-count-sort="936">
 <div class="thumbnail"><a href="./posts/2021-06-27-datenjudo-fuer-frageboegen/index.html" class="no-external">
 
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:posts/2021-06-27-datenjudo-fuer-frageboegen/index.html -->
+<p class="card-img-top"><img src="posts/2021-06-27-datenjudo-fuer-frageboegen/index_files/figure-html/unnamed-chunk-5-1.webp"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/2021-06-27-datenjudo-fuer-frageboegen/index.html" class="no-external">Datenjudo für Fragebögen</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGlr'); return false;">Statistik</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/2021-06-27-datenjudo-fuer-frageboegen/index.html" class="no-external">
-<!-- desc(5A0113B34292)[max=175]:posts/2021-06-27-datenjudo-fuer-frageboegen/index.html -->
+Ab und zu bekomme ich die Frage, wie man einen Fragebogen mit Likert-Scalen-Items auswerten kann.
 </a></div>
 </div>
 <div class="metadata">
@@ -326,29 +326,22 @@ Norman Markgraf
 <div class="listing-date">
 Jun 27, 2021
 </div>
-<div class="listing-author">
-Norman Markgraf
-</div>
+<div class="listing-reading-time">5 min</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1624485600000" data-listing-file-modified-sort="1753276811216" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1067">
+<div class="quarto-post image-right" data-index="5" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1624485600000" data-listing-file-modified-sort="1753450262420" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="6" data-listing-word-count-sort="1067">
 <div class="thumbnail"><a href="./posts/2021-06-24-dinge-die-man-in-zwei-dimensionen-machen-kann-multiple-lineare-regression/index.html" class="no-external">
 
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:posts/2021-06-24-dinge-die-man-in-zwei-dimensionen-machen-kann-multiple-lineare-regression/index.html -->
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/2021-06-24-dinge-die-man-in-zwei-dimensionen-machen-kann-multiple-lineare-regression/index.html" class="no-external">Dinge die man in zwei Dimensionen machen kann - Multiple lineare Regression</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGlr'); return false;">Statistik</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/2021-06-24-dinge-die-man-in-zwei-dimensionen-machen-kann-multiple-lineare-regression/index.html" class="no-external">
-<!-- desc(5A0113B34292)[max=175]:posts/2021-06-24-dinge-die-man-in-zwei-dimensionen-machen-kann-multiple-lineare-regression/index.html -->
+Wir wollen den Fall unterschen bei dem wir mit zwei statistischen Variabeln (<span class="math inline">\(X\)</span> und <span class="math inline">\(Y\)</span>) eine dritte Variable (<span class="math inline">\(Z\)</span>) mittels einer multiplen linearen Regression…
 </a></div>
 </div>
 <div class="metadata">
@@ -356,59 +349,22 @@ Norman Markgraf
 <div class="listing-date">
 Jun 24, 2021
 </div>
-<div class="listing-author">
-Norman Markgraf
-</div>
+<div class="listing-reading-time">6 min</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1624399200000" data-listing-file-modified-sort="1753276809384" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1191">
-<div class="thumbnail"><a href="./posts/2021-06-23-interaktionseffekte-leichter-interpretieren-durch-transformationen/index.html" class="no-external">
-
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:posts/2021-06-23-interaktionseffekte-leichter-interpretieren-durch-transformationen/index.html -->
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2021-06-23-interaktionseffekte-leichter-interpretieren-durch-transformationen/index.html" class="no-external">Interaktionseffekte leichter interpretieren durch Transformationen</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGlr'); return false;">Statistik</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2021-06-23-interaktionseffekte-leichter-interpretieren-durch-transformationen/index.html" class="no-external">
-<!-- desc(5A0113B34292)[max=175]:posts/2021-06-23-interaktionseffekte-leichter-interpretieren-durch-transformationen/index.html -->
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2021-06-23-interaktionseffekte-leichter-interpretieren-durch-transformationen/index.html" class="no-external">
-<div class="listing-date">
-Jun 23, 2021
-</div>
-<div class="listing-author">
-Norman Markgraf
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1624399200000" data-listing-file-modified-sort="1753276810273" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="963">
+<div class="quarto-post image-right" data-index="6" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1624399200000" data-listing-file-modified-sort="1753450262418" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="5" data-listing-word-count-sort="963">
 <div class="thumbnail"><a href="./posts/2021-06-23-regression-mit-studentisierten-daten/index.html" class="no-external">
 
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:posts/2021-06-23-regression-mit-studentisierten-daten/index.html -->
+<p class="card-img-top"><img src="posts/2021-06-23-regression-mit-studentisierten-daten/index_files/figure-html/unnamed-chunk-1-1.webp"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/2021-06-23-regression-mit-studentisierten-daten/index.html" class="no-external">Regression mit studentisierten Daten</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGlr'); return false;">Statistik</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/2021-06-23-regression-mit-studentisierten-daten/index.html" class="no-external">
-<!-- desc(5A0113B34292)[max=175]:posts/2021-06-23-regression-mit-studentisierten-daten/index.html -->
+Bei einer einfachen linearen Regression versuchen wir zu vorgegebenen Datenpunkten <span class="math inline">\((x_1, y_1), \cdots (x_n, y_n)\)</span> die Parameter einer möglichst passenden Gerade <span class="math inline">\(g(x)=\be…</span>
 </a></div>
 </div>
 <div class="metadata">
@@ -416,29 +372,45 @@ Norman Markgraf
 <div class="listing-date">
 Jun 23, 2021
 </div>
-<div class="listing-author">
-Norman Markgraf
-</div>
+<div class="listing-reading-time">5 min</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1623362400000" data-listing-file-modified-sort="1753276809351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="846">
+<div class="quarto-post image-right" data-index="7" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1624399200000" data-listing-file-modified-sort="1753450262414" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="6" data-listing-word-count-sort="1191">
+<div class="thumbnail"><a href="./posts/2021-06-23-interaktionseffekte-leichter-interpretieren-durch-transformationen/index.html" class="no-external">
+
+<p class="card-img-top"><img src="posts/2021-06-23-interaktionseffekte-leichter-interpretieren-durch-transformationen/index_files/figure-html/unnamed-chunk-2-1.webp"  class="thumbnail-image card-img"/></p>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2021-06-23-interaktionseffekte-leichter-interpretieren-durch-transformationen/index.html" class="no-external">Interaktionseffekte leichter interpretieren durch Transformationen</a>
+</h3>
+<div class="delink listing-description"><a href="./posts/2021-06-23-interaktionseffekte-leichter-interpretieren-durch-transformationen/index.html" class="no-external">
+Bei einer multiplen linearen Regression kann man den Einfluss einer unabhägigen Variable auf das Verhalten einer anderen unabhägigen Variable in Bezug auf die abhägige…
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/2021-06-23-interaktionseffekte-leichter-interpretieren-durch-transformationen/index.html" class="no-external">
+<div class="listing-date">
+Jun 23, 2021
+</div>
+<div class="listing-reading-time">6 min</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="8" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1623362400000" data-listing-file-modified-sort="1753450262414" data-listing-date-modified-sort="1623362400000" data-listing-reading-time-sort="5" data-listing-word-count-sort="846">
 <div class="thumbnail"><a href="./posts/2021-06-11-wege-zur-normalverteilung/index.html" class="no-external">
 
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:posts/2021-06-11-wege-zur-normalverteilung/index.html -->
+<p class="card-img-top"><img src="posts/2021-06-11-wege-zur-normalverteilung/index_files/figure-html/unnamed-chunk-5-1.webp"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/2021-06-11-wege-zur-normalverteilung/index.html" class="no-external">Wege zur Normalverteilung</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGlr'); return false;">Statistik</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/2021-06-11-wege-zur-normalverteilung/index.html" class="no-external">
-<!-- desc(5A0113B34292)[max=175]:posts/2021-06-11-wege-zur-normalverteilung/index.html -->
+Der fairen Wurf einer fairen Münze, also eine Münze bei der Kopf und Zahl gleich wahrscheinlich geworfen wird, sei der Ausgang des ersten Weges.
 </a></div>
 </div>
 <div class="metadata">
@@ -446,29 +418,22 @@ Norman Markgraf
 <div class="listing-date">
 Jun 11, 2021
 </div>
-<div class="listing-author">
-Norman Markgraf
-</div>
+<div class="listing-reading-time">5 min</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1623189600000" data-listing-file-modified-sort="1753276806128" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="19" data-listing-word-count-sort="3621">
+<div class="quarto-post image-right" data-index="9" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1623189600000" data-listing-file-modified-sort="1753450262404" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="19" data-listing-word-count-sort="3621">
 <div class="thumbnail"><a href="./posts/2021-06-09-ueber-die-koeffizienten-einer-linearen-regression/index.html" class="no-external">
 
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:posts/2021-06-09-ueber-die-koeffizienten-einer-linearen-regression/index.html -->
+<p class="card-img-top"><img src="posts/2021-06-09-ueber-die-koeffizienten-einer-linearen-regression/index_files/figure-html/unnamed-chunk-1-1.webp"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/2021-06-09-ueber-die-koeffizienten-einer-linearen-regression/index.html" class="no-external">Über die Koeffizienten einer linearen Regression</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGlr'); return false;">Statistik</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/2021-06-09-ueber-die-koeffizienten-einer-linearen-regression/index.html" class="no-external">
-<!-- desc(5A0113B34292)[max=175]:posts/2021-06-09-ueber-die-koeffizienten-einer-linearen-regression/index.html -->
+Bei einer <em>einfachen Regression</em> versuchen wir zu gegebenen Datenpunkten <span class="math inline">\((x_1, y_1), ..., (x_n, y_n)\)</span> eine <em>möglichst passende</em> Funktion <span class="math inline">\(g(x)\)</span> zu finden, so dass <span class="math display">\[y_i =…</span><span class="math inline"></span>
 </a></div>
 </div>
 <div class="metadata">
@@ -476,37 +441,22 @@ Norman Markgraf
 <div class="listing-date">
 Jun 9, 2021
 </div>
-<div class="listing-author">
-Norman Markgraf
-</div>
+<div class="listing-reading-time">19 min</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="UHl0aG9uJTJDUHlQeSUyQ0dyYWFsUHl0aG9uJTJDR3JhYWxQeSUyQ1NwZWVkdGVzdA==" data-listing-date-sort="1617832800000" data-listing-file-modified-sort="1753276805970" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="247">
+<div class="quarto-post image-right" data-index="10" data-categories="UHl0aG9uJTJDUHlQeSUyQ0dyYWFsUHl0aG9uJTJDR3JhYWxQeSUyQ1NwZWVkdGVzdA==" data-listing-date-sort="1617832800000" data-listing-file-modified-sort="1753450262404" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="2" data-listing-word-count-sort="247">
 <div class="thumbnail"><a href="./posts/2021-04-08-graalpy-pypy--und-python-geschwindigkeitstest/index.html" class="no-external">
 
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:posts/2021-04-08-graalpy-pypy--und-python-geschwindigkeitstest/index.html -->
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/2021-04-08-graalpy-pypy--und-python-geschwindigkeitstest/index.html" class="no-external">GraalPy , PyPy und (C)Python im kurzen Geschwindigkeitstest</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHlQeQ=='); return false;">PyPy</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('R3JhYWxQeXRob24='); return false;">GraalPython</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('R3JhYWxQeQ=='); return false;">GraalPy</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3BlZWR0ZXN0'); return false;">Speedtest</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/2021-04-08-graalpy-pypy--und-python-geschwindigkeitstest/index.html" class="no-external">
-<!-- desc(5A0113B34292)[max=175]:posts/2021-04-08-graalpy-pypy--und-python-geschwindigkeitstest/index.html -->
+Heute habe ich mit Hilfe von Pyenv einen kompakten Performance-Vergleich zwischen (C)Python3, PyPy und GraalPython durchgeführt.
 </a></div>
 </div>
 <div class="metadata">
@@ -514,29 +464,22 @@ Norman Markgraf
 <div class="listing-date">
 Apr 8, 2021
 </div>
-<div class="listing-author">
-Norman Markgraf
-</div>
+<div class="listing-reading-time">2 min</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1613516400000" data-listing-file-modified-sort="1753276805888" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1290">
+<div class="quarto-post image-right" data-index="11" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1613516400000" data-listing-file-modified-sort="1753450262404" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="7" data-listing-word-count-sort="1290">
 <div class="thumbnail"><a href="./posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/index.html" class="no-external">
 
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/index.html -->
+<p class="card-img-top"><img src="posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/index_files/figure-html/unnamed-chunk-2-1.webp"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/index.html" class="no-external">Über die t-Verteilung mit einem bzw. zwei Freiheitsgraden</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGlr'); return false;">Statistik</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/index.html" class="no-external">
-<!-- desc(5A0113B34292)[max=175]:posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/index.html -->
+Für die graphischen Ausgaben nutzen wir R und das Paket <code>mosaic</code>:
 </a></div>
 </div>
 <div class="metadata">
@@ -544,29 +487,22 @@ Norman Markgraf
 <div class="listing-date">
 Feb 17, 2021
 </div>
-<div class="listing-author">
-Norman Markgraf
-</div>
+<div class="listing-reading-time">7 min</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1613170800000" data-listing-file-modified-sort="1753276805842" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="466">
+<div class="quarto-post image-right" data-index="12" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1613170800000" data-listing-file-modified-sort="1753450262404" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="3" data-listing-word-count-sort="466">
 <div class="thumbnail"><a href="./posts/2021-02-13-behaebige-funktionen-aka-slowly-varying-function/index.html" class="no-external">
 
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:posts/2021-02-13-behaebige-funktionen-aka-slowly-varying-function/index.html -->
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/2021-02-13-behaebige-funktionen-aka-slowly-varying-function/index.html" class="no-external">Behäbige Funktionen aka slowly varying function</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGlr'); return false;">Statistik</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/2021-02-13-behaebige-funktionen-aka-slowly-varying-function/index.html" class="no-external">
-<!-- desc(5A0113B34292)[max=175]:posts/2021-02-13-behaebige-funktionen-aka-slowly-varying-function/index.html -->
+Reelle Funktionen, die ihren Funktionswert kaum ändern, kann man mit Fug und Recht durchaus behäbig nennen, korrekter wäre aber von <strong>langsam variierenden</strong> Funktionen zu sprechen
 </a></div>
 </div>
 <div class="metadata">
@@ -574,29 +510,22 @@ Norman Markgraf
 <div class="listing-date">
 Feb 13, 2021
 </div>
-<div class="listing-author">
-Norman Markgraf
-</div>
+<div class="listing-reading-time">3 min</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="12" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1613084400000" data-listing-file-modified-sort="1753276805759" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1114">
+<div class="quarto-post image-right" data-index="13" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1613084400000" data-listing-file-modified-sort="1753450262403" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="6" data-listing-word-count-sort="1114">
 <div class="thumbnail"><a href="./posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/index.html" class="no-external">
 
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/index.html -->
+<p class="card-img-top"><img src="posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/index_files/figure-html/unnamed-chunk-2-1.webp"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/index.html" class="no-external">Ein paar Gedanken über potenzgesetzliche Verteilungen (power law distributions)</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGlr'); return false;">Statistik</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/index.html" class="no-external">
-<!-- desc(5A0113B34292)[max=175]:posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/index.html -->
+Eine Funktion <span class="math inline">\(f(x)\)</span> heißt <strong>potenzgesetzlich</strong>, falls
 </a></div>
 </div>
 <div class="metadata">
@@ -604,59 +533,45 @@ Norman Markgraf
 <div class="listing-date">
 Feb 12, 2021
 </div>
-<div class="listing-author">
-Norman Markgraf
-</div>
+<div class="listing-reading-time">6 min</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="13" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1613084400000" data-listing-file-modified-sort="1753276805809" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="433">
-<div class="thumbnail"><a href="./posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/index.html" class="no-external">
+<div class="quarto-post image-right" data-index="14" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1613084400000" data-listing-file-modified-sort="1753450262403" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="3" data-listing-word-count-sort="433">
+<div class="thumbnail"><a href="./posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/index.html" class="no-external">
 
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/index.html -->
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/index.html" class="no-external">Gedankenstütze zu wichtigen Funktionsbegriffen in der Statistik</a>
+<a href="./posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/index.html" class="no-external">Gedankenstütze zu wichtigen Funktionsbegriffen in der Statistik</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGlr'); return false;">Statistik</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/index.html" class="no-external">
-<!-- desc(5A0113B34292)[max=175]:posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/index.html -->
+<div class="delink listing-description"><a href="./posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/index.html" class="no-external">
+Gilt für eine reelle Funktion <span class="math inline">\(f: \mathbf{R} \to \mathbf{R}\)</span>:
 </a></div>
 </div>
 <div class="metadata">
-<a href="./posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/index.html" class="no-external">
+<a href="./posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/index.html" class="no-external">
 <div class="listing-date">
 Feb 12, 2021
 </div>
-<div class="listing-author">
-Norman Markgraf
-</div>
+<div class="listing-reading-time">3 min</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="14" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1593381600000" data-listing-file-modified-sort="1753276805689" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="655">
+<div class="quarto-post image-right" data-index="15" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1593381600000" data-listing-file-modified-sort="1753450262403" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="4" data-listing-word-count-sort="655">
 <div class="thumbnail"><a href="./posts/2020-06-29-cook-abstand/index.html" class="no-external">
 
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:posts/2020-06-29-cook-abstand/index.html -->
+<p class="card-img-top"><img src="posts/2020-06-29-cook-abstand/index_files/figure-html/unnamed-chunk-2-1.webp"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/2020-06-29-cook-abstand/index.html" class="no-external">Cook Abstand</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGlr'); return false;">Statistik</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/2020-06-29-cook-abstand/index.html" class="no-external">
-<!-- desc(5A0113B34292)[max=175]:posts/2020-06-29-cook-abstand/index.html -->
+<strong>Frage: Was macht einen Wert zum Ausreißer?</strong>
 </a></div>
 </div>
 <div class="metadata">
@@ -664,29 +579,22 @@ Norman Markgraf
 <div class="listing-date">
 Jun 29, 2020
 </div>
-<div class="listing-author">
-Norman Markgraf
-</div>
+<div class="listing-reading-time">4 min</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="15" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1491343200000" data-listing-file-modified-sort="1753276805583" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="644">
+<div class="quarto-post image-right" data-index="16" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1491343200000" data-listing-file-modified-sort="1753450262403" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="4" data-listing-word-count-sort="644">
 <div class="thumbnail"><a href="./posts/2017-04-05-der-zentrale-grenzwertsatz/index.html" class="no-external">
 
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:posts/2017-04-05-der-zentrale-grenzwertsatz/index.html -->
+<p class="card-img-top"><img src="posts/2017-04-05-der-zentrale-grenzwertsatz/index_files/figure-html/unnamed-chunk-4-1.webp"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/2017-04-05-der-zentrale-grenzwertsatz/index.html" class="no-external">Der Zentrale Grenzwertsatz</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGlr'); return false;">Statistik</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/2017-04-05-der-zentrale-grenzwertsatz/index.html" class="no-external">
-<!-- desc(5A0113B34292)[max=175]:posts/2017-04-05-der-zentrale-grenzwertsatz/index.html -->
+Seien <span class="math inline">\(X_1, X_2, ..., X_n\)</span> unabhängige und identisch verteilte Zufallsvariablen mit bekanntem Erwartungswert <span class="math inline">\(E(X_i) = \mu\)</span> und bekannter Varianz <span class="math inline">\(Var(X_i)=\sigma^2\)</span>.
 </a></div>
 </div>
 <div class="metadata">
@@ -694,9 +602,7 @@ Norman Markgraf
 <div class="listing-date">
 Apr 5, 2017
 </div>
-<div class="listing-author">
-Norman Markgraf
-</div>
+<div class="listing-reading-time">4 min</div>
 </a>
 </div>
 </div>
@@ -775,7 +681,7 @@ Norman Markgraf
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/www\.sefiroth\.de");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

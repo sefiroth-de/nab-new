@@ -6,3 +6,7 @@ freeze: true
 
 # Enable banner style title blocks
 title-block-banner: true
+
+date-modified: last-modified
+word-count: true
+reading-time: true

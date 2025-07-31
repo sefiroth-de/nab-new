@@ -1,6 +1,11 @@
 project:
   type: website
 
+filters:
+  - convert-to-webp
+webp-delete-originals: false
+webp-disable: false
+
 website:
   title: "Norman's Academic Blog"
   navbar:
@@ -9,9 +14,18 @@ website:
     left:
       - text: "Home"
         href: index.qmd
-      - blog.qmd
+      - text: "Blog"
+        href: blog.qmd
       - text: "Veröffentlichungen"
         href: publications.qmd
+      - text: "Projekte"
+        href: projekte.qmd
+    right:
+      - icon: rss
+        href: blog.xml
+  site-url: https://www.sefiroth.de
+  description: "Norman's Academic Blog"
+
 format:
   html:
     theme:

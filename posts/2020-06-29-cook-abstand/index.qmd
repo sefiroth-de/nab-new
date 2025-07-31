@@ -3,6 +3,9 @@ title: "Cook Abstand"
 author: "Norman Markgraf"
 date: '2020-06-29'
 lang: de-DE
+date-modified: last-modified
+word-count: true
+reading-time: true
 categories: 
   - Statistik
 ---

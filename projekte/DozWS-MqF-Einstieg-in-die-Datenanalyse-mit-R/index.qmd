@@ -1,0 +1,22 @@
+---
+title: "Dozenten-Workshop: Methoden der quantitativen Forschung"
+subtitle: "Einstieg-in-die-Datenanalyse-mit-R"
+author: "Norman Markgraf"
+date: "2021-09-27"
+date-modified: last-modified
+lang: de-DE
+categories: 
+  - workshop
+  - R
+  - Statistik
+
+code-links:
+  text: "Link zu GitHub Repository"
+  repo: https://github.com/FOM-ifes/DozWS-MqF-Einstieg-in-die-Datenanalyse-mit-R
+---
+
+## Dozenten-Workshop: Methiden der quantitativen Forschung
+
+**Einstieg in die Datenanalyse mit R** ist ein Workshop den ich regelmässig für die FOM und ihre Dozent:innen gehalten habe.
+
+Er stellt einen Einstieg in R und RStudio-Desktop dar und fokusiert dann auf Simulationsbasiserte Inferenz (SBI).

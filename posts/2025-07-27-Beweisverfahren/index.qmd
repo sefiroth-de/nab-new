@@ -1,0 +1,72 @@
+---
+title: "Beweisverfahren in der Mathematik"
+subtitle: "Aus dem Internet frei übersetzt."
+author: "Norman Markgraf"
+lang: de-DE
+date: "2025-07-27"
+date-modified: last-modified
+word-count: true
+reading-time: true
+categories: 
+  - Mathematik
+---
+
+## Allgemeine Beweistechniken 
+
+### Beweis durch Einschüchterung
+
+Trivial!
+
+### Beweis durch umständliche Notation
+
+Der Satz folgt sofort aus dem Fakt
+
+$$
+  \left|
+    \oplus_{k \in S} 
+      \left(
+       \mathfrak{K}^{\mathbb{F}^\alpha(i)}  
+      \right)_{i \in \mathcal{U}_k}
+  \right|
+  \preceq \aleph_1
+  \text{ wenn }
+  \left[
+    \mathfrak{H}_\mathcal{W}
+  \right]     
+  \cap \mathbb{F}^\alpha(\mathbb{N}) \neq \emptyset.
+$$
+
+### Beweis durch unzugreifbare Literatur
+
+Der Satz ist ein einfaches Korrollat eines Ergebnis bewiesen in einer handgeschriebenen Anmerkung ausgehändigt in einer Vorlesun bei der Jugoslawischen Mathematischen Gesellschaft 1973.
+
+
+### Beweis durch geisterhafte Zitate
+
+Der Beweis kann auf Seite 478 gefunden werden, in einem Buch, welches nur 396 Seiten hat.
+
+
+### Beweis durch circularer Argumentation
+
+Proposition 5.18 in [BL] ist ein einfaches Korollar zm Satz 7.18 in [C], welches wiederum auf Korollar 2.14 in [K] basiert. Dieses wiederum wird unter Bezugnahme auf Proposition 5.18 in [BL] hergeleitet.
+
+
+### Beweis durch Autorität
+
+Mein guter Kollege Andrew meinte, er glaube, er hätte dafür vor ein paar Jahren einen Beweis finden können …
+
+
+### Beweis durch Internet Referenz
+
+Für Interessierte ist das Ergebnis auf der Webseite zu diesem Buch zu sehen. -- Die es leider nicht mehr gibt.
+
+
+### Beweis durch Vermeidung
+
+Kapitel 3: Der Beweis hierfür wird erst in Kapitel 7 erbracht, wenn wir die Theorie weiterentwickelt haben.
+
+Kapitel 7: Der Einfachheit halber beweisen wir dies nur für den Fall z = 0. Der allgemeine Fall wird jedoch in Anhang C behandelt.
+
+Anhang C: Der formale Beweis geht über den Rahmen dieses Buches hinaus, aber unsere Intuition sagt uns natürlich, dass dies wahr ist.
+
+

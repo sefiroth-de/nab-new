@@ -14,7 +14,15 @@ about:
     - icon: github
       text: Github
       href: https://github.com/NMarkgraf
-
+    - icon: twitter-x
+      text: X
+      href: https://x.com/NormanMarkgraf1
+    - icon: cup-hot
+      text: Buy me a coffee
+      href: https://coff.ee/norman.markgraf
+    - icon: cup-hot
+      text: ko-fi
+      href: https://ko-fi.com/benorman
 ---
 
 :::{#hero-heading}
@@ -31,7 +39,6 @@ Als Lehrbeauftragter hat er an der Hochschule Bochum, Hochschule Rhein-Waal (am 
 ::: {.g-col-6}
 ## Interessen
 
-- Interessen
 - Mathematik
 - Statistik
 - Datenanalyse
@@ -43,6 +50,8 @@ Als Lehrbeauftragter hat er an der Hochschule Bochum, Hochschule Rhein-Waal (am 
 - Ingenieurmathematik
 - Datenbanken
 - Big Data
+- Python
+- R
 
 :::
 

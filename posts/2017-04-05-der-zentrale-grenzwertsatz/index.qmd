@@ -3,6 +3,9 @@ title: "Der Zentrale Grenzwertsatz"
 author: "Norman Markgraf"
 lang: de-DE
 date: "2017-04-05"
+date-modified: last-modified
+word-count: true
+reading-time: true
 categories: 
   - Statistik
 ---

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Norman&#39;s Academic Blog</title>
+<link>https://www.sefiroth.de/projekte.html</link>
+<atom:link href="https://www.sefiroth.de/projekte.xml" rel="self" type="application/rss+xml"/>
+<description>Norman&#39;s Academic Blog</description>
+<generator>quarto-1.7.32</generator>
+<lastBuildDate>Fri, 05 Jul 2024 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Workshop zum Thema quarto</title>
+  <dc:creator>Norman Markgraf</dc:creator>
+  <link>https://www.sefiroth.de/projekte/WS-Quarto/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Workshop rund um das Thema “quarto”. Mit den Themen:</p>
+<ul>
+<li>Was ist quarto und was ist es nicht</li>
+<li>Wie installiere ich quarto</li>
+<li>Auswahl der Ausgabe-formate in quarto</li>
+<li>Wie erzeuge ich die Ausgaben (aka rendern von Dokumenten)</li>
+<li>Die quarto CLI</li>
+<li>Aufbau der YAML-Kopf eines quarto markdown documents (=.qmd)</li>
+<li>Grundlagen des markdowns</li>
+<li>Implizite und expliziete Formatierung mittels quarto</li>
+<li>Erstellung von Webseiten, RevealJS-Präsentationen und PDF Dokumente</li>
+</ul>
+
+
+
+ ]]></description>
+  <category>workshop</category>
+  <category>quarto</category>
+  <guid>https://www.sefiroth.de/projekte/WS-Quarto/</guid>
+  <pubDate>Fri, 05 Jul 2024 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Dozenten-Workshop: Methoden der quantitativen Forschung</title>
+  <dc:creator>Norman Markgraf</dc:creator>
+  <link>https://www.sefiroth.de/projekte/DozWS-MqF-Einstieg-in-die-Datenanalyse-mit-R/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="dozenten-workshop-methiden-der-quantitativen-forschung" class="level2">
+<h2 class="anchored" data-anchor-id="dozenten-workshop-methiden-der-quantitativen-forschung">Dozenten-Workshop: Methiden der quantitativen Forschung</h2>
+<p><strong>Einstieg in die Datenanalyse mit R</strong> ist ein Workshop den ich regelmässig für die FOM und ihre Dozent:innen gehalten habe.</p>
+<p>Er stellt einen Einstieg in R und RStudio-Desktop dar und fokusiert dann auf Simulationsbasiserte Inferenz (SBI).</p>
+
+
+</section>
+
+ ]]></description>
+  <category>workshop</category>
+  <category>R</category>
+  <category>Statistik</category>
+  <guid>https://www.sefiroth.de/projekte/DozWS-MqF-Einstieg-in-die-Datenanalyse-mit-R/</guid>
+  <pubDate>Sun, 26 Sep 2021 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>FUMS - Fresh Up your Maths Skills</title>
+  <dc:creator>Norman Markgraf</dc:creator>
+  <link>https://www.sefiroth.de/projekte/FUMS/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="fums---fresh-up-your-maths-skills" class="level2">
+<h2 class="anchored" data-anchor-id="fums---fresh-up-your-maths-skills">FUMS - Fresh Up your Maths Skills</h2>
+<p>Crash-Kurs durch die Mathematik für Studierende der Informatik / Wirtschaftsinformatik. Quasi ein kleiner Vorkurs mit den wichtistens Wiederholungen der Schulmathematik.</p>
+<p>Auf Grund der aktuellen Lage besteht ein striktes Nutzungsverbot durch Dozent:innen der FOM. Das Werk und kein Teil dieses Werkes darf von Dozent:innen der FOM ohne mein ausdrückliches und schriftliches Einverständnis benutzt werden.</p>
+<p>Für alle anderen gilt:</p>
+<p>© by N.Markgraf published under CC-BY-SA-NC 3.0 de</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Vorlesungsskript</category>
+  <category>Mathematik</category>
+  <guid>https://www.sefiroth.de/projekte/FUMS/</guid>
+  <pubDate>Sun, 18 Oct 2020 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Mathematische Grundlagen der Informatik</title>
+  <dc:creator>Norman Markgraf</dc:creator>
+  <link>https://www.sefiroth.de/projekte/MathematischeGrundelagenDerInformatik/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="vorlesungsskript-mathematische-grundlagen-der-informatik" class="level2">
+<h2 class="anchored" data-anchor-id="vorlesungsskript-mathematische-grundlagen-der-informatik">Vorlesungsskript: Mathematische Grundlagen der Informatik</h2>
+<p>Die ist das Skript zu den von mir an der FOM gehaltenen Vorlesungen im Fach “Mathematische Grundlagen der Informatik”.</p>
+<p>Auf Grund der aktuellen Lage besteht ein striktes Nutzungsverbot durch Dozent:innen der FOM. Das Werk und kein Teil dieses Werkes darf von Dozent:innen der FOM ohne mein ausdrückliches und schriftliches Einverständnis benutzt werden.</p>
+<p>Für alle anderen gilt:</p>
+<p>© by N.Markgraf published under CC-BY-SA-NC 3.0 de</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Vorlesungsskript</category>
+  <category>Mathematik</category>
+  <category>Informatik</category>
+  <guid>https://www.sefiroth.de/projekte/MathematischeGrundelagenDerInformatik/</guid>
+  <pubDate>Thu, 17 Oct 2019 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>NPBT aka Norman’s Pandoc Beamer Themes</title>
+  <dc:creator>Norman Markgraf</dc:creator>
+  <link>https://www.sefiroth.de/projekte/NPBT/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="npbt-aka-normans-pandoc-beamer-themes" class="level2">
+<h2 class="anchored" data-anchor-id="npbt-aka-normans-pandoc-beamer-themes">NPBT aka Norman’s Pandoc Beamer Themes</h2>
+<p><em>Norman’s Pandoc Beamer Themes</em> ist eine Sammlung von Themes um schnell das Design für verschiedene Anlässe relativ schnell zu ändern.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Vorlesungsskript</category>
+  <category>Beamer</category>
+  <category>Theme</category>
+  <category>pandoc</category>
+  <guid>https://www.sefiroth.de/projekte/NPBT/</guid>
+  <pubDate>Sun, 05 Feb 2017 23:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>
