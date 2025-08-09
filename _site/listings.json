@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/2025-08-09-brotli-statt-gzip-konfigurieren/index.html",
       "/posts/2025-07-27-Beweisverfahren/index.html",
       "/posts/Willkommen/index.html",
       "/posts/2021-12-27-grafiken-nebeneinander-setzen-mit-ggplot2-oder-ggformula/index.html",

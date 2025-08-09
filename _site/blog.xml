@@ -10,7 +10,40 @@
 <atom:link href="https://www.sefiroth.de/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Norman&#39;s Academic Blog</description>
 <generator>quarto-1.7.32</generator>
-<lastBuildDate>Sat, 26 Jul 2025 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 08 Aug 2025 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Brotli statt Gzip auf dem Server konfigurieren</title>
+  <dc:creator>Norman Markgraf</dc:creator>
+  <link>https://www.sefiroth.de/posts/2025-08-09-brotli-statt-gzip-konfigurieren/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="wie-mensch-einen-webserver-davon-überzeugt-brotli-zu-nutzen" class="level1">
+<h1>Wie mensch einen Webserver davon überzeugt Brotli zu nutzen</h1>
+<p>Ich habe meinen Webserver von gzip auf brotli umgerüstet. Dachte ich jeden falls, aber alle Test mit</p>
+<pre><code>&gt; curl -I -H 'Accept-Encoding: br' https://sefiroth.de</code></pre>
+<p>schlugen fehl. Nach langer Suche im Internet habe ich herausgefunden, dass zwar die Datei <code>brotli.load</code> in den Verzeichnissen <code>/etc/apache2/mods-enable</code> und <code>/etc/apache2/mods-available</code> existieren, nicht aber die Datei <code>brotli.conf</code>, mit welcher die ganzen Einstellungen gemacht werden.</p>
+<p>Fügt mensch nun in diese Datei den Inhalt</p>
+<pre><code>&lt;IfModule mod_brotli.c&gt;
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css text/javascript app
+lication/javascript application/x-javascript application/json application/xml
+    BrotliCompressionQuality 6
+&lt;/IfModule&gt;</code></pre>
+<p>ein und startet danach den apache-Server neu, so läuft brotli endlich auch auf dem Server!</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Apache</category>
+  <category>Webserver</category>
+  <category>Nginx</category>
+  <guid>https://www.sefiroth.de/posts/2025-08-09-brotli-statt-gzip-konfigurieren/</guid>
+  <pubDate>Fri, 08 Aug 2025 22:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Beweisverfahren in der Mathematik</title>
   <dc:creator>Norman Markgraf</dc:creator>
@@ -34,7 +67,7 @@
 </section>
 <section id="beweis-durch-unzugreifbare-literatur" class="level3">
 <h3 class="anchored" data-anchor-id="beweis-durch-unzugreifbare-literatur">Beweis durch unzugreifbare Literatur</h3>
-<p>Der Satz ist ein einfaches Korrollat eines Ergebnis bewiesen in einer handgeschriebenen Anmerkung ausgehändigt in einer Vorlesun bei der Jugoslawischen Mathematischen Gesellschaft 1973.</p>
+<p>Der Satz ist ein einfaches Korrollat eines Ergebnis bewiesen in einer handgeschriebenen Anmerkung ausgehändigt in einer Vorlesung bei der Jugoslawischen Mathematischen Gesellschaft 1973.</p>
 </section>
 <section id="beweis-durch-geisterhafte-zitate" class="level3">
 <h3 class="anchored" data-anchor-id="beweis-durch-geisterhafte-zitate">Beweis durch geisterhafte Zitate</h3>

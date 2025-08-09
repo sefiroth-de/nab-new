@@ -17,6 +17,7 @@ categories:
 
 Trivial!
 
+
 ### Beweis durch umständliche Notation
 
 Der Satz folgt sofort aus dem Fakt
@@ -38,7 +39,7 @@ $$
 
 ### Beweis durch unzugreifbare Literatur
 
-Der Satz ist ein einfaches Korrollat eines Ergebnis bewiesen in einer handgeschriebenen Anmerkung ausgehändigt in einer Vorlesun bei der Jugoslawischen Mathematischen Gesellschaft 1973.
+Der Satz ist ein einfaches Korrollat eines Ergebnis bewiesen in einer handgeschriebenen Anmerkung ausgehändigt in einer Vorlesung bei der Jugoslawischen Mathematischen Gesellschaft 1973.
 
 
 ### Beweis durch geisterhafte Zitate

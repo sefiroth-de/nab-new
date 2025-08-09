@@ -1,0 +1,35 @@
+---
+title: "Brotli statt Gzip auf dem Server konfigurieren"
+author: "Norman Markgraf"
+lang: de-DE
+date: "2025-08-09"
+date-modified: last-modified
+word-count: true
+reading-time: true
+categories: 
+  - Apache
+  - Webserver
+  - Nginx
+---
+
+# Wie mensch einen Webserver davon überzeugt Brotli zu nutzen
+
+Ich habe meinen Webserver von gzip auf brotli umgerüstet. Dachte ich jeden falls, aber alle Test mit
+
+```
+> curl -I -H 'Accept-Encoding: br' https://sefiroth.de
+```
+
+schlugen fehl. Nach langer Suche im Internet habe ich herausgefunden, dass zwar die Datei `brotli.load` in den Verzeichnissen `/etc/apache2/mods-enable` und `/etc/apache2/mods-available` existieren, nicht aber die Datei `brotli.conf`, mit welcher die ganzen Einstellungen gemacht werden.
+
+Fügt mensch nun in diese Datei den Inhalt
+
+```
+<IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css text/javascript app
+lication/javascript application/x-javascript application/json application/xml
+    BrotliCompressionQuality 6
+</IfModule>
+```
+
+ein und startet danach den apache-Server neu, so läuft brotli endlich auch auf dem Server!
