@@ -1,0 +1,193 @@
+---
+title: "Wie mensch eine Datenbank auf einem RASPBERRY Pi Zero installiert"
+author: "Norman Markgraf"
+lang: de-DE
+date: "2025-08-09"
+date-modified: last-modified
+word-count: true
+reading-time: true
+categories: 
+  - RaspberryPi
+  - Datenbank
+---
+
+
+## Einrichten des Raspberry Zero
+
+### Schrit 1: Neues Betriebssystem installieren 
+
+Am besten mit dem Raspberry Pi Installer
+von hier: <https://www.raspberrypi.com/software/>
+
+**Wichtig** MIT SSH konfigurieren!
+
+
+### Schrit 2: Ein Link zum Display
+
+Auf dem RaspberryPI Zero ist ein Waveshare 2-13inch-e-Paper HAT installiert. Alles wichtige dazu findet sich hier:
+<https://www.waveshare.com/wiki/2.13inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi>
+
+Damit das Display richtig funtioniert sollte man in der `config.txt` die folgende Zeile anpassen:
+
+```
+dtparam=spi=on
+```
+
+### Schritt 3: Den Raspberry Pi im Netz suchen und finden
+
+Es gibt viele Weg die zum Ziel führen (können).
+
+Zum Beispiel mit dem Befehl `nmap`:
+
+```bash
+> nmap -sn 192.168.2.0/24
+```
+
+Oder einfach den Hostnamen "raspberrpi.local" nutzen.
+
+Man kann sich dann also zum Beispiel mittels ssh und dem folgenden Kommando anmelden:
+
+```bash
+> ssh norman@raspberrypi.local
+```
+
+Ebenso kann wie <http://connect.raspberrypi.com> R PI Connect benutzt werden, wenn man es vorher eingerichtet hat.
+
+
+### Schritt 4: Startup-Display installieren
+
+Ich habe im GitHub ein kleines Programm geschrieben, dass die aktuelle IP Address (IP4 und IP6 sowie Die Uhrzeit) auf dem Display ausgibt.
+
+Es ist unter <https://github.com/NMarkgraf/pi-startup-display> zu finden und wird einfach in das Hauptverzeichnis des Nutzers "norman" unter "/home/norman" per
+
+```bash
+> git clone https://github.com/NMarkgraf/pi-startup-display 
+```
+
+installiert.
+Später kann dann im Verzeichnis `pi-startup-display` einfach die aktuelle Version geladen werden durch:
+
+```bash
+> git pull
+```
+
+Damit dieses Skript nach jedem Neustart automatisch (einmal) gestartet wird bin ich nach dem Beispiel von <https://webnist.de/automatisches-starten-eines-python-skripts-auf-dem-raspberry-pi-mit-systemd/> vorgegangen.
+
+Aber ich habe die service Datei "/etc/systemd/system/startup-display.service" wie folgt angepasst:
+
+```
+[Unit]
+Description=startup-display
+After=network.target
+ 
+[Service]
+ExecStart=/usr/bin/python3 -u /home/norman/pi-startup-display/start-display.py 
+WorkingDirectory=/home/norman/pi-startup-display/
+#StandardOutput=inherit
+StandardOutput=file:/tmp/start-display.log
+#StandardError=inherit
+StandardError=file:/tmp/start-display-error.log
+#Restart=always
+Restart=on-failture
+RestartSec=60
+User=norman
+ 
+[Install]
+WantedBy=multi-user.target
+```
+Zum anlegen habe ich "nano" genutzt und die Datei gleich mit angelegt.
+
+```bash
+> sudo nano /etc/systemd/system/startup-display.service
+```
+
+Die geänderte Datei muss nun initialisiert werden mit:
+
+```bash
+> sudo systemctl daemon-reload
+> sudo systemctl enable startup-display.service
+```
+
+Dann können wir alles von Hand starten:
+
+```bash
+> sudo systemctl start startup-display.service
+```
+
+Und uns den Status ansehen:
+
+```bash
+> sudo systemctl status startup-display.service
+```
+
+Und natürlich ggf. auch stoppen:
+
+```bash
+> sudo systemctl stop startup-display.service
+```
+
+Aber in den Regel beendet sich das Programm umgehend selber. Aber -- dank e-paper -- stehen die zu letzt aktuallisierten Daten auf dem Display.
+
+
+## Postgress installieren
+
+Ich gehe wie folgt vor:
+
+### Schritt 1: Installieren von PostgreSQL 
+
+Da es ein deb Paket gibt geht einfach:
+
+```bash
+> sudo apt install postgresql
+```
+
+### Schritt 2:  Wechseln auf Nutzer:in "postgres"
+
+wir mit Postgres durch "postgres" in dem wir uns verwandelt:
+
+```bash
+> sudo su postgres
+```
+
+### Schritt 3: Herunterladen der Demo-Daten, entpacken und installieren
+
+Die erste Demo-Daten erhalten wir durch:
+
+```bash
+> curl -L -O https://github.com/lerocha/netflixdb/releases/download/v1.0.16/netflixdb-postgres.zip
+> unzip netflixdb-postgres.zip
+```
+
+Da Daten können wir dann in die Datenbank "netfix" einfügren:
+
+```bash
+> sudo su postgres
+> psql -d netflix
+> \i /home/norman/netflixdb-postgres.sql
+```
+
+Jetzt ist die Datenbank "netflix" in PostgreSQL installiert.
+
+Und wir können diese nun mit den folgenden Parametern ansprechen:
+
+```
+  ip:       ???? 
+  port:     5342
+  user:     postgres
+  password: postgresdemo 
+  dbname:   netflix
+```
+
+### Schritt 4: Adminer installieren 
+
+Adminier ist eiin Webtool für die Verwaltung von PostgreSQL.
+
+Es ist ebenso ein deb-Paket, daher:
+
+```bash
+> sudo apt-get install adminer
+```
+
+Eine Datei anlegen
+```bash
+```

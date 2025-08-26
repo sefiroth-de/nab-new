@@ -45,6 +45,204 @@ lication/javascript application/x-javascript application/json application/xml
   <pubDate>Fri, 08 Aug 2025 22:00:00 GMT</pubDate>
 </item>
 <item>
+  <title>Wie mensch eine Datenbank auf einem RASPBERRY Pi Zero installiert</title>
+  <dc:creator>Norman Markgraf</dc:creator>
+  <link>https://www.sefiroth.de/posts/2025-08-09-Wie-mensch-eine-Datenbank-auf-einen-Raspbarry-Zero-installiert/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="einrichten-des-raspberry-zero" class="level2">
+<h2 class="anchored" data-anchor-id="einrichten-des-raspberry-zero">Einrichten des Raspberry Zero</h2>
+<section id="schrit-1-neues-betriebssystem-installieren" class="level3">
+<h3 class="anchored" data-anchor-id="schrit-1-neues-betriebssystem-installieren">Schrit 1: Neues Betriebssystem installieren</h3>
+<p>Am besten mit dem Raspberry Pi Installer von hier: <a href="https://www.raspberrypi.com/software/" class="uri">https://www.raspberrypi.com/software/</a></p>
+<p><strong>Wichtig</strong> MIT SSH konfigurieren!</p>
+</section>
+<section id="schrit-2-ein-link-zum-display" class="level3">
+<h3 class="anchored" data-anchor-id="schrit-2-ein-link-zum-display">Schrit 2: Ein Link zum Display</h3>
+<p>Auf dem RaspberryPI Zero ist ein Waveshare 2-13inch-e-Paper HAT installiert. Alles wichtige dazu findet sich hier: <a href="https://www.waveshare.com/wiki/2.13inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi" class="uri">https://www.waveshare.com/wiki/2.13inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi</a></p>
+<p>Damit das Display richtig funtioniert sollte man in der <code>config.txt</code> die folgende Zeile anpassen:</p>
+<pre><code>dtparam=spi=on</code></pre>
+</section>
+<section id="schritt-3-den-raspberry-pi-im-netz-suchen-und-finden" class="level3">
+<h3 class="anchored" data-anchor-id="schritt-3-den-raspberry-pi-im-netz-suchen-und-finden">Schritt 3: Den Raspberry Pi im Netz suchen und finden</h3>
+<p>Es gibt viele Weg die zum Ziel führen (können).</p>
+<p>Zum Beispiel mit dem Befehl <code>nmap</code>:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> nmap <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">-sn</span> 192.168.2.0/24</span></code></pre></div>
+<p>Oder einfach den Hostnamen “raspberrpi.local” nutzen.</p>
+<p>Man kann sich dann also zum Beispiel mittels ssh und dem folgenden Kommando anmelden:</p>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> ssh <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">norman@raspberrypi.local</span></span></code></pre></div>
+<p>Ebenso kann wie <a href="http://connect.raspberrypi.com" class="uri">http://connect.raspberrypi.com</a> R PI Connect benutzt werden, wenn man es vorher eingerichtet hat.</p>
+</section>
+<section id="schritt-4-startup-display-installieren" class="level3">
+<h3 class="anchored" data-anchor-id="schritt-4-startup-display-installieren">Schritt 4: Startup-Display installieren</h3>
+<p>Ich habe im GitHub ein kleines Programm geschrieben, dass die aktuelle IP Address (IP4 und IP6 sowie Die Uhrzeit) auf dem Display ausgibt.</p>
+<p>Es ist unter <a href="https://github.com/NMarkgraf/pi-startup-display" class="uri">https://github.com/NMarkgraf/pi-startup-display</a> zu finden und wird einfach in das Hauptverzeichnis des Nutzers “norman” unter “/home/norman” per</p>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> git <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">clone</span> https://github.com/NMarkgraf/pi-startup-display </span></code></pre></div>
+<p>installiert. Später kann dann im Verzeichnis <code>pi-startup-display</code> einfach die aktuelle Version geladen werden durch:</p>
+<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> git <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pull</span></span></code></pre></div>
+<p>Damit dieses Skript nach jedem Neustart automatisch (einmal) gestartet wird bin ich nach dem Beispiel von <a href="https://webnist.de/automatisches-starten-eines-python-skripts-auf-dem-raspberry-pi-mit-systemd/" class="uri">https://webnist.de/automatisches-starten-eines-python-skripts-auf-dem-raspberry-pi-mit-systemd/</a> vorgegangen.</p>
+<p>Aber ich habe die service Datei “/etc/systemd/system/startup-display.service” wie folgt angepasst:</p>
+<pre><code>[Unit]
+Description=startup-display
+After=network.target
+ 
+[Service]
+ExecStart=/usr/bin/python3 -u /home/norman/pi-startup-display/start-display.py 
+WorkingDirectory=/home/norman/pi-startup-display/
+#StandardOutput=inherit
+StandardOutput=file:/tmp/start-display.log
+#StandardError=inherit
+StandardError=file:/tmp/start-display-error.log
+#Restart=always
+Restart=on-failture
+RestartSec=60
+User=norman
+ 
+[Install]
+WantedBy=multi-user.target</code></pre>
+<p>Zum anlegen habe ich “nano” genutzt und die Datei gleich mit angelegt.</p>
+<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> sudo <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nano</span> /etc/systemd/system/startup-display.service</span></code></pre></div>
+<p>Die geänderte Datei muss nun initialisiert werden mit:</p>
+<div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> sudo <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">systemctl</span> daemon-reload</span>
+<span id="cb8-2"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> sudo <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">systemctl</span> enable startup-display.service</span></code></pre></div>
+<p>Dann können wir alles von Hand starten:</p>
+<div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> sudo <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">systemctl</span> start startup-display.service</span></code></pre></div>
+<p>Und uns den Status ansehen:</p>
+<div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> sudo <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">systemctl</span> status startup-display.service</span></code></pre></div>
+<p>Und natürlich ggf. auch stoppen:</p>
+<div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> sudo <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">systemctl</span> stop startup-display.service</span></code></pre></div>
+<p>Aber in den Regel beendet sich das Programm umgehend selber. Aber – dank e-paper – stehen die zu letzt aktuallisierten Daten auf dem Display.</p>
+</section>
+</section>
+<section id="postgress-installieren" class="level2">
+<h2 class="anchored" data-anchor-id="postgress-installieren">Postgress installieren</h2>
+<p>Ich gehe wie folgt vor:</p>
+<section id="schritt-1-installieren-von-postgresql" class="level3">
+<h3 class="anchored" data-anchor-id="schritt-1-installieren-von-postgresql">Schritt 1: Installieren von PostgreSQL</h3>
+<p>Da es ein deb Paket gibt geht einfach:</p>
+<div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> sudo <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">apt</span> install postgresql</span></code></pre></div>
+</section>
+<section id="schritt-2-wechseln-auf-nutzerin-postgres" class="level3">
+<h3 class="anchored" data-anchor-id="schritt-2-wechseln-auf-nutzerin-postgres">Schritt 2: Wechseln auf Nutzer:in “postgres”</h3>
+<p>wir mit Postgres durch “postgres” in dem wir uns verwandelt:</p>
+<div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> sudo <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">su</span> postgres</span></code></pre></div>
+</section>
+<section id="schritt-3-herunterladen-der-demo-daten-entpacken-und-installieren" class="level3">
+<h3 class="anchored" data-anchor-id="schritt-3-herunterladen-der-demo-daten-entpacken-und-installieren">Schritt 3: Herunterladen der Demo-Daten, entpacken und installieren</h3>
+<p>Die erste Demo-Daten erhalten wir durch:</p>
+<div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> curl <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">-L</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-O</span> https://github.com/lerocha/netflixdb/releases/download/v1.0.16/netflixdb-postgres.zip</span>
+<span id="cb14-2"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> unzip <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">netflixdb-postgres.zip</span></span></code></pre></div>
+<p>Da Daten können wir dann in die Datenbank “netfix” einfügren:</p>
+<div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> sudo <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">su</span> postgres</span>
+<span id="cb15-2"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> psql <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">-d</span> netflix</span>
+<span id="cb15-3"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\i</span> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">/home/norman/netflixdb-postgres.sql</span></span></code></pre></div>
+<p>Jetzt ist die Datenbank “netflix” in PostgreSQL installiert.</p>
+<p>Und wir können diese nun mit den folgenden Parametern ansprechen:</p>
+<pre><code>  ip:       ???? 
+  port:     5342
+  user:     postgres
+  password: postgresdemo 
+  dbname:   netflix</code></pre>
+</section>
+<section id="schritt-4-adminer-installieren" class="level3">
+<h3 class="anchored" data-anchor-id="schritt-4-adminer-installieren">Schritt 4: Adminer installieren</h3>
+<p>Adminier ist eiin Webtool für die Verwaltung von PostgreSQL.</p>
+<p>Es ist ebenso ein deb-Paket, daher:</p>
+<div class="sourceCode" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> sudo <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">apt-get</span> install adminer</span></code></pre></div>
+<p>Eine Datei anlegen</p>
+<div class="sourceCode" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"></code></pre></div>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>RaspberryPi</category>
+  <category>Datenbank</category>
+  <guid>https://www.sefiroth.de/posts/2025-08-09-Wie-mensch-eine-Datenbank-auf-einen-Raspbarry-Zero-installiert/</guid>
+  <pubDate>Fri, 08 Aug 2025 22:00:00 GMT</pubDate>
+</item>
+<item>
   <title>Beweisverfahren in der Mathematik</title>
   <dc:creator>Norman Markgraf</dc:creator>
   <link>https://www.sefiroth.de/posts/2025-07-27-Beweisverfahren/</link>

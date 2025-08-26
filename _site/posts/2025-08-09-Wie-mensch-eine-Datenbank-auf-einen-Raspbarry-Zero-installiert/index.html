@@ -8,7 +8,7 @@
 
 <meta name="author" content="Norman Markgraf">
 
-<title>Beweisverfahren in der Mathematik – Norman’s Academic Blog</title>
+<title>Wie mensch eine Datenbank auf einem RASPBERRY Pi Zero installiert – Norman’s Academic Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -69,35 +104,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -153,10 +159,10 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Beweisverfahren in der Mathematik</h1>
-            <p class="subtitle lead">Aus dem Internet frei übersetzt.</p>
+      <h1 class="title">Wie mensch eine Datenbank auf einem RASPBERRY Pi Zero installiert</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">Mathematik</div>
+                <div class="quarto-category">RaspberryPi</div>
+                <div class="quarto-category">Datenbank</div>
               </div>
                   </div>
   </div>
@@ -174,14 +180,14 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Veröffentlichungsdatum</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">27. Juli 2025</p>
+        <p class="date">9. August 2025</p>
       </div>
     </div>
     
       <div>
       <div class="quarto-title-meta-heading">Geändert</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">9. August 2025</p>
+        <p class="date-modified">26. August 2025</p>
       </div>
     </div>
       
@@ -199,55 +205,107 @@ window.Quarto = {
 
 
 
-<section id="allgemeine-beweistechniken" class="level2">
-<h2 class="anchored" data-anchor-id="allgemeine-beweistechniken">Allgemeine Beweistechniken</h2>
-<section id="beweis-durch-einschüchterung" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-einschüchterung">Beweis durch Einschüchterung</h3>
-<p>Trivial!</p>
+<section id="einrichten-des-raspberry-zero" class="level2">
+<h2 class="anchored" data-anchor-id="einrichten-des-raspberry-zero">Einrichten des Raspberry Zero</h2>
+<section id="schrit-1-neues-betriebssystem-installieren" class="level3">
+<h3 class="anchored" data-anchor-id="schrit-1-neues-betriebssystem-installieren">Schrit 1: Neues Betriebssystem installieren</h3>
+<p>Am besten mit dem Raspberry Pi Installer von hier: <a href="https://www.raspberrypi.com/software/" class="uri">https://www.raspberrypi.com/software/</a></p>
+<p><strong>Wichtig</strong> MIT SSH konfigurieren!</p>
 </section>
-<section id="beweis-durch-umständliche-notation" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-umständliche-notation">Beweis durch umständliche Notation</h3>
-<p>Der Satz folgt sofort aus dem Fakt</p>
-<p><span class="math display">\[
-  \left|
-    \oplus_{k \in S}
-      \left(
-       \mathfrak{K}^{\mathbb{F}^\alpha(i)}  
-      \right)_{i \in \mathcal{U}_k}
-  \right|
-  \preceq \aleph_1
-  \text{ wenn }
-  \left[
-    \mathfrak{H}_\mathcal{W}
-  \right]     
-  \cap \mathbb{F}^\alpha(\mathbb{N}) \neq \emptyset.
-\]</span></p>
+<section id="schrit-2-ein-link-zum-display" class="level3">
+<h3 class="anchored" data-anchor-id="schrit-2-ein-link-zum-display">Schrit 2: Ein Link zum Display</h3>
+<p>Auf dem RaspberryPI Zero ist ein Waveshare 2-13inch-e-Paper HAT installiert. Alles wichtige dazu findet sich hier: <a href="https://www.waveshare.com/wiki/2.13inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi" class="uri">https://www.waveshare.com/wiki/2.13inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi</a></p>
+<p>Damit das Display richtig funtioniert sollte man in der <code>config.txt</code> die folgende Zeile anpassen:</p>
+<pre><code>dtparam=spi=on</code></pre>
 </section>
-<section id="beweis-durch-unzugreifbare-literatur" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-unzugreifbare-literatur">Beweis durch unzugreifbare Literatur</h3>
-<p>Der Satz ist ein einfaches Korrollat eines Ergebnis bewiesen in einer handgeschriebenen Anmerkung ausgehändigt in einer Vorlesung bei der Jugoslawischen Mathematischen Gesellschaft 1973.</p>
+<section id="schritt-3-den-raspberry-pi-im-netz-suchen-und-finden" class="level3">
+<h3 class="anchored" data-anchor-id="schritt-3-den-raspberry-pi-im-netz-suchen-und-finden">Schritt 3: Den Raspberry Pi im Netz suchen und finden</h3>
+<p>Es gibt viele Weg die zum Ziel führen (können).</p>
+<p>Zum Beispiel mit dem Befehl <code>nmap</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> nmap <span class="ex">-sn</span> 192.168.2.0/24</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Oder einfach den Hostnamen “raspberrpi.local” nutzen.</p>
+<p>Man kann sich dann also zum Beispiel mittels ssh und dem folgenden Kommando anmelden:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ssh <span class="ex">norman@raspberrypi.local</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ebenso kann wie <a href="http://connect.raspberrypi.com" class="uri">http://connect.raspberrypi.com</a> R PI Connect benutzt werden, wenn man es vorher eingerichtet hat.</p>
 </section>
-<section id="beweis-durch-geisterhafte-zitate" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-geisterhafte-zitate">Beweis durch geisterhafte Zitate</h3>
-<p>Der Beweis kann auf Seite 478 gefunden werden, in einem Buch, welches nur 396 Seiten hat.</p>
+<section id="schritt-4-startup-display-installieren" class="level3">
+<h3 class="anchored" data-anchor-id="schritt-4-startup-display-installieren">Schritt 4: Startup-Display installieren</h3>
+<p>Ich habe im GitHub ein kleines Programm geschrieben, dass die aktuelle IP Address (IP4 und IP6 sowie Die Uhrzeit) auf dem Display ausgibt.</p>
+<p>Es ist unter <a href="https://github.com/NMarkgraf/pi-startup-display" class="uri">https://github.com/NMarkgraf/pi-startup-display</a> zu finden und wird einfach in das Hauptverzeichnis des Nutzers “norman” unter “/home/norman” per</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> git <span class="ex">clone</span> https://github.com/NMarkgraf/pi-startup-display </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>installiert. Später kann dann im Verzeichnis <code>pi-startup-display</code> einfach die aktuelle Version geladen werden durch:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> git <span class="ex">pull</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Damit dieses Skript nach jedem Neustart automatisch (einmal) gestartet wird bin ich nach dem Beispiel von <a href="https://webnist.de/automatisches-starten-eines-python-skripts-auf-dem-raspberry-pi-mit-systemd/" class="uri">https://webnist.de/automatisches-starten-eines-python-skripts-auf-dem-raspberry-pi-mit-systemd/</a> vorgegangen.</p>
+<p>Aber ich habe die service Datei “/etc/systemd/system/startup-display.service” wie folgt angepasst:</p>
+<pre><code>[Unit]
+Description=startup-display
+After=network.target
+ 
+[Service]
+ExecStart=/usr/bin/python3 -u /home/norman/pi-startup-display/start-display.py 
+WorkingDirectory=/home/norman/pi-startup-display/
+#StandardOutput=inherit
+StandardOutput=file:/tmp/start-display.log
+#StandardError=inherit
+StandardError=file:/tmp/start-display-error.log
+#Restart=always
+Restart=on-failture
+RestartSec=60
+User=norman
+ 
+[Install]
+WantedBy=multi-user.target</code></pre>
+<p>Zum anlegen habe ich “nano” genutzt und die Datei gleich mit angelegt.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sudo <span class="fu">nano</span> /etc/systemd/system/startup-display.service</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Die geänderte Datei muss nun initialisiert werden mit:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sudo <span class="ex">systemctl</span> daemon-reload</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sudo <span class="ex">systemctl</span> enable startup-display.service</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dann können wir alles von Hand starten:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sudo <span class="ex">systemctl</span> start startup-display.service</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Und uns den Status ansehen:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sudo <span class="ex">systemctl</span> status startup-display.service</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Und natürlich ggf. auch stoppen:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sudo <span class="ex">systemctl</span> stop startup-display.service</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Aber in den Regel beendet sich das Programm umgehend selber. Aber – dank e-paper – stehen die zu letzt aktuallisierten Daten auf dem Display.</p>
 </section>
-<section id="beweis-durch-circularer-argumentation" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-circularer-argumentation">Beweis durch circularer Argumentation</h3>
-<p>Proposition 5.18 in [BL] ist ein einfaches Korollar zm Satz 7.18 in [C], welches wiederum auf Korollar 2.14 in [K] basiert. Dieses wiederum wird unter Bezugnahme auf Proposition 5.18 in [BL] hergeleitet.</p>
 </section>
-<section id="beweis-durch-autorität" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-autorität">Beweis durch Autorität</h3>
-<p>Mein guter Kollege Andrew meinte, er glaube, er hätte dafür vor ein paar Jahren einen Beweis finden können …</p>
+<section id="postgress-installieren" class="level2">
+<h2 class="anchored" data-anchor-id="postgress-installieren">Postgress installieren</h2>
+<p>Ich gehe wie folgt vor:</p>
+<section id="schritt-1-installieren-von-postgresql" class="level3">
+<h3 class="anchored" data-anchor-id="schritt-1-installieren-von-postgresql">Schritt 1: Installieren von PostgreSQL</h3>
+<p>Da es ein deb Paket gibt geht einfach:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sudo <span class="ex">apt</span> install postgresql</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="beweis-durch-internet-referenz" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-internet-referenz">Beweis durch Internet Referenz</h3>
-<p>Für Interessierte ist das Ergebnis auf der Webseite zu diesem Buch zu sehen. – Die es leider nicht mehr gibt.</p>
+<section id="schritt-2-wechseln-auf-nutzerin-postgres" class="level3">
+<h3 class="anchored" data-anchor-id="schritt-2-wechseln-auf-nutzerin-postgres">Schritt 2: Wechseln auf Nutzer:in “postgres”</h3>
+<p>wir mit Postgres durch “postgres” in dem wir uns verwandelt:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sudo <span class="fu">su</span> postgres</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="beweis-durch-vermeidung" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-vermeidung">Beweis durch Vermeidung</h3>
-<p>Kapitel 3: Der Beweis hierfür wird erst in Kapitel 7 erbracht, wenn wir die Theorie weiterentwickelt haben.</p>
-<p>Kapitel 7: Der Einfachheit halber beweisen wir dies nur für den Fall z = 0. Der allgemeine Fall wird jedoch in Anhang C behandelt.</p>
-<p>Anhang C: Der formale Beweis geht über den Rahmen dieses Buches hinaus, aber unsere Intuition sagt uns natürlich, dass dies wahr ist.</p>
+<section id="schritt-3-herunterladen-der-demo-daten-entpacken-und-installieren" class="level3">
+<h3 class="anchored" data-anchor-id="schritt-3-herunterladen-der-demo-daten-entpacken-und-installieren">Schritt 3: Herunterladen der Demo-Daten, entpacken und installieren</h3>
+<p>Die erste Demo-Daten erhalten wir durch:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> curl <span class="ex">-L</span> <span class="at">-O</span> https://github.com/lerocha/netflixdb/releases/download/v1.0.16/netflixdb-postgres.zip</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> unzip <span class="ex">netflixdb-postgres.zip</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Da Daten können wir dann in die Datenbank “netfix” einfügren:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sudo <span class="fu">su</span> postgres</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> psql <span class="ex">-d</span> netflix</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="dt">\i</span> <span class="ex">/home/norman/netflixdb-postgres.sql</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Jetzt ist die Datenbank “netflix” in PostgreSQL installiert.</p>
+<p>Und wir können diese nun mit den folgenden Parametern ansprechen:</p>
+<pre><code>  ip:       ???? 
+  port:     5342
+  user:     postgres
+  password: postgresdemo 
+  dbname:   netflix</code></pre>
+</section>
+<section id="schritt-4-adminer-installieren" class="level3">
+<h3 class="anchored" data-anchor-id="schritt-4-adminer-installieren">Schritt 4: Adminer installieren</h3>
+<p>Adminier ist eiin Webtool für die Verwaltung von PostgreSQL.</p>
+<p>Es ist ebenso ein deb-Paket, daher:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sudo <span class="ex">apt-get</span> install adminer</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Eine Datei anlegen</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
