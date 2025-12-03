@@ -28,7 +28,7 @@ Für einen Raspberry Zero 2 W: *Raspberry Pi OS (64-bit) Lite*
 
 ### Schrit 2: Ein Link zum Display
 
-Auf dem RaspberryPI Zero ist ein Waveshare 2-13inch-e-Paper HAT installiert. Alles wichtige dazu findet sich hier:
+Auf dem RaspberryPI Zero ist ein Waveshare 2-13inch-e-Paper HAT installiert. Alles Wichtige dazu findet sich unter:
 <https://www.waveshare.com/wiki/2.13inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi>
 
 Damit das Display richtig funktioniert sollte man in der `config.txt` die folgende Zeile anpassen:
@@ -49,13 +49,17 @@ Zum Beispiel mit dem Befehl `nmap`:
 
 Oder einfach den Hostnamen "raspberrpi.local" nutzen.
 
-Man kann sich dann also zum Beispiel mittels ssh und dem folgenden Kommando anmelden:
+Man kann sich somit ggf. mittels ssh und dem folgenden Kommando anmelden:
 
 ```bash
 > ssh norman@raspberrypi.local
 ```
 
+<<<<<<< HEAD
 Ebenso kann wie <http://connect.raspberrypi.com> R PI Connect benutzt werden, sofern es vorab eingerichtet wurde.
+=======
+Ebenso kann [R PI Connect](http://connect.raspberrypi.com)  benutzt werden, wenn man es vorher eingerichtet hat.
+>>>>>>> 5520f36 (Merge)
 
 
 ### Schritt 4: Startup-Display installieren
@@ -70,7 +74,11 @@ Es ist unter <https://github.com/NMarkgraf/pi-startup-display> zu finden und wir
 
 installiert.
 
+<<<<<<< HEAD
 Später kann dann im Verzeichnis `pi-startup-display` einfach die aktuelle Version geladen werden durch:
+=======
+Später kann dann im Verzeichnis `pi-startup-display` einfach das aktuelle Release von GutHUb durch den folgenden Befehl geladen werden:
+>>>>>>> 5520f36 (Merge)
 
 ```bash
 > git pull
@@ -100,7 +108,7 @@ User=norman
 [Install]
 WantedBy=multi-user.target
 ```
-Zum anlegen habe ich "nano" genutzt und die Datei gleich mit angelegt.
+Zum anlegen habe ich den Editor "nano" genutzt und die Datei gleich mit angelegt.
 
 ```bash
 > sudo nano /etc/systemd/system/startup-display.service
@@ -113,13 +121,13 @@ Die geänderte Datei muss nun initialisiert werden mit:
 > sudo systemctl enable startup-display.service
 ```
 
-Dann können wir alles von Hand starten:
+Dann können wir alles, zum Testen, von Hand starten:
 
 ```bash
 > sudo systemctl start startup-display.service
 ```
 
-Und uns den Status ansehen:
+Ob alles zu unserer Zufriedenheit funktioniert können wir mit der Status-Anzeige mit dem folgenden Befehl prüfen:
 
 ```bash
 > sudo systemctl status startup-display.service
@@ -131,6 +139,10 @@ Und natürlich ggf. auch stoppen:
 > sudo systemctl stop startup-display.service
 ```
 
+<<<<<<< HEAD
+=======
+Aber in den Regel beendet sich das Programm aber selber. Dank e-paper stehen die zuletzt aktuallisierten Daten aber weiterhin auf dem Display.
+>>>>>>> 5520f36 (Merge)
 
 
 ## PostgreSQL installieren

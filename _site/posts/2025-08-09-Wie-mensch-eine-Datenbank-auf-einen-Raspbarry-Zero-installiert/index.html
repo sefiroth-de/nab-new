@@ -2,7 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de-DE" xml:lang="de-DE"><head>
 
 <meta charset="utf-8">
+<<<<<<< HEAD
 <meta name="generator" content="quarto-1.8.26">
+=======
+<meta name="generator" content="quarto-1.8.25">
+>>>>>>> 5520f36 (Merge)
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -73,7 +77,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<<<<<<< HEAD
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+=======
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+>>>>>>> 5520f36 (Merge)
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-f245066ca199b7326ac6b360085ddf3a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -116,6 +124,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Norman’s Academic Blog</span>
     </a>
@@ -188,7 +198,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Geändert</div>
       <div class="quarto-title-meta-contents">
+<<<<<<< HEAD
         <p class="date-modified">3. Dezember 2025</p>
+=======
+        <p class="date-modified">27. August 2025</p>
+>>>>>>> 5520f36 (Merge)
       </div>
     </div>
       
@@ -229,15 +243,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Oder einfach den Hostnamen “raspberrpi.local” nutzen.</p>
 <p>Man kann sich dann also zum Beispiel mittels ssh und dem folgenden Kommando anmelden:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ssh <span class="ex">norman@raspberrypi.local</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<<<<<<< HEAD
 <p>Ebenso kann wie <a href="http://connect.raspberrypi.com" class="uri">http://connect.raspberrypi.com</a> R PI Connect benutzt werden, sofern es vorab eingerichtet wurde.</p>
+=======
+<p>Ebenso kann wie <a href="http://connect.raspberrypi.com" class="uri">http://connect.raspberrypi.com</a> R PI Connect benutzt werden, wenn man es vorher eingerichtet hat.</p>
+>>>>>>> 5520f36 (Merge)
 </section>
 <section id="schritt-4-startup-display-installieren" class="level3">
 <h3 class="anchored" data-anchor-id="schritt-4-startup-display-installieren">Schritt 4: Startup-Display installieren</h3>
 <p>Ich habe bei GitHub ein kleines Programm geschrieben, welches die aktuelle IP Address (IP4 und IP6 sowie die aktuelle Uhrzeit) auf dem Display ausgibt.</p>
 <p>Es ist unter <a href="https://github.com/NMarkgraf/pi-startup-display" class="uri">https://github.com/NMarkgraf/pi-startup-display</a> zu finden und wird einfach in das Hauptverzeichnis des Nutzers “norman” unter “/home/norman” per</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> git <span class="ex">clone</span> https://github.com/NMarkgraf/pi-startup-display </span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<<<<<<< HEAD
 <p>installiert.</p>
 <p>Später kann dann im Verzeichnis <code>pi-startup-display</code> einfach die aktuelle Version geladen werden durch:</p>
+=======
+<p>installiert. Später kann dann im Verzeichnis <code>pi-startup-display</code> einfach die aktuelle Version geladen werden durch:</p>
+>>>>>>> 5520f36 (Merge)
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> git <span class="ex">pull</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Damit dieses Skript nach jedem Neustart automatisch (einmal) gestartet wird bin ich nach dem Beispiel von <a href="https://webnist.de/automatisches-starten-eines-python-skripts-auf-dem-raspberry-pi-mit-systemd/" class="uri">https://webnist.de/automatisches-starten-eines-python-skripts-auf-dem-raspberry-pi-mit-systemd/</a> vorgegangen.</p>
 <p>Aber ich habe die service Datei “/etc/systemd/system/startup-display.service” wie folgt angepasst:</p>
@@ -270,6 +292,10 @@ WantedBy=multi-user.target</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sudo <span class="ex">systemctl</span> status startup-display.service</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Und natürlich ggf. auch stoppen:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sudo <span class="ex">systemctl</span> stop startup-display.service</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<<<<<<< HEAD
+=======
+<p>Aber in den Regel beendet sich das Programm umgehend selber. Aber – dank e-paper – stehen die zu letzt aktuallisierten Daten auf dem Display.</p>
+>>>>>>> 5520f36 (Merge)
 </section>
 </section>
 <section id="postgresql-installieren" class="level2">
@@ -277,12 +303,20 @@ WantedBy=multi-user.target</code></pre>
 <p>Ich gehe wie folgt vor:</p>
 <section id="schritt-1-installieren-von-postgresql" class="level3">
 <h3 class="anchored" data-anchor-id="schritt-1-installieren-von-postgresql">Schritt 1: Installieren von PostgreSQL</h3>
+<<<<<<< HEAD
 <p>Da es ein deb Paket gibt, nehme ich den leichten Weg:</p>
+=======
+<p>Da es ein deb Paket gibt geht einfach:</p>
+>>>>>>> 5520f36 (Merge)
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sudo <span class="ex">apt</span> install postgresql</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="schritt-2-wechseln-auf-nutzerin-postgres" class="level3">
 <h3 class="anchored" data-anchor-id="schritt-2-wechseln-auf-nutzerin-postgres">Schritt 2: Wechseln auf Nutzer:in “postgres”</h3>
+<<<<<<< HEAD
 <p>Wir kommunizieren mit PostgreSQL durch den Benutzer “postgres”, in den wir uns verwandelt:</p>
+=======
+<p>wir mit Postgres durch “postgres” in dem wir uns verwandelt:</p>
+>>>>>>> 5520f36 (Merge)
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sudo <span class="fu">su</span> postgres</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="schritt-3-herunterladen-der-demo-daten-entpacken-und-installieren" class="level3">
@@ -302,10 +336,20 @@ WantedBy=multi-user.target</code></pre>
   password: postgresdemo 
   dbname:   netflix</code></pre>
 </section>
+<<<<<<< HEAD
 <section id="schritt-4-adminerneo-installieren" class="level3">
 <h3 class="anchored" data-anchor-id="schritt-4-adminerneo-installieren">Schritt 4: AdminerNEO installieren</h3>
 <p>AdminerNEO ist ein Webtool für die Verwaltung von PostgreSQL.</p>
 <p>Wir installieren die aktuelle Version von der Website: <a href="https://www.adminneo.org/download" class="uri">https://www.adminneo.org/download</a></p>
+=======
+<section id="schritt-4-adminer-installieren" class="level3">
+<h3 class="anchored" data-anchor-id="schritt-4-adminer-installieren">Schritt 4: Adminer installieren</h3>
+<p>Adminier ist eiin Webtool für die Verwaltung von PostgreSQL.</p>
+<p>Es ist ebenso ein deb-Paket, daher:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sudo <span class="ex">apt-get</span> install adminer</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Eine Datei anlegen</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+>>>>>>> 5520f36 (Merge)
 
 
 </section>
