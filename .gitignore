@@ -7,3 +7,5 @@
 __pycache__/
 _freeze/
 .DS_Store
+
+**/*.quarto_ipynb

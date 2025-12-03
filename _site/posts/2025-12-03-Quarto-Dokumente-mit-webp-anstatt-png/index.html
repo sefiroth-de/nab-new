@@ -8,7 +8,7 @@
 
 <meta name="author" content="Norman Markgraf">
 
-<title>Beweisverfahren in der Mathematik – Norman’s Academic Blog</title>
+<title>Quarto-Dokumente mit webp anstatt png Bilddateien – Norman’s Academic Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -70,35 +105,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -154,10 +160,9 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Beweisverfahren in der Mathematik</h1>
-            <p class="subtitle lead">Aus dem Internet frei übersetzt.</p>
+      <h1 class="title">Quarto-Dokumente mit webp anstatt png Bilddateien</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">Mathematik</div>
+                <div class="quarto-category">Quarto</div>
               </div>
                   </div>
   </div>
@@ -175,7 +180,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Veröffentlichungsdatum</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">27. Juli 2025</p>
+        <p class="date">3. Dezember 2025</p>
       </div>
     </div>
     
@@ -200,55 +205,32 @@ window.Quarto = {
 
 
 
-<section id="allgemeine-beweistechniken" class="level2">
-<h2 class="anchored" data-anchor-id="allgemeine-beweistechniken">Allgemeine Beweistechniken</h2>
-<section id="beweis-durch-einschüchterung" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-einschüchterung">Beweis durch Einschüchterung</h3>
-<p>Trivial!</p>
-</section>
-<section id="beweis-durch-umständliche-notation" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-umständliche-notation">Beweis durch umständliche Notation</h3>
-<p>Der Satz folgt sofort aus dem Fakt</p>
-<p><span class="math display">\[
-  \left|
-    \oplus_{k \in S}
-      \left(
-       \mathfrak{K}^{\mathbb{F}^\alpha(i)}  
-      \right)_{i \in \mathcal{U}_k}
-  \right|
-  \preceq \aleph_1
-  \text{ wenn }
-  \left[
-    \mathfrak{H}_\mathcal{W}
-  \right]     
-  \cap \mathbb{F}^\alpha(\mathbb{N}) \neq \emptyset.
-\]</span></p>
-</section>
-<section id="beweis-durch-unzugreifbare-literatur" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-unzugreifbare-literatur">Beweis durch unzugreifbare Literatur</h3>
-<p>Der Satz ist ein einfaches Korrollat eines Ergebnis bewiesen in einer handgeschriebenen Anmerkung ausgehändigt in einer Vorlesung bei der Jugoslawischen Mathematischen Gesellschaft 1973.</p>
-</section>
-<section id="beweis-durch-geisterhafte-zitate" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-geisterhafte-zitate">Beweis durch geisterhafte Zitate</h3>
-<p>Der Beweis kann auf Seite 478 gefunden werden, in einem Buch, welches nur 396 Seiten hat.</p>
-</section>
-<section id="beweis-durch-circularer-argumentation" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-circularer-argumentation">Beweis durch circularer Argumentation</h3>
-<p>Proposition 5.18 in [BL] ist ein einfaches Korollar zm Satz 7.18 in [C], welches wiederum auf Korollar 2.14 in [K] basiert. Dieses wiederum wird unter Bezugnahme auf Proposition 5.18 in [BL] hergeleitet.</p>
-</section>
-<section id="beweis-durch-autorität" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-autorität">Beweis durch Autorität</h3>
-<p>Mein guter Kollege Andrew meinte, er glaube, er hätte dafür vor ein paar Jahren einen Beweis finden können …</p>
-</section>
-<section id="beweis-durch-internet-referenz" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-internet-referenz">Beweis durch Internet Referenz</h3>
-<p>Für Interessierte ist das Ergebnis auf der Webseite zu diesem Buch zu sehen. – Die es leider nicht mehr gibt.</p>
-</section>
-<section id="beweis-durch-vermeidung" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-vermeidung">Beweis durch Vermeidung</h3>
-<p>Kapitel 3: Der Beweis hierfür wird erst in Kapitel 7 erbracht, wenn wir die Theorie weiterentwickelt haben.</p>
-<p>Kapitel 7: Der Einfachheit halber beweisen wir dies nur für den Fall z = 0. Der allgemeine Fall wird jedoch in Anhang C behandelt.</p>
-<p>Anhang C: Der formale Beweis geht über den Rahmen dieses Buches hinaus, aber unsere Intuition sagt uns natürlich, dass dies wahr ist.</p>
+<section id="webp-statt-png" class="level1">
+<h1>WebP statt PNG?</h1>
+<p>Ich bin über die Quarto-Extension von KLaus Brunner mit dem Namen <a href="https://github.com/klausbrunner/convert-to-webp">Convert PNG to WebP (Quarto Extension)</a> gestolpert und nutze diesen nun regelmässig.</p>
+<p>Dafür habe ich auf meinem Mac via HomeBrew die Application “webp” installiert.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> brew <span class="fu">install</span> webp</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Damit habe ich das Programm <code>cwebp</code> installiert. Zum Testen nutze ich:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cwebp <span class="ex">-version</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Aktuell bekomme ich da die Ausgabe:</p>
+<pre><code>1.6.0
+libsharpyuv: 0.4.2</code></pre>
+<p>Das Programm ersetzt die erzeugten Bild-Ausgaben, welche normalerweise im PNG-Format erzeugt werden, durch welche im WebP-Format.</p>
+<p>Die KI sagt:</p>
+<blockquote class="blockquote">
+<p>WebP ist ein modernes Bildformat von Google, das eine effizientere Komprimierung als herkömmliche Formate wie JPEG und PNG ermöglicht, um Bilder im Web kleiner zu machen und Ladezeiten zu beschleunigen. Es unterstützt sowohl verlustfreie als auch verlustbehaftete Komprimierung sowie Transparenz und Animationen, ähnlich wie PNG und GIF. WebP wird von den meisten modernen Browsern unterstützt, aber für ältere Browser ist es ratsam, eine alternative Bildversion bereitzustellen</p>
+</blockquote>
+<section id="installation-im-quarto-projekt" class="level2">
+<h2 class="anchored" data-anchor-id="installation-im-quarto-projekt">Installation im Quarto-Projekt</h2>
+<p>Wir installieren im Quarto-Projekt einfach mittels:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> quarto <span class="ex">add</span> klausbrunner/convert-to-webp</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Danach nutzen wir die Datei <code>_quarto.yml</code> und fügen die folgenden Zeilen hinzu:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> convert-to-webp</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">webp-delete-originals</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">webp-disable</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Jetzt wird nach jeden ‘rendern’ eines Dokuments die erzeugten PNG-Dateien in WebP-Dateien übersetzt und im HTML-Code ersetzt.</p>
 
 
 </section>

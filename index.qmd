@@ -30,7 +30,7 @@ about:
 ## Biografie
 
 Norman Markgraf ist freiberuflicher Dozent für Mathematik, Statistik, Data Science und Informatik sowie freiberuflicher Programmierer. 
-Als Lehrbeauftragter hat er an der Hochschule Bochum, Hochschule Rhein-Waal (am Campus Kleve) und der FOM Hochschule für Oekonomie und Management an den Standorten Aachen, Bonn, Dortmund, Duisburg, Düsseldorf, Gütersloh (Bertelsmann), Köln, Münster, Neuss, Wuppertal und München verschiedene Lehrveranstaltungen abgehalten.
+Als Lehrbeauftragter hat er an der Hochschule Bochum, Hochschule Rhein-Waal (am Campus Kleve), der FOM Hochschule für Oekonomie und Management an den Studienorten Aachen, Bonn, Dortmund, Duisburg, Düsseldorf, Gütersloh (Bertelsmann), Köln, Münster, Neuss, Wuppertal und München und der IU Internationale Hochschule an den Studienorten Düsseldorf und Köln verschiedene Lehrveranstaltungen abgehalten.
 
 :::
 
@@ -40,24 +40,26 @@ Als Lehrbeauftragter hat er an der Hochschule Bochum, Hochschule Rhein-Waal (am 
 ## Interessen
 
 - Mathematik
+  - Finanzmathematik
+  - Wirtschaftsmathematik
+  - Ingenieurmathematik
 - Statistik
-- Datenanalyse
-- Data Literacy
-- Datenkompetenz
-- Data Science
-- Finanzmathematik
-- Wirtschaftsmathematik
-- Ingenieurmathematik
-- Datenbanken
-- Big Data
-- Python
-- R
+  - Datenanalyse
+  - Data Literacy
+  - Datenkompetenz
+  - Data Science
+  - R
+- Informatik
+  - Datenbanken (SQL und NoSQL)
+  - Big Data
+  - Python
+  - MicroPython
 
 :::
 
 ::: {.g-col-6}
 
-## Bildung
+## Ausbildung
 
 - Wissenschaftlicher Mitarbeiter am Lehrstuhl für       Prozessinformatik der Fakultät für Elektro- und Informationstechnik, 2006 Ruhr-Universität Bochum
   

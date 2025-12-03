@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,14 +34,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-f245066ca199b7326ac6b360085ddf3a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -113,7 +114,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -201,7 +202,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(19)</span></div><div class="category" data-category="QWxsZ2VtZWluZXM=">Allgemeines <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QXBhY2hl">Apache <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q1NW">CSV <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0ZW5iYW5r">Datenbank <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0ZW5mb3JtYXRl">Datenformate <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0ZW5qdWRv">Datenjudo <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R3JhYWxQeQ==">GraalPy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R3JhYWxQeXRob24=">GraalPython <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWF0aGVtYXRpaw==">Mathematik <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWlsbGVy">Miller <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Tmdpbng=">Nginx <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHlQeQ==">PyPy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmFzcGJlcnJ5UGk=">RaspberryPi <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3BlZWR0ZXN0">Speedtest <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3RhdGlzdGlr">Statistik <span class="quarto-category-count">(13)</span></div><div class="category" data-category="V2Vic2VydmVy">Webserver <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(20)</span></div><div class="category" data-category="QWxsZ2VtZWluZXM=">Allgemeines <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QXBhY2hl">Apache <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q1NW">CSV <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0ZW5iYW5r">Datenbank <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0ZW5mb3JtYXRl">Datenformate <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0ZW5qdWRv">Datenjudo <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R3JhYWxQeQ==">GraalPy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R3JhYWxQeXRob24=">GraalPython <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWF0aGVtYXRpaw==">Mathematik <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWlsbGVy">Miller <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Tmdpbng=">Nginx <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHlQeQ==">PyPy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UXVhcnRv">Quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmFzcGJlcnJ5UGk=">RaspberryPi <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3BlZWR0ZXN0">Speedtest <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3RhdGlzdGlr">Statistik <span class="quarto-category-count">(13)</span></div><div class="category" data-category="V2Vic2VydmVy">Webserver <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -215,7 +216,30 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="QXBhY2hlJTJDV2Vic2VydmVyJTJDTmdpbng=" data-listing-date-sort="1754690400000" data-listing-file-modified-sort="1754750742310" data-listing-date-modified-sort="1754750742000" data-listing-reading-time-sort="1" data-listing-word-count-sort="97">
+<div class="quarto-post image-right" data-index="0" data-categories="UXVhcnRv" data-listing-date-sort="1764716400000" data-listing-file-modified-sort="1764758739788" data-listing-date-modified-sort="1764758739000" data-listing-reading-time-sort="1" data-listing-word-count-sort="181">
+<div class="thumbnail"><a href="./posts/2025-12-03-Quarto-Dokumente-mit-webp-anstatt-png/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-12-03-Quarto-Dokumente-mit-webp-anstatt-png/index.html" class="no-external">Quarto-Dokumente mit webp anstatt png Bilddateien</a>
+</h3>
+<div class="delink listing-description"><a href="./posts/2025-12-03-Quarto-Dokumente-mit-webp-anstatt-png/index.html" class="no-external">
+Ich bin über die Quarto-Extension von KLaus Brunner mit dem Namen Convert PNG to WebP (Quarto Extension) gestolpert und nutze diesen nun regelmässig.
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/2025-12-03-Quarto-Dokumente-mit-webp-anstatt-png/index.html" class="no-external">
+<div class="listing-date">
+Dec 3, 2025
+</div>
+<div class="listing-reading-time">1 min</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="QXBhY2hlJTJDV2Vic2VydmVyJTJDTmdpbng=" data-listing-date-sort="1754690400000" data-listing-file-modified-sort="1764756998181" data-listing-date-modified-sort="1764756998000" data-listing-reading-time-sort="1" data-listing-word-count-sort="97">
 <div class="thumbnail"><a href="./posts/2025-08-09-brotli-statt-gzip-konfigurieren/index.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -238,7 +262,7 @@ Aug 9, 2025
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="UmFzcGJlcnJ5UGklMkNEYXRlbmJhbms=" data-listing-date-sort="1754690400000" data-listing-file-modified-sort="1756227905943" data-listing-date-modified-sort="1756227905000" data-listing-reading-time-sort="3" data-listing-word-count-sort="432">
+<div class="quarto-post image-right" data-index="2" data-categories="UmFzcGJlcnJ5UGklMkNEYXRlbmJhbms=" data-listing-date-sort="1754690400000" data-listing-file-modified-sort="1764756940081" data-listing-date-modified-sort="1764756940000" data-listing-reading-time-sort="3" data-listing-word-count-sort="429">
 <div class="thumbnail"><a href="./posts/2025-08-09-Wie-mensch-eine-Datenbank-auf-einen-Raspbarry-Zero-installiert/index.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -261,7 +285,7 @@ Aug 9, 2025
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="TWF0aGVtYXRpaw==" data-listing-date-sort="1753567200000" data-listing-file-modified-sort="1754750742309" data-listing-date-modified-sort="1754750742000" data-listing-reading-time-sort="2" data-listing-word-count-sort="260">
+<div class="quarto-post image-right" data-index="3" data-categories="TWF0aGVtYXRpaw==" data-listing-date-sort="1753567200000" data-listing-file-modified-sort="1764756143372" data-listing-date-modified-sort="1764756143000" data-listing-reading-time-sort="2" data-listing-word-count-sort="260">
 <div class="thumbnail"><a href="./posts/2025-07-27-Beweisverfahren/index.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -284,7 +308,7 @@ Jul 27, 2025
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="bmV3cw==" data-listing-date-sort="1752876000000" data-listing-file-modified-sort="1753450262421" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="1" data-listing-word-count-sort="46">
+<div class="quarto-post image-right" data-index="4" data-categories="bmV3cw==" data-listing-date-sort="1752876000000" data-listing-file-modified-sort="1764756143373" data-listing-date-modified-sort="1764756143000" data-listing-reading-time-sort="1" data-listing-word-count-sort="46">
 <div class="thumbnail"><a href="./posts/Willkommen/index.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -307,7 +331,7 @@ Jul 19, 2025
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1640559600000" data-listing-file-modified-sort="1753450262421" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="1" data-listing-word-count-sort="144">
+<div class="quarto-post image-right" data-index="5" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1640559600000" data-listing-file-modified-sort="1764756143372" data-listing-date-modified-sort="1764756143000" data-listing-reading-time-sort="1" data-listing-word-count-sort="144">
 <div class="thumbnail"><a href="./posts/2021-12-27-grafiken-nebeneinander-setzen-mit-ggplot2-oder-ggformula/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/2021-12-27-grafiken-nebeneinander-setzen-mit-ggplot2-oder-ggformula/index_files/figure-html/unnamed-chunk-4-1.webp"  class="thumbnail-image card-img"/></p>
@@ -330,7 +354,7 @@ Dec 27, 2021
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="QWxsZ2VtZWluZXMlMkNNaWxsZXIlMkNDU1YlMkNEYXRlbmp1ZG8lMkNEYXRlbmZvcm1hdGU=" data-listing-date-sort="1630015200000" data-listing-file-modified-sort="1753450262422" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="1" data-listing-word-count-sort="154">
+<div class="quarto-post image-right" data-index="6" data-categories="QWxsZ2VtZWluZXMlMkNNaWxsZXIlMkNDU1YlMkNEYXRlbmp1ZG8lMkNEYXRlbmZvcm1hdGU=" data-listing-date-sort="1630015200000" data-listing-file-modified-sort="1764756143373" data-listing-date-modified-sort="1764756143000" data-listing-reading-time-sort="1" data-listing-word-count-sort="154">
 <div class="thumbnail"><a href="./posts/csv-dateien-bearbeiten-mit-miller/index.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -353,7 +377,7 @@ Aug 27, 2021
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1624744800000" data-listing-file-modified-sort="1753450262421" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="5" data-listing-word-count-sort="936">
+<div class="quarto-post image-right" data-index="7" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1624744800000" data-listing-file-modified-sort="1764756143372" data-listing-date-modified-sort="1764756143000" data-listing-reading-time-sort="5" data-listing-word-count-sort="936">
 <div class="thumbnail"><a href="./posts/2021-06-27-datenjudo-fuer-frageboegen/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/2021-06-27-datenjudo-fuer-frageboegen/index_files/figure-html/unnamed-chunk-5-1.webp"  class="thumbnail-image card-img"/></p>
@@ -376,7 +400,7 @@ Jun 27, 2021
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1624485600000" data-listing-file-modified-sort="1753450262420" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="6" data-listing-word-count-sort="1067">
+<div class="quarto-post image-right" data-index="8" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1624485600000" data-listing-file-modified-sort="1764756143371" data-listing-date-modified-sort="1764756143000" data-listing-reading-time-sort="6" data-listing-word-count-sort="1067">
 <div class="thumbnail"><a href="./posts/2021-06-24-dinge-die-man-in-zwei-dimensionen-machen-kann-multiple-lineare-regression/index.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -399,7 +423,7 @@ Jun 24, 2021
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1624399200000" data-listing-file-modified-sort="1753450262418" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="5" data-listing-word-count-sort="963">
+<div class="quarto-post image-right" data-index="9" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1624399200000" data-listing-file-modified-sort="1764756143367" data-listing-date-modified-sort="1764756143000" data-listing-reading-time-sort="5" data-listing-word-count-sort="963">
 <div class="thumbnail"><a href="./posts/2021-06-23-regression-mit-studentisierten-daten/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/2021-06-23-regression-mit-studentisierten-daten/index_files/figure-html/unnamed-chunk-1-1.webp"  class="thumbnail-image card-img"/></p>
@@ -422,7 +446,7 @@ Jun 23, 2021
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1624399200000" data-listing-file-modified-sort="1753450262414" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="6" data-listing-word-count-sort="1191">
+<div class="quarto-post image-right" data-index="10" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1624399200000" data-listing-file-modified-sort="1764756143360" data-listing-date-modified-sort="1764756143000" data-listing-reading-time-sort="6" data-listing-word-count-sort="1191">
 <div class="thumbnail"><a href="./posts/2021-06-23-interaktionseffekte-leichter-interpretieren-durch-transformationen/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/2021-06-23-interaktionseffekte-leichter-interpretieren-durch-transformationen/index_files/figure-html/unnamed-chunk-2-1.webp"  class="thumbnail-image card-img"/></p>
@@ -445,7 +469,7 @@ Jun 23, 2021
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1623362400000" data-listing-file-modified-sort="1753450262414" data-listing-date-modified-sort="1623362400000" data-listing-reading-time-sort="5" data-listing-word-count-sort="846">
+<div class="quarto-post image-right" data-index="11" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1623362400000" data-listing-file-modified-sort="1764756143360" data-listing-date-modified-sort="1623362400000" data-listing-reading-time-sort="5" data-listing-word-count-sort="846">
 <div class="thumbnail"><a href="./posts/2021-06-11-wege-zur-normalverteilung/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/2021-06-11-wege-zur-normalverteilung/index_files/figure-html/unnamed-chunk-5-1.webp"  class="thumbnail-image card-img"/></p>
@@ -468,7 +492,7 @@ Jun 11, 2021
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1623189600000" data-listing-file-modified-sort="1753450262404" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="19" data-listing-word-count-sort="3621">
+<div class="quarto-post image-right" data-index="12" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1623189600000" data-listing-file-modified-sort="1764756143344" data-listing-date-modified-sort="1764756143000" data-listing-reading-time-sort="19" data-listing-word-count-sort="3621">
 <div class="thumbnail"><a href="./posts/2021-06-09-ueber-die-koeffizienten-einer-linearen-regression/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/2021-06-09-ueber-die-koeffizienten-einer-linearen-regression/index_files/figure-html/unnamed-chunk-1-1.webp"  class="thumbnail-image card-img"/></p>
@@ -491,7 +515,7 @@ Jun 9, 2021
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="12" data-categories="UHl0aG9uJTJDUHlQeSUyQ0dyYWFsUHl0aG9uJTJDR3JhYWxQeSUyQ1NwZWVkdGVzdA==" data-listing-date-sort="1617832800000" data-listing-file-modified-sort="1753450262404" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="2" data-listing-word-count-sort="247">
+<div class="quarto-post image-right" data-index="13" data-categories="UHl0aG9uJTJDUHlQeSUyQ0dyYWFsUHl0aG9uJTJDR3JhYWxQeSUyQ1NwZWVkdGVzdA==" data-listing-date-sort="1617832800000" data-listing-file-modified-sort="1764756143343" data-listing-date-modified-sort="1764756143000" data-listing-reading-time-sort="2" data-listing-word-count-sort="247">
 <div class="thumbnail"><a href="./posts/2021-04-08-graalpy-pypy--und-python-geschwindigkeitstest/index.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -514,7 +538,7 @@ Apr 8, 2021
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="13" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1613516400000" data-listing-file-modified-sort="1753450262404" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="7" data-listing-word-count-sort="1290">
+<div class="quarto-post image-right" data-index="14" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1613516400000" data-listing-file-modified-sort="1764756143343" data-listing-date-modified-sort="1764756143000" data-listing-reading-time-sort="7" data-listing-word-count-sort="1290">
 <div class="thumbnail"><a href="./posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/index_files/figure-html/unnamed-chunk-2-1.webp"  class="thumbnail-image card-img"/></p>
@@ -537,7 +561,7 @@ Feb 17, 2021
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="14" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1613170800000" data-listing-file-modified-sort="1753450262404" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="3" data-listing-word-count-sort="466">
+<div class="quarto-post image-right" data-index="15" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1613170800000" data-listing-file-modified-sort="1764756143343" data-listing-date-modified-sort="1764756143000" data-listing-reading-time-sort="3" data-listing-word-count-sort="466">
 <div class="thumbnail"><a href="./posts/2021-02-13-behaebige-funktionen-aka-slowly-varying-function/index.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -560,7 +584,7 @@ Feb 13, 2021
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="15" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1613084400000" data-listing-file-modified-sort="1753450262403" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="6" data-listing-word-count-sort="1114">
+<div class="quarto-post image-right" data-index="16" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1613084400000" data-listing-file-modified-sort="1764756143343" data-listing-date-modified-sort="1764756143000" data-listing-reading-time-sort="6" data-listing-word-count-sort="1114">
 <div class="thumbnail"><a href="./posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/index_files/figure-html/unnamed-chunk-2-1.webp"  class="thumbnail-image card-img"/></p>
@@ -583,7 +607,7 @@ Feb 12, 2021
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="16" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1613084400000" data-listing-file-modified-sort="1753450262403" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="3" data-listing-word-count-sort="433">
+<div class="quarto-post image-right" data-index="17" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1613084400000" data-listing-file-modified-sort="1764756143343" data-listing-date-modified-sort="1764756143000" data-listing-reading-time-sort="3" data-listing-word-count-sort="433">
 <div class="thumbnail"><a href="./posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/index.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -606,7 +630,7 @@ Feb 12, 2021
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="17" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1593381600000" data-listing-file-modified-sort="1753450262403" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="4" data-listing-word-count-sort="655">
+<div class="quarto-post image-right" data-index="18" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1593381600000" data-listing-file-modified-sort="1764756143342" data-listing-date-modified-sort="1764756143000" data-listing-reading-time-sort="4" data-listing-word-count-sort="655">
 <div class="thumbnail"><a href="./posts/2020-06-29-cook-abstand/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/2020-06-29-cook-abstand/index_files/figure-html/unnamed-chunk-2-1.webp"  class="thumbnail-image card-img"/></p>
@@ -629,7 +653,7 @@ Jun 29, 2020
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="18" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1491343200000" data-listing-file-modified-sort="1753450262403" data-listing-date-modified-sort="1753450262000" data-listing-reading-time-sort="4" data-listing-word-count-sort="644">
+<div class="quarto-post image-right" data-index="19" data-categories="U3RhdGlzdGlr" data-listing-date-sort="1491343200000" data-listing-file-modified-sort="1764756143342" data-listing-date-modified-sort="1764756143000" data-listing-reading-time-sort="4" data-listing-word-count-sort="644">
 <div class="thumbnail"><a href="./posts/2017-04-05-der-zentrale-grenzwertsatz/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/2017-04-05-der-zentrale-grenzwertsatz/index_files/figure-html/unnamed-chunk-4-1.webp"  class="thumbnail-image card-img"/></p>
@@ -706,13 +730,14 @@ Apr 5, 2017
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

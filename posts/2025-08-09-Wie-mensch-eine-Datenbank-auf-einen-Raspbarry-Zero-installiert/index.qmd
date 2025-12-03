@@ -19,6 +19,10 @@ categories:
 Am besten mit dem Raspberry Pi Installer
 von hier: <https://www.raspberrypi.com/software/>
 
+Für einen Raspberry Zero: *Raspberry Pi OS (32-bit) Lite*
+
+Für einen Raspberry Zero 2 W: *Raspberry Pi OS (64-bit) Lite*
+
 **Wichtig** MIT SSH konfigurieren!
 
 
@@ -27,7 +31,7 @@ von hier: <https://www.raspberrypi.com/software/>
 Auf dem RaspberryPI Zero ist ein Waveshare 2-13inch-e-Paper HAT installiert. Alles wichtige dazu findet sich hier:
 <https://www.waveshare.com/wiki/2.13inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi>
 
-Damit das Display richtig funtioniert sollte man in der `config.txt` die folgende Zeile anpassen:
+Damit das Display richtig funktioniert sollte man in der `config.txt` die folgende Zeile anpassen:
 
 ```
 dtparam=spi=on
@@ -51,12 +55,12 @@ Man kann sich dann also zum Beispiel mittels ssh und dem folgenden Kommando anme
 > ssh norman@raspberrypi.local
 ```
 
-Ebenso kann wie <http://connect.raspberrypi.com> R PI Connect benutzt werden, wenn man es vorher eingerichtet hat.
+Ebenso kann wie <http://connect.raspberrypi.com> R PI Connect benutzt werden, sofern es vorab eingerichtet wurde.
 
 
 ### Schritt 4: Startup-Display installieren
 
-Ich habe im GitHub ein kleines Programm geschrieben, dass die aktuelle IP Address (IP4 und IP6 sowie Die Uhrzeit) auf dem Display ausgibt.
+Ich habe bei GitHub ein kleines Programm geschrieben, welches die aktuelle IP Address (IP4 und IP6 sowie die aktuelle Uhrzeit) auf dem Display ausgibt.
 
 Es ist unter <https://github.com/NMarkgraf/pi-startup-display> zu finden und wird einfach in das Hauptverzeichnis des Nutzers "norman" unter "/home/norman" per
 
@@ -65,6 +69,7 @@ Es ist unter <https://github.com/NMarkgraf/pi-startup-display> zu finden und wir
 ```
 
 installiert.
+
 Später kann dann im Verzeichnis `pi-startup-display` einfach die aktuelle Version geladen werden durch:
 
 ```bash
@@ -126,16 +131,15 @@ Und natürlich ggf. auch stoppen:
 > sudo systemctl stop startup-display.service
 ```
 
-Aber in den Regel beendet sich das Programm umgehend selber. Aber -- dank e-paper -- stehen die zu letzt aktuallisierten Daten auf dem Display.
 
 
-## Postgress installieren
+## PostgreSQL installieren
 
 Ich gehe wie folgt vor:
 
 ### Schritt 1: Installieren von PostgreSQL 
 
-Da es ein deb Paket gibt geht einfach:
+Da es ein deb Paket gibt, nehme ich den leichten Weg:
 
 ```bash
 > sudo apt install postgresql
@@ -143,7 +147,7 @@ Da es ein deb Paket gibt geht einfach:
 
 ### Schritt 2:  Wechseln auf Nutzer:in "postgres"
 
-wir mit Postgres durch "postgres" in dem wir uns verwandelt:
+Wir kommunizieren mit PostgreSQL durch den Benutzer "postgres", in den wir uns verwandelt:
 
 ```bash
 > sudo su postgres
@@ -178,16 +182,9 @@ Und wir können diese nun mit den folgenden Parametern ansprechen:
   dbname:   netflix
 ```
 
-### Schritt 4: Adminer installieren 
+### Schritt 4: AdminerNEO installieren 
 
-Adminier ist eiin Webtool für die Verwaltung von PostgreSQL.
+AdminerNEO ist ein Webtool für die Verwaltung von PostgreSQL.
 
-Es ist ebenso ein deb-Paket, daher:
-
-```bash
-> sudo apt-get install adminer
-```
-
-Eine Datei anlegen
-```bash
-```
+Wir installieren die aktuelle Version von der Website:
+<https://www.adminneo.org/download>

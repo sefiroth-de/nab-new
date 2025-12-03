@@ -1,0 +1,59 @@
+---
+title: "Quarto-Dokumente mit webp anstatt png Bilddateien"
+author: "Norman Markgraf"
+lang: de-DE
+date: "2025-12-03"
+date-modified: last-modified
+word-count: true
+reading-time: true
+categories: 
+  - Quarto
+---
+
+# WebP statt PNG?
+
+Ich bin über die Quarto-Extension von KLaus Brunner mit dem Namen [Convert PNG to WebP (Quarto Extension)](https://github.com/klausbrunner/convert-to-webp) gestolpert und nutze diesen nun regelmässig.
+
+Dafür habe ich auf meinem Mac via HomeBrew die Application "webp" installiert.
+
+```bash
+> brew install webp
+```
+
+Damit habe ich das Programm `cwebp` installiert. Zum Testen nutze ich:
+```bash
+> cwebp -version
+```
+
+Aktuell bekomme ich da die Ausgabe:
+```
+1.6.0
+libsharpyuv: 0.4.2
+```
+
+Das Programm ersetzt die erzeugten Bild-Ausgaben, welche normalerweise im PNG-Format erzeugt werden, durch welche im WebP-Format.
+
+Die KI sagt:
+
+> WebP ist ein modernes Bildformat von Google, das eine effizientere Komprimierung als herkömmliche Formate wie JPEG und PNG ermöglicht, um Bilder im Web kleiner zu machen und Ladezeiten zu beschleunigen. Es unterstützt sowohl verlustfreie als auch verlustbehaftete Komprimierung sowie Transparenz und Animationen, ähnlich wie PNG und GIF. WebP wird von den meisten modernen Browsern unterstützt, aber für ältere Browser ist es ratsam, eine alternative Bildversion bereitzustellen
+
+
+## Installation im Quarto-Projekt
+
+Wir installieren im Quarto-Projekt einfach mittels:
+
+```bash
+> quarto add klausbrunner/convert-to-webp
+```
+
+Danach nutzen wir die Datei `_quarto.yml` und fügen die folgenden Zeilen hinzu:
+
+```yml
+filters:
+  - convert-to-webp
+
+webp-delete-originals: false
+webp-disable: false
+```
+
+Jetzt wird nach jeden 'rendern' eines Dokuments die erzeugten PNG-Dateien in WebP-Dateien übersetzt und im HTML-Code ersetzt.

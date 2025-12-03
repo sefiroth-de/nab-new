@@ -32,4 +32,4 @@ lication/javascript application/x-javascript application/json application/xml
 </IfModule>
 ```
 
-ein und startet danach den apache-Server neu, so läuft brotli endlich auch auf dem Server!
+ein und startet danach den apache-Server neu, so läuft _brotli_ endlich auch auf dem Server!
