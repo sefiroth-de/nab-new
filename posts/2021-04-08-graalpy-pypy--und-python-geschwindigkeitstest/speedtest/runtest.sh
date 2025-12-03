@@ -1,12 +1,12 @@
 #!/bin/sh
 
-pyenvlist='pypy3.11-7.3.19 pypy3.11-7.3.19 3.13.5 3.13.10 3.14.0 3.14.1 graalpy-24.1.1 graalpy-community-24.1.1 graalpy-24.2.1 graalpy-community-24.2.1 graalpy-24.2.2 graalpy-community-24.2.2 graalpy-25.0.1 graalpy-community-25.0.1'
+pyenvlist=(pypy3.11-7.3.19 pypy3.11-7.3.19 3.13.5 3.13.10 3.14.0 3.14.1 graalpy-24.1.1 graalpy-community-24.1.1 graalpy-24.2.1 graalpy-community-24.2.1 graalpy-24.2.2 graalpy-community-24.2.2 graalpy-25.0.1 graalpy-community-25.0.1)
 
 for pytn in $pyenvlist; do
-  echo "pyenv local $pytn"
+  pyenv local $pytn
   echo "******************************************************************"
   echo "Aktuelle Python Version ($pytn):"
   python --version
   echo "------------------------------------------------------------------"
-  # python -m timeit -r 50 -n 1 "import nqueens; nqueens.main()"
+  python -m timeit -r 50 -n 5 "import nqueens; nqueens.main()"
 done;
