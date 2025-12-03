@@ -1,5 +1,5 @@
 ---
-title: "Quarto-Dokumente mit webp anstatt png Bilddateien"
+title: "Quarto-Dokumente mit WebP anstatt PNG Bilddateien erstellen"
 author: "Norman Markgraf"
 lang: de-DE
 date: "2025-12-03"
