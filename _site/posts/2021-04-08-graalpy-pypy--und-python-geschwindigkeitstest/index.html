@@ -191,7 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Geändert</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">3. Dezember 2025</p>
+        <p class="date-modified">4. Dezember 2025</p>
       </div>
     </div>
       
@@ -225,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="neues-setup" class="level2">
 <h2 class="anchored" data-anchor-id="neues-setup">Neues Setup</h2>
-<p>Die Ergebnisse für n = 11 wurden mit der Zeile</p>
+<p>Die Ergebnisse für n = 1 wurden mit der Zeile</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> timeit <span class="at">-r</span> 50 <span class="at">-n</span> 1 ‘import nqueens<span class="kw">;</span> <span class="fu">nqueens.main()</span><span class="ex">’</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>erzeugt.</p>
 <!-- Unglaubwürdige Ergebnisse!!!
@@ -256,6 +256,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>GraalPy 3.11.7 (GraalVM CE Native 24.1.1): 1 loop, best of 50: 30 msec per loop</li>
 <li>GraalPy 3.11.7 (Oracle GraalVM Native 24.2.1): 1 loop, best of 50: 24.5 msec per loop</li>
 <li>GraalPy 3.11.7 (GraalVM CE Native 24.2.1): 1 loop, best of 50: 28.1 msec per loop</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="neues-setup-1" class="level2">
+<h2 class="anchored" data-anchor-id="neues-setup-1">Neues Setup</h2>
+<p>Die Ergebnisse für n = 5 wurden mit der Zeile</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> timeit <span class="at">-r</span> 50 <span class="at">-n</span> 1 ‘import nqueens<span class="kw">;</span> <span class="fu">nqueens.main()</span><span class="ex">’</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>erzeugt.</p>
+<section id="die-ergebnisse-des-test-vom-4.12.2025-imac-24.6.0-x86_64-i386" class="level3">
+<h3 class="anchored" data-anchor-id="die-ergebnisse-des-test-vom-4.12.2025-imac-24.6.0-x86_64-i386">Die Ergebnisse des Test vom 4.12.2025 (iMac 24.6.0 x86_64 i386)</h3>
+<ul>
+<li>CPython:
+<ul>
+<li>Python 3.13.5: 5 loops, best of 50: 656 msec per loop</li>
+<li>Python 3.13.10: 5 loops, best of 50: 647 msec per loop</li>
+<li>Python 3.14.0: 5 loops, best of 50: 665 msec per loop</li>
+<li>Python 3.14.1: 5 loops, best of 50: 701 msec per loop</li>
+</ul></li>
+<li>PyPy:
+<ul>
+<li>Python 3.11.11 (0253c85bf5f8, Feb 26 2025, 10:43:06) [PyPy 7.3.19 with GCC Apple LLVM 15.0.0 (clang-1500.3.9.4)]: 5 loops, average of 50: 85.7 +- 2.08 msec per loop (using standard deviation)</li>
+<li>Python 3.11.13 (413c9b7f57f5, Jul 03 2025, 18:04:31) [PyPy 7.3.20 with GCC Apple LLVM 16.0.0 (clang-1600.0.26.6)]: 5 loops, average of 50: 87.6 +- 3.06 msec per loop (using standard deviation)</li>
+</ul></li>
+<li>GraalPython/GraalPy
+<ul>
+<li>GraalPy 3.11.7 (Oracle GraalVM Native 24.1.1): 5 loops, best of 50: 25.5 msec per loop</li>
+<li>GraalPy 3.11.7 (GraalVM CE Native 24.1.1): 5 loops, best of 50: 33.6 msec per loop</li>
+<li>GraalPy 3.11.7 (Oracle GraalVM Native 24.2.1): 5 loops, best of 50: 24.4 msec per loop</li>
+<li>GraalPy 3.11.7 (GraalVM CE Native 24.2.1): 5 loops, best of 50: 32.2 msec per loop</li>
+<li>GraalPy 3.11.7 (Oracle GraalVM Native 24.2.2): 5 loops, best of 50: 24.4 msec per loop</li>
+<li>GraalPy 3.11.7 (GraalVM CE Native 24.2.2): 5 loops, best of 50: 32.3 msec per loop</li>
+<li>GraalPy 3.12.8 (Oracle GraalVM Native 25.0.1): 5 loops, best of 50: 23.6 msec per loop</li>
+<li>GraalPy 3.12.8 (GraalVM CE Native 25.0.1): 5 loops, best of 50: 29.6 msec per loop</li>
 </ul></li>
 </ul>
 
