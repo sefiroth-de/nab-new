@@ -5468,7 +5468,7 @@ font-style: inherit;">’</span></span></code></pre></div></div>
 <li>Python 3.11.11 (0253c85bf5f8, Feb 26 2025, 10:43:06) [PyPy 7.3.19 with GCC Apple LLVM 15.0.0 (clang-1500.3.9.4)]: 5 loops, average of 50: 85.7 +- 2.08 msec per loop (using standard deviation)</li>
 <li>Python 3.11.13 (413c9b7f57f5, Jul 03 2025, 18:04:31) [PyPy 7.3.20 with GCC Apple LLVM 16.0.0 (clang-1600.0.26.6)]: 5 loops, average of 50: 87.6 +- 3.06 msec per loop (using standard deviation)</li>
 </ul></li>
-<li>GraalPython/GraalPy
+<li>GraalPy(thon):
 <ul>
 <li>GraalPy 3.11.7 (Oracle GraalVM Native 24.1.1): 5 loops, best of 50: 25.5 msec per loop</li>
 <li>GraalPy 3.11.7 (GraalVM CE Native 24.1.1): 5 loops, best of 50: 33.6 msec per loop</li>
@@ -5480,9 +5480,37 @@ font-style: inherit;">’</span></span></code></pre></div></div>
 <li>GraalPy 3.12.8 (GraalVM CE Native 25.0.1): 5 loops, best of 50: 29.6 msec per loop</li>
 </ul></li>
 </ul>
-
-
 </section>
+</section>
+<section id="die-ergebnisse-des-test-vom-4.12.2025-macbookpro-24.6.0-arm64-arm" class="level2">
+<h2 class="anchored" data-anchor-id="die-ergebnisse-des-test-vom-4.12.2025-macbookpro-24.6.0-arm64-arm">Die Ergebnisse des Test vom 4.12.2025 (MacBookPro 24.6.0 arm64 arm)</h2>
+<ul>
+<li>CPython:
+<ul>
+<li>Python 3.13.5: 5 loops, best of 50: 661 msec per loop</li>
+<li>Python 3.13.10: 5 loops, best of 50: 653 msec per loop</li>
+<li>Python 3.14.0: 5 loops, best of 50: 469 msec per loop</li>
+<li>Python 3.14.1: 5 loops, best of 50: 469 msec per loop</li>
+</ul></li>
+<li>PyPy:
+<ul>
+<li>Python 3.11.11 (0253c85bf5f8, Feb 26 2025, 10:42:49) [PyPy 7.3.19 with GCC Apple LLVM 15.0.0 (clang-1500.3.9.4)]: 5 loops, average of 50: 74.2 +- 0.681 msec per loop (using standard deviation)</li>
+<li>Python 3.11.13 (413c9b7f57f5, Jul 03 2025, 18:04:06) [PyPy 7.3.20 with GCC Apple LLVM 16.0.0 (clang-1600.0.26.6)]: 5 loops, average of 50: 73.3 +- 0.688 msec per loop (using standard deviation)</li>
+</ul></li>
+<li>GraalPy(thon):
+<ul>
+<li>GraalPy 3.11.7 (Oracle GraalVM Native 24.1.1): 5 loops, best of 50: 24.9 msec per loop</li>
+<li>GraalPy 3.11.7 (GraalVM CE Native 24.1.1): 5 loops, best of 50: 29.1 msec per loop</li>
+<li>GraalPy 3.11.7 (Oracle GraalVM Native 24.2.1): 5 loops, best of 50: 23.6 msec per loop</li>
+<li>GraalPy 3.11.7 (GraalVM CE Native 24.2.1): 5 loops, best of 50: 27.3 msec per loop</li>
+<li>GraalPy 3.11.7 (Oracle GraalVM Native 24.2.2): 5 loops, best of 50: 23.6 msec per loop</li>
+<li>GraalPy 3.11.7 (GraalVM CE Native 24.2.2): 5 loops, best of 50: 27.2 msec per loop</li>
+<li>GraalPy 3.12.8 (Oracle GraalVM Native 25.0.1): 5 loops, best of 50: 23.6 msec per loop</li>
+<li>GraalPy 3.12.8 (GraalVM CE Native 25.0.1): 5 loops, best of 50: 24.9 msec per loop</li>
+</ul></li>
+</ul>
+
+
 </section>
 
  ]]></description>
