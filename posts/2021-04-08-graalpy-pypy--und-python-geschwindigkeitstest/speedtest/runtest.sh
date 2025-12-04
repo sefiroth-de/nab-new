@@ -11,7 +11,6 @@ for pytn in $pyenvlist; do
   python --version
   echo -n "- " >> logfile
   python --version >> logfile
-  echo "" >> logfile
   python -m timeit -r 50 -n 5 "import nqueens; nqueens.main()" >> logfile
   echo "------------------------------------------------------------------"
 done;
