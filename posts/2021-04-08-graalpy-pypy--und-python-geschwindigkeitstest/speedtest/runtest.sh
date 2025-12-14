@@ -7,8 +7,8 @@ in="${1:-pyenv-versions.txt}"
 echo -n "## " > logfile
 uname -m -n -p -r >> logfile
 
-#while IFS= read -r file
 IFS=$'\n' # set the Internal Field Separator to newline
+# printf "%q\n" "$IFS"
 while read -r pytn
 do
     ## avoid commented filename ##
@@ -16,7 +16,7 @@ do
     pyenv local $pytn
     echo "******************************************************************"
     echo "Aktuelle Python Version ($pytn):"
-    python --version
+    python --version -V
     echo -n "- " >> logfile
     python --version >> logfile
     python -m timeit -r 50 -n 5 "import nqueens; nqueens.main()" >> logfile

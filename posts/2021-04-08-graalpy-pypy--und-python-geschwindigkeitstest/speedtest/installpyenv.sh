@@ -1,18 +1,22 @@
 #!/bin/sh
-brew update
-brew upgrade
 
-# brew install libtommath
-#set -e
+brew update && brew upgrade
+
 in="${1:-pyenv-versions.txt}"
 
 [ ! -f "$in" ] && { echo "$0 - File $in not found."; exit 1; }
 
-#while IFS= read -r file
-IFS=$'\n' # set the Internal Field Separator to newline
-while read -r file
+
+# Use Homebrew clang instead of Apple clang.
+export CC=clang
+
+#IFS=$'\n'
+# printf "%q\n" "$IFS"
+while read -r pytn
 do
-	## avoid commented filename ##
-	[[ $file = \#* ]] && continue
-	pyenv install $file
+    echo "$pytn"
+    # avoid commented filename
+    [[ $pytn = \#* ]] && continue
+    pyenv install -s $pytn
 done < "${in}"
+
