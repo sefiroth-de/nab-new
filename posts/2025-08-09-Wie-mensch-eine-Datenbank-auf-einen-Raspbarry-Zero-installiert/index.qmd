@@ -55,11 +55,7 @@ Man kann sich somit ggf. mittels ssh und dem folgenden Kommando anmelden:
 > ssh norman@raspberrypi.local
 ```
 
-<<<<<<< HEAD
-Ebenso kann wie <http://connect.raspberrypi.com> R PI Connect benutzt werden, sofern es vorab eingerichtet wurde.
-=======
 Ebenso kann [R PI Connect](http://connect.raspberrypi.com)  benutzt werden, wenn man es vorher eingerichtet hat.
->>>>>>> 5520f36 (Merge)
 
 
 ### Schritt 4: Startup-Display installieren
@@ -74,11 +70,7 @@ Es ist unter <https://github.com/NMarkgraf/pi-startup-display> zu finden und wir
 
 installiert.
 
-<<<<<<< HEAD
-Später kann dann im Verzeichnis `pi-startup-display` einfach die aktuelle Version geladen werden durch:
-=======
 Später kann dann im Verzeichnis `pi-startup-display` einfach das aktuelle Release von GutHUb durch den folgenden Befehl geladen werden:
->>>>>>> 5520f36 (Merge)
 
 ```bash
 > git pull
@@ -138,11 +130,6 @@ Und natürlich ggf. auch stoppen:
 ```bash
 > sudo systemctl stop startup-display.service
 ```
-
-<<<<<<< HEAD
-=======
-Aber in den Regel beendet sich das Programm aber selber. Dank e-paper stehen die zuletzt aktuallisierten Daten aber weiterhin auf dem Display.
->>>>>>> 5520f36 (Merge)
 
 
 ## PostgreSQL installieren
