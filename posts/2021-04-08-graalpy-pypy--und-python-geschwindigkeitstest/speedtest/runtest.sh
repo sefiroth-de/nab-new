@@ -18,7 +18,7 @@ do
     python --version -V
     echo -n "    - $(python --version -V)" >> logfile
     echo " \\" >> logfile
-    echo "        $(python -m timeit -r 50 -n 5 'import nqueens; nqueens.main()')" >> logfile
+    echo "      $(python -m timeit -r 50 -n 5 'import nqueens; nqueens.main()')" >> logfile
     echo "------------------------------------------------------------------"
 done < "${in}"
 
