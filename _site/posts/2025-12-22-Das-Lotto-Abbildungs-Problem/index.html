@@ -8,7 +8,7 @@
 
 <meta name="author" content="Norman Markgraf">
 
-<title>Beweisverfahren in der Mathematik – Norman’s Academic Blog</title>
+<title>Das Lotto-Abbildungsproblem – Norman’s Academic Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -154,10 +189,11 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Beweisverfahren in der Mathematik</h1>
-            <p class="subtitle lead">Aus dem Internet frei übersetzt.</p>
+      <h1 class="title">Das Lotto-Abbildungsproblem</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">Mathematik</div>
+                <div class="quarto-category">Quarto</div>
+                <div class="quarto-category">Python</div>
+                <div class="quarto-category">R</div>
               </div>
                   </div>
   </div>
@@ -175,14 +211,14 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Veröffentlichungsdatum</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">27. Juli 2025</p>
+        <p class="date">22. Dezember 2025</p>
       </div>
     </div>
     
       <div>
       <div class="quarto-title-meta-heading">Geändert</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">3. Dezember 2025</p>
+        <p class="date-modified">12. Januar 2026</p>
       </div>
     </div>
       
@@ -200,58 +236,159 @@ window.Quarto = {
 
 
 
-<section id="allgemeine-beweistechniken" class="level2">
-<h2 class="anchored" data-anchor-id="allgemeine-beweistechniken">Allgemeine Beweistechniken</h2>
-<section id="beweis-durch-einschüchterung" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-einschüchterung">Beweis durch Einschüchterung</h3>
-<p>Trivial!</p>
-</section>
-<section id="beweis-durch-umständliche-notation" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-umständliche-notation">Beweis durch umständliche Notation</h3>
-<p>Der Satz folgt sofort aus dem Fakt</p>
-<p><span class="math display">\[
-  \left|
-    \oplus_{k \in S}
-      \left(
-       \mathfrak{K}^{\mathbb{F}^\alpha(i)}  
-      \right)_{i \in \mathcal{U}_k}
-  \right|
-  \preceq \aleph_1
-  \text{ wenn }
-  \left[
-    \mathfrak{H}_\mathcal{W}
-  \right]     
-  \cap \mathbb{F}^\alpha(\mathbb{N}) \neq \emptyset.
+<section id="die-beschreibung" class="level1">
+<h1>Die Beschreibung</h1>
+<p>Jeder, der Kombinatorik oder Wahrscheinlichkeitsrechnung studiert hat, kennt das klassische Lotto-Problem: Aus einer Menge von 49 Zahlen werden 6 Zahlen ohne Zurücklegen gezogen. Wie viele verschiedene Kombinationen sind möglich?</p>
+<p>Die Antwort ist bekanntlich: <span class="math display">\[
+  \binom{49}{6} = \frac{49!}{6!(49-6)!} = 13\,983\,816
 \]</span></p>
+<p>Aber viele sehen nicht, dass dies auch bedeutet, dass jedes Ziehungsergebnis ein-ein-deutig auf die Zahlen <span class="math inline">\(1\)</span> bis <span class="math inline">\(13\,983\,816\)</span> abbildet. Genauer, es gibt (mindestens) eine Abbilung aus <span class="math inline">\(\mathcal{L} = \{1, 2, \ldots, 49\}\)</span> in <span class="math inline">\(\mathcal{M} = \{1, 2, \ldots, 13\,983\,816\}\)</span>, so dass jede 6-elementige Teilmenge von <span class="math inline">\(\mathcal{L}\)</span> auf ein eindeutiges Element von <span class="math inline">\(\mathcal{M}\)</span> abgebildet wird.</p>
 </section>
-<section id="beweis-durch-unzugreifbare-literatur" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-unzugreifbare-literatur">Beweis durch unzugreifbare Literatur</h3>
-<p>Der Satz ist ein einfaches Korrollat eines Ergebnis bewiesen in einer handgeschriebenen Anmerkung ausgehändigt in einer Vorlesung bei der Jugoslawischen Mathematischen Gesellschaft 1973.</p>
+<section id="die-frage" class="level1">
+<h1>Die Frage</h1>
+<p><strong>Wie sieht so eine Abbildung aus und vorallem wie lautet die Umkehrabbildung?</strong></p>
 </section>
-<section id="beweis-durch-geisterhafte-zitate" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-geisterhafte-zitate">Beweis durch geisterhafte Zitate</h3>
-<p>Der Beweis kann auf Seite 478 gefunden werden, in einem Buch, welches nur 396 Seiten hat.</p>
+<section id="eine-mögliche-lösung" class="level1">
+<h1>Eine mögliche Lösung</h1>
+<p>Wir können die Abbildung konstruieren, indem wir die 6 gezogenen Zahlen sortieren und dann eine lexikographische Ordnung verwenden, um jede Kombination zu nummerieren. Angenommen, die gezogenen Zahlen sind <span class="math inline">\(a_1 &lt; a_2 &lt; a_3 &lt; a_4 &lt; a_5 &lt; a_6\)</span>. Dann können wir die Abbildung <span class="math inline">\(f: \mathcal{L}^6 \to \mathcal{M}\)</span> wie folgt definieren:</p>
+<p><span class="math display">\[
+f(a_1, a_2, a_3, a_4, a_5, a_6) = \sum_{i=1}^{6} \binom{a_i - 1}{i}
+\]</span></p>
+<p>Hierbei ist <span class="math inline">\(\binom{n}{k}\)</span> der Binomialkoeffizient, der die Anzahl der Möglichkeiten angibt, <span class="math inline">\(k\)</span> Elemente aus einer Menge von <span class="math inline">\(n\)</span> Elementen auszuwählen.</p>
+<p>Diese Abbildung ist eindeutig, da jede Kombination von 6 Zahlen eine eindeutige Summe von Binomialkoeffizienten ergibt.</p>
+<p>Die Umkehrabbildung <span class="math inline">\(f^{-1}: \mathcal{M} \to \mathcal{L}^6\)</span> kann durch eine iterative Methode konstruiert werden, bei der wir die größte Zahl <span class="math inline">\(a_6\)</span> bestimmen, die noch in die Summe passt, dann <span class="math inline">\(a_5\)</span>, und so weiter, bis wir alle 6 Zahlen gefunden haben.</p>
+<p>Hier ist ein Beispiel für die Umkehrabbildung:</p>
+<ol type="1">
+<li><p>Setze <span class="math inline">\(n = f(a_1, a_2, a_3, a_4, a_5, a_6)\)</span>.</p></li>
+<li><p>Für <span class="math inline">\(i\)</span> von 6 bis 1:</p>
+<ul>
+<li><p>Finde die größte Zahl <span class="math inline">\(a_i\)</span> such that <span class="math inline">\(\binom{a_i - 1}{i} \leq n\)</span>.</p></li>
+<li><p>Setze <span class="math inline">\(n = n - \binom{a_i - 1}{i}\)</span>.</p></li>
+</ul></li>
+<li><p>Gib die Zahlen <span class="math inline">\(a_1, a_2, a_3, a_4, a_5, a_6\)</span> zurück.</p></li>
+</ol>
+<p>Diese Methode garantiert, dass wir die ursprünglichen gezogenen Zahlen zurückerhalten, da wir die gleiche Logik wie in der Vorwärtsabbildung verwenden, aber in umgekehrter Reihenfolge.</p>
 </section>
-<section id="beweis-durch-circularer-argumentation" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-circularer-argumentation">Beweis durch circularer Argumentation</h3>
-<p>Proposition 5.18 in [BL] ist ein einfaches Korollar zm Satz 7.18 in [C], welches wiederum auf Korollar 2.14 in [K] basiert. Dieses wiederum wird unter Bezugnahme auf Proposition 5.18 in [BL] hergeleitet.</p>
+<section id="fazit" class="level1">
+<h1>Fazit</h1>
+<p>Die Abbildung des Lotto-Problems zeigt, wie kombinatorische Konzepte verwendet werden können, um eindeutige Zuordnungen zwischen Mengen zu erstellen. Diese Art von Abbildungen ist nicht nur in der Mathematik interessant, sondern findet auch Anwendungen in Bereichen wie Kryptographie und Datenkompression.</p>
 </section>
-<section id="beweis-durch-autorität" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-autorität">Beweis durch Autorität</h3>
-<p>Mein guter Kollege Andrew meinte, er glaube, er hätte dafür vor ein paar Jahren einen Beweis finden können …</p>
+<section id="implementierung-in-r-und-python" class="level1">
+<h1>Implementierung in R und Python</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R-Code zur Berechnung der Abbildung und Umkehrabbildung</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gmp)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Funktion zur Berechnung der Abbildung</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>lotto_abbildung <span class="ot">&lt;-</span> <span class="cf">function</span>(a) {</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  l <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="cf">function</span>(i) <span class="fu">chooseZ</span>(a[i] <span class="sc">-</span> <span class="dv">1</span>, i), <span class="at">simplify =</span> <span class="st">"array"</span>, <span class="at">USE.NAMES =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(l[[<span class="dv">1</span>]] <span class="sc">+</span> l[[<span class="dv">2</span>]] <span class="sc">+</span> l[[<span class="dv">3</span>]] <span class="sc">+</span> l[[<span class="dv">4</span>]] <span class="sc">+</span> l[[<span class="dv">5</span>]] <span class="sc">+</span> l[[<span class="dv">6</span>]])</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Funktion zur Berechnung der Umkehrabbildung</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>lotto_umkehrabbildung <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  a <span class="ot">&lt;-</span> <span class="fu">integer</span>(<span class="dv">6</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">1</span>) {</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    a[i] <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">which</span>(<span class="fu">chooseZ</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">49</span>, i) <span class="sc">&lt;=</span> n))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> n <span class="sc">-</span> <span class="fu">chooseZ</span>(a[i]<span class="sc">-</span><span class="dv">1</span>, i)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(a)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Python-Code zur Berechnung der Abbildung und Umkehrabbildung</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> comb</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Funktion zur Berechnung der Abbildung</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lotto_abbildung(a):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    l <span class="op">=</span> [comb(a[i] <span class="op">-</span> <span class="dv">1</span>, i <span class="op">+</span> <span class="dv">1</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">6</span>)]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(l)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Funktion zur Berechnung der Umkehrabbildung</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lotto_umkehrabbildung(n):</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> [<span class="dv">0</span>] <span class="op">*</span> <span class="dv">6</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        tmp <span class="op">=</span> <span class="bu">max</span>(k <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>) <span class="cf">if</span> comb(k, i <span class="op">+</span> <span class="dv">1</span>) <span class="op">&lt;=</span> n)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        a[i] <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> tmp</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        n <span class="op">-=</span> comb(tmp, i <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
 </section>
-<section id="beweis-durch-internet-referenz" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-internet-referenz">Beweis durch Internet Referenz</h3>
-<p>Für Interessierte ist das Ergebnis auf der Webseite zu diesem Buch zu sehen. – Die es leider nicht mehr gibt.</p>
+<section id="beispiel" class="level1">
+<h1>Beispiel</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>gezogene_zahlen <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">23</span>, <span class="dv">34</span>, <span class="dv">45</span>, <span class="dv">49</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>abbildung <span class="ot">&lt;-</span> <span class="fu">lotto_abbildung</span>(gezogene_zahlen)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>umkehrabbildung <span class="ot">&lt;-</span> <span class="fu">lotto_umkehrabbildung</span>(abbildung)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gezogene_zahlen <span class="op">=</span> [<span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">23</span>, <span class="dv">34</span>, <span class="dv">45</span>, <span class="dv">49</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>abbildung <span class="op">=</span> lotto_abbildung(gezogene_zahlen)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>umkehrabbildung <span class="op">=</span> lotto_umkehrabbildung(abbildung)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+<p>Die Ausgabe zeigt die eindeutige Nummer der gezogenen Zahlen und die zurückgewonnenen Zahlen</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>abbildung  <span class="co"># Eindeutige Nummer</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Big Integer ('bigz') :
+[1] 13400039</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>umkehrabbildung  <span class="co"># Zurückgewonnene Zahlen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  5 12 23 34 45 49</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(abbildung)  <span class="co"># Eindeutige Nummer</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>13400039</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(umkehrabbildung)  <span class="co"># Zurückgewonnene Zahlen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[5, 12, 23, 34, 45, 49]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Die Ausgabe zeigt die eindeutige Nummer der gezogenen Zahlen und die zurückgewonnenen Zahlen.</p>
+<p>Die Frage bleibt, geht es auch ohne (extra) Scheifen bei der Suche nach dem nächsten <span class="math inline">\(a_i\)</span> in der Umkehrabbildung?</p>
 </section>
-<section id="beweis-durch-vermeidung" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-vermeidung">Beweis durch Vermeidung</h3>
-<p>Kapitel 3: Der Beweis hierfür wird erst in Kapitel 7 erbracht, wenn wir die Theorie weiterentwickelt haben.</p>
-<p>Kapitel 7: Der Einfachheit halber beweisen wir dies nur für den Fall z = 0. Der allgemeine Fall wird jedoch in Anhang C behandelt.</p>
-<p>Anhang C: Der formale Beweis geht über den Rahmen dieses Buches hinaus, aber unsere Intuition sagt uns natürlich, dass dies wahr ist.</p>
+<section id="referenzen" class="level1">
+<h1>Referenzen</h1>
+<ul>
+<li><a href="https://de.wikipedia.org/wiki/Lotto_(Spiel%20)">Wikipedia: Lotto (Spiel)</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Binomialkoeffizient">Wikipedia: Binomialkoeffizient</a></li>
+<li><a href="https://www.mathe-online.at/materialien/mathematik/kombinatorik-und-wahrscheinlichkeitsrechnung/">Kombinatorik und Wahrscheinlichkeitsrechnung</a></li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

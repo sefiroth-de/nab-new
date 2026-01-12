@@ -1,0 +1,157 @@
+---
+title: "Das Lotto-Abbildungsproblem"
+author: "Norman Markgraf"
+lang: de-DE
+date: "2025-12-22"
+date-modified: last-modified
+word-count: true
+reading-time: true
+categories: 
+  - Quarto
+  - Python
+  - R
+---
+
+# Die Beschreibung
+
+Jeder, der Kombinatorik oder Wahrscheinlichkeitsrechnung studiert hat, kennt das klassische Lotto-Problem: Aus einer Menge von 49 Zahlen werden 6 Zahlen ohne Zurücklegen gezogen. Wie viele verschiedene Kombinationen sind möglich?
+
+Die Antwort ist bekanntlich:
+$$
+  \binom{49}{6} = \frac{49!}{6!(49-6)!} = 13\,983\,816
+$$
+
+Aber viele sehen nicht, dass dies auch bedeutet, dass jedes Ziehungsergebnis ein-ein-deutig auf die Zahlen $1$ bis $13\,983\,816$ abbildet. 
+Genauer, es gibt (mindestens) eine Abbilung aus $\mathcal{L} = \{1, 2, \ldots, 49\}$ in $\mathcal{M} = \{1, 2, \ldots, 13\,983\,816\}$, so dass jede 6-elementige Teilmenge von $\mathcal{L}$ auf ein eindeutiges Element von $\mathcal{M}$ abgebildet wird.
+
+# Die Frage
+
+**Wie sieht so eine Abbildung aus und vorallem wie lautet die Umkehrabbildung?**
+
+
+# Eine mögliche Lösung
+
+Wir können die Abbildung konstruieren, indem wir die 6 gezogenen Zahlen sortieren und dann eine lexikographische Ordnung verwenden, um jede Kombination zu nummerieren.
+Angenommen, die gezogenen Zahlen sind $a_1 < a_2 < a_3 < a_4 < a_5 < a_6$. 
+Dann können wir die Abbildung $f: \mathcal{L}^6 \to \mathcal{M}$ wie folgt definieren:
+
+$$
+f(a_1, a_2, a_3, a_4, a_5, a_6) = \sum_{i=1}^{6} \binom{a_i - 1}{i}
+$$  
+
+Hierbei ist $\binom{n}{k}$ der Binomialkoeffizient, der die Anzahl der Möglichkeiten angibt, $k$ Elemente aus einer Menge von $n$ Elementen auszuwählen.
+
+Diese Abbildung ist eindeutig, da jede Kombination von 6 Zahlen eine eindeutige Summe von Binomialkoeffizienten ergibt.
+
+Die Umkehrabbildung $f^{-1}: \mathcal{M} \to \mathcal{L}^6$ kann durch eine iterative Methode konstruiert werden, bei der wir die größte Zahl $a_6$ bestimmen, die noch in die Summe passt, dann $a_5$, und so weiter, bis wir alle 6 Zahlen gefunden haben.
+
+Hier ist ein Beispiel für die Umkehrabbildung:
+
+1. Setze $n = f(a_1, a_2, a_3, a_4, a_5, a_6)$.
+
+2. Für $i$ von 6 bis 1:
+
+   - Finde die größte Zahl $a_i$ such that $\binom{a_i - 1}{i} \leq n$.
+
+   - Setze $n = n - \binom{a_i - 1}{i}$.
+
+3. Gib die Zahlen $a_1, a_2, a_3, a_4, a_5, a_6$ zurück.
+
+
+Diese Methode garantiert, dass wir die ursprünglichen gezogenen Zahlen zurückerhalten, da wir die gleiche Logik wie in der Vorwärtsabbildung verwenden, aber in umgekehrter Reihenfolge. 
+
+
+# Fazit
+
+Die Abbildung des Lotto-Problems zeigt, wie kombinatorische Konzepte verwendet werden können, um eindeutige Zuordnungen zwischen Mengen zu erstellen. 
+Diese Art von Abbildungen ist nicht nur in der Mathematik interessant, sondern findet auch Anwendungen in Bereichen wie Kryptographie und Datenkompression.
+
+# Implementierung in R und Python
+::: {.panel-tabset group="language"}
+### R
+```{r}
+#| warning: false
+# R-Code zur Berechnung der Abbildung und Umkehrabbildung
+library(gmp)
+
+# Funktion zur Berechnung der Abbildung
+lotto_abbildung <- function(a) {
+  l <- sapply(1:6, function(i) chooseZ(a[i] - 1, i), simplify = "array", USE.NAMES = FALSE)
+  return(l[[1]] + l[[2]] + l[[3]] + l[[4]] + l[[5]] + l[[6]])
+}
+
+# Funktion zur Berechnung der Umkehrabbildung
+lotto_umkehrabbildung <- function(n) {
+  a <- integer(6)
+  for (i in 6:1) {
+    a[i] <- max(which(chooseZ(0:49, i) <= n))
+    n <- n - chooseZ(a[i]-1, i)
+  }
+  return(a)
+}
+```
+
+### Python
+```{python}
+# Python-Code zur Berechnung der Abbildung und Umkehrabbildung
+from math import comb
+
+# Funktion zur Berechnung der Abbildung
+def lotto_abbildung(a):
+    l = [comb(a[i] - 1, i + 1) for i in range(6)]
+    return sum(l)
+
+# Funktion zur Berechnung der Umkehrabbildung
+def lotto_umkehrabbildung(n):
+    a = [0] * 6
+    for i in range(5, -1, -1):
+        tmp = max(k for k in range(50) if comb(k, i + 1) <= n)
+        a[i] = 1 + tmp
+        n -= comb(tmp, i + 1)
+    return a
+```
+:::
+
+# Beispiel
+::: {.panel-tabset group="language"}
+### R
+```{r}
+gezogene_zahlen <- c(5, 12, 23, 34, 45, 49)
+abbildung <- lotto_abbildung(gezogene_zahlen)
+umkehrabbildung <- lotto_umkehrabbildung(abbildung)
+```
+### Python
+```{python}
+gezogene_zahlen = [5, 12, 23, 34, 45, 49]
+abbildung = lotto_abbildung(gezogene_zahlen)
+umkehrabbildung = lotto_umkehrabbildung(abbildung)
+```
+:::
+
+Die Ausgabe zeigt die eindeutige Nummer der gezogenen Zahlen und die zurückgewonnenen Zahlen
+
+::: {.panel-tabset group="language"}
+### R
+```{r}
+# Ausgabe
+abbildung  # Eindeutige Nummer
+umkehrabbildung  # Zurückgewonnene Zahlen
+```
+### Python
+```{python}
+# Ausgabe
+print(abbildung)  # Eindeutige Nummer
+print(umkehrabbildung)  # Zurückgewonnene Zahlen
+```
+:::
+
+Die Ausgabe zeigt die eindeutige Nummer der gezogenen Zahlen und die zurückgewonnenen Zahlen.
+
+Die Frage bleibt, geht es auch ohne (extra) Scheifen bei der Suche nach dem nächsten $a_i$ in der Umkehrabbildung?
+
+# Referenzen
+- [Wikipedia: Lotto (Spiel)](https://de.wikipedia.org/wiki/Lotto_(Spiel
+))
+- [Wikipedia: Binomialkoeffizient](https://de.wikipedia.org/wiki/Binomialkoeffizient)
+- [Kombinatorik und Wahrscheinlichkeitsrechnung](https://www.mathe-online.at/materialien/mathematik/kombinatorik-und-wahrscheinlichkeitsrechnung/)
+

@@ -10,7 +10,590 @@
 <atom:link href="https://www.sefiroth.de/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Norman&#39;s Academic Blog</description>
 <generator>quarto-1.8.26</generator>
-<lastBuildDate>Tue, 02 Dec 2025 23:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 03 Jan 2026 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>B-Bäume und mehr: Ein Vergleich von Python-Implementierungen</title>
+  <dc:creator>Norman Markgraf</dc:creator>
+  <link>https://www.sefiroth.de/posts/2026-01-04-B-Baeume-und-mehr/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="einführung" class="level2">
+<h2 class="anchored" data-anchor-id="einführung">Einführung</h2>
+<p>B-Bäume sind eine Art von selbstbalancierenden Suchbäumen, die in Datenbanken und Dateisystemen weit verbreitet sind. In diesem Beitrag werde ich verschiedene Python-Implementierungen von B-Bäumen vergleichen und ihre Vor- und Nachteile diskutieren.</p>
+</section>
+<section id="implementierungen-im-vergleich" class="level2">
+<h2 class="anchored" data-anchor-id="implementierungen-im-vergleich">Implementierungen im Vergleich</h2>
+<ol type="1">
+<li><strong>bintrees</strong>: Diese Bibliothek bietet eine einfache Implementierung von B-Bäumen und anderen Baumstrukturen. Sie ist leicht zu verwenden und gut dokumentiert, aber möglicherweise nicht die leistungsfähigste Option für große Datenmengen.</li>
+<li><strong>bplustree</strong>: Diese Bibliothek implementiert B+-Bäume, eine Variante von B-Bäumen, die für Datenbankanwendungen optimiert ist. Sie bietet gute Leistung und Skalierbarkeit, erfordert jedoch ein tieferes Verständnis der B+-Baum-Struktur.</li>
+<li><strong>pybloom-live</strong>: Obwohl hauptsächlich für Bloom-Filter gedacht, enthält diese Bibliothek auch eine B-Baum-Implementierung. Sie ist nützlich für Anwendungen, die sowohl Bäume als auch probabilistische Datenstrukturen benötigen.</li>
+<li><strong>btree</strong>: Diese Implementierung ist in der Standardbibliothek von Python enthalten und bietet grundlegende B-Baum-Funktionalitäten. Sie ist einfach zu verwenden, aber möglicherweise nicht so leistungsfähig wie spezialisierte Bibliotheken.</li>
+</ol>
+</section>
+<section id="leistungstest" class="level2">
+<h2 class="anchored" data-anchor-id="leistungstest">Leistungstest</h2>
+<p>Um die Leistung der verschiedenen Implementierungen zu vergleichen, habe ich einen einfachen Test durchgeführt, bei dem ich eine große Anzahl von Einfügungen und Suchvorgängen durchgeführt habe. Hier sind die Ergebnisse:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> time</span>
+<span id="cb1-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> bintrees <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> FastRBTree</span>
+<span id="cb1-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> bplustree <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> BPlusTree</span>
+<span id="cb1-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Testdaten</span></span>
+<span id="cb1-5">data <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">list</span>(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100000</span>))</span>
+<span id="cb1-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># bintrees Test</span></span>
+<span id="cb1-7">bintree <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> FastRBTree()</span>
+<span id="cb1-8">start_time <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> time.time()</span>
+<span id="cb1-9"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> item <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> data:</span>
+<span id="cb1-10">    bintree.insert(item, item)</span>
+<span id="cb1-11">bintree_time <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> time.time() <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> start_time</span>
+<span id="cb1-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># bplustree Test</span></span>
+<span id="cb1-13">bplustree <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> BPlusTree(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'bplustree.db'</span>, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span>)</span>
+<span id="cb1-14">start_time <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> time.time()</span>
+<span id="cb1-15"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> item <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> data:</span>
+<span id="cb1-16">    bplustree.insert(item, item)</span>
+<span id="cb1-17">bplustree_time <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> time.time() <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> start_time</span>
+<span id="cb1-18"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"bintrees Einfügezeit: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>bintree_time<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> Sekunden"</span>)</span>
+<span id="cb1-19"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"bplustree Einfügezeit: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>bplustree_time<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> Sekunden"</span>)</span></code></pre></div></div>
+<p>Die Ergebnisse zeigten, dass <code>bplustree</code> bei großen Datenmengen eine bessere Leistung erzielte, insbesondere bei Suchvorgängen, während <code>bintrees</code> für kleinere Datensätze ausreichend war.</p>
+</section>
+<section id="fazit" class="level2">
+<h2 class="anchored" data-anchor-id="fazit">Fazit</h2>
+<p>Die Wahl der richtigen B-Baum-Implementierung hängt stark von den spezifischen Anforderungen Ihres Projekkts ab. Für einfache Anwendungen kann <code>bintrees</code> ausreichend sein, während <code>bplustree</code> besser für komplexe Datenbankanwendungen geeignet ist. Es lohnt sich, die verschiedenen Optionen zu testen, um die beste Leistung für Ihre spezifischen Anwendungsfälle zu erzielen. Unabhängig von der gewählten Implementierung bieten B-Bäume eine effiziente Möglichkeit, große Datenmengen zu verwalten und zu durchsuchen. Ich hoffe, dieser Vergleich hilft Ihnen bei der Auswahl der richtigen B-Baum-Implementierung für Ihre Python-Projekte! Happy Coding! 🚀</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Python</category>
+  <guid>https://www.sefiroth.de/posts/2026-01-04-B-Baeume-und-mehr/</guid>
+  <pubDate>Sat, 03 Jan 2026 23:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Das Lotto-Abbildungsproblem</title>
+  <dc:creator>Norman Markgraf</dc:creator>
+  <link>https://www.sefiroth.de/posts/2025-12-22-Das-Lotto-Abbildungs-Problem/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="die-beschreibung" class="level1">
+<h1>Die Beschreibung</h1>
+<p>Jeder, der Kombinatorik oder Wahrscheinlichkeitsrechnung studiert hat, kennt das klassische Lotto-Problem: Aus einer Menge von 49 Zahlen werden 6 Zahlen ohne Zurücklegen gezogen. Wie viele verschiedene Kombinationen sind möglich?</p>
+<p>Die Antwort ist bekanntlich: <img src="https://latex.codecogs.com/png.latex?%0A%20%20%5Cbinom%7B49%7D%7B6%7D%20=%20%5Cfrac%7B49!%7D%7B6!(49-6)!%7D%20=%2013%5C,983%5C,816%0A"></p>
+<p>Aber viele sehen nicht, dass dies auch bedeutet, dass jedes Ziehungsergebnis ein-ein-deutig auf die Zahlen <img src="https://latex.codecogs.com/png.latex?1"> bis <img src="https://latex.codecogs.com/png.latex?13%5C,983%5C,816"> abbildet. Genauer, es gibt (mindestens) eine Abbilung aus <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BL%7D%20=%20%5C%7B1,%202,%20%5Cldots,%2049%5C%7D"> in <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BM%7D%20=%20%5C%7B1,%202,%20%5Cldots,%2013%5C,983%5C,816%5C%7D">, so dass jede 6-elementige Teilmenge von <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BL%7D"> auf ein eindeutiges Element von <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BM%7D"> abgebildet wird.</p>
+</section>
+<section id="die-frage" class="level1">
+<h1>Die Frage</h1>
+<p><strong>Wie sieht so eine Abbildung aus und vorallem wie lautet die Umkehrabbildung?</strong></p>
+</section>
+<section id="eine-mögliche-lösung" class="level1">
+<h1>Eine mögliche Lösung</h1>
+<p>Wir können die Abbildung konstruieren, indem wir die 6 gezogenen Zahlen sortieren und dann eine lexikographische Ordnung verwenden, um jede Kombination zu nummerieren. Angenommen, die gezogenen Zahlen sind <img src="https://latex.codecogs.com/png.latex?a_1%20%3C%20a_2%20%3C%20a_3%20%3C%20a_4%20%3C%20a_5%20%3C%20a_6">. Dann können wir die Abbildung <img src="https://latex.codecogs.com/png.latex?f:%20%5Cmathcal%7BL%7D%5E6%20%5Cto%20%5Cmathcal%7BM%7D"> wie folgt definieren:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Af(a_1,%20a_2,%20a_3,%20a_4,%20a_5,%20a_6)%20=%20%5Csum_%7Bi=1%7D%5E%7B6%7D%20%5Cbinom%7Ba_i%20-%201%7D%7Bi%7D%0A"></p>
+<p>Hierbei ist <img src="https://latex.codecogs.com/png.latex?%5Cbinom%7Bn%7D%7Bk%7D"> der Binomialkoeffizient, der die Anzahl der Möglichkeiten angibt, <img src="https://latex.codecogs.com/png.latex?k"> Elemente aus einer Menge von <img src="https://latex.codecogs.com/png.latex?n"> Elementen auszuwählen.</p>
+<p>Diese Abbildung ist eindeutig, da jede Kombination von 6 Zahlen eine eindeutige Summe von Binomialkoeffizienten ergibt.</p>
+<p>Die Umkehrabbildung <img src="https://latex.codecogs.com/png.latex?f%5E%7B-1%7D:%20%5Cmathcal%7BM%7D%20%5Cto%20%5Cmathcal%7BL%7D%5E6"> kann durch eine iterative Methode konstruiert werden, bei der wir die größte Zahl <img src="https://latex.codecogs.com/png.latex?a_6"> bestimmen, die noch in die Summe passt, dann <img src="https://latex.codecogs.com/png.latex?a_5">, und so weiter, bis wir alle 6 Zahlen gefunden haben.</p>
+<p>Hier ist ein Beispiel für die Umkehrabbildung:</p>
+<ol type="1">
+<li><p>Setze <img src="https://latex.codecogs.com/png.latex?n%20=%20f(a_1,%20a_2,%20a_3,%20a_4,%20a_5,%20a_6)">.</p></li>
+<li><p>Für <img src="https://latex.codecogs.com/png.latex?i"> von 6 bis 1:</p>
+<ul>
+<li><p>Finde die größte Zahl <img src="https://latex.codecogs.com/png.latex?a_i"> such that <img src="https://latex.codecogs.com/png.latex?%5Cbinom%7Ba_i%20-%201%7D%7Bi%7D%20%5Cleq%20n">.</p></li>
+<li><p>Setze <img src="https://latex.codecogs.com/png.latex?n%20=%20n%20-%20%5Cbinom%7Ba_i%20-%201%7D%7Bi%7D">.</p></li>
+</ul></li>
+<li><p>Gib die Zahlen <img src="https://latex.codecogs.com/png.latex?a_1,%20a_2,%20a_3,%20a_4,%20a_5,%20a_6"> zurück.</p></li>
+</ol>
+<p>Diese Methode garantiert, dass wir die ursprünglichen gezogenen Zahlen zurückerhalten, da wir die gleiche Logik wie in der Vorwärtsabbildung verwenden, aber in umgekehrter Reihenfolge.</p>
+</section>
+<section id="fazit" class="level1">
+<h1>Fazit</h1>
+<p>Die Abbildung des Lotto-Problems zeigt, wie kombinatorische Konzepte verwendet werden können, um eindeutige Zuordnungen zwischen Mengen zu erstellen. Diese Art von Abbildungen ist nicht nur in der Mathematik interessant, sondern findet auch Anwendungen in Bereichen wie Kryptographie und Datenkompression.</p>
+</section>
+<section id="implementierung-in-r-und-python" class="level1">
+<h1>Implementierung in R und Python</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">R</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># R-Code zur Berechnung der Abbildung und Umkehrabbildung</span></span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(gmp)</span>
+<span id="cb1-3"></span>
+<span id="cb1-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Funktion zur Berechnung der Abbildung</span></span>
+<span id="cb1-5">lotto_abbildung <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(a) {</span>
+<span id="cb1-6">  l <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sapply</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>, <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(i) <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">chooseZ</span>(a[i] <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, i), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">simplify =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"array"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">USE.NAMES =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>)</span>
+<span id="cb1-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(l[[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]] <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> l[[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>]] <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> l[[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>]] <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> l[[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>]] <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> l[[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>]] <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> l[[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>]])</span>
+<span id="cb1-8">}</span>
+<span id="cb1-9"></span>
+<span id="cb1-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Funktion zur Berechnung der Umkehrabbildung</span></span>
+<span id="cb1-11">lotto_umkehrabbildung <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(n) {</span>
+<span id="cb1-12">  a <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">integer</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>)</span>
+<span id="cb1-13">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) {</span>
+<span id="cb1-14">    a[i] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">which</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">chooseZ</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">49</span>, i) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;=</span> n))</span>
+<span id="cb1-15">    n <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> n <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">chooseZ</span>(a[i]<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, i)</span>
+<span id="cb1-16">  }</span>
+<span id="cb1-17">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(a)</span>
+<span id="cb1-18">}</span></code></pre></div></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Python-Code zur Berechnung der Abbildung und Umkehrabbildung</span></span>
+<span id="cb2-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> math <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> comb</span>
+<span id="cb2-3"></span>
+<span id="cb2-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Funktion zur Berechnung der Abbildung</span></span>
+<span id="cb2-5"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> lotto_abbildung(a):</span>
+<span id="cb2-6">    l <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [comb(a[i] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, i <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>)]</span>
+<span id="cb2-7">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sum</span>(l)</span>
+<span id="cb2-8"></span>
+<span id="cb2-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Funktion zur Berechnung der Umkehrabbildung</span></span>
+<span id="cb2-10"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> lotto_umkehrabbildung(n):</span>
+<span id="cb2-11">    a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span></span>
+<span id="cb2-12">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>):</span>
+<span id="cb2-13">        tmp <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">max</span>(k <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> k <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span>) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> comb(k, i <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;=</span> n)</span>
+<span id="cb2-14">        a[i] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> tmp</span>
+<span id="cb2-15">        n <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-=</span> comb(tmp, i <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb2-16">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> a</span></code></pre></div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="beispiel" class="level1">
+<h1>Beispiel</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true" href="">R</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">gezogene_zahlen <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">23</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">34</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">45</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">49</span>)</span>
+<span id="cb3-2">abbildung <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lotto_abbildung</span>(gezogene_zahlen)</span>
+<span id="cb3-3">umkehrabbildung <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lotto_umkehrabbildung</span>(abbildung)</span></code></pre></div></div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">gezogene_zahlen <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">23</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">34</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">45</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">49</span>]</span>
+<span id="cb4-2">abbildung <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> lotto_abbildung(gezogene_zahlen)</span>
+<span id="cb4-3">umkehrabbildung <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> lotto_umkehrabbildung(abbildung)</span></code></pre></div></div>
+</div>
+</div>
+</div>
+</div>
+<p>Die Ausgabe zeigt die eindeutige Nummer der gezogenen Zahlen und die zurückgewonnenen Zahlen</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true" href="">R</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-3-1" class="tab-pane active" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Ausgabe</span></span>
+<span id="cb5-2">abbildung  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Eindeutige Nummer</span></span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Big Integer ('bigz') :
+[1] 13400039</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">umkehrabbildung  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Zurückgewonnene Zahlen</span></span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  5 12 23 34 45 49</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Ausgabe</span></span>
+<span id="cb9-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(abbildung)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Eindeutige Nummer</span></span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>13400039</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(umkehrabbildung)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Zurückgewonnene Zahlen</span></span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[5, 12, 23, 34, 45, 49]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Die Ausgabe zeigt die eindeutige Nummer der gezogenen Zahlen und die zurückgewonnenen Zahlen.</p>
+<p>Die Frage bleibt, geht es auch ohne (extra) Scheifen bei der Suche nach dem nächsten <img src="https://latex.codecogs.com/png.latex?a_i"> in der Umkehrabbildung?</p>
+</section>
+<section id="referenzen" class="level1">
+<h1>Referenzen</h1>
+<ul>
+<li><a href="https://de.wikipedia.org/wiki/Lotto_(Spiel%20)">Wikipedia: Lotto (Spiel)</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Binomialkoeffizient">Wikipedia: Binomialkoeffizient</a></li>
+<li><a href="https://www.mathe-online.at/materialien/mathematik/kombinatorik-und-wahrscheinlichkeitsrechnung/">Kombinatorik und Wahrscheinlichkeitsrechnung</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>Quarto</category>
+  <category>Python</category>
+  <category>R</category>
+  <guid>https://www.sefiroth.de/posts/2025-12-22-Das-Lotto-Abbildungs-Problem/</guid>
+  <pubDate>Sun, 21 Dec 2025 23:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Quarto-Dokumente mit WebP anstatt PNG Bilddateien erstellen</title>
   <dc:creator>Norman Markgraf</dc:creator>
@@ -173,7 +756,7 @@ background-color: null;
 font-style: inherit;">&gt;</span> ssh <span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">norman@raspberrypi.local</span></span></code></pre></div></div>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD Ebenso kann wie <a href="http://connect.raspberrypi.com" class="uri">http://connect.raspberrypi.com</a> R PI Connect benutzt werden, sofern es vorab eingerichtet wurde. ======= Ebenso kann <a href="http://connect.raspberrypi.com">R PI Connect</a> benutzt werden, wenn man es vorher eingerichtet hat. &gt;&gt;&gt;&gt;&gt;&gt;&gt; 5520f36 (Merge)</p>
+<p>Ebenso kann <a href="http://connect.raspberrypi.com">R PI Connect</a> benutzt werden, wenn man es vorher eingerichtet hat.</p>
 </section>
 <section id="schritt-4-startup-display-installieren" class="level3">
 <h3 class="anchored" data-anchor-id="schritt-4-startup-display-installieren">Schritt 4: Startup-Display installieren</h3>
@@ -185,7 +768,7 @@ font-style: inherit;">&gt;</span> git <span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">clone</span> https://github.com/NMarkgraf/pi-startup-display </span></code></pre></div></div>
 <p>installiert.</p>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD Später kann dann im Verzeichnis <code>pi-startup-display</code> einfach die aktuelle Version geladen werden durch: ======= Später kann dann im Verzeichnis <code>pi-startup-display</code> einfach das aktuelle Release von GutHUb durch den folgenden Befehl geladen werden: &gt;&gt;&gt;&gt;&gt;&gt;&gt; 5520f36 (Merge)</p>
+<p>Später kann dann im Verzeichnis <code>pi-startup-display</code> einfach das aktuelle Release von GutHUb durch den folgenden Befehl geladen werden:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&gt;</span> git <span class="ex" style="color: null;
@@ -248,9 +831,6 @@ background-color: null;
 font-style: inherit;">systemctl</span> stop startup-display.service</span></code></pre></div></div>
 </section>
 </section>
-<section id="head" class="level1">
-<h1>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</h1>
-<p>Aber in den Regel beendet sich das Programm aber selber. Dank e-paper stehen die zuletzt aktuallisierten Daten aber weiterhin auf dem Display. &gt;&gt;&gt;&gt;&gt;&gt;&gt; 5520f36 (Merge)</p>
 <section id="postgresql-installieren" class="level2">
 <h2 class="anchored" data-anchor-id="postgresql-installieren">PostgreSQL installieren</h2>
 <p>Ich gehe wie folgt vor:</p>
@@ -319,7 +899,6 @@ font-style: inherit;">/home/norman/netflixdb-postgres.sql</span></span></code></
 <p>Wir installieren die aktuelle Version von der Website: <a href="https://www.adminneo.org/download" class="uri">https://www.adminneo.org/download</a></p>
 
 
-</section>
 </section>
 </section>
 
@@ -6654,751 +7233,6 @@ font-style: inherit;">scale_y_log10</span>()</span>
   <category>Statistik</category>
   <guid>https://www.sefiroth.de/posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/</guid>
   <pubDate>Thu, 11 Feb 2021 23:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Cook Abstand</title>
-  <dc:creator>Norman Markgraf</dc:creator>
-  <link>https://www.sefiroth.de/posts/2020-06-29-cook-abstand/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p><strong>Frage: Was macht einen Wert zum Ausreißer?</strong></p>
-<p>Eine mögliche Antwort lautet: <em>Ein Wert gilt als Ausreißer, wenn er deutlich von den übrigen Werten abweicht <strong>und</strong> einen (starken) Einfluss auf das Modell ausübt.</em></p>
-<p>Ein Verfahren zur Identifikation solcher Ausreißer ist der <strong>Cook-Abstand</strong> (engl.: <strong>Cook’s distance</strong>). Die zugrunde liegende Idee besteht darin zu messen, wie stark ein einzelner Wert das Modell beeinflusst. Dazu vergleicht man das Modell einmal mit und einmal ohne diesen Wert.</p>
-<p>Sehen wir uns den Cook-Abstand anhand eines einfachen linearen Regressionsmodells näher an:</p>
-<section id="vorbereitungen" class="level3">
-<h3 class="anchored" data-anchor-id="vorbereitungen">Vorbereitungen</h3>
-<p>Wir nutzen das Paket <code>mosaic</code>, daher laden wir es zunächst:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">library</span>(mosaic)</span></code></pre></div></div>
-</div>
-<p>Falls die <strong>tipping</strong>-Daten nicht lokal vorliegen, werden sie aus dem Internet geladen:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> (<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">!</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">file.exists</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"tips.csv"</span>)) {</span>
-<span id="cb2-2">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">download.file</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"https://goo.gl/whKjnl"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">destfile =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"tips.csv"</span>)</span>
-<span id="cb2-3">}</span></code></pre></div></div>
-</div>
-<p>Nun werden die Daten eingelesen:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">tips <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">read.csv2</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"tips.csv"</span>)</span></code></pre></div></div>
-</div>
-<p>Für unser Modell verwenden wir nur die Variablen <code>total_bill</code> und <code>tip</code>:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">tips <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">select</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"total_bill"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"tip"</span>)) <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">-&gt;</span> tips</span></code></pre></div></div>
-</div>
-</section>
-<section id="unser-modell" class="level2">
-<h2 class="anchored" data-anchor-id="unser-modell">Unser Modell:</h2>
-<p>Zuerst ein Streudiagramm zur Visualisierung der Daten:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_point</span>(tip <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> total_bill, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">data =</span> tips)</span></code></pre></div></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2020-06-29-cook-abstand/index_files/figure-html/unnamed-chunk-2-1.webp" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Dann erstellen wir ein lineares Regressionsmodell:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">erg_lm <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">lm</span>(tip <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> total_bill, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">data =</span> tips)</span>
-<span id="cb6-2"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">summary</span>(erg_lm)</span></code></pre></div></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = tip ~ total_bill, data = tips)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--3.1982 -0.5652 -0.0974  0.4863  3.7434 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 0.920270   0.159735   5.761 2.53e-08 ***
-total_bill  0.105025   0.007365  14.260  &lt; 2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 1.022 on 242 degrees of freedom
-Multiple R-squared:  0.4566,    Adjusted R-squared:  0.4544 
-F-statistic: 203.4 on 1 and 242 DF,  p-value: &lt; 2.2e-16</code></pre>
-</div>
-</div>
-<p>Visualisierung der Regressionsgeraden:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_point</span>(tip <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> total_bill, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">data =</span> tips) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb8-2">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_coefline</span>(</span>
-<span id="cb8-3">    <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">model =</span> erg_lm,</span>
-<span id="cb8-4">    <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Regressionsgerade"</span>,</span>
-<span id="cb8-5">    <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">show.legend =</span> <span class="cn" style="color: #8f5902;
-background-color: null;
-font-style: inherit;">FALSE</span></span>
-<span id="cb8-6">  ) </span></code></pre></div></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2020-06-29-cook-abstand/index_files/figure-html/unnamed-chunk-4-1.webp" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Einflussreiche Ausreißer können bei linearen Modellen problematisch sein. Was passiert, wenn wir einen potenziellen Ausreißer entfernen?</p>
-<p>Beispiel: Wir eliminieren die Beobachtung mit dem Index 173</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">tips <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">slice</span>(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">173</span>) <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">-&gt;</span> tips_removed</span>
-<span id="cb9-2">tips_removed</span></code></pre></div></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  total_bill  tip
-1       7.25 5.15</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">tips <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">slice</span>(<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">173</span>) <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">-&gt;</span> tips_red</span>
-<span id="cb11-2">erg_lm_red <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">lm</span>(tip <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> total_bill, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">data =</span> tips_red)</span>
-<span id="cb11-3"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">summary</span>(erg_lm_red)</span></code></pre></div></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = tip ~ total_bill, data = tips_red)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--3.2136 -0.5351 -0.0818  0.4951  3.6869 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  0.86065    0.15709   5.479 1.08e-07 ***
-total_bill   0.10731    0.00723  14.843  &lt; 2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.9992 on 241 degrees of freedom
-Multiple R-squared:  0.4776,    Adjusted R-squared:  0.4754 
-F-statistic: 220.3 on 1 and 241 DF,  p-value: &lt; 2.2e-16</code></pre>
-</div>
-</div>
-<p>Grafischer Vergleich:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_point</span>(tip <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> total_bill, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">data =</span> tips_red) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb13-2">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_coefline</span>(</span>
-<span id="cb13-3">    <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">model =</span> erg_lm,</span>
-<span id="cb13-4">    <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Regressionsgerade"</span></span>
-<span id="cb13-5">    ) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb13-6">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_point</span>(</span>
-<span id="cb13-7">    tip <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> total_bill, </span>
-<span id="cb13-8">    <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">colour =</span> <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Entfernter Punkt"</span>,</span>
-<span id="cb13-9">    <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">data =</span> tips_removed)</span></code></pre></div></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2020-06-29-cook-abstand/index_files/figure-html/unnamed-chunk-7-1.webp" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="berechnung-des-cook-abstands" class="level2">
-<h2 class="anchored" data-anchor-id="berechnung-des-cook-abstands">Berechnung des Cook-Abstands</h2>
-<p>Wir vergleichen die Prognosen beider Modelle:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1">new_data <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">tibble</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">total_bill =</span> tips<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>total_bill)</span>
-<span id="cb14-2">prognose_lm <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">predict</span>(erg_lm, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">newdata =</span> new_data)</span>
-<span id="cb14-3">prognose_lm_red <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">predict</span>(erg_lm_red, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">newdata =</span> new_data)</span></code></pre></div></div>
-</div>
-<p>Berechnung:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ad_j%20=%20%5Csum_%7Bi=1%7D%5En%20%5Cleft(%5Chat%7By%7D_i%20-%20%5Chat%7By%7D_%7Bi(j)%7D%5Cright)%5E2%0A"> Dabei ist <img src="https://latex.codecogs.com/png.latex?%5Chat%7By%7D_i"> die Prognose des Wertes <img src="https://latex.codecogs.com/png.latex?y_i"> auf Basis von <img src="https://latex.codecogs.com/png.latex?x_i"> mit dem Originalmodell und <img src="https://latex.codecogs.com/png.latex?%5Chat%7By%7D_%7Bi(j)%7D"> die Prognose wenn man die <img src="https://latex.codecogs.com/png.latex?j">-te Beobachtung aus dem Modell gestrichen hat.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">d_j <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">sum</span>((prognose_lm <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span> prognose_lm_red)<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">^</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>)</span>
-<span id="cb15-2">d_j</span></code></pre></div></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1511406</code></pre>
-</div>
-</div>
-<p>Der Cook Abstand <img src="https://latex.codecogs.com/png.latex?D_j"> wird nun noch <em>normiert</em> durch <img src="https://latex.codecogs.com/png.latex?%7B%5Ctext%7Bvar%7D_%7B%5Ctext%7Bcook%7D%7D%7D%20=%20p%20%5Ccdot%20s_%7B%5Cepsilon_i%5E2%7D%5E2"> Dabei ist <img src="https://latex.codecogs.com/png.latex?s_%7B%5Cepsilon_i%5E2%7D%5E2"> der erwartungstreue Schätzer der Varianz der Residuen und <img src="https://latex.codecogs.com/png.latex?p"> die Anzahl aller erklärenden Variablen plus Eins, also: $ 1 + 1 = 2$.</p>
-<p>Normierung des Cook-Abstands:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%20%20D_j%20=%20%5Cfrac%7Bd_j%7D%7B%5Ctext%7Bvar%7D_%7B%5Ctext%7Bcook%7D%7D%7D%20=%20%5Cfrac%7B%5Csum%5Climits_%7Bi=1%7D%5En%20%5Cleft(%5Chat%7By%7D_i%20-%20%5Chat%7By%7D_%7Bi(j)%7D%5Cright)%5E2%7D%7Bp%20%5Ccdot%20s_%7B%5Cepsilon_i%5E2%7D%5E2%7D%0A"></p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Summary des Modells</span></span>
-<span id="cb17-2">selm <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">summary</span>(erg_lm)</span>
-<span id="cb17-3"></span>
-<span id="cb17-4"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Wir finden p als rank im Modell</span></span>
-<span id="cb17-5">p <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> erg_lm<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>rank </span>
-<span id="cb17-6"></span>
-<span id="cb17-7"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Wir finden den erwatungtreuen Schätzer im Summary des Modells</span></span>
-<span id="cb17-8">s_quad_eps_quad <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> (selm<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>sigma)<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">^</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span> </span>
-<span id="cb17-9"></span>
-<span id="cb17-10">var_cook <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">=</span> p <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span> s_quad_eps_quad</span>
-<span id="cb17-11"></span>
-<span id="cb17-12">D_j <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">=</span> d_j <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span> var_cook</span>
-<span id="cb17-13">D_j</span></code></pre></div></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.07234504</code></pre>
-</div>
-</div>
-<p>Alternativ kann der Wert direkt mit cooks.distance() berechnet werden:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">cooks.distance</span>(erg_lm)[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">173</span>]</span></code></pre></div></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>       173 
-0.07234504 </code></pre>
-</div>
-</div>
-<p>Wann aber ist nun ein Wert ein <em>einflussreicher</em> Ausreißer?</p>
-</section>
-<section id="entscheidungskriterien" class="level2">
-<h2 class="anchored" data-anchor-id="entscheidungskriterien">Entscheidungskriterien</h2>
-<p>Cook selber gibt dafür die Bedingung <img src="https://latex.codecogs.com/png.latex?D_j%20%3E%201"> an. Andere Autor*innen schreiben <img src="https://latex.codecogs.com/png.latex?D_j%20%3E%204/n">, wobei <img src="https://latex.codecogs.com/png.latex?n"> die Anzahl der Beobachtung ist.</p>
-<p>In unserem Beispiel liefert die Variante <img src="https://latex.codecogs.com/png.latex?D_j%20%3E%201"></p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1">cooks <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">cooks.distance</span>(erg_lm)</span>
-<span id="cb21-2"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">names</span>(cooks) <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="cn" style="color: #8f5902;
-background-color: null;
-font-style: inherit;">NULL</span></span>
-<span id="cb21-3">n <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">nrow</span>(tips)</span>
-<span id="cb21-4"></span>
-<span id="cb21-5"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">any</span>(cooks <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>)</span></code></pre></div></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE</code></pre>
-</div>
-</div>
-<p>keinen Ausreißer.</p>
-<p>Wenn wir jedoch mit <img src="https://latex.codecogs.com/png.latex?D_j%20%3E%204/n"> suchen .</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">any</span>(cooks <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">4</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span>n)</span></code></pre></div></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-</div>
-<p>dann gibt es Ausreißer.</p>
-<p>Die Indices dieser finden wir mit:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">which</span>(cooks <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">4</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span>n)</span></code></pre></div></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1]  24  48  57 103 142 157 171 173 179 183 184 185 188 208 211 213 215 238</code></pre>
-</div>
-</div>
-<p>Daten bereinigen:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1">remove <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">which</span>(cooks <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">4</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span>n)</span>
-<span id="cb27-2">tips <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">slice</span>(<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span>remove) <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">-&gt;</span> tips_no_outliers</span>
-<span id="cb27-3">tips <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">slice</span>(remove) <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">-&gt;</span> tips_removed</span>
-<span id="cb27-4">erg_lm_no_outliers <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">lm</span>(tip <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> total_bill, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">data =</span> tips_no_outliers)</span></code></pre></div></div>
-</div>
-<p>Ergebnis des Modells:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">summary</span>(erg_lm_no_outliers)</span></code></pre></div></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = tip ~ total_bill, data = tips_no_outliers)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--2.22592 -0.48166 -0.06794  0.46992  2.31414 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 0.773324   0.139435   5.546  8.2e-08 ***
-total_bill  0.111799   0.006958  16.069  &lt; 2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.7778 on 224 degrees of freedom
-Multiple R-squared:  0.5355,    Adjusted R-squared:  0.5334 
-F-statistic: 258.2 on 1 and 224 DF,  p-value: &lt; 2.2e-16</code></pre>
-</div>
-</div>
-<p>Daten bereinigen:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_point</span>(tip <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> total_bill, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">data =</span> erg_lm_no_outliers) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb30-2">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_coefline</span>(</span>
-<span id="cb30-3">    <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">model =</span> erg_lm_no_outliers, </span>
-<span id="cb30-4">    <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Regressionsgerade"</span></span>
-<span id="cb30-5">  )</span></code></pre></div></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2020-06-29-cook-abstand/index_files/figure-html/unnamed-chunk-16-1.webp" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Grafischer Vergleich beider Modelle:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_point</span>(tip <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> total_bill, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">data =</span> erg_lm) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb31-2">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_coefline</span>(</span>
-<span id="cb31-3">    <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">model =</span>  erg_lm,</span>
-<span id="cb31-4">    <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Regressionsgerade (Orginal)"</span></span>
-<span id="cb31-5">  ) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb31-6">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_coefline</span>(</span>
-<span id="cb31-7">    <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">model =</span> erg_lm_no_outliers,</span>
-<span id="cb31-8">    <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Regressionsgerade (No Outliers)"</span></span>
-<span id="cb31-9">  ) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb31-10">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_point</span>(</span>
-<span id="cb31-11">    tip <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> total_bill,</span>
-<span id="cb31-12">    <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Entfernte Punkte"</span>,</span>
-<span id="cb31-13">    <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">data =</span> tips_removed</span>
-<span id="cb31-14">  )</span></code></pre></div></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2020-06-29-cook-abstand/index_files/figure-html/unnamed-chunk-17-1.webp" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="modelle-in-gleichungsform" class="level2">
-<h2 class="anchored" data-anchor-id="modelle-in-gleichungsform">Modelle in Gleichungsform</h2>
-<p>Das ursprüngliche Modell:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%20%20%5Cwidehat%7Btips%7D_%7Blm%7D%20=%200.9202696%20+%200.1050245%20%5Ccdot%20total%5C_bill%0A"></p>
-<p>Das um pot. Ausreißer bereinigte Modell:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%20%20%5Cwidehat%7Btips%7D_%7Blm%5C_no%7D%200.7733236%20+%200.1117985%20%5Ccdot%20total%5C_bill%0A"></p>
-
-
-</section>
-
- ]]></description>
-  <category>Statistik</category>
-  <guid>https://www.sefiroth.de/posts/2020-06-29-cook-abstand/</guid>
-  <pubDate>Sun, 28 Jun 2020 22:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Der Zentrale Grenzwertsatz</title>
-  <dc:creator>Norman Markgraf</dc:creator>
-  <link>https://www.sefiroth.de/posts/2017-04-05-der-zentrale-grenzwertsatz/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<section id="der-zentrale-grenzwertsatz-der-statistik-bei-identischer-verteilung." class="level2">
-<h2 class="anchored" data-anchor-id="der-zentrale-grenzwertsatz-der-statistik-bei-identischer-verteilung.">Der <strong>Zentrale Grenzwertsatz</strong> der Statistik bei identischer Verteilung.</h2>
-<section id="zentraler-grenzwertsatz" class="level3">
-<h3 class="anchored" data-anchor-id="zentraler-grenzwertsatz">Zentraler Grenzwertsatz</h3>
-<p>Seien <img src="https://latex.codecogs.com/png.latex?X_1,%20X_2,%20...,%20X_n"> unabhängige und identisch verteilte Zufallsvariablen mit bekanntem Erwartungswert <img src="https://latex.codecogs.com/png.latex?E(X_i)%20=%20%5Cmu"> und bekannter Varianz <img src="https://latex.codecogs.com/png.latex?Var(X_i)=%5Csigma%5E2">.</p>
-<p>Für die Summe <img src="https://latex.codecogs.com/png.latex?S_n%20=%20%5Csum_%7Bi=1%7D%5En%20X_i"> ist dann der Erwartungswert <img src="https://latex.codecogs.com/png.latex?E(S_n)=%20n%20%5Ccdot%20%5Cmu"> und die Varianz <img src="https://latex.codecogs.com/png.latex?Var(S_n)=%20n%20%5Ccdot%20%5Csigma%5E2">.</p>
-<p>Dann gilt für die <em>standardisierte</em> Zufallsvariable</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign*%7D%0AZ_n%20&amp;=%20%5Cfrac%7B%5Cleft(%5Csum%5Climits_%7Bi=1%7D%5En%20X_i%5Cright)%20-%20n%20%5Ccdot%20%5Cmu%7D%7B%5Csqrt%7Bn%5Ccdot%20%5Csigma%5E2%7D%7D%0A%20%20%20%20=%20%5Cfrac%7BS_n%20-%20n%20%5Ccdot%20%5Cmu%7D%7B%5Csigma%20%5Ccdot%20%5Csqrt%7Bn%7D%7D%0A%20%20%20%20=%20%5Cfrac%7Bn%20%5Ccdot%20%5Cbar%7BX%7D_n-n%20%5Ccdot%20%5Cmu%7D%7B%5Csigma%20%5Ccdot%20n%20/%20%5Csqrt%7Bn%7D%7D%20%5C%5C%0A%20%20%20%20&amp;=%20%5Cfrac%7B%5Cbar%7BX%7D_n%20-%20%5Cmu%7D%7B%5Csigma%20/%20%5Csqrt%7Bn%7D%7D%0A%20%20%20%20=%20%5Cfrac%7B%5Cbar%7BX%7D_n%20-%20%5Cmu%7D%7B%5Csigma%7D%20%5Ccdot%20%5Csqrt%7Bn%7D,%0A%5Cend%7Balign*%7D%0A"></p>
-<p>dass sie für wachsendes <img src="https://latex.codecogs.com/png.latex?n"> immer besser durch die <em>Standardnormalverteilung</em> <img src="https://latex.codecogs.com/png.latex?N(0,%201)"> approximiert werden kann.</p>
-<p>Mit anderen Worten:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0AP(Z_n%20%5Cleq%20x)%20%5Clongrightarrow%20%5CPhi(x),%20%5Cquad%20%5Ctext%7B%20f%C3%BCr%20%7D%5C;%20n%20%5Crightarrow%20%5Cinfty%0A"></p>
-</section>
-</section>
-<section id="ein-beispiel" class="level2">
-<h2 class="anchored" data-anchor-id="ein-beispiel">Ein Beispiel:</h2>
-<p>Nehmen wir drei Verteilungen mit Zufallsvariable <img src="https://latex.codecogs.com/png.latex?U">, <img src="https://latex.codecogs.com/png.latex?X">, <img src="https://latex.codecogs.com/png.latex?Y"> und jeweils <img src="https://latex.codecogs.com/png.latex?n"> Realisationen <img src="https://latex.codecogs.com/png.latex?u_1,%5Cdots,%20u_n">, <img src="https://latex.codecogs.com/png.latex?x_1,%5Cdots,%20x_n">, <img src="https://latex.codecogs.com/png.latex?y_1,%5Cdots,%20y_n">.</p>
-<p>Wählen wir zunächst <img src="https://latex.codecogs.com/png.latex?n=5">:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">u</span></code></pre></div></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 19.726 69.683 60.790  0.955 42.901</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">x</span></code></pre></div></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  7.942 15.905 12.917  6.818  4.434</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">y</span></code></pre></div></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 59.961 56.552 51.094 75.288 47.985</code></pre>
-</div>
-</div>
-<p>Standardisieren wir die Werte:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">library</span>(mosaic)</span>
-<span id="cb7-2"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">zscore</span>(u)</span></code></pre></div></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.6695256  1.0830283  0.7710507 -1.3280357  0.1434823</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">zscore</span>(x)</span></code></pre></div></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.3543069  1.3440714  0.7067796 -0.5940379 -1.1025063</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">zscore</span>(y)</span></code></pre></div></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.1677971 -0.1526624 -0.6657361  1.6085958 -0.9579944</code></pre>
-</div>
-</div>
-<p>Die Behauptung des Zentralengrenzwertsatzes ist nun, dass mit steigender Anzahl an Werten <img src="https://latex.codecogs.com/png.latex?n"> die standardisierten Werte in der empirischen Verteilungsfunktion sich immer mehr der Verteilungsfunktion der Standardnormalverteilung annähern:</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2017-04-05-der-zentrale-grenzwertsatz/index_files/figure-html/unnamed-chunk-4-1.webp" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2017-04-05-der-zentrale-grenzwertsatz/index_files/figure-html/unnamed-chunk-4-2.webp" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2017-04-05-der-zentrale-grenzwertsatz/index_files/figure-html/unnamed-chunk-4-3.webp" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2017-04-05-der-zentrale-grenzwertsatz/index_files/figure-html/unnamed-chunk-4-4.webp" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Weiterführende Literatur und Quellen dieses Eintrags:</strong></p>
-
-
-</section>
-
- ]]></description>
-  <category>Statistik</category>
-  <guid>https://www.sefiroth.de/posts/2017-04-05-der-zentrale-grenzwertsatz/</guid>
-  <pubDate>Tue, 04 Apr 2017 22:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

@@ -188,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Geändert</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">3. Dezember 2025</p>
+        <p class="date-modified">15. Dezember 2025</p>
       </div>
     </div>
       
@@ -229,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Oder einfach den Hostnamen “raspberrpi.local” nutzen.</p>
 <p>Man kann sich somit ggf. mittels ssh und dem folgenden Kommando anmelden:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ssh <span class="ex">norman@raspberrypi.local</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD Ebenso kann wie <a href="http://connect.raspberrypi.com" class="uri">http://connect.raspberrypi.com</a> R PI Connect benutzt werden, sofern es vorab eingerichtet wurde. ======= Ebenso kann <a href="http://connect.raspberrypi.com">R PI Connect</a> benutzt werden, wenn man es vorher eingerichtet hat. &gt;&gt;&gt;&gt;&gt;&gt;&gt; 5520f36 (Merge)</p>
+<p>Ebenso kann <a href="http://connect.raspberrypi.com">R PI Connect</a> benutzt werden, wenn man es vorher eingerichtet hat.</p>
 </section>
 <section id="schritt-4-startup-display-installieren" class="level3">
 <h3 class="anchored" data-anchor-id="schritt-4-startup-display-installieren">Schritt 4: Startup-Display installieren</h3>
@@ -237,7 +237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Es ist unter <a href="https://github.com/NMarkgraf/pi-startup-display" class="uri">https://github.com/NMarkgraf/pi-startup-display</a> zu finden und wird einfach in das Hauptverzeichnis des Nutzers “norman” unter “/home/norman” per</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> git <span class="ex">clone</span> https://github.com/NMarkgraf/pi-startup-display </span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>installiert.</p>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD Später kann dann im Verzeichnis <code>pi-startup-display</code> einfach die aktuelle Version geladen werden durch: ======= Später kann dann im Verzeichnis <code>pi-startup-display</code> einfach das aktuelle Release von GutHUb durch den folgenden Befehl geladen werden: &gt;&gt;&gt;&gt;&gt;&gt;&gt; 5520f36 (Merge)</p>
+<p>Später kann dann im Verzeichnis <code>pi-startup-display</code> einfach das aktuelle Release von GutHUb durch den folgenden Befehl geladen werden:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> git <span class="ex">pull</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Damit dieses Skript nach jedem Neustart automatisch (einmal) gestartet wird bin ich nach dem Beispiel von <a href="https://webnist.de/automatisches-starten-eines-python-skripts-auf-dem-raspberry-pi-mit-systemd/" class="uri">https://webnist.de/automatisches-starten-eines-python-skripts-auf-dem-raspberry-pi-mit-systemd/</a> vorgegangen.</p>
 <p>Aber ich habe die service Datei “/etc/systemd/system/startup-display.service” wie folgt angepasst:</p>
@@ -272,9 +272,6 @@ WantedBy=multi-user.target</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sudo <span class="ex">systemctl</span> stop startup-display.service</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="head" class="level1">
-<h1>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</h1>
-<p>Aber in den Regel beendet sich das Programm aber selber. Dank e-paper stehen die zuletzt aktuallisierten Daten aber weiterhin auf dem Display. &gt;&gt;&gt;&gt;&gt;&gt;&gt; 5520f36 (Merge)</p>
 <section id="postgresql-installieren" class="level2">
 <h2 class="anchored" data-anchor-id="postgresql-installieren">PostgreSQL installieren</h2>
 <p>Ich gehe wie folgt vor:</p>
@@ -311,7 +308,6 @@ WantedBy=multi-user.target</code></pre>
 <p>Wir installieren die aktuelle Version von der Website: <a href="https://www.adminneo.org/download" class="uri">https://www.adminneo.org/download</a></p>
 
 
-</section>
 </section>
 </section>
 

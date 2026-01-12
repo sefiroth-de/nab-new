@@ -8,7 +8,7 @@
 
 <meta name="author" content="Norman Markgraf">
 
-<title>Beweisverfahren in der Mathematik – Norman’s Academic Blog</title>
+<title>B-Bäume und mehr: Ein Vergleich von Python-Implementierungen – Norman’s Academic Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -70,35 +105,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -154,10 +160,9 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Beweisverfahren in der Mathematik</h1>
-            <p class="subtitle lead">Aus dem Internet frei übersetzt.</p>
+      <h1 class="title">B-Bäume und mehr: Ein Vergleich von Python-Implementierungen</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">Mathematik</div>
+                <div class="quarto-category">Python</div>
               </div>
                   </div>
   </div>
@@ -175,14 +180,14 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Veröffentlichungsdatum</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">27. Juli 2025</p>
+        <p class="date">4. Januar 2026</p>
       </div>
     </div>
     
       <div>
       <div class="quarto-title-meta-heading">Geändert</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">3. Dezember 2025</p>
+        <p class="date-modified">12. Januar 2026</p>
       </div>
     </div>
       
@@ -200,58 +205,48 @@ window.Quarto = {
 
 
 
-<section id="allgemeine-beweistechniken" class="level2">
-<h2 class="anchored" data-anchor-id="allgemeine-beweistechniken">Allgemeine Beweistechniken</h2>
-<section id="beweis-durch-einschüchterung" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-einschüchterung">Beweis durch Einschüchterung</h3>
-<p>Trivial!</p>
+<section id="einführung" class="level2">
+<h2 class="anchored" data-anchor-id="einführung">Einführung</h2>
+<p>B-Bäume sind eine Art von selbstbalancierenden Suchbäumen, die in Datenbanken und Dateisystemen weit verbreitet sind. In diesem Beitrag werde ich verschiedene Python-Implementierungen von B-Bäumen vergleichen und ihre Vor- und Nachteile diskutieren.</p>
 </section>
-<section id="beweis-durch-umständliche-notation" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-umständliche-notation">Beweis durch umständliche Notation</h3>
-<p>Der Satz folgt sofort aus dem Fakt</p>
-<p><span class="math display">\[
-  \left|
-    \oplus_{k \in S}
-      \left(
-       \mathfrak{K}^{\mathbb{F}^\alpha(i)}  
-      \right)_{i \in \mathcal{U}_k}
-  \right|
-  \preceq \aleph_1
-  \text{ wenn }
-  \left[
-    \mathfrak{H}_\mathcal{W}
-  \right]     
-  \cap \mathbb{F}^\alpha(\mathbb{N}) \neq \emptyset.
-\]</span></p>
+<section id="implementierungen-im-vergleich" class="level2">
+<h2 class="anchored" data-anchor-id="implementierungen-im-vergleich">Implementierungen im Vergleich</h2>
+<ol type="1">
+<li><strong>bintrees</strong>: Diese Bibliothek bietet eine einfache Implementierung von B-Bäumen und anderen Baumstrukturen. Sie ist leicht zu verwenden und gut dokumentiert, aber möglicherweise nicht die leistungsfähigste Option für große Datenmengen.</li>
+<li><strong>bplustree</strong>: Diese Bibliothek implementiert B+-Bäume, eine Variante von B-Bäumen, die für Datenbankanwendungen optimiert ist. Sie bietet gute Leistung und Skalierbarkeit, erfordert jedoch ein tieferes Verständnis der B+-Baum-Struktur.</li>
+<li><strong>pybloom-live</strong>: Obwohl hauptsächlich für Bloom-Filter gedacht, enthält diese Bibliothek auch eine B-Baum-Implementierung. Sie ist nützlich für Anwendungen, die sowohl Bäume als auch probabilistische Datenstrukturen benötigen.</li>
+<li><strong>btree</strong>: Diese Implementierung ist in der Standardbibliothek von Python enthalten und bietet grundlegende B-Baum-Funktionalitäten. Sie ist einfach zu verwenden, aber möglicherweise nicht so leistungsfähig wie spezialisierte Bibliotheken.</li>
+</ol>
 </section>
-<section id="beweis-durch-unzugreifbare-literatur" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-unzugreifbare-literatur">Beweis durch unzugreifbare Literatur</h3>
-<p>Der Satz ist ein einfaches Korrollat eines Ergebnis bewiesen in einer handgeschriebenen Anmerkung ausgehändigt in einer Vorlesung bei der Jugoslawischen Mathematischen Gesellschaft 1973.</p>
+<section id="leistungstest" class="level2">
+<h2 class="anchored" data-anchor-id="leistungstest">Leistungstest</h2>
+<p>Um die Leistung der verschiedenen Implementierungen zu vergleichen, habe ich einen einfachen Test durchgeführt, bei dem ich eine große Anzahl von Einfügungen und Suchvorgängen durchgeführt habe. Hier sind die Ergebnisse:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bintrees <span class="im">import</span> FastRBTree</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bplustree <span class="im">import</span> BPlusTree</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Testdaten</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">100000</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># bintrees Test</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>bintree <span class="op">=</span> FastRBTree()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> time.time()</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> data:</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    bintree.insert(item, item)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>bintree_time <span class="op">=</span> time.time() <span class="op">-</span> start_time</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># bplustree Test</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>bplustree <span class="op">=</span> BPlusTree(<span class="st">'bplustree.db'</span>, order<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> time.time()</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> data:</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    bplustree.insert(item, item)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>bplustree_time <span class="op">=</span> time.time() <span class="op">-</span> start_time</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"bintrees Einfügezeit: </span><span class="sc">{</span>bintree_time<span class="sc">}</span><span class="ss"> Sekunden"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"bplustree Einfügezeit: </span><span class="sc">{</span>bplustree_time<span class="sc">}</span><span class="ss"> Sekunden"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Die Ergebnisse zeigten, dass <code>bplustree</code> bei großen Datenmengen eine bessere Leistung erzielte, insbesondere bei Suchvorgängen, während <code>bintrees</code> für kleinere Datensätze ausreichend war.</p>
 </section>
-<section id="beweis-durch-geisterhafte-zitate" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-geisterhafte-zitate">Beweis durch geisterhafte Zitate</h3>
-<p>Der Beweis kann auf Seite 478 gefunden werden, in einem Buch, welches nur 396 Seiten hat.</p>
-</section>
-<section id="beweis-durch-circularer-argumentation" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-circularer-argumentation">Beweis durch circularer Argumentation</h3>
-<p>Proposition 5.18 in [BL] ist ein einfaches Korollar zm Satz 7.18 in [C], welches wiederum auf Korollar 2.14 in [K] basiert. Dieses wiederum wird unter Bezugnahme auf Proposition 5.18 in [BL] hergeleitet.</p>
-</section>
-<section id="beweis-durch-autorität" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-autorität">Beweis durch Autorität</h3>
-<p>Mein guter Kollege Andrew meinte, er glaube, er hätte dafür vor ein paar Jahren einen Beweis finden können …</p>
-</section>
-<section id="beweis-durch-internet-referenz" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-internet-referenz">Beweis durch Internet Referenz</h3>
-<p>Für Interessierte ist das Ergebnis auf der Webseite zu diesem Buch zu sehen. – Die es leider nicht mehr gibt.</p>
-</section>
-<section id="beweis-durch-vermeidung" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-vermeidung">Beweis durch Vermeidung</h3>
-<p>Kapitel 3: Der Beweis hierfür wird erst in Kapitel 7 erbracht, wenn wir die Theorie weiterentwickelt haben.</p>
-<p>Kapitel 7: Der Einfachheit halber beweisen wir dies nur für den Fall z = 0. Der allgemeine Fall wird jedoch in Anhang C behandelt.</p>
-<p>Anhang C: Der formale Beweis geht über den Rahmen dieses Buches hinaus, aber unsere Intuition sagt uns natürlich, dass dies wahr ist.</p>
+<section id="fazit" class="level2">
+<h2 class="anchored" data-anchor-id="fazit">Fazit</h2>
+<p>Die Wahl der richtigen B-Baum-Implementierung hängt stark von den spezifischen Anforderungen Ihres Projekkts ab. Für einfache Anwendungen kann <code>bintrees</code> ausreichend sein, während <code>bplustree</code> besser für komplexe Datenbankanwendungen geeignet ist. Es lohnt sich, die verschiedenen Optionen zu testen, um die beste Leistung für Ihre spezifischen Anwendungsfälle zu erzielen. Unabhängig von der gewählten Implementierung bieten B-Bäume eine effiziente Möglichkeit, große Datenmengen zu verwalten und zu durchsuchen. Ich hoffe, dieser Vergleich hilft Ihnen bei der Auswahl der richtigen B-Baum-Implementierung für Ihre Python-Projekte! Happy Coding! 🚀</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
