@@ -18,12 +18,20 @@ while read -r pytn
 do
     echo "$pytn"
     # avoid commented filename
-    [[ $pytn = \#* ]] && continue
-    [[ $fast == TRUE ]] && env PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto' \
-        PYTHON_CFLAGS='-march=native -mtune=native' \
-        pyenv install --skip-existing $pytn && continue
-    env PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto' \
-        PYTHON_CFLAGS='-march=native -mtune=native' \
+    [[ $pytn == \#* ]] && \
+        continue
+    # default options and cflags
+    MY_PY_CONFIG_OPS='--enable-optimizations --with-lto'
+    MY_PY_CFLAGS='-march=native -mtune=native'
+    # change default, when *t pythons
+    [[ $pytn == *t ]] && { MY_PY_CONFIG_OPS=$MY_PY_CONFIG_OPS; }
+    # '--enable-experimental-jit=yes-off'
+    [[ $fast == TRUE ]] && \
+        env PYTHON_CONFIGURE_OPTS=$MY_PY_CONFIG_OPS \
+            PYTHON_CFLAGS=$MY_PY_CFLAGS \
+            pyenv install --skip-existing --verbose $pytn && \
+            continue
+    env PYTHON_CONFIGURE_OPTS=${MY_PY_CONFIG_OPS} \
+        PYTHON_CFLAGS=$MY_PY_CFLAGS \
         pyenv install --force --verbose $pytn
 done < "${in}"
-
