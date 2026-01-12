@@ -85,7 +85,7 @@ lotto_umkehrabbildung <- function(n) {
   a <- integer(6)
   for (i in 6:1) {
     a[i] <- max(which(chooseZ(0:49, i) <= n))
-    n <- n - chooseZ(a[i]-1, i)
+    n <- n - chooseZ(a[i] - 1, i)
   }
   return(a)
 }
