@@ -12,7 +12,7 @@ categories:
 
 # WebP statt PNG?
 
-Ich bin über die Quarto-Extension von KLaus Brunner mit dem Namen [Convert PNG to WebP (Quarto Extension)](https://github.com/klausbrunner/convert-to-webp) gestolpert und nutze diesen nun regelmässig.
+Ich bin über die Quarto-Extension von Klaus Brunner mit dem Namen [Convert PNG to WebP (Quarto Extension)](https://github.com/klausbrunner/convert-to-webp) gestolpert und nutze diesen nun regelmässig.
 
 Dafür habe ich auf meinem Mac via HomeBrew die Application "webp" installiert.
 
@@ -20,18 +20,19 @@ Dafür habe ich auf meinem Mac via HomeBrew die Application "webp" installiert.
 > brew install webp
 ```
 
-Damit habe ich das Programm `cwebp` installiert. Zum Testen nutze ich:
+Dadurch habe ich das Programm `cwebp` installiert. Es dient zum umwandeln von PNG in webp Dateien.
+Zum Testen nutze ich den Befehl:
 ```bash
 > cwebp -version
 ```
 
-Aktuell bekomme ich da die Ausgabe:
+Aktuell bekomme ich damit die Ausgabe:
 ```
 1.6.0
 libsharpyuv: 0.4.2
 ```
 
-Das Programm ersetzt die erzeugten Bild-Ausgaben, welche normalerweise im PNG-Format erzeugt werden, durch welche im WebP-Format.
+Das Programm ersetzt die erzeugten Bild-Ausgaben, welche normalerweise im PNG-Format erzeugt werden, durch Neue im WebP-Format.
 
 Die KI sagt:
 
@@ -40,13 +41,12 @@ Die KI sagt:
 
 ## Installation im Quarto-Projekt
 
-Wir installieren im Quarto-Projekt einfach mittels:
-
-```bash
+Um sofort bei der Erstellung von Dokumenten, wie zum Beispiel diese Blog-Einträge, mit Quarto webp zu nutzen, installiert mensch einfach im Quarto-Projekt mittels:
+```bas
 > quarto add klausbrunner/convert-to-webp
 ```
 
-Danach nutzen wir die Datei `_quarto.yml` und fügen die folgenden Zeilen hinzu:
+Danach in der Datei `_quarto.yml` noch die folgenden Zeilen hinzufügen:
 
 ```yml
 filters:
@@ -56,4 +56,4 @@ webp-delete-originals: false
 webp-disable: false
 ```
 
-Jetzt wird nach jeden 'rendern' eines Dokuments die erzeugten PNG-Dateien in WebP-Dateien übersetzt und im HTML-Code ersetzt.
+Jetzt wird nach jedem 'rendern' eines Dokuments die erzeugten PNG-Dateien in WebP-Dateien übersetzt und im HTML-Code entsprechend ersetzt.
