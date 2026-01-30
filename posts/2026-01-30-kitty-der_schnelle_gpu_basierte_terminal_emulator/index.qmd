@@ -1,5 +1,5 @@
 ---
-title: "kitty: Der schnelle, feacher-reiche, GPU-basierte Terminal-Emulator"
+title: "kitty: Der schnelle, feature-reiche, GPU-basierte Terminal-Emulator"
 author: "Norman Markgraf"
 lang: de-DE
 date: "2026-01-30"
