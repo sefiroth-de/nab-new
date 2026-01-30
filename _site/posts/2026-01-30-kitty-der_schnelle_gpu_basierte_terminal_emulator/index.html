@@ -8,7 +8,7 @@
 
 <meta name="author" content="Norman Markgraf">
 
-<title>Beweisverfahren in der Mathematik – Norman’s Academic Blog</title>
+<title>kitty: Der schnelle, feacher-reiche, GPU-basierte Terminal-Emulator – Norman’s Academic Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -70,35 +105,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -154,10 +160,11 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Beweisverfahren in der Mathematik</h1>
-            <p class="subtitle lead">Aus dem Internet frei übersetzt.</p>
+      <h1 class="title">kitty: Der schnelle, feacher-reiche, GPU-basierte Terminal-Emulator</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">Mathematik</div>
+                <div class="quarto-category">terminal-emulator</div>
+                <div class="quarto-category">kitty</div>
+                <div class="quarto-category">gpu</div>
               </div>
                   </div>
   </div>
@@ -175,14 +182,14 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Veröffentlichungsdatum</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">27. Juli 2025</p>
+        <p class="date">30. Januar 2026</p>
       </div>
     </div>
     
       <div>
       <div class="quarto-title-meta-heading">Geändert</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">3. Dezember 2025</p>
+        <p class="date-modified">30. Januar 2026</p>
       </div>
     </div>
       
@@ -200,58 +207,52 @@ window.Quarto = {
 
 
 
-<section id="allgemeine-beweistechniken" class="level2">
-<h2 class="anchored" data-anchor-id="allgemeine-beweistechniken">Allgemeine Beweistechniken</h2>
-<section id="beweis-durch-einschüchterung" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-einschüchterung">Beweis durch Einschüchterung</h3>
-<p>Trivial!</p>
+<section id="einführung" class="level2">
+<h2 class="anchored" data-anchor-id="einführung">Einführung</h2>
+<p>In der Welt der Terminal-Emulatoren gibt es viele Optionen, aber nur wenige bieten die Kombination aus Geschwindigkeit, Funktionsreichtum und moderner Technologie wie <strong>kitty</strong>.</p>
 </section>
-<section id="beweis-durch-umständliche-notation" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-umständliche-notation">Beweis durch umständliche Notation</h3>
-<p>Der Satz folgt sofort aus dem Fakt</p>
-<p><span class="math display">\[
-  \left|
-    \oplus_{k \in S}
-      \left(
-       \mathfrak{K}^{\mathbb{F}^\alpha(i)}  
-      \right)_{i \in \mathcal{U}_k}
-  \right|
-  \preceq \aleph_1
-  \text{ wenn }
-  \left[
-    \mathfrak{H}_\mathcal{W}
-  \right]     
-  \cap \mathbb{F}^\alpha(\mathbb{N}) \neq \emptyset.
-\]</span></p>
+<section id="was-ist-kitty" class="level2">
+<h2 class="anchored" data-anchor-id="was-ist-kitty">Was ist kitty?</h2>
+<p>Kitty ist ein moderner, GPU-basierter Terminal-Emulator, der auf Leistung und Benutzerfreundlichkeit ausgelegt ist. Es nutzt die Grafikprozessoren (GPUs) moderner Computer, um eine flüssige und schnelle Darstellung von Text und Grafiken zu gewährleisten. Dies macht kitty besonders geeignet für Entwickler, die viel Zeit im Terminal verbringen.</p>
 </section>
-<section id="beweis-durch-unzugreifbare-literatur" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-unzugreifbare-literatur">Beweis durch unzugreifbare Literatur</h3>
-<p>Der Satz ist ein einfaches Korrollat eines Ergebnis bewiesen in einer handgeschriebenen Anmerkung ausgehändigt in einer Vorlesung bei der Jugoslawischen Mathematischen Gesellschaft 1973.</p>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<p>Die Installation von kitty ist einfach und kann auf verschiedenen Betriebssystemen durchgeführt werden. Hier sind die grundlegenden Schritte für die Installation auf Linux und macOS:</p>
+<p><strong>Linux/macOS</strong>: - Laden Sie das Installationsskript herunter und führen Sie es aus:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">curl</span> <span class="at">-L</span> https://sw.kovidgoyal.net/kitty/installer.sh <span class="kw">|</span> <span class="fu">sh</span> /dev/stdin</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Fügen Sie kitty zu Ihrem PATH hinzu, indem Sie die folgende Zeile zu Ihrer <code>.bashrc</code> oder <code>.zshrc</code> hinzufügen:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">"</span><span class="va">$HOME</span><span class="st">/.local/kitty/bin:</span><span class="va">$PATH</span><span class="st">"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="beweis-durch-geisterhafte-zitate" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-geisterhafte-zitate">Beweis durch geisterhafte Zitate</h3>
-<p>Der Beweis kann auf Seite 478 gefunden werden, in einem Buch, welches nur 396 Seiten hat.</p>
+<section id="hauptmerkmale-von-kitty" class="level2">
+<h2 class="anchored" data-anchor-id="hauptmerkmale-von-kitty">Hauptmerkmale von kitty</h2>
+<p>Kitty bietet eine Vielzahl von Funktionen, die es von anderen Terminal-Emulatoren abheben:</p>
+<ol type="1">
+<li><p><strong>GPU-Beschleunigung</strong>: Durch die Nutzung der GPU für die Textdarstellung bietet kitty eine außergewöhnliche Leistung, insbesondere bei der Anzeige von großen Textmengen oder komplexen Grafiken.</p></li>
+<li><p><strong>Tabs und Fenster</strong>: Kitty unterstützt mehrere Tabs und Fenster, sodass Sie Ihre Arbeitsumgebung effizient organisieren können.</p></li>
+<li><p><strong>Grafikunterstützung</strong>: Kitty kann Bilder direkt im Terminal anzeigen, was es ideal für Entwickler macht, die mit Grafiken arbeiten.</p></li>
+<li><p><strong>Anpassbare Tastenkombinationen</strong>: Sie können Ihre eigenen Tastenkombinationen definieren, um Ihre Produktivität zu steigern.</p></li>
+<li><p><strong>Remote-Verbindungen</strong>: Kitty unterstützt SSH und andere Remote-Protokolle, sodass Sie nahtlos auf entfernte Systeme zugreifen können.</p></li>
+<li><p><strong>Leistungsstarke Konfiguration</strong>: Kitty bietet eine umfangreiche Konfigurationsdatei, mit der Sie das Verhalten und Aussehen des Terminals an Ihre Bedürfnisse anpassen können.</p></li>
+</ol>
 </section>
-<section id="beweis-durch-circularer-argumentation" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-circularer-argumentation">Beweis durch circularer Argumentation</h3>
-<p>Proposition 5.18 in [BL] ist ein einfaches Korollar zm Satz 7.18 in [C], welches wiederum auf Korollar 2.14 in [K] basiert. Dieses wiederum wird unter Bezugnahme auf Proposition 5.18 in [BL] hergeleitet.</p>
+<section id="warum-kitty-verwenden" class="level2">
+<h2 class="anchored" data-anchor-id="warum-kitty-verwenden">Warum kitty verwenden?</h2>
+<p>Es gibt mehrere Gründe, warum Sie kitty als Ihren bevorzugten Terminal-Emulator in Betracht ziehen sollten:</p>
+<ul>
+<li><p><strong>Leistung</strong>: Die GPU-Beschleunigung sorgt für eine reibungslose und schnelle Benutzererfahrung.</p></li>
+<li><p><strong>Funktionsreichtum</strong>: Mit einer Vielzahl von Funktionen und Anpassungsmöglichkeiten bietet kitty eine flexible Arbeitsumgebung.</p></li>
+<li><p><strong>Aktive Entwicklung</strong>: Kitty wird aktiv weiterentwickelt, was bedeutet, dass Sie regelmäßig neue Funktionen und Verbesserungen erhalten.</p></li>
+<li><p><strong>Open Source</strong>: Kitty ist Open Source, was bedeutet, dass Sie den Quellcode einsehen und anpassen können.</p></li>
+</ul>
 </section>
-<section id="beweis-durch-autorität" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-autorität">Beweis durch Autorität</h3>
-<p>Mein guter Kollege Andrew meinte, er glaube, er hätte dafür vor ein paar Jahren einen Beweis finden können …</p>
-</section>
-<section id="beweis-durch-internet-referenz" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-internet-referenz">Beweis durch Internet Referenz</h3>
-<p>Für Interessierte ist das Ergebnis auf der Webseite zu diesem Buch zu sehen. – Die es leider nicht mehr gibt.</p>
-</section>
-<section id="beweis-durch-vermeidung" class="level3">
-<h3 class="anchored" data-anchor-id="beweis-durch-vermeidung">Beweis durch Vermeidung</h3>
-<p>Kapitel 3: Der Beweis hierfür wird erst in Kapitel 7 erbracht, wenn wir die Theorie weiterentwickelt haben.</p>
-<p>Kapitel 7: Der Einfachheit halber beweisen wir dies nur für den Fall z = 0. Der allgemeine Fall wird jedoch in Anhang C behandelt.</p>
-<p>Anhang C: Der formale Beweis geht über den Rahmen dieses Buches hinaus, aber unsere Intuition sagt uns natürlich, dass dies wahr ist.</p>
+<section id="fazit" class="level2">
+<h2 class="anchored" data-anchor-id="fazit">Fazit</h2>
+<p>Kitty ist ein leistungsstarker und funktionsreicher Terminal-Emulator, der sich durch seine GPU-Beschleunigung und Anpassungsfähigkeit auszeichnet. Egal, ob Sie ein Entwickler sind, der viel Zeit im Terminal verbringt, oder einfach nur einen schnellen und zuverlässigen Terminal-Emulator suchen, kitty ist definitiv eine Überlegung wert.</p>
+<p>Link: <a href="https://sw.kovidgoyal.net/kitty/">Offizielle kitty-Website</a></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

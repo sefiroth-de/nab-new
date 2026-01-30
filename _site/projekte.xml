@@ -9,7 +9,7 @@
 <link>https://www.sefiroth.de/projekte.html</link>
 <atom:link href="https://www.sefiroth.de/projekte.xml" rel="self" type="application/rss+xml"/>
 <description>Norman&#39;s Academic Blog</description>
-<generator>quarto-1.8.26</generator>
+<generator>quarto-1.8.27</generator>
 <lastBuildDate>Fri, 05 Jul 2024 22:00:00 GMT</lastBuildDate>
 <item>
   <title>Workshop zum Thema quarto</title>

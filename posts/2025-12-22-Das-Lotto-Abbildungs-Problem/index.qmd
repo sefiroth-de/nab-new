@@ -22,7 +22,7 @@ $$
 $$
 
 Aber viele sehen nicht, dass dies auch bedeutet, dass jedes Ziehungsergebnis ein-ein-deutig auf die Zahlen $1$ bis $13\,983\,816$ abbildet. 
-Genauer, es gibt (mindestens) eine Abbilung aus $\mathcal{L} = \{1, 2, \ldots, 49\}$ in $\mathcal{M} = \{1, 2, \ldots, 13\,983\,816\}$, so dass jede 6-elementige Teilmenge von $\mathcal{L}$ auf ein eindeutiges Element von $\mathcal{M}$ abgebildet wird.
+Genauer, es gibt (mindestens) eine Abbilung aus $\mathcal{L} = \{1, 2, \ldots, 49\}$ in $\mathcal{M} = \{q, 1, 2, \ldots, 13\,983\,816\}$, so dass jede 6-elementige Teilmenge von $\mathcal{L}$ auf ein eindeutiges Element von $\mathcal{M}$ abgebildet wird.
 
 # Die Frage
 
@@ -76,15 +76,23 @@ library(gmp)
 
 # Funktion zur Berechnung der Abbildung
 lotto_abbildung <- function(a) {
-  l <- sapply(1:6, function(i) chooseZ(a[i] - 1, i), simplify = "array", USE.NAMES = FALSE)
-  return(l[[1]] + l[[2]] + l[[3]] + l[[4]] + l[[5]] + l[[6]])
+  t <- sort(unique(a))
+  if (length(t) != 6 || any(t < 1) || any(t > 49)) {
+    stop("Eingabe muss 6 eindeutige Zahlen zwischen 1 und 49 sein.")
+  }
+  l <- sapply(1:6, function(i) chooseZ(a[i] - 1, i), 
+              simplify = "array", USE.NAMES = FALSE)
+  return(1+l[[1]] + l[[2]] + l[[3]] + l[[4]] + l[[5]] + l[[6]])
 }
 
 # Funktion zur Berechnung der Umkehrabbildung
 lotto_umkehrabbildung <- function(n) {
+  if (n < 1 || n > chooseZ(49, 6)) {
+    stop("Eingabe muss zwischen 1 und 13.983.816 liegen.")
+  }
   a <- integer(6)
   for (i in 6:1) {
-    a[i] <- max(which(chooseZ(0:49, i) <= n))
+    a[i] <- max(which(chooseZ(0:49, i) < n))
     n <- n - chooseZ(a[i] - 1, i)
   }
   return(a)
@@ -98,14 +106,19 @@ from math import comb
 
 # Funktion zur Berechnung der Abbildung
 def lotto_abbildung(a):
+    a = sorted(set(a))
+    if len(a) != 6 or any(x < 1 or x > 49 for x in a):
+        raise ValueError("Eingabe muss 6 eindeutige Zahlen zwischen 1 und 49 sein.")
     l = [comb(a[i] - 1, i + 1) for i in range(6)]
-    return sum(l)
+    return 1+sum(l)
 
 # Funktion zur Berechnung der Umkehrabbildung
 def lotto_umkehrabbildung(n):
+    if n < 1 or n > comb(49, 6):
+        raise ValueError("Eingabe muss zwischen 0 und 13.983.816 liegen.")
     a = [0] * 6
     for i in range(5, -1, -1):
-        tmp = max(k for k in range(50) if comb(k, i + 1) <= n)
+        tmp = max(k for k in range(50) if comb(k, i + 1) < n)
         a[i] = 1 + tmp
         n -= comb(tmp, i + 1)
     return a

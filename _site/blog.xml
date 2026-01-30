@@ -9,8 +9,98 @@
 <link>https://www.sefiroth.de/blog.html</link>
 <atom:link href="https://www.sefiroth.de/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Norman&#39;s Academic Blog</description>
-<generator>quarto-1.8.26</generator>
-<lastBuildDate>Sat, 03 Jan 2026 23:00:00 GMT</lastBuildDate>
+<generator>quarto-1.8.27</generator>
+<lastBuildDate>Thu, 29 Jan 2026 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>kitty: Der schnelle, feacher-reiche, GPU-basierte Terminal-Emulator</title>
+  <dc:creator>Norman Markgraf</dc:creator>
+  <link>https://www.sefiroth.de/posts/2026-01-30-kitty-der_schnelle_gpu_basierte_terminal_emulator/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="einführung" class="level2">
+<h2 class="anchored" data-anchor-id="einführung">Einführung</h2>
+<p>In der Welt der Terminal-Emulatoren gibt es viele Optionen, aber nur wenige bieten die Kombination aus Geschwindigkeit, Funktionsreichtum und moderner Technologie wie <strong>kitty</strong>.</p>
+</section>
+<section id="was-ist-kitty" class="level2">
+<h2 class="anchored" data-anchor-id="was-ist-kitty">Was ist kitty?</h2>
+<p>Kitty ist ein moderner, GPU-basierter Terminal-Emulator, der auf Leistung und Benutzerfreundlichkeit ausgelegt ist. Es nutzt die Grafikprozessoren (GPUs) moderner Computer, um eine flüssige und schnelle Darstellung von Text und Grafiken zu gewährleisten. Dies macht kitty besonders geeignet für Entwickler, die viel Zeit im Terminal verbringen.</p>
+</section>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<p>Die Installation von kitty ist einfach und kann auf verschiedenen Betriebssystemen durchgeführt werden. Hier sind die grundlegenden Schritte für die Installation auf Linux und macOS:</p>
+<p><strong>Linux/macOS</strong>: - Laden Sie das Installationsskript herunter und führen Sie es aus:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">curl</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-L</span> https://sw.kovidgoyal.net/kitty/installer.sh <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">|</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sh</span> /dev/stdin</span></code></pre></div></div>
+<ul>
+<li>Fügen Sie kitty zu Ihrem PATH hinzu, indem Sie die folgende Zeile zu Ihrer <code>.bashrc</code> oder <code>.zshrc</code> hinzufügen:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">PATH</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$HOME</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/.local/kitty/bin:</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$PATH</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span></code></pre></div></div>
+</section>
+<section id="hauptmerkmale-von-kitty" class="level2">
+<h2 class="anchored" data-anchor-id="hauptmerkmale-von-kitty">Hauptmerkmale von kitty</h2>
+<p>Kitty bietet eine Vielzahl von Funktionen, die es von anderen Terminal-Emulatoren abheben:</p>
+<ol type="1">
+<li><p><strong>GPU-Beschleunigung</strong>: Durch die Nutzung der GPU für die Textdarstellung bietet kitty eine außergewöhnliche Leistung, insbesondere bei der Anzeige von großen Textmengen oder komplexen Grafiken.</p></li>
+<li><p><strong>Tabs und Fenster</strong>: Kitty unterstützt mehrere Tabs und Fenster, sodass Sie Ihre Arbeitsumgebung effizient organisieren können.</p></li>
+<li><p><strong>Grafikunterstützung</strong>: Kitty kann Bilder direkt im Terminal anzeigen, was es ideal für Entwickler macht, die mit Grafiken arbeiten.</p></li>
+<li><p><strong>Anpassbare Tastenkombinationen</strong>: Sie können Ihre eigenen Tastenkombinationen definieren, um Ihre Produktivität zu steigern.</p></li>
+<li><p><strong>Remote-Verbindungen</strong>: Kitty unterstützt SSH und andere Remote-Protokolle, sodass Sie nahtlos auf entfernte Systeme zugreifen können.</p></li>
+<li><p><strong>Leistungsstarke Konfiguration</strong>: Kitty bietet eine umfangreiche Konfigurationsdatei, mit der Sie das Verhalten und Aussehen des Terminals an Ihre Bedürfnisse anpassen können.</p></li>
+</ol>
+</section>
+<section id="warum-kitty-verwenden" class="level2">
+<h2 class="anchored" data-anchor-id="warum-kitty-verwenden">Warum kitty verwenden?</h2>
+<p>Es gibt mehrere Gründe, warum Sie kitty als Ihren bevorzugten Terminal-Emulator in Betracht ziehen sollten:</p>
+<ul>
+<li><p><strong>Leistung</strong>: Die GPU-Beschleunigung sorgt für eine reibungslose und schnelle Benutzererfahrung.</p></li>
+<li><p><strong>Funktionsreichtum</strong>: Mit einer Vielzahl von Funktionen und Anpassungsmöglichkeiten bietet kitty eine flexible Arbeitsumgebung.</p></li>
+<li><p><strong>Aktive Entwicklung</strong>: Kitty wird aktiv weiterentwickelt, was bedeutet, dass Sie regelmäßig neue Funktionen und Verbesserungen erhalten.</p></li>
+<li><p><strong>Open Source</strong>: Kitty ist Open Source, was bedeutet, dass Sie den Quellcode einsehen und anpassen können.</p></li>
+</ul>
+</section>
+<section id="fazit" class="level2">
+<h2 class="anchored" data-anchor-id="fazit">Fazit</h2>
+<p>Kitty ist ein leistungsstarker und funktionsreicher Terminal-Emulator, der sich durch seine GPU-Beschleunigung und Anpassungsfähigkeit auszeichnet. Egal, ob Sie ein Entwickler sind, der viel Zeit im Terminal verbringt, oder einfach nur einen schnellen und zuverlässigen Terminal-Emulator suchen, kitty ist definitiv eine Überlegung wert.</p>
+<p>Link: <a href="https://sw.kovidgoyal.net/kitty/">Offizielle kitty-Website</a></p>
+
+
+</section>
+
+ ]]></description>
+  <category>terminal-emulator</category>
+  <category>kitty</category>
+  <category>gpu</category>
+  <guid>https://www.sefiroth.de/posts/2026-01-30-kitty-der_schnelle_gpu_basierte_terminal_emulator/</guid>
+  <pubDate>Thu, 29 Jan 2026 23:00:00 GMT</pubDate>
+</item>
 <item>
   <title>B-Bäume und mehr: Ein Vergleich von Python-Implementierungen</title>
   <dc:creator>Norman Markgraf</dc:creator>
@@ -162,7 +252,7 @@ font-style: inherit;"> Sekunden"</span>)</span></code></pre></div></div>
 <h1>Die Beschreibung</h1>
 <p>Jeder, der Kombinatorik oder Wahrscheinlichkeitsrechnung studiert hat, kennt das klassische Lotto-Problem: Aus einer Menge von 49 Zahlen werden 6 Zahlen ohne Zurücklegen gezogen. Wie viele verschiedene Kombinationen sind möglich?</p>
 <p>Die Antwort ist bekanntlich: <img src="https://latex.codecogs.com/png.latex?%0A%20%20%5Cbinom%7B49%7D%7B6%7D%20=%20%5Cfrac%7B49!%7D%7B6!(49-6)!%7D%20=%2013%5C,983%5C,816%0A"></p>
-<p>Aber viele sehen nicht, dass dies auch bedeutet, dass jedes Ziehungsergebnis ein-ein-deutig auf die Zahlen <img src="https://latex.codecogs.com/png.latex?1"> bis <img src="https://latex.codecogs.com/png.latex?13%5C,983%5C,816"> abbildet. Genauer, es gibt (mindestens) eine Abbilung aus <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BL%7D%20=%20%5C%7B1,%202,%20%5Cldots,%2049%5C%7D"> in <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BM%7D%20=%20%5C%7B1,%202,%20%5Cldots,%2013%5C,983%5C,816%5C%7D">, so dass jede 6-elementige Teilmenge von <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BL%7D"> auf ein eindeutiges Element von <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BM%7D"> abgebildet wird.</p>
+<p>Aber viele sehen nicht, dass dies auch bedeutet, dass jedes Ziehungsergebnis ein-ein-deutig auf die Zahlen <img src="https://latex.codecogs.com/png.latex?1"> bis <img src="https://latex.codecogs.com/png.latex?13%5C,983%5C,816"> abbildet. Genauer, es gibt (mindestens) eine Abbilung aus <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BL%7D%20=%20%5C%7B1,%202,%20%5Cldots,%2049%5C%7D"> in <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BM%7D%20=%20%5C%7Bq,%201,%202,%20%5Cldots,%2013%5C,983%5C,816%5C%7D">, so dass jede 6-elementige Teilmenge von <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BL%7D"> auf ein eindeutiges Element von <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BM%7D"> abgebildet wird.</p>
 </section>
 <section id="die-frage" class="level1">
 <h1>Die Frage</h1>
@@ -214,7 +304,46 @@ font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">function</span>(a) {</span>
-<span id="cb1-6">  l <span class="ot" style="color: #003B4F;
+<span id="cb1-6">  t <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sort</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unique</span>(a))</span>
+<span id="cb1-7">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(t) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">||</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">any</span>(t <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">||</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">any</span>(t <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">49</span>)) {</span>
+<span id="cb1-8">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">stop</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Eingabe muss 6 eindeutige Zahlen zwischen 1 und 49 sein."</span>)</span>
+<span id="cb1-9">  }</span>
+<span id="cb1-10">  l <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -233,7 +362,8 @@ font-style: inherit;">chooseZ</span>(a[i] <span class="sc" style="color: #5E5E5E
 background-color: null;
 font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1</span>, i), <span class="at" style="color: #657422;
+font-style: inherit;">1</span>, i), </span>
+<span id="cb1-11">              <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">simplify =</span> <span class="st" style="color: #20794D;
 background-color: null;
@@ -242,9 +372,13 @@ background-color: null;
 font-style: inherit;">USE.NAMES =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
 font-style: inherit;">FALSE</span>)</span>
-<span id="cb1-7">  <span class="fu" style="color: #4758AB;
+<span id="cb1-12">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">return</span>(l[[<span class="dv" style="color: #AD0000;
+font-style: inherit;">return</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>l[[<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>]] <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -267,25 +401,49 @@ background-color: null;
 font-style: inherit;">+</span> l[[<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">6</span>]])</span>
-<span id="cb1-8">}</span>
-<span id="cb1-9"></span>
-<span id="cb1-10"><span class="co" style="color: #5E5E5E;
+<span id="cb1-13">}</span>
+<span id="cb1-14"></span>
+<span id="cb1-15"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Funktion zur Berechnung der Umkehrabbildung</span></span>
-<span id="cb1-11">lotto_umkehrabbildung <span class="ot" style="color: #003B4F;
+<span id="cb1-16">lotto_umkehrabbildung <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">function</span>(n) {</span>
-<span id="cb1-12">  a <span class="ot" style="color: #003B4F;
+<span id="cb1-17">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> (n <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">||</span> n <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">chooseZ</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">49</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>)) {</span>
+<span id="cb1-18">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">stop</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Eingabe muss zwischen 1 und 13.983.816 liegen."</span>)</span>
+<span id="cb1-19">  }</span>
+<span id="cb1-20">  a <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">integer</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">6</span>)</span>
-<span id="cb1-13">  <span class="cf" style="color: #003B4F;
+<span id="cb1-21">  <span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
@@ -298,7 +456,7 @@ background-color: null;
 font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>) {</span>
-<span id="cb1-14">    a[i] <span class="ot" style="color: #003B4F;
+<span id="cb1-22">    a[i] <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -314,23 +472,23 @@ font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">49</span>, i) <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">&lt;=</span> n))</span>
-<span id="cb1-15">    n <span class="ot" style="color: #003B4F;
+font-style: inherit;">&lt;</span> n))</span>
+<span id="cb1-23">    n <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> n <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">chooseZ</span>(a[i]<span class="sc" style="color: #5E5E5E;
+font-style: inherit;">chooseZ</span>(a[i] <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>, i)</span>
-<span id="cb1-16">  }</span>
-<span id="cb1-17">  <span class="fu" style="color: #4758AB;
+<span id="cb1-24">  }</span>
+<span id="cb1-25">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">return</span>(a)</span>
-<span id="cb1-18">}</span></code></pre></div></div>
+<span id="cb1-26">}</span></code></pre></div></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
@@ -351,7 +509,54 @@ font-style: inherit;"># Funktion zur Berechnung der Abbildung</span></span>
 background-color: null;
 font-weight: bold;
 font-style: inherit;">def</span> lotto_abbildung(a):</span>
-<span id="cb2-6">    l <span class="op" style="color: #5E5E5E;
+<span id="cb2-6">    a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sorted</span>(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span>(a))</span>
+<span id="cb2-7">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(a) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">or</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">any</span>(x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">or</span> x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">49</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> x <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> a):</span>
+<span id="cb2-8">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">raise</span> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">ValueError</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Eingabe muss 6 eindeutige Zahlen zwischen 1 und 49 sein."</span>)</span>
+<span id="cb2-9">    l <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> [comb(a[i] <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -372,21 +577,50 @@ background-color: null;
 font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">6</span>)]</span>
-<span id="cb2-7">    <span class="cf" style="color: #003B4F;
+<span id="cb2-10">    <span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
-font-style: inherit;">return</span> <span class="bu" style="color: null;
+font-style: inherit;">return</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">sum</span>(l)</span>
-<span id="cb2-8"></span>
-<span id="cb2-9"><span class="co" style="color: #5E5E5E;
+<span id="cb2-11"></span>
+<span id="cb2-12"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Funktion zur Berechnung der Umkehrabbildung</span></span>
-<span id="cb2-10"><span class="kw" style="color: #003B4F;
+<span id="cb2-13"><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">def</span> lotto_umkehrabbildung(n):</span>
-<span id="cb2-11">    a <span class="op" style="color: #5E5E5E;
+<span id="cb2-14">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> n <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">or</span> n <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> comb(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">49</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>):</span>
+<span id="cb2-15">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">raise</span> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">ValueError</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Eingabe muss zwischen 0 und 13.983.816 liegen."</span>)</span>
+<span id="cb2-16">    a <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> [<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -395,7 +629,7 @@ background-color: null;
 font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">6</span></span>
-<span id="cb2-12">    <span class="cf" style="color: #003B4F;
+<span id="cb2-17">    <span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">for</span> i <span class="kw" style="color: #003B4F;
@@ -414,7 +648,7 @@ background-color: null;
 font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>):</span>
-<span id="cb2-13">        tmp <span class="op" style="color: #5E5E5E;
+<span id="cb2-18">        tmp <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="bu" style="color: null;
 background-color: null;
@@ -437,22 +671,22 @@ font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>) <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">&lt;=</span> n)</span>
-<span id="cb2-14">        a[i] <span class="op" style="color: #5E5E5E;
+font-style: inherit;">&lt;</span> n)</span>
+<span id="cb2-19">        a[i] <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span> tmp</span>
-<span id="cb2-15">        n <span class="op" style="color: #5E5E5E;
+<span id="cb2-20">        n <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-=</span> comb(tmp, i <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>)</span>
-<span id="cb2-16">    <span class="cf" style="color: #003B4F;
+<span id="cb2-21">    <span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">return</span> a</span></code></pre></div></div>
@@ -538,7 +772,7 @@ background-color: null;
 font-style: inherit;"># Eindeutige Nummer</span></span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Big Integer ('bigz') :
-[1] 13400039</code></pre>
+[1] 13400040</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">umkehrabbildung  <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -559,7 +793,7 @@ font-style: inherit;">print</span>(abbildung)  <span class="co" style="color: #5
 background-color: null;
 font-style: inherit;"># Eindeutige Nummer</span></span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>13400039</code></pre>
+<pre><code>13400040</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><span class="bu" style="color: null;
 background-color: null;
@@ -7168,70 +7402,6 @@ font-style: inherit;">scale_y_log10</span>()</span>
  ]]></description>
   <category>Statistik</category>
   <guid>https://www.sefiroth.de/posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/</guid>
-  <pubDate>Thu, 11 Feb 2021 23:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Gedankenstütze zu wichtigen Funktionsbegriffen in der Statistik</title>
-  <dc:creator>Norman Markgraf</dc:creator>
-  <link>https://www.sefiroth.de/posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<section id="eine-kleine-liste-von-fundermentalen-begriffen-in-der-statistik." class="level1">
-<h1>Eine kleine Liste von fundermentalen Begriffen in der Statistik.</h1>
-<p>Gilt für eine reelle Funktion <img src="https://latex.codecogs.com/png.latex?f:%20%5Cmathbf%7BR%7D%20%5Cto%20%5Cmathbf%7BR%7D">:</p>
-<ul>
-<li><img src="https://latex.codecogs.com/png.latex?f(x)"> ist <em>nichtnegativ</em>, d.h., <img src="https://latex.codecogs.com/png.latex?f(x)%20%5Cgeq%200">, für alle <img src="https://latex.codecogs.com/png.latex?x%20%5Cin%20%5Cmathbf%7BR%7D">.</li>
-<li><img src="https://latex.codecogs.com/png.latex?f(x)"> ist <em>integrierbar</em>.</li>
-<li><img src="https://latex.codecogs.com/png.latex?f(x)"> ist <em>normiert</em> in dem Sinne, dass <img src="https://latex.codecogs.com/png.latex?%5Cint_%7B-%5Cinfty%7D%5E%5Cinfty%20f(x)%20%5C,%5Ctext%7Bd%7Dx%20=%201"></li>
-</ul>
-<p>Dann nennen wir <img src="https://latex.codecogs.com/png.latex?f(x)"> eine <strong>Wahrscheinlichkeitsdichtefunktion</strong> (engl. <strong>probability density funktion</strong> kurz <strong>pdf</strong>) oder kurz <strong>Dichte</strong> (engl. <strong>density</strong>).</p>
-<p>Durch <img src="https://latex.codecogs.com/png.latex?P(%5Ba,%20b%5D)%20:=%20%5Cint_a%5Eb%20f(x)%20%5Ctext%7Bd%7D%20x"> definiert <img src="https://latex.codecogs.com/png.latex?f"> eine <em>Wahrscheinlichkeitsverteilung</em> auf den reellen Zahlen.</p>
-<p>Ist <img src="https://latex.codecogs.com/png.latex?X"> eine reelwertige <em>Zufallsvariable</em> (kurz <strong>ZV</strong>) und existiert eine reelle Funktion <img src="https://latex.codecogs.com/png.latex?f_X(x)"> der Art, dass für alle <img src="https://latex.codecogs.com/png.latex?a%20%5Cin%20%5Cmathbf%7BR%7D"></p>
-<p><img src="https://latex.codecogs.com/png.latex?P(X%20%5Cleq%20a)%20=%20%5Cint_%7B-%5Cinfty%7D%5Ea%20f_X(x)%20%5Ctext%7Bd%7Dx"></p>
-<p>gilt, so nennt man <img src="https://latex.codecogs.com/png.latex?f"> die <strong>Wahrscheinlichkeitsdichtefunktion von</strong> <img src="https://latex.codecogs.com/png.latex?X">.</p>
-<p>Die Funktion</p>
-<p><img src="https://latex.codecogs.com/png.latex?F_X(a)%20=%20P(X%20%5Cleq%20a)"></p>
-<p>nenen wir <strong>(Wahrscheinlichkeits-)Verteilung(-sfunktion)</strong> (engl. <strong>cumulative distribution function</strong> kurz <strong>cdf</strong> aber auch nur <strong>distribution function</strong>) <strong>von</strong> <img src="https://latex.codecogs.com/png.latex?X">.</p>
-<p>Genau dann ist eine Funktion <img src="https://latex.codecogs.com/png.latex?F:%20%5Cmathbf%7BR%7D%20%5Cto%20%5B0,%201%5D"> eine <strong>Verteilungsfunktion</strong>, wenngilt:</p>
-<ul>
-<li>Es ist <img src="https://latex.codecogs.com/png.latex?%5Clim_%7Bt%20%5Cto%20-%5Cinfty%7D%20F(t)=0"> und <img src="https://latex.codecogs.com/png.latex?%5Clim_%7Bt%20%5Cto%20+%5Cinfty%7D%20F(t)=1"></li>
-<li>Die Funktion <img src="https://latex.codecogs.com/png.latex?%5Coverline%7BF%7D(t)"> ist <strong>monoton wachsend</strong>.</li>
-<li>Die Funktion <img src="https://latex.codecogs.com/png.latex?%5Coverline%7BF%7D(t)"> ist <strong>rechtsseitig stetig</strong></li>
-</ul>
-<p>Die Funktion</p>
-<p><img src="https://latex.codecogs.com/png.latex?%5Coverline%7BF%7D_X(a)%20=%201%20-%20F_X(a)"></p>
-<p>nennen wir <strong>Überlebensfunktion</strong> (engl. <strong>survival function</strong>, <strong>complementarey cumulative distribution funktion</strong> kurz <strong>ccdf</strong>, <strong>tail distribution</strong>, <strong>exceedance</strong> oder <strong>reliability function</strong>).</p>
-<p>Es gilt <img src="https://latex.codecogs.com/png.latex?%5Coverline%7BF%7D_X(a)%20+%20F_X(a)%20=%201">.</p>
-<p>Genau dann ist eine Funktion <img src="https://latex.codecogs.com/png.latex?%5Coverline%7BF%7D:%20%5Cmathbf%7BR%7D%20%5Cto%20%5B0,%201%5D"> eine <strong>Überlebensfunktion</strong>, wenn gilt:</p>
-<ul>
-<li>Es ist <img src="https://latex.codecogs.com/png.latex?%5Clim_%5Climits%7Bt%20%5Cto%20-%5Cinfty%7D%20%5Coverline%7BF%7D(t)=1"> und <img src="https://latex.codecogs.com/png.latex?%5Clim_%7Bt%20%5Cto%20+%20%5Cinfty%7D%5Coverline%7BF%7D(t)=0"></li>
-<li>Die Funktion <img src="https://latex.codecogs.com/png.latex?%5Coverline%7BF%7D(t)"> ist <strong>monoton fallend</strong>.</li>
-<li>Die Funktion <img src="https://latex.codecogs.com/png.latex?%5Coverline%7BF%7D(t)"> ist <strong>rechtsseitig stetig</strong></li>
-</ul>
-<p>Ein paar weitere Eigenschaften von <em>Überlebensfunktionen</em>:</p>
-<ul>
-<li>Nicht-negative stetige ZV <img src="https://latex.codecogs.com/png.latex?X"> mit Erwartungswert, also <img src="https://latex.codecogs.com/png.latex?%5Cint_0%5E%5Cinfty%20x%20f(x)%20%5Ctext%7Bd%7D%20x%20=%20%5Cmu%20%3C%20%5Cinfty">, erfüllen die <a href="https://de.wikipedia.org/wiki/Markow-Ungleichung_(Stochastik)">Markov-Ungleichung</a></li>
-</ul>
-<p><img src="https://latex.codecogs.com/png.latex?%5Coverline%7BF%7D_X(x)%20%5Cleq%20%5Cfrac%7B%5Coperatorname%7BE%7D(X)%7D%7Bx%7D"></p>
-<ul>
-<li>Ist <img src="https://latex.codecogs.com/png.latex?X"> eine ZV und <img src="https://latex.codecogs.com/png.latex?%5Coverline%7BF%7D_X"> die zugehörige Überlebensfunktion. Existiert <img src="https://latex.codecogs.com/png.latex?E(X)">, dann gilt <img src="https://latex.codecogs.com/png.latex?%5Clim_%7Bt%20%5Cto%20+%5Cinfty%7D%5Coverline%7BF%7D(x)=0%20=%20o%5Cleft(%5Cfrac%7B1%7D%7Bx%7D%5Cright)">.</li>
-</ul>
-<p><strong>Beweisskizze:</strong> Sei <img src="https://latex.codecogs.com/png.latex?f_X"> die Dichtefunktion von <img src="https://latex.codecogs.com/png.latex?F_X"> zur ZV <img src="https://latex.codecogs.com/png.latex?X">. Für jedes <img src="https://latex.codecogs.com/png.latex?c%3E0"> ist dann <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%20%20%20%20%20%20E(X)%20=%20%5Cint_0%5E%5Cinfty%20x%20%5Ccdot%20f_X(x)%20%5Ctext%7Bd%7Dx%20&amp;=%20%20%5Cint_0%5Ecx%20%5Ccdot%20f_X(x)%20%5Ctext%7Bd%7Dx%20+%5Cint_c%5E%5Cinfty%20x%20%5Ccdot%20f_X(x)%20%5Ctext%7Bd%7Dx%20%5C%5C%0A%20%20%20%20%20%20&amp;%5Cgeq%20%20%5Cint_0%5Ecx%20%5Ccdot%20f_X(x)%20%5Ctext%7Bd%7Dx%20+%5Cint_c%5E%5Cinfty%20c%20%5Ccdot%20f_X(x)%20%5Ctext%7Bd%7Dx%20%5C%5C%0A%20%20%20%20%20%20&amp;=%20%20%5Cint_0%5Ecx%20%5Ccdot%20f_X(x)%20%5Ctext%7Bd%7Dx%20+%20c%20%5Ccdot%20%5Cint_c%5E%5Cinfty%20f_X(x)%20%5Ctext%7Bd%7Dx%20%5C%5C%0A%20%20%20%20%20%20&amp;=%20%20%5Cint_0%5Ecx%20%5Ccdot%20f_X(x)%20%5Ctext%7Bd%7Dx%20+c%20%5Ccdot%20%5Coverline%7BF%7D(c)%0A%20%20%5Cend%7Baligned%7D%0A"></p>
-<p>Damit gilt nun: <img src="https://latex.codecogs.com/png.latex?%0A0%20%5Cleq%20c%20%5Ccdot%20%5Coverline%7BF%7D(c)%20%5Cleq%20E(X)%20-%20%5Cint_0%5Ecx%20%5Ccdot%20f_X(x)%20%5Ctext%7Bd%7Dx%0A"> Wegen <img src="https://latex.codecogs.com/png.latex?%5Clim%5Climits_%7Bc%20%5Cto%20+%5Cinfty%7D%20%5Cint_0%5Ecx%20%5Ccdot%20f_X(x)%20%5Ctext%7Bd%7Dx%20=%20E(X)"> folgt:</p>
-<p><img src="https://latex.codecogs.com/png.latex?0%20%5Cleq%20c%20%5Ccdot%20%5Coverline%7BF%7D(c)%20%5Cleq%20E(X)%20-%20%5Cint_0%5Ecx%20%5Ccdot%20f_X(x)%20%5Ctext%7Bd%7Dx%5Cto%200%20%5Ctext%7B%20wenn%20%7D%20c%20%5Cto%20%5Cinfty%0A"></p>
-<p>Für nicht-negative ZV <img src="https://latex.codecogs.com/png.latex?X"> gilt:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0AE(X)%20=%20%5Cint_0%5E%5Cinfty%20%5Coverline%7BF%7D_X(x)%20%5C,%5Ctext%7Bd%7D%20x%0A"></p>
-
-
-</section>
-
- ]]></description>
-  <category>Statistik</category>
-  <guid>https://www.sefiroth.de/posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/</guid>
   <pubDate>Thu, 11 Feb 2021 23:00:00 GMT</pubDate>
 </item>
 </channel>
