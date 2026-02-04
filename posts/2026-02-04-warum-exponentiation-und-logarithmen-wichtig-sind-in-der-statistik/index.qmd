@@ -2,7 +2,7 @@
 title: "Warum Exponentiation und Logarithmen wichtig sind in der Statistik."
 author: "Norman Markgraf"
 lang: de-DE
-date: "2025-12-22"
+date: "2026-02-04"
 date-modified: last-modified
 word-count: true
 reading-time: true
