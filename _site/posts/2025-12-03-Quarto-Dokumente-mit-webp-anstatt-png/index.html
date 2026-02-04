@@ -187,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Geändert</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">4. Dezember 2025</p>
+        <p class="date-modified">30. Januar 2026</p>
       </div>
     </div>
       
@@ -207,30 +207,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="webp-statt-png" class="level1">
 <h1>WebP statt PNG?</h1>
-<p>Ich bin über die Quarto-Extension von KLaus Brunner mit dem Namen <a href="https://github.com/klausbrunner/convert-to-webp">Convert PNG to WebP (Quarto Extension)</a> gestolpert und nutze diesen nun regelmässig.</p>
+<p>Ich bin über die Quarto-Extension von Klaus Brunner mit dem Namen <a href="https://github.com/klausbrunner/convert-to-webp">Convert PNG to WebP (Quarto Extension)</a> gestolpert und nutze diesen nun regelmässig.</p>
 <p>Dafür habe ich auf meinem Mac via HomeBrew die Application “webp” installiert.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> brew <span class="fu">install</span> webp</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Damit habe ich das Programm <code>cwebp</code> installiert. Zum Testen nutze ich:</p>
+<p>Dadurch habe ich das Programm <code>cwebp</code> installiert. Es dient zum umwandeln von PNG in webp Dateien. Zum Testen nutze ich den Befehl:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cwebp <span class="ex">-version</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Aktuell bekomme ich da die Ausgabe:</p>
+<p>Aktuell bekomme ich damit die Ausgabe:</p>
 <pre><code>1.6.0
 libsharpyuv: 0.4.2</code></pre>
-<p>Das Programm ersetzt die erzeugten Bild-Ausgaben, welche normalerweise im PNG-Format erzeugt werden, durch welche im WebP-Format.</p>
+<p>Das Programm ersetzt die erzeugten Bild-Ausgaben, welche normalerweise im PNG-Format erzeugt werden, durch Neue im WebP-Format.</p>
 <p>Die KI sagt:</p>
 <blockquote class="blockquote">
 <p>WebP ist ein modernes Bildformat von Google, das eine effizientere Komprimierung als herkömmliche Formate wie JPEG und PNG ermöglicht, um Bilder im Web kleiner zu machen und Ladezeiten zu beschleunigen. Es unterstützt sowohl verlustfreie als auch verlustbehaftete Komprimierung sowie Transparenz und Animationen, ähnlich wie PNG und GIF. WebP wird von den meisten modernen Browsern unterstützt, aber für ältere Browser ist es ratsam, eine alternative Bildversion bereitzustellen</p>
 </blockquote>
 <section id="installation-im-quarto-projekt" class="level2">
 <h2 class="anchored" data-anchor-id="installation-im-quarto-projekt">Installation im Quarto-Projekt</h2>
-<p>Wir installieren im Quarto-Projekt einfach mittels:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> quarto <span class="ex">add</span> klausbrunner/convert-to-webp</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Danach nutzen wir die Datei <code>_quarto.yml</code> und fügen die folgenden Zeilen hinzu:</p>
+<p>Um sofort bei der Erstellung von Dokumenten, wie zum Beispiel diese Blog-Einträge, mit Quarto webp zu nutzen, installiert mensch einfach im Quarto-Projekt mittels:</p>
+<pre class="bas"><code>&gt; quarto add klausbrunner/convert-to-webp</code></pre>
+<p>Danach in der Datei <code>_quarto.yml</code> noch die folgenden Zeilen hinzufügen:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> convert-to-webp</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">webp-delete-originals</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">webp-disable</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Jetzt wird nach jeden ‘rendern’ eines Dokuments die erzeugten PNG-Dateien in WebP-Dateien übersetzt und im HTML-Code ersetzt.</p>
+<p>Jetzt wird nach jedem ‘rendern’ eines Dokuments die erzeugten PNG-Dateien in WebP-Dateien übersetzt und im HTML-Code entsprechend ersetzt.</p>
 
 
 </section>

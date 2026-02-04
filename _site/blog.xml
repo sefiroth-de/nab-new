@@ -829,6 +829,988 @@ font-style: inherit;"># Zurückgewonnene Zahlen</span></span></code></pre></div>
   <pubDate>Sun, 21 Dec 2025 23:00:00 GMT</pubDate>
 </item>
 <item>
+  <title>Warum Exponentiation und Logarithmen wichtig sind in der Statistik.</title>
+  <dc:creator>Norman Markgraf</dc:creator>
+  <link>https://www.sefiroth.de/posts/2026-02-04-warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik" class="level1">
+<h1>Warum Exponentiation und Logarithmen wichtig sind in der Statistik</h1>
+<p>Die Exponentiation und der Logarithmus sind wichtig in der Statistik, weil sie helfen, komplexe Zusammenhänge zu verstehen und zu modellieren. Hier sind einige Gründe, warum sie so wichtig sind:</p>
+<ol type="1">
+<li><p><strong>Daten Transformation</strong>: Viele statistische Modelle setzen voraus, dass die Daten normalverteilt sind. Durch die Anwendung von Logarithmen können schiefe Verteilungen in eine normalverteilte Form transformiert werden, was die Analyse erleichtert.</p></li>
+<li><p><strong>Multiplikative Beziehungen</strong>: In vielen Fällen sind die Beziehungen zwischen Variablen multiplikativ statt additiv. Logarithmen ermöglichen es, diese Beziehungen in eine additive Form zu überführen, was die Interpretation und Modellierung vereinfacht.</p></li>
+<li><p><strong>Wachstumsprozesse</strong>: Exponentielle Funktionen werden häufig verwendet, um Wachstumsprozesse zu modellieren, wie z.B. Bevölkerungswachstum oder Zinseszinsen. Logarithmen helfen dabei, diese Prozesse zu analysieren und zu verstehen.</p></li>
+<li><p><strong>Linearisierung</strong>: Viele nicht-lineare Modelle können durch die Anwendung von Logarithmen linearisiert werden, was die Anwendung von linearen Regressionsmethoden ermöglicht.</p></li>
+<li><p><strong>Skalierung</strong>: Logarithmische Skalen werden oft verwendet, um Daten darzustellen, die über mehrere Größenordnungen variieren, wie z.B. in der Finanzanalyse oder bei Messungen von Erdbebenstärken. Insgesamt sind Exponentiation und Logarithmen unverzichtbare Werkzeuge in der Statistik, die helfen, Daten zu transformieren, Beziehungen zu modellieren und komplexe Phänomene zu verstehen.</p></li>
+</ol>
+<section id="datentransformation-und-linearisierung-mit-exponentiation-und-logarithmes" class="level2">
+<h2 class="anchored" data-anchor-id="datentransformation-und-linearisierung-mit-exponentiation-und-logarithmes">Datentransformation und Linearisierung mit Exponentiation und Logarithmes</h2>
+<section id="beispiel-1-daten-transformation-mit-logarithmen" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-1-daten-transformation-mit-logarithmen">Beispiel 1 – Daten Transformation mit Logarithmen</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">R</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span>
+<span id="cb1-2"></span>
+<span id="cb1-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Beispiel in R: Log-Transformation einer schiefen Verteilung</span></span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2009</span>)</span>
+<span id="cb1-5">data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rexp</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1000</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rate =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.1</span>)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Exponentielle Verteilung</span></span>
+<span id="cb1-6">df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> data)</span>
+<span id="cb1-7"></span>
+<span id="cb1-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> x), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> df) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_histogram</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">bins =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lightblue"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Original Data"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">xlab</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Value"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>()</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2026-02-04-warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik/index_files/figure-html/unnamed-chunk-1-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">df_log <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">log</span>(data))  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Log-Transformation</span></span>
+<span id="cb2-2"></span>
+<span id="cb2-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> x), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> df_log) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_histogram</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">bins =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lightgreen"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Log-Transformed Data"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">xlab</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Log(Value)"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>()</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2026-02-04-warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik/index_files/figure-html/unnamed-chunk-1-2.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> np</span>
+<span id="cb3-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt</span>
+<span id="cb3-3"></span>
+<span id="cb3-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Beispiel in Python: Log-Transformation einer schiefen Verteilung</span></span>
+<span id="cb3-5"></span>
+<span id="cb3-6">np.random.seed(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2009</span>)</span>
+<span id="cb3-7"></span>
+<span id="cb3-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Exponentielle Verteilung</span></span>
+<span id="cb3-9">data <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.random.exponential(scale<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, size<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1000</span>)</span>
+<span id="cb3-10">plt.hist(data, bins<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span>, color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'lightblue'</span>, alpha<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7</span>)</span>
+<span id="cb3-11">plt.title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Original Data'</span>)</span>
+<span id="cb3-12">plt.xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Value'</span>)</span>
+<span id="cb3-13">plt.show()</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2026-02-04-warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik/index_files/figure-html/unnamed-chunk-2-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">plt.clf()</span>
+<span id="cb4-2"></span>
+<span id="cb4-3">log_data <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.log(data)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Log-Transformation</span></span>
+<span id="cb4-4">plt.hist(log_data, bins<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span>, color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'lightgreen'</span>, alpha<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7</span>)</span>
+<span id="cb4-5">plt.title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Log-Transformed Data'</span>)</span>
+<span id="cb4-6">plt.xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Log(Value)'</span>)</span>
+<span id="cb4-7">plt.show()</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2026-02-04-warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik/index_files/figure-html/unnamed-chunk-2-2.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"></span>
+<span id="cb5-2">plt.clf()</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2026-02-04-warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik/index_files/figure-html/unnamed-chunk-2-3.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="beispiel-2-linearisierung-mit-logarithmen" class="level2">
+<h2 class="anchored" data-anchor-id="beispiel-2-linearisierung-mit-logarithmen">Beispiel 2 – Linearisierung mit Logarithmen</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true" href="">R</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span>
+<span id="cb6-2"></span>
+<span id="cb6-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Beispiel in R: Linearisierung einer exponentiellen Beziehung</span></span>
+<span id="cb6-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2009</span>)</span>
+<span id="cb6-5"></span>
+<span id="cb6-6">x <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.1</span>)</span>
+<span id="cb6-7">y <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">exp</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(x),</span>
+<span id="cb6-8">                 <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mean =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Exponentielle Beziehung mit Rauschen</span></span>
+<span id="cb6-9">df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> y)</span>
+<span id="cb6-10"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> y), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> df) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"blue"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Exponentielle Beziehung"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"X"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Y"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>()</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2026-02-04-warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik/index_files/figure-html/unnamed-chunk-3-7.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">log_y <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">log</span>(y)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Log-Transformation von Y</span></span>
+<span id="cb7-2">df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> log_y)</span>
+<span id="cb7-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> y), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> df) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb7-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb7-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Linearisierte Beziehung"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"X"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Log(Y)"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb7-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>()</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2026-02-04-warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik/index_files/figure-html/unnamed-chunk-3-8.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> np</span>
+<span id="cb8-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt</span>
+<span id="cb8-3"></span>
+<span id="cb8-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Beispiel in Python: Linearisierung einer exponentiellen Beziehung</span></span>
+<span id="cb8-5">np.random.seed(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2009</span>)</span>
+<span id="cb8-6"></span>
+<span id="cb8-7">x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.arange(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10.1</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.1</span>)</span>
+<span id="cb8-8">y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> np.exp(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> np.random.normal(</span>
+<span id="cb8-9">    <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, size<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(x) </span>
+<span id="cb8-10">    )</span>
+<span id="cb8-11">plt.scatter(x, y, color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'blue'</span>)</span>
+<span id="cb8-12">plt.title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Exponentielle Beziehung'</span>)</span>
+<span id="cb8-13">plt.xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'X'</span>)</span>
+<span id="cb8-14">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Y'</span>)</span>
+<span id="cb8-15">plt.show()</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2026-02-04-warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik/index_files/figure-html/unnamed-chunk-4-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1">plt.clf()</span>
+<span id="cb9-2"></span>
+<span id="cb9-3">log_y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.log(y)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Log-Transformation von Y</span></span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;string&gt;:2: RuntimeWarning: invalid value encountered in log</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1">plt.scatter(x, log_y, color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'red'</span>)</span>
+<span id="cb11-2">plt.title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Linearisierte Beziehung'</span>)</span>
+<span id="cb11-3">plt.xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'X'</span>)</span>
+<span id="cb11-4">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Log(Y)'</span>)</span>
+<span id="cb11-5">plt.show()</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2026-02-04-warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik/index_files/figure-html/unnamed-chunk-4-2.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"></span>
+<span id="cb12-2">plt.clf()</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2026-02-04-warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik/index_files/figure-html/unnamed-chunk-4-3.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="multiplikative-beziehungen" class="level2">
+<h2 class="anchored" data-anchor-id="multiplikative-beziehungen">Multiplikative Beziehungen</h2>
+<p>Logarithmen sind besonders nützlich, um multiplikative Beziehungen zwischen Variablen zu modellieren. Wenn die Beziehung zwischen zwei Variablen durch eine Multiplikation beschrieben wird, kann die Anwendung des Logarithmus diese Beziehung in eine additive Form überführen, was die Analyse und Interpretation erleichtert. <img src="https://latex.codecogs.com/png.latex?%0A%20%20y%20=%20a%20%5Ccdot%20x_1%5E%7Bb_1%7D%20%5Ccdot%20x_2%5E%7Bb_2%7D%20%5Ccdots%20x_n%5E%7Bb_n%7D%0A"> Durch die Anwendung des Logarithmus auf beide Seiten der Gleichung erhalten wir: <img src="https://latex.codecogs.com/png.latex?%0A%20%20%5Clog(y)%20=%20%5Clog(a)%20+%20b_1%20%5Ccdot%20%5Clog(x_1)%20+%20b_2%20%5Ccdot%20%5Clog(x_2)%20+%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Ccdots%20+%20b_n%20%5Ccdot%20%5Clog(x_n)%0A"> Diese Transformation ermöglicht es, die multiplikative Beziehung als lineare Kombination der logarithmierten Variablen darzustellen, was die Anwendung von linearen Regressionsmethoden erleichtert.</p>
+<p>In der Statistik und Datenanalyse wird diese Technik häufig verwendet, um Modelle zu erstellen, die besser zu den Daten passen und leichter zu interpretieren sind.</p>
+<p>Zum Beispiel bei der log-likelihood-Funktion in der Maximum-Likelihood-Schätzung oder bei der Analyse von Wachstumsprozessen, bei denen die Wachstumsraten oft als multiplikative Effekte modelliert werden.</p>
+<p>Wenn Statisiker log-likelihood-Funktionen verwenden, dann u.a. aus diesen Gründen:</p>
+<p><strong>Monotonie:</strong> Logarithmen sind streng monoton wachsend, was bedeutet, dass die Maximierung der log-likelihood-Funktion äquivalent zur Maximierung der ursprünglichen likelihood-Funktion ist. Dies erleichtert die Optimierung erheblich.</p>
+<p><strong>Produkte wandeln sich zu Summen:</strong> Für unabhängige Beobachtungen gilt</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%20%20L(%5Ctheta)%20=%20%5Cprod_%7Bi=1%7D%5E%7Bn%7D%20f(x_i%20%5Cmid%20%5Ctheta),%0A"></p>
+<p>welche mit dem Logarimus zu</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%20%20%5Clog%20L(%5Ctheta)%20=%20%5Csum_%7Bi=1%7D%5E%7Bn%7D%20%5Clog%20f(x_i%20%5Cmid%20%5Ctheta)%0A"> wird.</p>
+<p>Dies vereinfacht die Berechnungen und reduziert numerische Instabilitäten, die bei der Arbeit mit sehr kleinen Wahrscheinlichkeiten auftreten können.</p>
+<p><strong>Anti-Symmetrie:</strong> Beim vergleich zweier Modelle <img src="https://latex.codecogs.com/png.latex?M_1"> und <img src="https://latex.codecogs.com/png.latex?M_2"> mit Likelihoods <img src="https://latex.codecogs.com/png.latex?L_1"> und <img src="https://latex.codecogs.com/png.latex?L_2"> ist der Log-Likelihood-Ratio</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%20%20%5Clog%5Cleft(%5Cfrac%7BL_1%7D%7BL_2%7D%5Cright)%20&amp;=%20%5Clog(L_1)%20-%20%5Clog(L_2)%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20&amp;=%20-%20%5Clog(L_2)%20+%20%5Clog(L_1)%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20&amp;=%20-%5Cleft(%5Clog(L_2)%20-%20%5Clog(L_1)%5Cright)%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20=%20-%20%5Clog%5Cleft(%5Cfrac%7BL_2%7D%7BL_1%7D%5Cright).%0A%5Cend%7Baligned%7D%0A"></p>
+<p>Das bedeutet, dass der Log-Likelihood-Ratio anti-symmetrisch ist, was bei der Interpretation von Modellen hilfreich sein kann.</p>
+<p>So ist die Evidenz für Modell <img src="https://latex.codecogs.com/png.latex?M_1"> gegenüber Modell <img src="https://latex.codecogs.com/png.latex?M_2"> genau das negative der Evidenz für Modell <img src="https://latex.codecogs.com/png.latex?M_2"> gegenüber Modell <img src="https://latex.codecogs.com/png.latex?M_1">.</p>
+<section id="beispiel-3-multiplikative-beziehungen-mit-logarithmen" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-3-multiplikative-beziehungen-mit-logarithmen">Beispiel 3 – Multiplikative Beziehungen mit Logarithmen</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true" href="">R</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span>
+<span id="cb13-2"></span>
+<span id="cb13-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Beispiel in R: Multiplikative Beziehung</span></span>
+<span id="cb13-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2009</span>)</span>
+<span id="cb13-5">x1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">runif</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>)</span>
+<span id="cb13-6">x2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">runif</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>)</span>
+<span id="cb13-7">y <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span></span>
+<span id="cb13-8">                 , <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mean =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Multiplikative Beziehung mit Rauschen</span></span>
+<span id="cb13-9">df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x1 =</span> x1, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x2 =</span> x2, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> y)</span>
+<span id="cb13-10"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> x1, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> y), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> df) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb13-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"blue"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb13-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Multiplikative Beziehung"</span>, </span>
+<span id="cb13-13">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"X1"</span>, </span>
+<span id="cb13-14">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Y"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb13-15">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>()</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2026-02-04-warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik/index_files/figure-html/unnamed-chunk-5-7.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1">log_y <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">log</span>(y)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Log-Transformation von Y</span></span>
+<span id="cb14-2">log_x1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">log</span>(x1)</span>
+<span id="cb14-3">log_x2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">log</span>(x2)</span>
+<span id="cb14-4">df_log <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x1 =</span> log_x1, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x2 =</span> log_x2, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> log_y)</span>
+<span id="cb14-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> x1, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> y), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> df_log) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb14-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb14-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Additive Beziehung nach Log-Transformation"</span>, </span>
+<span id="cb14-8">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Log(X1)"</span>, </span>
+<span id="cb14-9">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Log(Y)"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb14-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>()</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2026-02-04-warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik/index_files/figure-html/unnamed-chunk-5-8.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> np</span>
+<span id="cb15-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt</span>
+<span id="cb15-3"></span>
+<span id="cb15-4">np.random.seed(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2009</span>)</span>
+<span id="cb15-5">x1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.random.uniform(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>)</span>
+<span id="cb15-6">x2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.random.uniform(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>)</span>
+<span id="cb15-7"></span>
+<span id="cb15-8">y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> np.random.normal(</span>
+<span id="cb15-9">    <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, size<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Multiplikative Beziehung mit Rauschen</span></span>
+<span id="cb15-10">    </span>
+<span id="cb15-11">plt.scatter(x1, y, color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'blue'</span>)</span>
+<span id="cb15-12">plt.title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Multiplikative Beziehung'</span>)</span>
+<span id="cb15-13">plt.xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'X1'</span>)</span>
+<span id="cb15-14">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Y'</span>)</span>
+<span id="cb15-15">plt.show()</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2026-02-04-warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik/index_files/figure-html/unnamed-chunk-6-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1">plt.clf()</span>
+<span id="cb16-2">log_y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.log(y)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Log-Transformation von Y</span></span>
+<span id="cb16-3">log_x1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.log(x1)</span>
+<span id="cb16-4">log_x2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.log(x2)</span>
+<span id="cb16-5">plt.scatter(log_x1, log_y, color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'red'</span>)</span>
+<span id="cb16-6">plt.title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Additive Beziehung nach Log-Transformation'</span>)</span>
+<span id="cb16-7">plt.xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Log(X1)'</span>)</span>
+<span id="cb16-8">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Log(Y)'</span>)</span>
+<span id="cb16-9">plt.show()</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2026-02-04-warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik/index_files/figure-html/unnamed-chunk-6-2.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1">plt.clf()</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2026-02-04-warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik/index_files/figure-html/unnamed-chunk-6-3.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="fazit" class="level2">
+<h2 class="anchored" data-anchor-id="fazit">Fazit</h2>
+<p>Exponentiation und Logarithmen sind mächtige Werkzeuge in der Statistik, die es ermöglichen, Daten zu transformieren, Beziehungen zu modellieren und komplexe Phänomene zu verstehen. Durch die Anwendung dieser mathematischen Konzepte können Statistiker und Datenwissenschaftler tiefere Einblicke in ihre Daten gewinnen und präzisere Modelle erstellen.</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>Statistik</category>
+  <category>Logarithmen</category>
+  <category>Exponentiation</category>
+  <category>Likelihood</category>
+  <category>Log-Likelihood</category>
+  <guid>https://www.sefiroth.de/posts/2026-02-04-warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik/</guid>
+  <pubDate>Sun, 21 Dec 2025 23:00:00 GMT</pubDate>
+</item>
+<item>
   <title>Quarto-Dokumente mit WebP anstatt PNG Bilddateien erstellen</title>
   <dc:creator>Norman Markgraf</dc:creator>
   <link>https://www.sefiroth.de/posts/2025-12-03-Quarto-Dokumente-mit-webp-anstatt-png/</link>
@@ -840,36 +1822,32 @@ font-style: inherit;"># Zurückgewonnene Zahlen</span></span></code></pre></div>
 
 <section id="webp-statt-png" class="level1">
 <h1>WebP statt PNG?</h1>
-<p>Ich bin über die Quarto-Extension von KLaus Brunner mit dem Namen <a href="https://github.com/klausbrunner/convert-to-webp">Convert PNG to WebP (Quarto Extension)</a> gestolpert und nutze diesen nun regelmässig.</p>
+<p>Ich bin über die Quarto-Extension von Klaus Brunner mit dem Namen <a href="https://github.com/klausbrunner/convert-to-webp">Convert PNG to WebP (Quarto Extension)</a> gestolpert und nutze diesen nun regelmässig.</p>
 <p>Dafür habe ich auf meinem Mac via HomeBrew die Application “webp” installiert.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&gt;</span> brew <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">install</span> webp</span></code></pre></div></div>
-<p>Damit habe ich das Programm <code>cwebp</code> installiert. Zum Testen nutze ich:</p>
+<p>Dadurch habe ich das Programm <code>cwebp</code> installiert. Es dient zum umwandeln von PNG in webp Dateien. Zum Testen nutze ich den Befehl:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&gt;</span> cwebp <span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">-version</span></span></code></pre></div></div>
-<p>Aktuell bekomme ich da die Ausgabe:</p>
+<p>Aktuell bekomme ich damit die Ausgabe:</p>
 <pre><code>1.6.0
 libsharpyuv: 0.4.2</code></pre>
-<p>Das Programm ersetzt die erzeugten Bild-Ausgaben, welche normalerweise im PNG-Format erzeugt werden, durch welche im WebP-Format.</p>
+<p>Das Programm ersetzt die erzeugten Bild-Ausgaben, welche normalerweise im PNG-Format erzeugt werden, durch Neue im WebP-Format.</p>
 <p>Die KI sagt:</p>
 <blockquote class="blockquote">
 <p>WebP ist ein modernes Bildformat von Google, das eine effizientere Komprimierung als herkömmliche Formate wie JPEG und PNG ermöglicht, um Bilder im Web kleiner zu machen und Ladezeiten zu beschleunigen. Es unterstützt sowohl verlustfreie als auch verlustbehaftete Komprimierung sowie Transparenz und Animationen, ähnlich wie PNG und GIF. WebP wird von den meisten modernen Browsern unterstützt, aber für ältere Browser ist es ratsam, eine alternative Bildversion bereitzustellen</p>
 </blockquote>
 <section id="installation-im-quarto-projekt" class="level2">
 <h2 class="anchored" data-anchor-id="installation-im-quarto-projekt">Installation im Quarto-Projekt</h2>
-<p>Wir installieren im Quarto-Projekt einfach mittels:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span> quarto <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">add</span> klausbrunner/convert-to-webp</span></code></pre></div></div>
-<p>Danach nutzen wir die Datei <code>_quarto.yml</code> und fügen die folgenden Zeilen hinzu:</p>
+<p>Um sofort bei der Erstellung von Dokumenten, wie zum Beispiel diese Blog-Einträge, mit Quarto webp zu nutzen, installiert mensch einfach im Quarto-Projekt mittels:</p>
+<pre class="bas"><code>&gt; quarto add klausbrunner/convert-to-webp</code></pre>
+<p>Danach in der Datei <code>_quarto.yml</code> noch die folgenden Zeilen hinzufügen:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">filters</span><span class="kw" style="color: #003B4F;
@@ -905,7 +1883,7 @@ background-color: null;
 font-style: inherit;"> </span><span class="ch" style="color: #20794D;
 background-color: null;
 font-style: inherit;">false</span></span></code></pre></div></div>
-<p>Jetzt wird nach jeden ‘rendern’ eines Dokuments die erzeugten PNG-Dateien in WebP-Dateien übersetzt und im HTML-Code ersetzt.</p>
+<p>Jetzt wird nach jedem ‘rendern’ eines Dokuments die erzeugten PNG-Dateien in WebP-Dateien übersetzt und im HTML-Code entsprechend ersetzt.</p>
 
 
 </section>
@@ -6926,483 +7904,6 @@ font-style: inherit;">scale_y_log10</span>()</span>
   <category>Statistik</category>
   <guid>https://www.sefiroth.de/posts/2021-02-13-behaebige-funktionen-aka-slowly-varying-function/</guid>
   <pubDate>Fri, 12 Feb 2021 23:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Ein paar Gedanken über potenzgesetzliche Verteilungen (power law distributions)</title>
-  <dc:creator>Norman Markgraf</dc:creator>
-  <link>https://www.sefiroth.de/posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>Eine Funktion <img src="https://latex.codecogs.com/png.latex?f(x)"> heißt <strong>potenzgesetzlich</strong>, falls</p>
-<p><img src="https://latex.codecogs.com/png.latex?f(x)%20=%20C%20%5Ccdot%20x%5Ea"></p>
-<p>gilt, für mindestens alle reellen <img src="https://latex.codecogs.com/png.latex?x%20%3E%20x_%7Bmin%7D">.</p>
-<p>Gewöhnlich setzt man <img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%20-a"> und schreibt</p>
-<p><img src="https://latex.codecogs.com/png.latex?f(x)%20=%20C%20%5Ccdot%20x%5E%7B-%5Calpha%7D."></p>
-<p>Damit ergibt sich für <img src="https://latex.codecogs.com/png.latex?f'(x)"> die Form:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Af'(x)%20=%20-C%20%5Ccdot%20%5Calpha%20%5Ccdot%20x%5E%7B-%5Calpha%20-1%7D%20=%20C%5E*%20%5Ccdot%20x%5E%7B-(%5Calpha%20+%201)%7D%0A"> mit <img src="https://latex.codecogs.com/png.latex?C%5E*%20=%20-C%20%5Ccdot%20%5Calpha">.</p>
-<p>Eine <strong>(streng) potenzgesetzliche Verteilungen</strong> (engl. <strong>(strong) power-law probability distribution</strong>) zur ZV <img src="https://latex.codecogs.com/png.latex?X"> ist eine Verteilung deren Überlebensfunktion <img src="https://latex.codecogs.com/png.latex?%5Coverline%7BF%7D_X(x)=P(X%20%3E%20x)"> die folgende Gestalt hat: <img src="https://latex.codecogs.com/png.latex?%5Coverline%7BF%7D(x)=P(X%20%3E%20x)%20=%20C%20%5Ccdot%20x%5E%7B-%5Calpha%7D"></p>
-<p>Mit der Dichte <img src="https://latex.codecogs.com/png.latex?f_X"> ergibt sich: <img src="https://latex.codecogs.com/png.latex?%5Coverline%7BF%7D(x)=P(X%20%3E%20x)%20=%20C%20%5Ccdot%20x%5E%7B-%5Calpha%7D%20=%5Cint_x%5E%5Cinfty%20f_X(t)%20%5Ctext%7Bd%7Dt%20=%20C%5E*%20%5Ccdot%20%5Cint_x%5E%5Cinfty%20%20t%5E%7B-(%5Calpha+1)%7D%20%5Ctext%7Bd%7Dt%20=%20C%5E*%20%5Ccdot%20%5Cint_x%5E%5Cinfty%20t%5E%7B-%5Calpha%7D%20%5Ctext%7Bd%7Dt"></p>
-<p>Anstelle der Konstanten <img src="https://latex.codecogs.com/png.latex?C"> tritt oft eine <strong>langsam variierende Funktion</strong> (engl. <strong>slowly varying funktion</strong>). Wir erhalten somit die folgende, allgemeinere Definition:</p>
-<p>Eine <strong>potenzgesetzliche Verteilungen</strong> (engl. <strong>power-law probability distribution</strong>) (zu einer Zufallsvariable <img src="https://latex.codecogs.com/png.latex?X">) ist eine Verteilung deren Überlebensfunktion <img src="https://latex.codecogs.com/png.latex?%5Coverline%7BF%7D(x)=P(X%20%3E%20x)"> die folgende Gestalt hat:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%5Coverline%7BF%7D(x)=P(X%20%3E%20x)%20=%20L(x)%20%5Ccdot%20x%5E%7B-%5Calpha%7D"></p>
-<p>Dabei ist <img src="https://latex.codecogs.com/png.latex?L(x):(x_%7B%5Cmin%7D,%20+%5Cinfty)%20%5Cto%20(x_%7B%5Cmin%7D,%20+%5Cinfty)"> eine <em>langsam variierende Funktion</em>, also gilt für alle <img src="https://latex.codecogs.com/png.latex?t%3E0">:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Clim_%7Bx%20%5Cto%20+%5Cinfty%7D%20%5Cfrac%7BL(t%20%5Ccdot%20x)%7D%7BL(x)%7D%20=%201%0A"></p>
-<p>Ist nun wieder <img src="https://latex.codecogs.com/png.latex?f_X"> die Dichte, so erhalten wir: <img src="https://latex.codecogs.com/png.latex?%5Coverline%7BF%7D(x)=P(X%20%3E%20x)%20=%20L(x)%20%5Ccdot%20x%5E%7B-%5Calpha%7D%20=%20%5Cint_x%5E%5Cinfty%20f_X(t)%20dt"></p>
-<p><img src="https://latex.codecogs.com/png.latex?f'(x)%20=%20%5BL(x)x%5E%7B-%5Calpha%7D%5D'"> <img src="https://latex.codecogs.com/png.latex?%5Cint_x%5E%5Cinfty%20f_X(t)%20dt=%20%5Cint_x%5E%5Cinfty%20%5BL(t)t%5E%7B-%5Calpha%7D%5D'%20dt"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%5CDelta%20x_0%20=%20h%20=%20x_1%20-%20x_0"> <img src="https://latex.codecogs.com/png.latex?x_1%20=%20x_0%20+%20%5CDelta%20x_0%20=%20x_0%20+%20h"> <img src="https://latex.codecogs.com/png.latex?x_1%20=%20c%20%5Ccdot%20x_0"> <img src="https://latex.codecogs.com/png.latex?x_0%20+%20h%20=%20c%20%5Ccdot%20x_0%20%3C=%3E%20c%20=%201%20+%20%5Cfrac%7Bh%7D%7Bx_0%7D"> <img src="https://latex.codecogs.com/png.latex?L(x_1)%20=%20L(x_0+h)%20=%20L(c%20%5Ccdot%20x_0)"> <img src="https://latex.codecogs.com/png.latex?L(x_1)%20-%20L(x_0)%20=%20L(c%20%5Ccdot%20x_0)%20-%20L(x_0)%20=%20L(x_0%20+%20h)%20-%20L(x_0)%7D"> $</p>
-<p><strong>Fakten</strong>:</p>
-<ul>
-<li>Sinnvoll nur, wenn <img src="https://latex.codecogs.com/png.latex?%5Calpha%20%3E%200">.</li>
-<li>Ist <img src="https://latex.codecogs.com/png.latex?%5Calpha%20%3C%203">, dann ist die <em>Varianz</em> und die <em>Schiefe</em> (engl. <em>skewness</em>) (mathematisch) nicht definiert.</li>
-<li>Für <img src="https://latex.codecogs.com/png.latex?k%20%3E%20%5Calpha-1"> ist das k. Moment unendlich.</li>
-</ul>
-<p>Logarithmiert man <img src="https://latex.codecogs.com/png.latex?y=f(x)=C%20%5Ccdot%20x%5E%7B-%5Calpha%7D">, so erhält mensch:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%5Clog(y)%20=%20%5Clog(C)%20-%5Calpha%20%5Ccdot%20%5Clog(x)"></p>
-<p>Ist eine Verteilung potenzgesetzlich, dann kann man <img src="https://latex.codecogs.com/png.latex?%5Calpha">, wie folgt abschätzen:</p>
-<p>Seien <img src="https://latex.codecogs.com/png.latex?x_0,%20x_1%20%3E%20x_%7Bmin%7D"> zwei reelle Zahlen, <img src="https://latex.codecogs.com/png.latex?y_0=f(x_0)"> bzw. <img src="https://latex.codecogs.com/png.latex?y_1%20=%20f(y_1)">.</p>
-<p>Dann kann mensch wegen</p>
-<p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Balign*%7D%0A%20%20%5Clog(y_1)%20-%20%5Clog(y_0)%20&amp;=%20%5Clog(C)%20-%20%5Calpha%20%5Ccdot%5Clog(x_1)%20-%20%5Clog(C)%20+%20%5Calpha%20%5Ccdot%20%5Clog(x_0)%20%5C%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20&amp;=%20%5Calpha%20%5Ccdot%5Cleft(%5Clog(x_0)-%20%5Clog(x_1)%20%5Cright)%0A%5Cend%7Balign*%7D"></p>
-<p>den Wert für <img src="https://latex.codecogs.com/png.latex?%5Calpha">, so kann man mittels</p>
-<p><img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%20%5Cfrac%7B%5Clog(y_1)%20-%20%5Clog(y_0)%7D%7B%5Clog(x_0)-%20%5Clog(x_1)%7D"></p>
-<p>den Wert für <img src="https://latex.codecogs.com/png.latex?%5Calpha"> bestimmen.</p>
-<p>Mit dem so ermittelten <img src="https://latex.codecogs.com/png.latex?%5Calpha">, können wir <img src="https://latex.codecogs.com/png.latex?C"> wegen</p>
-<p><img src="https://latex.codecogs.com/png.latex?%5Clog(C)%20=%20%5Clog(y)+%20%5Calpha%5Clog(x)"></p>
-<p>mit Hilfe von</p>
-<p><img src="https://latex.codecogs.com/png.latex?C%20=%20y%20%5Ccdot%20x_0%5E%5Calpha%20=%20f(x_0)%20%5Ccdot%20x_0%5E%5Calpha"></p>
-<p>für ein <img src="https://latex.codecogs.com/png.latex?x_0%20%3E%20x_%7Bmin%7D"> abschätzen.</p>
-<p><strong>Beispiel</strong>:</p>
-<p>Nehmen wir die t-Verteilung mit <img src="https://latex.codecogs.com/png.latex?n=2"> Freiheitsgeraden. Die Dichtefunktion bezeichnen wir mit <img src="https://latex.codecogs.com/png.latex?t_%7B2%7D(x)">.</p>
-<p>Dann dann können wir <img src="https://latex.codecogs.com/png.latex?%5Calpha=3"> und <img src="https://latex.codecogs.com/png.latex?C=1"> abschätzen.</p>
-<p>Schauen wir uns das einmal als Grafik an:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">lower_bound <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span></span>
-<span id="cb1-2">upper_bound <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">100</span></span>
-<span id="cb1-3">x <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">seq</span>(lower_bound, upper_bound, <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.1</span>)</span>
-<span id="cb1-4"></span>
-<span id="cb1-5"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"t"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">df =</span> dfree, </span>
-<span id="cb1-6">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">xlim =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">c</span>(lower_bound, upper_bound), </span>
-<span id="cb1-7">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkred"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb1-8">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_line</span>(C<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span>x<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">**</span>(<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span>alpha) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> x, </span>
-<span id="cb1-9">          <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkgreen"</span>)</span></code></pre></div></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/index_files/figure-html/unnamed-chunk-2-1.webp" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Hier eine doppelt-logarithmische Darstellung:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"t"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">df =</span> dfree, </span>
-<span id="cb2-2">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">xlim =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">c</span>(lower_bound, upper_bound), </span>
-<span id="cb2-3">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkred"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb2-4">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_line</span>( C<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span>x<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">**</span>(<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span>alpha) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> x, </span>
-<span id="cb2-5">           <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkgreen"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb2-6">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_refine</span>(</span>
-<span id="cb2-7">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_x_log10</span>(),</span>
-<span id="cb2-8">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_y_log10</span>()</span>
-<span id="cb2-9">  )</span></code></pre></div></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/index_files/figure-html/unnamed-chunk-3-1.webp" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Noch ein Beispiel:</strong></p>
-<p>Nehmen wir die t-Verteilung mit <img src="https://latex.codecogs.com/png.latex?n=1"> Freiheitsgeraden. Die Dichtefunktion bezeichnen wir mit <img src="https://latex.codecogs.com/png.latex?t_%7B1%7D(x)">.</p>
-<p>Dann dann können wir <img src="https://latex.codecogs.com/png.latex?%5Calpha=2"> und <img src="https://latex.codecogs.com/png.latex?C=0.32"> abschätzen.</p>
-<p>Schauen wir uns das einmal als Grafik an:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">lower_bound <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span></span>
-<span id="cb3-2">upper_bound <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">100</span></span>
-<span id="cb3-3">x <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">seq</span>(lower_bound, upper_bound, <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.1</span>)</span>
-<span id="cb3-4"></span>
-<span id="cb3-5"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"t"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">df =</span> dfree, </span>
-<span id="cb3-6">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">xlim =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">c</span>(lower_bound, upper_bound), </span>
-<span id="cb3-7">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkred"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb3-8">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_line</span>(C<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span>x<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">**</span>(<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span>alpha) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> x, </span>
-<span id="cb3-9">          <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkgreen"</span>)</span></code></pre></div></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/index_files/figure-html/unnamed-chunk-5-1.webp" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Hier eine doppelt-logarithmische Darstellung:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"t"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">df =</span> dfree, </span>
-<span id="cb4-2">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">xlim =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">c</span>(lower_bound, upper_bound), </span>
-<span id="cb4-3">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkred"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb4-4">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_line</span>( C<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span>x<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">**</span>(<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span>alpha) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> x, </span>
-<span id="cb4-5">           <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkgreen"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb4-6">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_refine</span>(</span>
-<span id="cb4-7">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_x_log10</span>(),</span>
-<span id="cb4-8">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_y_log10</span>()</span>
-<span id="cb4-9">  )</span></code></pre></div></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/index_files/figure-html/unnamed-chunk-6-1.webp" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Ein ’Gegen-’Beispiel:</strong></p>
-<p>Betrachten wir nun die (rechte Seite – <img src="https://latex.codecogs.com/png.latex?x%3E1=x_%7Bmin%7D">) einer Gauß’schen Standardnormalverteilung.</p>
-<p>Mit den Stützstellen <img src="https://latex.codecogs.com/png.latex?x_0%20=%201"> und <img src="https://latex.codecogs.com/png.latex?x_1%20=%205"> können wir <img src="https://latex.codecogs.com/png.latex?%5Calpha=7.46"> und <img src="https://latex.codecogs.com/png.latex?C=0.24"> abschätzen. Schauen wir uns das einmal als Grafik an:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">lower_bound <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span></span>
-<span id="cb5-2">upper_bound <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">8</span></span>
-<span id="cb5-3">x <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">seq</span>(lower_bound, upper_bound, <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.1</span>)</span>
-<span id="cb5-4"></span>
-<span id="cb5-5"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"norm"</span>,</span>
-<span id="cb5-6">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">xlim =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">c</span>(lower_bound, upper_bound), </span>
-<span id="cb5-7">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkred"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb5-8">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_line</span>(C<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span>x<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">**</span>(<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span>alpha) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> x, </span>
-<span id="cb5-9">          <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkgreen"</span>)</span></code></pre></div></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/index_files/figure-html/unnamed-chunk-8-1.webp" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Hier eine doppelt-logarithmische Darstellung:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"norm"</span>, </span>
-<span id="cb6-2">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">xlim =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">c</span>(lower_bound, upper_bound), </span>
-<span id="cb6-3">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkred"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb6-4">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_line</span>( C<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span>x<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">**</span>(<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span>alpha) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> x, </span>
-<span id="cb6-5">           <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkgreen"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb6-6">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_refine</span>(</span>
-<span id="cb6-7">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_x_log10</span>(),</span>
-<span id="cb6-8">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_y_log10</span>()</span>
-<span id="cb6-9">  )</span></code></pre></div></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/index_files/figure-html/unnamed-chunk-9-1.webp" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Wir erkennen, dass hier etwas nicht passt. Die Standardnormalverteilung ist (vielleicht) keine <em>potenzgesetzich</em> Verteilung?</p>
-<p>Ein oft verwendetes Kriterium ist, dass sich die Funktion in der doppelt-logarithmischen Darstellung als Gerade offenbart.</p>
-<p>Schauen wir daher einmal nach:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">lower_bound <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span></span>
-<span id="cb7-2">upper_bound <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">8</span></span>
-<span id="cb7-3"></span>
-<span id="cb7-4"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"norm"</span>, </span>
-<span id="cb7-5">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">xlim =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">c</span>(lower_bound, upper_bound), </span>
-<span id="cb7-6">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkred"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb7-7">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_refine</span>(</span>
-<span id="cb7-8">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_x_log10</span>(),</span>
-<span id="cb7-9">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_y_log10</span>()</span>
-<span id="cb7-10">  )</span></code></pre></div></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/index_files/figure-html/unnamed-chunk-10-1.webp" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>** — **</p>
-<p>Weiter gilt für <em>potenzgesetzliche Verteilungen</em> wegen</p>
-<p><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bf(x)%7D%7Bf(c%5Ccdot%20x)%7D%20=%20%5Cfrac%7BC%20%5Ccdot%20x%5E%7B-%5Calpha%7D%7D%7BC%20%5Ccdot%20(c%5Ccdot%20x)%5E%7B-%5Calpha%7D%7D%0A=%20c%5E%5Calpha"></p>
-<p><img src="https://latex.codecogs.com/png.latex?f(x)"> und <img src="https://latex.codecogs.com/png.latex?f(c%5Ccdot%20x)"> für alle (beliebig aber festen) <img src="https://latex.codecogs.com/png.latex?c%3E0"> <em>proportional</em>, was man gerne als <img src="https://latex.codecogs.com/png.latex?f(x)%20%5Cpropto%20f(c%20%5Ccdot%20x)"> schreibt.</p>
-<p>** — **</p>
-<p>Die Wahrscheinlichkeit für ein (mindestens) <img src="https://latex.codecogs.com/png.latex?8-%5Csigma"> Ereignis liegt bei einer Standardnormalverteilung bei etwa <img src="https://latex.codecogs.com/png.latex?6.66133814775094%5Ctimes%2010%5E%7B-16%7D">.</p>
-<p>Bei einer t-Verteilung mit 2 Freiheitsgeraden bei etwa 0.00763403608266899$.</p>
-<p>Während die Eintrittschance eines (mindestens) <img src="https://latex.codecogs.com/png.latex?8-%5Csigma"> Ereignisses bei der Standardnormalverteilung bei etwa <img src="https://latex.codecogs.com/png.latex?1%20:%20round(1/(1-pnorm(8)),0)"> liegt, ist diese der t-Verteilung mit einem Freiheitsgrad bei etwa $1 : 131</p>
-
-
-
- ]]></description>
-  <category>Statistik</category>
-  <guid>https://www.sefiroth.de/posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/</guid>
-  <pubDate>Thu, 11 Feb 2021 23:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
