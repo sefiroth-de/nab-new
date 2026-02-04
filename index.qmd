@@ -29,17 +29,17 @@ about:
 
 ## Biografie
 
-Norman Markgraf ist freiberuflicher Dozent für Mathematik, Statistik, Data Science und Informatik sowie freiberuflicher Programmierer. 
+Norman Markgraf ist freiberuflicher Dozent für Mathematik, Statistik, Data Science und Informatik sowie freiberuflicher Programmierer.
 
 Als Lehrbeauftragter hat er an der 
 *Hochschule Bochum* (am Campus Bochum), 
 der Hochschule Rhein-Waal (am Campus Kleve), 
 der *FOM Hochschule für Oekonomie und Management* an den Studienorten Aachen, Bonn, Dortmund, Duisburg, Düsseldorf, Gütersloh (Bertelsmann), Köln, Münster, Neuss, Wuppertal und München,
 der *Frankfurt University of Applied Sciences* (im Online-Studium) 
-und der *IU Internationale Hochschule* an den Studienorten Düsseldorf und Köln 
+und der *IU Internationale Hochschule* an den Studienorten Dortmund, Düsseldorf und Köln 
 verschiedene Lehrveranstaltungen, Mentorate und Tutorien in den Bereichen
 Wirtschafts-/ Finanz- und Ingenieurmathematik,
-Progammieren in Python, 
+Programmieren in Python, 
 Grundlagen der Informatik, 
 Formale Beschreibungsverfahren, 
 Big Data, 
