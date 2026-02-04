@@ -615,7 +615,7 @@ font-style: inherit;">'Log(Y)'</span>)</span>
 <p><strong>Monotonie:</strong> Logarithmen sind streng monoton wachsend, was bedeutet, dass die Maximierung der log-likelihood-Funktion äquivalent zur Maximierung der ursprünglichen likelihood-Funktion ist. Dies erleichtert die Optimierung erheblich.</p>
 <p><strong>Produkte wandeln sich zu Summen:</strong> Für unabhängige Beobachtungen gilt</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%20%20L(%5Ctheta)%20=%20%5Cprod_%7Bi=1%7D%5E%7Bn%7D%20f(x_i%20%5Cmid%20%5Ctheta),%0A"></p>
-<p>welche mit dem Logarimus zu</p>
+<p>welche mit dem Logarithmus zu</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%20%20%5Clog%20L(%5Ctheta)%20=%20%5Csum_%7Bi=1%7D%5E%7Bn%7D%20%5Clog%20f(x_i%20%5Cmid%20%5Ctheta)%0A"> wird.</p>
 <p>Dies vereinfacht die Berechnungen und reduziert numerische Instabilitäten, die bei der Arbeit mit sehr kleinen Wahrscheinlichkeiten auftreten können.</p>
 <p><strong>Anti-Symmetrie:</strong> Beim vergleich zweier Modelle <img src="https://latex.codecogs.com/png.latex?M_1"> und <img src="https://latex.codecogs.com/png.latex?M_2"> mit Likelihoods <img src="https://latex.codecogs.com/png.latex?L_1"> und <img src="https://latex.codecogs.com/png.latex?L_2"> ist der Log-Likelihood-Ratio</p>
