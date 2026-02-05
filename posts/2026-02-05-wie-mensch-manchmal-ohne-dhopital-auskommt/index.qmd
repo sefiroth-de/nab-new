@@ -38,8 +38,31 @@ Der Bruch lässt sich somit umformen zu:
 $$
   \frac{t^2-1}{t^3-1}=\frac{(t-1)(t+1)}{(t-1)(t^2+t+1)}=\frac{t+1}{t^2+t+1}
 $$
-Und in die rechte Seite können wir $t=1$ ohne Probleme einsetzen und erhalten
+Und in die rechte Seite können wir $t=1$ ohne Probleme einsetzen und erhalten:
+
 $$
-  \frac{1+1}{1^2+1+1} = \frac{2}{3}
+  \lim\limits_{x \to 1} \frac{x^{\frac{1}{3}}-1}{x^{\frac{1}{2}}-1}
+ =\lim\limits_{t \to 1} \frac{t^2-1}{t^3-1}
+ =\lim\limits_{t \to 1} \frac{t+1}{t^2+t+1}
+ =
+ \frac{1+1}{1^2+1+1} 
+ = \frac{2}{3}
 $$
 
+Die Idee ist klar. Da die Laufvariable gegen eine Nullstelle von Zähler und Nenner geht, müssen wir diese Nullstelle oben wie unten auskammern und wegkürzen.
+Um das zu erreichen muss unsere Substitution passen.
+
+Im Hinterkopf haben wir dabei die Binomischen Formeln, insbesondere die 3. Binomische Formel:
+$$
+  x^2-y^2 = (x-y)(x+y)
+$$
+Wir nutzen hier aber auch die Verallgemeinerung dieser Formel:
+$$
+  x^3-y^3 = (x-y)\left(x^2+xy+y^2\right)
+  \quad\text{ und }\quad
+  x^4-y^4 = (x-y)\left(x^3+x^2y+xy^2+y^3\right)
+$$
+Oder für noch größere Exponenten:
+$$
+  x^n-y^n = (x-y) \cdot\left(\sum\limits_{k=0}^{n-1}x^ky^{n-k}\right)
+$$
