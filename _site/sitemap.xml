@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.sefiroth.de/blog.html</loc>
-    <lastmod>2025-12-03T10:02:23.341Z</lastmod>
+    <lastmod>2025-07-25T13:31:02.402Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/projekte.html</loc>
@@ -143,5 +143,9 @@
   <url>
     <loc>https://www.sefiroth.de/Datenschutzerklaerung.html</loc>
     <lastmod>2025-12-03T10:02:23.286Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.sefiroth.de/posts/2026-02-05-wie-mensch-manchmal-ohne-de-lhospital-auskommt/index.html</loc>
+    <lastmod>2026-02-05T17:12:17.166Z</lastmod>
   </url>
 </urlset>

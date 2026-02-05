@@ -10,7 +10,42 @@
 <atom:link href="https://www.sefiroth.de/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Norman&#39;s Academic Blog</description>
 <generator>quarto-1.8.27</generator>
-<lastBuildDate>Tue, 03 Feb 2026 23:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 04 Feb 2026 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>Wie mensch manchmal ohne de L’Hospital auskommt</title>
+  <dc:creator>Norman Markgraf</dc:creator>
+  <link>https://www.sefiroth.de/posts/2026-02-05-wie-mensch-manchmal-ohne-de-lhospital-auskommt/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="wie-mensch-manchmal-ohne-de-lhospital-auskommt" class="level1">
+<h1>Wie mensch manchmal ohne de L’Hospital auskommt</h1>
+<p>Brauchen wir um das folgende Problem zu lösen immer die Regel von de L’Hospital?</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Clim%5Climits_%7Bx%20%5Cto%201%7D%20%5Cfrac%7Bx%5E%7B%5Cfrac%7B1%7D%7B3%7D%7D-1%7D%7Bx%5E%7B%5Cfrac%7B1%7D%7B2%7D%7D-1%7D%0A"></p>
+<p>Die Antwort ist ganz klar: Nein.</p>
+<p>Manchmal, so wie in diesem Fall, reicht eine geschickte Substitution.</p>
+<p>Ersetzen wir nämlich <img src="https://latex.codecogs.com/png.latex?x%5E%7B%5Cfrac%7B1%7D%7B6%7D%7D"> durch <img src="https://latex.codecogs.com/png.latex?t">, so beobachten wir: <img src="https://latex.codecogs.com/png.latex?%0A%20%20t%5E2%20=%20%5Cleft(x%5E%7B%5Cfrac%7B1%7D%7B6%7D%7D%5Cright)%5E2%20=x%5E%7B%5Cfrac%7B1%7D%7B3%7D%7D%20%5Cquad%20%5Ctext%7Bbzw.%7D%20%5Cquad%20t%5E3%20=%20%5Cleft(x%5E%7B%5Cfrac%7B1%7D%7B6%7D%7D%5Cright)%5E3%20=x%5E%7B%5Cfrac%7B1%7D%7B2%7D%7D%0A"></p>
+<p>Ersetzen wir das nun in unserer Ursprünglichen Aufgabe so erhalten wir:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%20%20%5Clim%5Climits_%7Bt%20%5Cto%201%7D%20%5Cfrac%7Bt%5E2-1%7D%7Bt%5E3-1%7D%0A"> Sowohl der Zähler, als auch der Nenner lassen sich nun wie folgt umformulieren: <img src="https://latex.codecogs.com/png.latex?%0A%20%20t%5E2%20-%201%20=%20(t-1)%20(t+1)%0A"> <img src="https://latex.codecogs.com/png.latex?%0A%20%20t%5E3%20-%201%20=%20(t-1)(t%5E2+t+1)%0A"></p>
+<p>Der Bruch lässt sich somit umformen zu:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%20%20%5Cfrac%7Bt%5E2-1%7D%7Bt%5E3-1%7D=%5Cfrac%7B(t-1)(t+1)%7D%7B(t-1)(t%5E2+t+1)%7D=%5Cfrac%7Bt+1%7D%7Bt%5E2+t+1%7D%0A"> Und in die rechte Seite können wir <img src="https://latex.codecogs.com/png.latex?t=1"> ohne Probleme einsetzen und erhalten:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%20%20%5Clim%5Climits_%7Bx%20%5Cto%201%7D%20%5Cfrac%7Bx%5E%7B%5Cfrac%7B1%7D%7B3%7D%7D-1%7D%7Bx%5E%7B%5Cfrac%7B1%7D%7B2%7D%7D-1%7D%0A=%5Clim%5Climits_%7Bt%20%5Cto%201%7D%20%5Cfrac%7Bt%5E2-1%7D%7Bt%5E3-1%7D%0A=%5Clim%5Climits_%7Bt%20%5Cto%201%7D%20%5Cfrac%7Bt+1%7D%7Bt%5E2+t+1%7D%0A=%0A%5Cfrac%7B1+1%7D%7B1%5E2+1+1%7D%0A=%20%5Cfrac%7B2%7D%7B3%7D%0A"></p>
+<p>Die Idee ist klar. Da die Laufvariable gegen eine Nullstelle von Zähler und Nenner geht, müssen wir diese Nullstelle oben wie unten auskammern und wegkürzen. Um das zu erreichen muss unsere Substitution passen.</p>
+<p>Im Hinterkopf haben wir dabei die Binomischen Formeln, insbesondere die 3. Binomische Formel: <img src="https://latex.codecogs.com/png.latex?%0A%20%20x%5E2-y%5E2%20=%20(x-y)(x+y)%0A"> Wir nutzen hier aber auch die Verallgemeinerung dieser Formel: <img src="https://latex.codecogs.com/png.latex?%0A%20%20x%5E3-y%5E3%20=%20(x-y)%5Cleft(x%5E2+xy+y%5E2%5Cright)%0A%20%20%5Cquad%5Ctext%7B%20und%20%7D%5Cquad%0A%20%20x%5E4-y%5E4%20=%20(x-y)%5Cleft(x%5E3+x%5E2y+xy%5E2+y%5E3%5Cright)%0A"> Oder für noch größere Exponenten: <img src="https://latex.codecogs.com/png.latex?%0A%20%20x%5En-y%5En%20=%20(x-y)%20%5Ccdot%5Cleft(%5Csum%5Climits_%7Bk=0%7D%5E%7Bn-1%7Dx%5Eky%5E%7Bn-k%7D%5Cright)%0A"></p>
+
+
+</section>
+
+ ]]></description>
+  <category>L&#39;Hospital</category>
+  <category>BinomischeFormeln</category>
+  <category>Mathematik</category>
+  <guid>https://www.sefiroth.de/posts/2026-02-05-wie-mensch-manchmal-ohne-de-lhospital-auskommt/</guid>
+  <pubDate>Wed, 04 Feb 2026 23:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Warum Exponentiation und Logarithmen wichtig sind in der Statistik.</title>
   <dc:creator>Norman Markgraf</dc:creator>
@@ -7837,73 +7872,6 @@ font-style: inherit;">scale_y_log10</span>()</span>
   <category>Statistik</category>
   <guid>https://www.sefiroth.de/posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/</guid>
   <pubDate>Tue, 16 Feb 2021 23:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Behäbige Funktionen aka slowly varying function</title>
-  <dc:creator>Norman Markgraf</dc:creator>
-  <link>https://www.sefiroth.de/posts/2021-02-13-behaebige-funktionen-aka-slowly-varying-function/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>Reelle Funktionen, die ihren Funktionswert kaum ändern, kann man mit Fug und Recht durchaus behäbig nennen, korrekter wäre aber von <strong>langsam variierenden</strong> Funktionen zu sprechen</p>
-<p>Im Kontext von potenzgesetzlichen Verteilungen kommt der Begriff <strong>slowly varying function</strong> vor, der Funktionen beschreibt die nur sehr gering auf Änderungen ihres Parameters reagieren.</p>
-<p>Die Definition dieser <em>behäbigen</em> besser <strong>langsam variierenden</strong> Funktionen stammt von <a href="https://de.wikipedia.org/wiki/Jovan_Karamata">Jovan Karamata</a>:</p>
-<p>Eine positive stetige Funktion <img src="https://latex.codecogs.com/png.latex?L"><sup>1</sup> auf den positiven reelen Zahlen ist <strong>langsam variierend (im unendlichen)</strong>, falls für alle reellen <img src="https://latex.codecogs.com/png.latex?t%3E0"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%5Clim_%7Bx%20%5Cto%20+%5Cinfty%7D%20%5Cfrac%7BL(t%5Ccdot%20x)%7D%7BL(x)%7D%20=%201"></p>
-<p>gilt.</p>
-<p><strong>Beispiele:</strong></p>
-<ol type="1">
-<li>Jede konstante Funktionen (<img src="https://latex.codecogs.com/png.latex?%5Cneq%200">) ist <em>langsam variierend</em>.</li>
-</ol>
-<p><strong>Beweisskizze:</strong> Mit <img src="https://latex.codecogs.com/png.latex?L(x)%20=%20c"> ist <img src="https://latex.codecogs.com/png.latex?L(x)%20=%20L(t%20x)%20=%20c"> und damit <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7BL(t%20x)%7D%7BL(x)%7D=%201">.</p>
-<ol start="2" type="1">
-<li>Jeder Funktion <img src="https://latex.codecogs.com/png.latex?L(x)"> mit einem Grenzwert <img src="https://latex.codecogs.com/png.latex?b%3E0"> ist <em>langsam variierend</em>.</li>
-</ol>
-<p><strong>Beweisskizze:</strong> Da <img src="https://latex.codecogs.com/png.latex?%5Clim%5Climits_%7Bx%20%5Cto%20+%5Cinfty%7D%20L(x)%20=%20b%20=%20%5Clim%5Climits_%7Bx%20%5Cto%20+%5Cinfty%7D%20L(t%5Ccdot%20x)"> ist <img src="https://latex.codecogs.com/png.latex?%5Clim%5Climits_%7Bx%20%5Cto%20+%5Cinfty%7D%20%5Cfrac%7BL(t%5Ccdot%20x)%7D%7BL(x)%7D%20=%20%5Cfrac%7B%5Clim%5Climits_%7Bx%20%5Cto%20+%5Cinfty%7D%20L(t%5Ccdot%20x)%7D%7B%5Clim%5Climits_%7Bx%20%5Cto%20+%5Cinfty%7D%20L(x)%7D%20=%20%5Cfrac%7Bb%7D%7Bb%7D%20=%201"></p>
-<ol start="3" type="1">
-<li>Für jedes reellwertige <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> ist <img src="https://latex.codecogs.com/png.latex?L(x)%20=%20log_%5Cbeta(x)"> <em>langsam variierend</em>.</li>
-</ol>
-<p><strong>Beweisskizze:</strong> Es gilt: - Für jede reelle Zahl <img src="https://latex.codecogs.com/png.latex?x%3E0"> ist <img src="https://latex.codecogs.com/png.latex?%5Clog_x(x)%20=%201">. - Für reelle Zahlen <img src="https://latex.codecogs.com/png.latex?a,%20b"> gilt: <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Blog(a)%7D%7B%5Clog(b)%7D%20=%20%5Clog_b(a)"> - Für reelle Zahlen <img src="https://latex.codecogs.com/png.latex?a,%20b"> gilt. <img src="https://latex.codecogs.com/png.latex?%5Clog(a%20%5Ccdot%20b)%20=%20log(a)%20+%20log(b)"> - Für jede Konstante <img src="https://latex.codecogs.com/png.latex?k"> gilt <img src="https://latex.codecogs.com/png.latex?%5Clim_%7Bx%20%5Cto%20+%5Cinfty%7D%20%5Clog_x%20(k)%20=%200"> Somit gilt <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Clog_%5Cbeta(k%20%5Ccdot%20x)%7D%7B%5Clog_%5Cbeta(x)%7D%20=%20%5Clog_x(k%5Ccdot%20x)%20=%20%5Clog_x(k)%20+%20%5Clog_x(x)%20=%20%5Clog_x(k)%20+1%20%5Cto%201"> wenn <img src="https://latex.codecogs.com/png.latex?x%20%5Cto%20+%5Cinfty"></p>
-<ol start="4" type="1">
-<li>Die Funktion <img src="https://latex.codecogs.com/png.latex?x%5E%5Cbeta"> ist für alle <img src="https://latex.codecogs.com/png.latex?%5Cbeta%20%5Cneq%200"> <em><strong>nicht</strong> langsam variierend</em>. <strong>Beweisskizze:</strong> Für <img src="https://latex.codecogs.com/png.latex?t%20%5Cneq%201"> gilt: <img src="https://latex.codecogs.com/png.latex?%5Clim_%7Bx%20%5Cto%20+%5Cinfty%7D%20%5Cfrac%7B(tx)%5E%5Cbeta%7D%7Bx%5E%5Cbeta%7D%20=%20t%5E%5Cbeta%20%5Cneq%201"> Damit sind die Funktionen zwar (s.u.) <em>regulär variierend</em>, aber nicht <em>langsam variierend</em>.</li>
-</ol>
-<p>Eine <strong>regulär variierende</strong> Funktion <img src="https://latex.codecogs.com/png.latex?L:(0,+%5Cinfty)%20%5Cto%20(0,+%5Cinfty)"> ist eine Funktion für die der Term</p>
-<p><img src="https://latex.codecogs.com/png.latex?%5Clim_%7Bx%20%5Cto%20+%5Cinfty%7D%20%5Cfrac%7BL(t%5Ccdot%20x)%7D%7BL(x)%7D%20=%20g(t)"></p>
-<p>mit <img src="https://latex.codecogs.com/png.latex?g(t)"> für alle <img src="https://latex.codecogs.com/png.latex?t%3E0"> einen endlichen aber nicht verschwindenen Wert (m.a.W.: <img src="https://latex.codecogs.com/png.latex?g(t)%20%5Cneq%200">) hat .</p>
-<p>Karamata hat die regulär variierenden Funktionen nun wie folgt charaterisiert:</p>
-<section id="charakterisierungssatz-von-karamata" class="level3 theorem">
-<h3 class="theorem anchored" data-anchor-id="charakterisierungssatz-von-karamata">Charakterisierungssatz von Karamata</h3>
-<p>Jede <em>regulär variierende</em> Funktion <img src="https://latex.codecogs.com/png.latex?f:(0,+%5Cinfty)%20%5Cto%20(0,+%5Cinfty)"> ist von der Form</p>
-<p><img src="https://latex.codecogs.com/png.latex?f(x)%20=%20x%5E%5Cbeta%20%5Ccdot%20L(x),"></p>
-<p>wobei <img src="https://latex.codecogs.com/png.latex?%5Cbeta%20%5Cin%20%5Cmathbf%7BR%7D"> eine reelle Zahl und <img src="https://latex.codecogs.com/png.latex?L(x)"> eine <em>langsam variiernde</em> Funktion ist.</p>
-<!-- ENDE THEOREM-->
-<p>Eine Konsequenz aus dem <em>Charakterisierungssatz von Karamata</em> ist, das die Funktion <img src="https://latex.codecogs.com/png.latex?g(t)"> aus der Definition der <em>regulär variierenden</em> Funktionen notwendigerweise die Gestalt</p>
-<p><img src="https://latex.codecogs.com/png.latex?g(t)%20=%20t%5E%5Crho,"></p>
-<p>mit einem <img src="https://latex.codecogs.com/png.latex?%5Crho%20%5Cin%20%5Cmathbf%7BR%7D">, haben muss.</p>
-<p>Dieser Wert <img src="https://latex.codecogs.com/png.latex?%5Crho"> wird <strong>Index der Variation</strong> (engl. <em>index of variation</em>) genannt.</p>
-<p>Die Katamata Theorie ist eine Theorie “erster Ordnung” für reguläre Variation. Weiterführend gibt es mit der <a href="https://encyclopediaofmath.org/wiki/De_Haan_theory">de Haan Theorie</a> als Theorie “zweiter Ordnung”.</p>
-<p><strong>Quellen:</strong></p>
-<ul>
-<li><p><a href="https://encyclopediaofmath.org/index.php?title=Karamata_theory&amp;direction=next&amp;oldid=25937">Encylopedia of Math</a></p></li>
-<li><p><a href="https://archive.org/details/regularvariation0000bing">Bingham, N. H.; Goldie, C. M.; Teugels, J. L. (1987), Regular Variation, Encyclopedia of Mathematics and its Applications, 27, Cambridge: Cambridge University Press, ISBN 0-521-30787-2, MR 0898871, Zbl 0617.26001</a></p></li>
-</ul>
-
-
-</section>
-
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Fußnoten</h2>
-
-<ol>
-<li id="fn1"><p><img src="https://latex.codecogs.com/png.latex?L"> oder auch <img src="https://latex.codecogs.com/png.latex?l"> wird (angeblich) hier für den Begriff <em>lente</em> (serb. für <strong>faul</strong>) verwendet. Behäbig ist also doch nicht so falsch. ;-)↩︎</p></li>
-</ol>
-</section></div> ]]></description>
-  <category>Statistik</category>
-  <guid>https://www.sefiroth.de/posts/2021-02-13-behaebige-funktionen-aka-slowly-varying-function/</guid>
-  <pubDate>Fri, 12 Feb 2021 23:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

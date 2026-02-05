@@ -1,11 +1,17 @@
 ---
-title: "Wie mensch manchmal ohne L'hospital auskommt"
-format: html
+title: "Wie mensch manchmal ohne de L’Hospital auskommt"
+author: "Norman Markgraf"
+lang: de-DE
+date: "2026-02-05"
+categories: 
+  - L'Hospital
+  - BinomischeFormeln
+  - Mathematik
 ---
 
-# Wie mensch manchmal ohne L'hospital auskommt
+# Wie mensch manchmal ohne de L’Hospital auskommt
 
-Brauchen wir um das folgende Problem zu lösen immer die Regel von L'Hospital?
+Brauchen wir um das folgende Problem zu lösen immer die Regel von de L’Hospital?
 
 $$
 \lim\limits_{x \to 1} \frac{x^{\frac{1}{3}}-1}{x^{\frac{1}{2}}-1}

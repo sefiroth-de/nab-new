@@ -8,7 +8,7 @@
 
 <meta name="author" content="Norman Markgraf">
 
-<title>Quarto-Dokumente mit WebP anstatt PNG Bilddateien erstellen – Norman’s Academic Blog</title>
+<title>Wie mensch manchmal ohne de L’Hospital auskommt – Norman’s Academic Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -105,6 +70,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -160,9 +154,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Quarto-Dokumente mit WebP anstatt PNG Bilddateien erstellen</h1>
+      <h1 class="title">Wie mensch manchmal ohne de L’Hospital auskommt</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">Quarto</div>
+                <div class="quarto-category">L'Hospital</div>
+                <div class="quarto-category">BinomischeFormeln</div>
+                <div class="quarto-category">Mathematik</div>
               </div>
                   </div>
   </div>
@@ -180,7 +176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Veröffentlichungsdatum</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">3. Dezember 2025</p>
+        <p class="date">5. Februar 2026</p>
       </div>
     </div>
     
@@ -205,35 +201,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="webp-statt-png" class="level1">
-<h1>WebP statt PNG?</h1>
-<p>Ich bin über die Quarto-Extension von Klaus Brunner mit dem Namen <a href="https://github.com/klausbrunner/convert-to-webp">Convert PNG to WebP (Quarto Extension)</a> gestolpert und nutze diesen nun regelmässig.</p>
-<p>Dafür habe ich auf meinem Mac via HomeBrew die Application “webp” installiert.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> brew <span class="fu">install</span> webp</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Dadurch habe ich das Programm <code>cwebp</code> installiert. Es dient zum umwandeln von PNG in webp Dateien. Zum Testen nutze ich den Befehl:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cwebp <span class="ex">-version</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Aktuell bekomme ich damit die Ausgabe:</p>
-<pre><code>1.6.0
-libsharpyuv: 0.4.2</code></pre>
-<p>Das Programm ersetzt die erzeugten Bild-Ausgaben, welche normalerweise im PNG-Format erzeugt werden, durch Neue im WebP-Format.</p>
-<p>Die KI sagt:</p>
-<blockquote class="blockquote">
-<p>WebP ist ein modernes Bildformat von Google, das eine effizientere Komprimierung als herkömmliche Formate wie JPEG und PNG ermöglicht, um Bilder im Web kleiner zu machen und Ladezeiten zu beschleunigen. Es unterstützt sowohl verlustfreie als auch verlustbehaftete Komprimierung sowie Transparenz und Animationen, ähnlich wie PNG und GIF. WebP wird von den meisten modernen Browsern unterstützt, aber für ältere Browser ist es ratsam, eine alternative Bildversion bereitzustellen</p>
-</blockquote>
-<section id="installation-im-quarto-projekt" class="level2">
-<h2 class="anchored" data-anchor-id="installation-im-quarto-projekt">Installation im Quarto-Projekt</h2>
-<p>Um sofort bei der Erstellung von Dokumenten, wie zum Beispiel diese Blog-Einträge, mit Quarto webp zu nutzen, installiert mensch einfach im Quarto-Projekt mittels:</p>
-<pre class="bas"><code>&gt; quarto add klausbrunner/convert-to-webp</code></pre>
-<p>Danach in der Datei <code>_quarto.yml</code> noch die folgenden Zeilen hinzufügen:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> convert-to-webp</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">webp-delete-originals</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">webp-disable</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Jetzt wird nach jedem ‘rendern’ eines Dokuments die erzeugten PNG-Dateien in WebP-Dateien übersetzt und im HTML-Code entsprechend ersetzt.</p>
+<section id="wie-mensch-manchmal-ohne-de-lhospital-auskommt" class="level1">
+<h1>Wie mensch manchmal ohne de L’Hospital auskommt</h1>
+<p>Brauchen wir um das folgende Problem zu lösen immer die Regel von de L’Hospital?</p>
+<p><span class="math display">\[
+\lim\limits_{x \to 1} \frac{x^{\frac{1}{3}}-1}{x^{\frac{1}{2}}-1}
+\]</span></p>
+<p>Die Antwort ist ganz klar: Nein.</p>
+<p>Manchmal, so wie in diesem Fall, reicht eine geschickte Substitution.</p>
+<p>Ersetzen wir nämlich <span class="math inline">\(x^{\frac{1}{6}}\)</span> durch <span class="math inline">\(t\)</span>, so beobachten wir: <span class="math display">\[
+  t^2 = \left(x^{\frac{1}{6}}\right)^2 =x^{\frac{1}{3}} \quad \text{bzw.} \quad t^3 = \left(x^{\frac{1}{6}}\right)^3 =x^{\frac{1}{2}}
+\]</span></p>
+<p>Ersetzen wir das nun in unserer Ursprünglichen Aufgabe so erhalten wir:</p>
+<p><span class="math display">\[
+  \lim\limits_{t \to 1} \frac{t^2-1}{t^3-1}
+\]</span> Sowohl der Zähler, als auch der Nenner lassen sich nun wie folgt umformulieren: <span class="math display">\[
+  t^2 - 1 = (t-1) (t+1)
+\]</span> <span class="math display">\[
+  t^3 - 1 = (t-1)(t^2+t+1)
+\]</span></p>
+<p>Der Bruch lässt sich somit umformen zu:</p>
+<p><span class="math display">\[
+  \frac{t^2-1}{t^3-1}=\frac{(t-1)(t+1)}{(t-1)(t^2+t+1)}=\frac{t+1}{t^2+t+1}
+\]</span> Und in die rechte Seite können wir <span class="math inline">\(t=1\)</span> ohne Probleme einsetzen und erhalten:</p>
+<p><span class="math display">\[
+  \lim\limits_{x \to 1} \frac{x^{\frac{1}{3}}-1}{x^{\frac{1}{2}}-1}
+=\lim\limits_{t \to 1} \frac{t^2-1}{t^3-1}
+=\lim\limits_{t \to 1} \frac{t+1}{t^2+t+1}
+=
+\frac{1+1}{1^2+1+1}
+= \frac{2}{3}
+\]</span></p>
+<p>Die Idee ist klar. Da die Laufvariable gegen eine Nullstelle von Zähler und Nenner geht, müssen wir diese Nullstelle oben wie unten auskammern und wegkürzen. Um das zu erreichen muss unsere Substitution passen.</p>
+<p>Im Hinterkopf haben wir dabei die Binomischen Formeln, insbesondere die 3. Binomische Formel: <span class="math display">\[
+  x^2-y^2 = (x-y)(x+y)
+\]</span> Wir nutzen hier aber auch die Verallgemeinerung dieser Formel: <span class="math display">\[
+  x^3-y^3 = (x-y)\left(x^2+xy+y^2\right)
+  \quad\text{ und }\quad
+  x^4-y^4 = (x-y)\left(x^3+x^2y+xy^2+y^3\right)
+\]</span> Oder für noch größere Exponenten: <span class="math display">\[
+  x^n-y^n = (x-y) \cdot\left(\sum\limits_{k=0}^{n-1}x^ky^{n-k}\right)
+\]</span></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
