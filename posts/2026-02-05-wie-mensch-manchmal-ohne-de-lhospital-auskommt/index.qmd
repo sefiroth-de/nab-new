@@ -4,8 +4,8 @@ author: "Norman Markgraf"
 lang: de-DE
 date: "2026-02-05"
 categories: 
-  - L'Hospital
-  - BinomischeFormeln
+  - de L'Hospital
+  - Binomische Formeln
   - Mathematik
 ---
 
