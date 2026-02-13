@@ -10,7 +10,48 @@
 <atom:link href="https://www.sefiroth.de/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Norman&#39;s Academic Blog</description>
 <generator>quarto-1.8.27</generator>
-<lastBuildDate>Wed, 04 Feb 2026 23:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 08 Feb 2026 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>Eine interessante trigonometrische Identität mit weitreichender Wirkung</title>
+  <dc:creator>Norman Markgraf</dc:creator>
+  <link>https://www.sefiroth.de/posts/2026-02-09-eine-trigonometrisch-identitaet-mit-weitreichender-wirkung/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="eine-interessante-trigonometrische-identität-mit-weitreichender-wirkung" class="level1">
+<h1>Eine interessante trigonometrische Identität mit weitreichender Wirkung</h1>
+<p>Die folgende trigonometrische Identität ist nicht nur eine mathematische Kuriosität, sondern hat auch weitreichende Auswirkungen in verschiedenen Bereichen der Mathematik und Physik:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%20%20a%20%5Csin(x)%20+%20b%20%5Ccos(x)%20=%20%5Csqrt%7Ba%5E2%20+%20b%5E2%7D%20%5Ccdot%20%5Csin%5Cleft(x%20+%20%5Carctan%5Cleft(%5Cfrac%7Bb%7D%7Ba%7D%5Cright)%5Cright)%0A"></p>
+<p>Diese Identität zeigt, dass eine lineare Kombination von Sinus- und Kosinusfunktionen in eine einzelne Sinusfunktion umgewandelt werden kann, die um einen bestimmten Winkel verschoben ist. Hier sind einige wichtige Punkte zu dieser Identität:</p>
+<ol type="1">
+<li><p><strong>Vereinfachung von Ausdrücken</strong>: Diese Identität ermöglicht es, komplexe trigonometrische Ausdrücke zu vereinfachen, indem sie in eine einzige Sinusfunktion umgewandelt werden.</p></li>
+<li><p><strong>Anwendungen in der Physik</strong>: In der Physik, insbesondere in der Schwingungslehre und der Signalverarbeitung, wird diese Identität verwendet, um die Amplitude und Phase von Schwingungen zu bestimmen.</p></li>
+<li><p><strong>Lösung von Gleichungen</strong>: Diese Identität kann auch bei der Lösung von trigonometrischen Gleichungen helfen, indem sie die Anzahl der Terme reduziert und die Gleichung leichter lösbar macht.</p></li>
+<li><p><strong>Fourier-Analyse</strong>: In der Fourier-Analyse wird diese Identität verwendet, um die Fourier-Koeffizienten zu berechnen und die Frequenz und Phase von Signalen zu bestimmen.</p></li>
+<li><p><strong>Laplace-Transformation</strong>: In der Laplace-Transformation wird diese Identität verwendet, um die Transformation von Funktionen zu vereinfachen und die Berechnung von Inversen zu erleichtern.</p></li>
+</ol>
+<p>Insgesamt ist diese trigonometrische Identität ein mächtiges Werkzeug, das in vielen Bereichen der Mathematik und Physik Anwendung findet und dazu beiträgt, komplexe Probleme zu lösen und das Verständnis von Schwingungen und Signalen zu vertiefen.</p>
+<p>Schauen wir uns einmal die reale Fourier-Transformation an, um zu sehen, wie diese Identität in der Praxis angewendet wird. Die Fourier-Transformation eines Signals <img src="https://latex.codecogs.com/png.latex?f(t)"> ist definiert als: <img src="https://latex.codecogs.com/png.latex?%0AF(%5Comega)%20=%20%5Cint_%7B-%5Cinfty%7D%5E%7B%5Cinfty%7D%20f(t)%20e%5E%7B-i%20%5Comega%20t%7D%20dt%0A"> Wenn wir das Signal <img src="https://latex.codecogs.com/png.latex?f(t)"> als eine lineare Kombination von Sinus- und Kosinusfunktionen darstellen, können wir die obige Identität verwenden, um die Fourier-Koeffizienten zu berechnen und die Frequenz und Phase des Signals zu bestimmen. Dies ist besonders nützlich in der Signalverarbeitung, wo es wichtig ist, die Eigenschaften von Signalen zu analysieren und zu verstehen.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%20%20F(%5Comega)%20=%20%5Cint_%7B-%5Cinfty%7D%5E%7B%5Cinfty%7D%20(a%20%5Csin(t)%20+%20b%20%5Ccos(t))%20e%5E%7B-i%20%5Comega%20t%7D%20dt%0A"></p>
+<p>Durch die Anwendung der Identität können wir diesen Ausdruck vereinfachen und die Fourier-Koeffizienten berechnen, was uns wichtige Informationen über das Signal liefert, wie z.B. seine Frequenzkomponenten und Phasenverschiebungen. Dies zeigt, wie eine scheinbar einfache trigonometrische Identität in der Praxis eine wichtige Rolle spielt und weitreichende Auswirkungen hat.</p>
+<p>Die Fourier-Reihenentwicklung eines Signals <img src="https://latex.codecogs.com/png.latex?f(t)"> kann auch durch die Anwendung dieser Identität vereinfacht werden. Wenn wir das Signal als eine Summe von Sinus- und Kosinusfunktionen darstellen, können wir die Identität verwenden, um die Koeffizienten der Fourier-Reihe zu berechnen und die Frequenz und Phase der einzelnen Komponenten zu bestimmen. Dies ist besonders nützlich in der Analyse von periodischen Signalen, wo es wichtig ist, die Eigenschaften der einzelnen Frequenzkomponenten zu verstehen.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%20%20%0A%20%20f(t)%20=%20%5Cfrac%7Ba_0%7D%7B2%7D%20+%20%5Csum_%7Bn=1%7D%5E%7B%5Cinfty%7D%20(a_n%20%5Ccos(nt)%20+%20b_n%20%5Csin(nt))%20%20%0A"></p>
+<p>Durch die Anwendung der Identität können wir die Koeffizienten <img src="https://latex.codecogs.com/png.latex?a_n"> und <img src="https://latex.codecogs.com/png.latex?b_n"> berechnen und die Frequenz und Phase der einzelnen Komponenten der Fourier-Reihe bestimmen, was uns wichtige Informationen über das Signal liefert. Dies zeigt, wie eine einfache trigonometrische Identität in der Praxis eine wichtige Rolle spielt und weitreichende Auswirkungen hat.</p>
+<p>Wir können die Fourier-Reihe nun nur mit Sinus (oder nur mit Kosinus) schreiben: <img src="https://latex.codecogs.com/png.latex?%0A%20%20%5Cbegin%7Balign*%7D%0A%20%20f(t)%20&amp;=%20%5Cfrac%7Ba_0%7D%7B2%7D%20+%20%5Csum_%7Bn=1%7D%5E%7B%5Cinfty%7D%20%5Csqrt%7Ba_n%5E2%20+%20b_n%5E2%7D%20%5Ccdot%20%5Csin%5Cleft(nt%20+%20%5Carctan%5Cleft(%5Cfrac%7Bb_n%7D%7Ba_n%7D%5Cright)%5Cright)%20%5C%5C%0A%20%20%20%20%20%20&amp;=%20%5Cfrac%7Ba_0%7D%7B2%7D%20+%20%5Csum_%7Bn=1%7D%5E%7B%5Cinfty%7D%20%5Csqrt%7Ba_n%5E2%20+%20b_n%5E2%7D%20%5Ccdot%20%5Ccos%5Cleft(nt%20-%20%5Carctan%5Cleft(%5Cfrac%7Bb_n%7D%7Ba_n%7D%5Cright)%5Cright)%0A%20%20%5Cend%7Balign*%7D%0A"> Setzen wir <img src="https://latex.codecogs.com/png.latex?A_n%20=%20%5Csqrt%7Ba_n%5E2%20+%20b_n%5E2%7D"> und <img src="https://latex.codecogs.com/png.latex?%5Cphi_n%20=%20%5Carctan%5Cleft(%5Cfrac%7Bb_n%7D%7Ba_n%7D%5Cright)">, so können wir die Fourier-Reihe in der folgenden Form schreiben: <img src="https://latex.codecogs.com/png.latex?%20%20%0A%20%20f(t)%20=%20%5Cfrac%7Ba_0%7D%7B2%7D%20+%20%5Csum_%7Bn=1%7D%5E%7B%5Cinfty%7D%20A_n%20%5Ccdot%20%5Csin(nt%20+%20%5Cphi_n)%0A"></p>
+<p>oder <img src="https://latex.codecogs.com/png.latex?%0A%20%20f(t)%20=%20%5Cfrac%7Ba_0%7D%7B2%7D%20+%20%5Csum_%7Bn=1%7D%5E%7B%5Cinfty%7D%20A_n%20%5Ccdot%20%5Ccos(nt%20-%20%5Cphi_n)%0A"> Diese Form der Fourier-Reihe zeigt, dass jedes Signal als eine Summe von Sinus- oder Kosinusfunktionen dargestellt werden kann, wobei die Amplitude <img src="https://latex.codecogs.com/png.latex?A_n"> und die Phase <img src="https://latex.codecogs.com/png.latex?%5Cphi_n"> der einzelnen Komponenten durch die Koeffizienten der ursprünglichen Fourier-Reihe bestimmt werden. Dies ist ein weiteres Beispiel dafür, wie eine einfache trigonometrische Identität in der Praxis eine wichtige Rolle spielt und weitreichende Auswirkungen hat.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Laplace</category>
+  <category>Mathematik</category>
+  <guid>https://www.sefiroth.de/posts/2026-02-09-eine-trigonometrisch-identitaet-mit-weitreichender-wirkung/</guid>
+  <pubDate>Sun, 08 Feb 2026 23:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Wie mensch manchmal ohne de L’Hospital auskommt</title>
   <dc:creator>Norman Markgraf</dc:creator>
@@ -40,8 +81,8 @@
 </section>
 
  ]]></description>
-  <category>L&#39;Hospital</category>
-  <category>BinomischeFormeln</category>
+  <category>de L&#39;Hospital</category>
+  <category>Binomische Formeln</category>
   <category>Mathematik</category>
   <guid>https://www.sefiroth.de/posts/2026-02-05-wie-mensch-manchmal-ohne-de-lhospital-auskommt/</guid>
   <pubDate>Wed, 04 Feb 2026 23:00:00 GMT</pubDate>
@@ -1121,7 +1162,7 @@ font-style: inherit;">"</span></span></code></pre></div></div>
 <item>
   <title>B-Bäume und mehr: Ein Vergleich von Python-Implementierungen</title>
   <dc:creator>Norman Markgraf</dc:creator>
-  <link>https://www.sefiroth.de/posts/2026-01-04-B-Baeume-und-mehr/</link>
+  <link>https://www.sefiroth.de/posts/2026-01-04-b-baeume-und-mehr/</link>
   <description><![CDATA[ 
 
 
@@ -1252,13 +1293,13 @@ font-style: inherit;"> Sekunden"</span>)</span></code></pre></div></div>
 
  ]]></description>
   <category>Python</category>
-  <guid>https://www.sefiroth.de/posts/2026-01-04-B-Baeume-und-mehr/</guid>
+  <guid>https://www.sefiroth.de/posts/2026-01-04-b-baeume-und-mehr/</guid>
   <pubDate>Sat, 03 Jan 2026 23:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Das Lotto-Abbildungsproblem</title>
   <dc:creator>Norman Markgraf</dc:creator>
-  <link>https://www.sefiroth.de/posts/2025-12-22-Das-Lotto-Abbildungs-Problem/</link>
+  <link>https://www.sefiroth.de/posts/2025-12-22-das-lotto-abbildungs-problem/</link>
   <description><![CDATA[ 
 
 
@@ -1842,13 +1883,13 @@ font-style: inherit;"># Zurückgewonnene Zahlen</span></span></code></pre></div>
   <category>Quarto</category>
   <category>Python</category>
   <category>R</category>
-  <guid>https://www.sefiroth.de/posts/2025-12-22-Das-Lotto-Abbildungs-Problem/</guid>
+  <guid>https://www.sefiroth.de/posts/2025-12-22-das-lotto-abbildungs-problem/</guid>
   <pubDate>Sun, 21 Dec 2025 23:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Quarto-Dokumente mit WebP anstatt PNG Bilddateien erstellen</title>
   <dc:creator>Norman Markgraf</dc:creator>
-  <link>https://www.sefiroth.de/posts/2025-12-03-Quarto-Dokumente-mit-webp-anstatt-png/</link>
+  <link>https://www.sefiroth.de/posts/2025-12-03-quarto-dokumente-mit-webp-anstatt-png/</link>
   <description><![CDATA[ 
 
 
@@ -1926,7 +1967,7 @@ font-style: inherit;">false</span></span></code></pre></div></div>
 
  ]]></description>
   <category>Quarto</category>
-  <guid>https://www.sefiroth.de/posts/2025-12-03-Quarto-Dokumente-mit-webp-anstatt-png/</guid>
+  <guid>https://www.sefiroth.de/posts/2025-12-03-quarto-dokumente-mit-webp-anstatt-png/</guid>
   <pubDate>Tue, 02 Dec 2025 23:00:00 GMT</pubDate>
 </item>
 <item>
@@ -1965,7 +2006,7 @@ lication/javascript application/x-javascript application/json application/xml
 <item>
   <title>Wie mensch eine Datenbank auf einem RASPBERRY Pi Zero installiert</title>
   <dc:creator>Norman Markgraf</dc:creator>
-  <link>https://www.sefiroth.de/posts/2025-08-09-Wie-mensch-eine-Datenbank-auf-einen-Raspbarry-Zero-installiert/</link>
+  <link>https://www.sefiroth.de/posts/2025-08-09-wie-mensch-eine-datenbank-auf-einen-raspberry-zero-installiert/</link>
   <description><![CDATA[ 
 
 
@@ -2152,13 +2193,13 @@ font-style: inherit;">/home/norman/netflixdb-postgres.sql</span></span></code></
  ]]></description>
   <category>RaspberryPi</category>
   <category>Datenbank</category>
-  <guid>https://www.sefiroth.de/posts/2025-08-09-Wie-mensch-eine-Datenbank-auf-einen-Raspbarry-Zero-installiert/</guid>
+  <guid>https://www.sefiroth.de/posts/2025-08-09-wie-mensch-eine-datenbank-auf-einen-raspberry-zero-installiert/</guid>
   <pubDate>Fri, 08 Aug 2025 22:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Beweisverfahren in der Mathematik</title>
   <dc:creator>Norman Markgraf</dc:creator>
-  <link>https://www.sefiroth.de/posts/2025-07-27-Beweisverfahren/</link>
+  <link>https://www.sefiroth.de/posts/2025-07-27-beweisverfahren/</link>
   <description><![CDATA[ 
 
 
@@ -2208,7 +2249,7 @@ font-style: inherit;">/home/norman/netflixdb-postgres.sql</span></span></code></
 
  ]]></description>
   <category>Mathematik</category>
-  <guid>https://www.sefiroth.de/posts/2025-07-27-Beweisverfahren/</guid>
+  <guid>https://www.sefiroth.de/posts/2025-07-27-beweisverfahren/</guid>
   <pubDate>Sat, 26 Jul 2025 22:00:00 GMT</pubDate>
 </item>
 <item>
@@ -7347,531 +7388,6 @@ font-style: inherit;">’</span></span></code></pre></div></div>
   <category>Speedtest</category>
   <guid>https://www.sefiroth.de/posts/2021-04-08-graalpy-pypy--und-python-geschwindigkeitstest/</guid>
   <pubDate>Wed, 07 Apr 2021 22:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Über die t-Verteilung mit einem bzw. zwei Freiheitsgraden</title>
-  <dc:creator>Norman Markgraf</dc:creator>
-  <link>https://www.sefiroth.de/posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<section id="vorbereitungen-für-r" class="level2">
-<h2 class="anchored" data-anchor-id="vorbereitungen-für-r">Vorbereitungen für R</h2>
-<p>Für die graphischen Ausgaben nutzen wir R und das Paket <code>mosaic</code>:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">library</span>(mosaic)</span></code></pre></div></div>
-</div>
-</section>
-<section id="vorbemerkungen-und-notationen" class="level2">
-<h2 class="anchored" data-anchor-id="vorbemerkungen-und-notationen">Vorbemerkungen und Notationen</h2>
-<p>Da alle t-Verteilungen symmetrisch sind, betrachten wir im wesendlichen nur den positiven Teil.</p>
-<p>Zwei reelle Funktionen <img src="https://latex.codecogs.com/png.latex?f">, <img src="https://latex.codecogs.com/png.latex?g"> sind genau dann, im Sinne von de Bruijn<sup>1</sup> (§1.4), <strong>asymptotisch äquivalent</strong> <img src="https://latex.codecogs.com/png.latex?f%20%5Csim%20g">, wenn</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Clim%5Climits_%7Bx%20%5Cto%20%5Cinfty%7D%20%5Cfrac%7Bf(x)%7D%7Bg(x)%7D%20=%201%0A"></p>
-<p>gilt.</p>
-<p>Ist <img src="https://latex.codecogs.com/png.latex?f%20%5Csim%20g">, so können wir auch</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Af(x)%20=%20g(x)%5Ccdot(1+o(1))%0A"></p>
-<p>dafür schreiben. Dabei ist <img src="https://latex.codecogs.com/png.latex?h(x)%20=%20o(%5Cphi(x))"> für <img src="https://latex.codecogs.com/png.latex?x%20%5Cto%20%5Cinfty">, falls <img src="https://latex.codecogs.com/png.latex?%5Clim%5Climits_%7Bx%20%5Cto%20%5Cinfty%7D%20%5Cfrac%7Bh(x)%7D%7B%5Cphi(x)%7D%20=%200"> gilt. Aus der asymptotischen Äquivalenz von <img src="https://latex.codecogs.com/png.latex?f"> und <img src="https://latex.codecogs.com/png.latex?g"> folgt nun direkt:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Clim%5Climits_%7Bx%20%5Cto%20%5Cinfty%7D%5Cfrac%7Bf(x)%7D%7Bg(x)%7D-1%20=%5Cfrac%7Bf(x)-g(x)%7D%7Bg(x)%7D%20=%200%0A"></p>
-<p>Mit <img src="https://latex.codecogs.com/png.latex?h(x)%20=%20%5Cfrac%7Bf(x)-g(x)%7D%7Bg(x)%7D"> ist <img src="https://latex.codecogs.com/png.latex?h(x)%20=%20o(1)"> und daher <img src="https://latex.codecogs.com/png.latex?f(x)-g(x)%20=%20g(x)o(1)"> und schliesslich <img src="https://latex.codecogs.com/png.latex?f(x)%20=%20g(x)+g(x)o(1)">.</p>
-<p>Ein wichtiges Korrolar sagt:</p>
-<p>Ist <img src="https://latex.codecogs.com/png.latex?f%20%5Csim%20g">, so ist auch <img src="https://latex.codecogs.com/png.latex?%5Clog(f)%20%5Csim%20%5Clog(g)">.</p>
-</section>
-<section id="die-t-verteilung-im-allgemeinen" class="level2">
-<h2 class="anchored" data-anchor-id="die-t-verteilung-im-allgemeinen">Die t-Verteilung im Allgemeinen</h2>
-<p>Die Dichtefunktion der t-Verteilung lauten im Allgemeinen:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Af_n(x)%20=%20%5Cfrac%7B%5CGamma%5Cleft(%5Cfrac%7Bn+1%7D%7B2%7D%5Cright)%7D%20%7B%5Csqrt%7Bn%5Cpi%7D~%5CGamma%5Cleft(%5Cfrac%7Bn%7D%7B2%7D%5Cright)%7D%5Cleft(1+%5Cfrac%7Bx%5E%7B2%7D%7D%7Bn%7D%5Cright)%5E%7B-%5Cfrac%7Bn+1%7D%7B2%7D%7D%5Cquad%20%5Cmathrm%7Bf%C3%BCr%7D%5Cquad%20-%5Cinfty%20%3C%20x%20%3C%20+%5Cinfty%0A"></p>
-<p>wobei wir mit <img src="https://latex.codecogs.com/png.latex?%5CGamma(x)"> die Gammafunktion</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5CGamma(x)=%5Cint%5Climits_%7B0%7D%5E%7B+%5Cinfty%7Dt%5E%7Bx-1%7De%5E%7B-t%7D%5Coperatorname%7Bd%7Dt%0A"></p>
-<p>bezeichnen. Für einige <img src="https://latex.codecogs.com/png.latex?x"> nimmt die Gammafunktion leicht zu berechnende Werte an:</p>
-<p>So ist für alle <img src="https://latex.codecogs.com/png.latex?n%5Cin%5Cmathbf%7BN_0%7D">:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%5CGamma(n+1)%20=%20n!"> und <img src="https://latex.codecogs.com/png.latex?%5CGamma%5Cleft(n%20+%20%5Cfrac%7B1%7D%7B2%7D%5Cright)%20=%20%5Cfrac%7B(2n)!%7D%7Bn!4%5En%7D%5Csqrt%7B%5Cpi%7D"></p>
-<p>mit der gewöhnlichen Fakultät <img src="https://latex.codecogs.com/png.latex?n!%20=%20%5Cprod_%7Bi=0%7D%5En%20i">, wobei per Definition <img src="https://latex.codecogs.com/png.latex?0!=1"> ist.</p>
-</section>
-<section id="die-t-verteilung-mit-einem-freiheitsgrad" class="level2">
-<h2 class="anchored" data-anchor-id="die-t-verteilung-mit-einem-freiheitsgrad">Die t-Verteilung mit einem Freiheitsgrad</h2>
-<p>Für <img src="https://latex.codecogs.com/png.latex?f_1(x)"> ergibt sich somit:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign*%7D%0Af_1(x)%20&amp;=%20%5Cfrac%7B%5CGamma%5Cleft(%5Cfrac%7Bn+1%7D%7B2%7D%5Cright)%7D%20%7B%5Csqrt%7Bn%5Cpi%7D~%5CGamma%5Cleft(%5Cfrac%7Bn%7D%7B2%7D%5Cright)%7D%5Cleft(1+%5Cfrac%7Bx%5E%7B2%7D%7D%7Bn%7D%5Cright)%5E%7B-%5Cfrac%7Bn+1%7D%7B2%7D%7D%20%5C%5C%0A&amp;=%20%5Cfrac%7B%5CGamma%5Cleft(%5Cfrac%7B2%7D%7B2%7D%5Cright)%7D%20%7B%5Csqrt%7B%5Cpi%7D~%5CGamma%5Cleft(%5Cfrac%7B1%7D%7B2%7D%5Cright)%7D%5Cleft(1+x%5E%7B2%7D%5Cright)%5E%7B-%5Cfrac%7B2%7D%7B2%7D%7D%20%5C%5C%0A&amp;=%20%5Cfrac%7B%5CGamma%5Cleft(1%5Cright)%7D%20%7B%5Csqrt%7B%5Cpi%7D~%5CGamma%5Cleft(%5Cfrac%7B1%7D%7B2%7D%5Cright)%7D%5Cleft(1+x%5E%7B2%7D%5Cright)%5E%7B-1%7D%20%5C%5C%0A%5Cend%7Balign*%7D%0A"></p>
-<p>Wegen <img src="https://latex.codecogs.com/png.latex?%5CGamma(1)%20=%200!%20=%201"> und <img src="https://latex.codecogs.com/png.latex?%5CGamma%5Cleft(%5Cfrac%7B1%7D%7B2%7D%5Cright)=%5Csqrt%7B%5Cpi%7D"> ergibt sich nun:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign*%7D%0Af_1(x)%20&amp;=%20%5Cfrac%7B1%7D%20%7B%5Csqrt%7B%5Cpi%7D%20%5Ccdot%20%5Csqrt%7B%5Cpi%7D%7D%20%5Ccdot%20%5Cleft(1+x%5E%7B2%7D%5Cright)%5E%7B-1%7D%20%5C%5C%0A%20%20%20%20%20%20%20&amp;=%20%5Cfrac%7B1%7D%7B%5Cpi%7D%20%5Ccdot%20%5Cfrac%7B1%7D%7B1+x%5E%7B2%7D%7D%0A%5Cend%7Balign*%7D%0A"></p>
-<p>Das ist die Dichtefunktion der standardisierten Cauchy-Verteilung</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Af_%7B(%5Cmu,%5Clambda)%7D(x)%20=%20%5Cfrac%7B1%7D%7B%5Cpi%7D%20%5Ccdot%20%5Cfrac%7B%5Clambda%7D%7B%5Clambda%5E2+(x-%5Cmu)%5E2%7D%0A"></p>
-<p>mit (<img src="https://latex.codecogs.com/png.latex?%5Cmu%20=%200"> und <img src="https://latex.codecogs.com/png.latex?%5Clambda=1">), welche – bekanntermaßen – keinen Erwartungwert hat.</p>
-<p>Wegen</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign*%7D%0A%5Clim_%7Bx%20%5Cto%20+%5Cinfty%7D%20%5Cfrac%7Bf_1(k%20%5Ccdot%20x)%7D%7Bf_1(x)%7D%0A%20%20%20%20%20%20&amp;=%20%5Clim_%7Bx%20%5Cto%20+%5Cinfty%7D%20%5Cfrac%7B%5Cfrac%7B1%7D%7B%5Cpi%7D%20%5Ccdot%20%5Cfrac%7B1%7D%7B1+(kx)%5E%7B2%7D%7D%7D%7B%5Cfrac%7B1%7D%7B%5Cpi%7D%20%5Ccdot%20%5Cfrac%7B1%7D%7B1+x%5E%7B2%7D%7D%7D%20=%20%5Clim_%7Bx%20%5Cto%20+%5Cinfty%7D%20%5Cfrac%7B1+x%5E2%7D%7B1+k%5E2x%5E2%7D%20%5C%5C%0A%20%20%20%20%20%20&amp;=%5Clim_%7Bx%20%5Cto%20+%5Cinfty%7D%20%5Cfrac%7B%5Cfrac%7B1%7D%7Bx%5E2%7D+%5Cfrac%7Bx%5E2%7D%7Bx%5E2%7D%7D%7B%5Cfrac%7B1%7D%7Bx%5E2%7D+k%5E2%5Cfrac%7Bx%5E2%7D%7Bx%5E2%7D%7D%20=%5Cfrac%7B1%7D%7Bk%5E2%7D=k%5E%7B-2%7D%0A%5Cend%7Balign*%7D%0A"></p>
-<p>für alle reellen <img src="https://latex.codecogs.com/png.latex?k%3E0"> ist <img src="https://latex.codecogs.com/png.latex?f_1(x)"> eine regulär variierende Funktion mit Variationsindex <img src="https://latex.codecogs.com/png.latex?%5Crho%20=%20-2">.</p>
-<p>Die Überlebensfunktion zur t-Verteilung mit einem Freiheitsgrad lautet nun:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Coverline%7BF%7D_1(x)%20=%20%5Cint_x%5E%5Cinfty%20f_1(t)%20%5Coperatorname%7Bd%7Dt%20=%20%5Cfrac%7B1%7D%7B%5Cpi%7D%20%5Ccdot%20%5Cint_x%5E%5Cinfty%20%20%5Cfrac%7B1%7D%7B1+x%5E%7B2%7D%7D%20%5Coperatorname%7Bd%7Dt%20=%20%5Cfrac%7B%5Carctan(x)%7D%7B%5Cpi%7D%0A"></p>
-<p>da wir das optionale <img src="https://latex.codecogs.com/png.latex?+C"> mit <img src="https://latex.codecogs.com/png.latex?C=0"> annehmen dürfen.</p>
-<p>Es gilt nun:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Carctan%60(x)=%20%5Cfrac%7B1%7D%7B1+x%5E2%7D%20%5Cto%20%5Cfrac%7B1%7D%7Bx%5E2%7D%20%5Ctext%7B%20f%C3%BCr%20%7D%20x%5Cto%20%5Cinfty%0A"></p>
-<p>Genauer gilt wegen</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Clim%5Climits_%7Bx%20%5Cto%20%5Cinfty%7D%20%5Cfrac%7B%5Cfrac%7B1%7D%7B1+x%5E2%7D%7D%7B%5Cfrac%7B1%7D%7Bx%5E2%7D%7D%0A=%20%5Clim%5Climits_%7Bx%20%5Cto%20%5Cinfty%7D%20%5Cfrac%7Bx%5E2%7D%7B1+x%5E2%7D%20=1,%0A"></p>
-<p>dass <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7B1+x%5E2%7D%20%5Csim%20%5Cfrac%7B1%7D%7Bx%5E2%7D">, also asymptotisch äquivalent sind und somit auch <img src="https://latex.codecogs.com/png.latex?%5Clog%5Cleft(%5Cfrac%7B1%7D%7B1+x%5E2%7D%5Cright)%20%5Csim%20%5Clog%5Cleft(%5Cfrac%7B1%7D%7Bx%5E2%7D%5Cright)">.</p>
-<p>Zusammen gefasst gilt somit: <img src="https://latex.codecogs.com/png.latex?%0A%5Clog%5Cleft(%5Cfrac%7B1%7D%7B%5Cpi%7D%20%5Ccdot%20%5Cfrac%7B1%7D%7B1+x%5E%7B2%7D%7D%5Cright)%20%5Cto%20-2%5Clog(x)%20-%20%5Clog(%5Cpi)%20%5Ctext%7B%20f%C3%BCr%20%7D%20x%20%5Cto%20%5Cinfty%0A"></p>
-<p>Sei <img src="https://latex.codecogs.com/png.latex?f_1%5E*(x)%20=%20C%20%5Ccdot%20x%5E%7B-%5Calpha%7D"> mit <img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%202"> und <img src="https://latex.codecogs.com/png.latex?C=%5Cfrac%7B1%7D%7B%5Cpi%7D%20%5Capprox0.3183">.</p>
-<p>Schauen wir uns das einmal als Grafik an:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">lower_bound <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span></span>
-<span id="cb2-2">upper_bound <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">100</span></span>
-<span id="cb2-3">dfree <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span></span>
-<span id="cb2-4"></span>
-<span id="cb2-5">f_star <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">function</span>(x) {</span>
-<span id="cb2-6">  alpha <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span></span>
-<span id="cb2-7">  C <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span>pi</span>
-<span id="cb2-8">  C <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span> x<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">**</span>(<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span>alpha)</span>
-<span id="cb2-9">}</span>
-<span id="cb2-10"></span>
-<span id="cb2-11">x <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">seq</span>(lower_bound, upper_bound, <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.1</span>)</span>
-<span id="cb2-12"></span>
-<span id="cb2-13"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"t"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">df =</span> dfree, </span>
-<span id="cb2-14">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">xlim =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">c</span>(lower_bound, upper_bound), </span>
-<span id="cb2-15">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkred"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb2-16">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_line</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">f_star</span>(x) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> x, </span>
-<span id="cb2-17">          <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkgreen"</span>)</span></code></pre></div></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/index_files/figure-html/unnamed-chunk-2-1.webp" class="img-fluid figure-img" width="384"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Hier eine doppelt-logarithmische Darstellung:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"t"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">df =</span> dfree, </span>
-<span id="cb3-2">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">xlim =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">c</span>(lower_bound, upper_bound), </span>
-<span id="cb3-3">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkred"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb3-4">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_line</span>( <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">f_star</span>(x) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> x, </span>
-<span id="cb3-5">           <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkgreen"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb3-6">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_refine</span>(</span>
-<span id="cb3-7">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_x_log10</span>(),</span>
-<span id="cb3-8">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_y_log10</span>()</span>
-<span id="cb3-9">  )</span></code></pre></div></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/index_files/figure-html/unnamed-chunk-3-1.webp" class="img-fluid figure-img" width="384"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Wie groß ist nun der (absolute) Fehler zwischen <img src="https://latex.codecogs.com/png.latex?f_1%5E*"> und <img src="https://latex.codecogs.com/png.latex?f_1">?</p>
-<p>Eine Grafik von <img src="https://latex.codecogs.com/png.latex?f_1%5E*-f_1"> zeigt:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">x <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">seq</span>(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1000</span>,<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>)</span>
-<span id="cb4-2">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_line</span>(x<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">**-</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span> <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span>(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span>x<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> x, </span>
-<span id="cb4-3">           <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkgreen"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb4-4">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_refine</span>(</span>
-<span id="cb4-5">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_x_log10</span>(),</span>
-<span id="cb4-6">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_y_log10</span>()</span>
-<span id="cb4-7">  )</span></code></pre></div></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/index_files/figure-html/unnamed-chunk-4-1.webp" class="img-fluid figure-img" width="384"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Genauer gilt:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Af_1%5E*(x)%20-%20f_1(x)%20=%20%5Cfrac%7B1%7D%7Bx%5E2+x%5E4%7D%0A"></p>
-<p>Wir können also für ein hinreichend großes <img src="https://latex.codecogs.com/png.latex?x%20%3E%3E%201"> statt <img src="https://latex.codecogs.com/png.latex?f_1"> auch <img src="https://latex.codecogs.com/png.latex?f_1%5E*"> verwenden und erhalten somit:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign*%7D%0A%5Coverline%7BF%7D_1(x)%20&amp;%5Capprox%20%5Cint_x%5E%5Cinfty%20f_1%5E*(t)%20%5Coperatorname%7Bd%7Dt%0A%20%20=%20%5Cint_x%5E%5Cinfty%20%20C%20%5Ccdot%20t%5E%7B-%5Calpha%7D%20%5Coperatorname%7Bd%7Dt%20%5C%5C%0A%20%20&amp;=%20%5Cfrac%7B1%7D%7B%5Cpi%7D%20%5Ccdot%20%5Cint_x%5E%5Cinfty%20%20t%5E%7B-2%7D%20%5Coperatorname%7Bd%7Dt%0A%20%20=%20%5Cfrac%7B1%7D%7B%5Cpi%7D%5Cleft%5B%5Clim%5Climits_%7B%5Cepsilon%20%5Cto%20%5Cinfty%7D%20%5Cleft(-%5Cepsilon%5E%7B-1%7D%5Cright)%20-%5Cleft(-x%5E%7B-1%7D%5Cright)%5Cright%5D%5C%5C%0A%20%20&amp;=%20%5Cfrac%7B1%7D%7B%5Cpi%7D%5Ccdot%5Cleft%5B0%20+%20%5Cfrac%7B1%7D%7Bx%7D%5Cright%5D%20=%20%5Cfrac%7B1%7D%7B%5Cpi%20%5Ccdot%20x%7D%0A%5Cend%7Balign*%7D%0A"></p>
-<p><strong>Wie hinreichend ist hier hinreichend groß?</strong></p>
-<p>Taleb schreibt an dieser Stelle gerne, dass man jenseits des <em>Karamata-Punktes</em> die <em>Karamata-Konstante</em> anwenden kann. Beides Begriffe, zu denen ich zunächst keine echte Definition gefunden habe.</p>
-<p><a href="https://de.wikipedia.org/wiki/Jovan_Karamata">Jovan Karamata</a> ist der Begründer der langsam variierend Funktionen. 1930 zeite er, dass eine positive stetige Funktion <img src="https://latex.codecogs.com/png.latex?L"> auf den positiven reellen Zahlen genau dann langsam variierend ist, also für alle <img src="https://latex.codecogs.com/png.latex?t%20%3E%200"> die Bedingung</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0AL(t%5C,x)/L(x)%20%5Cto%201%20%5Cqquad%5Ctext%7Bf%C3%BCr%7D%5Cqquad%20x%20%5Cto%20%5Cinfty%0A"></p>
-<p>erfüllt, wenn sie für ein <img src="https://latex.codecogs.com/png.latex?a%20%3E%200"> für <img src="https://latex.codecogs.com/png.latex?x%20%3E%20a"> in der Form</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0AL(x)%20=%20c(x)%20%5Ccdot%20%5Cexp%20%5Cleft(%5Cint_a%5Ex%5C!%5Cvarepsilon(t)/t%20%5C%20dt%20%5Cright)%0A"> mit <img src="https://latex.codecogs.com/png.latex?c(x)%20%5Cto%20c%20%3E%200"> und <img src="https://latex.codecogs.com/png.latex?%5Cvarepsilon(x)%20%5Cto%200"> für <img src="https://latex.codecogs.com/png.latex?x%20%5Cto%20%5Cinfty"> geschrieben werden kann.</p>
-<p>Ich vermute also, dass wir <img src="https://latex.codecogs.com/png.latex?L(x)"> ab dem Punkt <img src="https://latex.codecogs.com/png.latex?a"> näherungsweise durch <img src="https://latex.codecogs.com/png.latex?c(x)"> besser sogar durch die Konstante <img src="https://latex.codecogs.com/png.latex?c"> ersetzen könnten.</p>
-<p>Die <em>Karamata-Konstante</em> ist <img src="https://latex.codecogs.com/png.latex?%5Crho%20=%20-%5Calpha">, also <img src="https://latex.codecogs.com/png.latex?%5Crho%20=%20c">?</p>
-<p>Der <em>Karamata-Punkt</em> bleibt etwas nebulöser. Es könnte sich hier um den Punkt <img src="https://latex.codecogs.com/png.latex?a"> handeln und vermutlich könnte man hier so argumentieren:</p>
-<p>Wenn die Fehler zwischen <img src="https://latex.codecogs.com/png.latex?f"> und <img src="https://latex.codecogs.com/png.latex?f%5E*"> hinreichend klein ist.</p>
-<p>Hierfür könnte man einen absoluten Fehler oder einen relativen Fehler als Maßstab ansehen.</p>
-<p>Für einen relativen Fehler vielleicht <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bf%5E*-f%7D%7Bx%7D%20%3C%20k">?</p>
-<p>Oder man betrachtet hier gleich <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bf%5E*-f%7D%7B%5Clog(x)%7D%20%3C%20k%5E*">?</p>
-</section>
-<section id="t-verteilung-mit-zwei-freiheitsgeraden" class="level2">
-<h2 class="anchored" data-anchor-id="t-verteilung-mit-zwei-freiheitsgeraden">t-Verteilung mit zwei Freiheitsgeraden</h2>
-<p>Für <img src="https://latex.codecogs.com/png.latex?f_2(x)"> ergibt sich somit:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign*%7D%0Af_2(x)%20&amp;=%20%5Cfrac%7B%5CGamma%5Cleft(%5Cfrac%7Bn+1%7D%7B2%7D%5Cright)%7D%20%7B%5Csqrt%7Bn%5Cpi%7D~%5CGamma%5Cleft(%5Cfrac%7Bn%7D%7B2%7D%5Cright)%7D%5Cleft(1+%5Cfrac%7Bx%5E%7B2%7D%7D%7Bn%7D%5Cright)%5E%7B-%5Cfrac%7Bn+1%7D%7B2%7D%7D%20%5C%5C%0A%20%20%20%20%20%20%20&amp;=%20%5Cfrac%7B%5CGamma%5Cleft(%5Cfrac%7B3%7D%7B2%7D%5Cright)%7D%20%7B%5Csqrt%7B2%5Cpi%7D~%5CGamma%5Cleft(%5Cfrac%7B2%7D%7B2%7D%5Cright)%7D%5Cleft(1+%5Cfrac%7Bx%5E%7B2%7D%7D%7B2%7D%5Cright)%5E%7B-%5Cfrac%7B3%7D%7B2%7D%7D%20%5C%5C%0A%20%20%20%20%20%20%20&amp;=%20%5Cfrac%7B%5CGamma%5Cleft(%5Cfrac%7B3%7D%7B2%7D%5Cright)%7D%20%7B%5Csqrt%7B2%5Cpi%7D~%5CGamma%5Cleft(1%5Cright)%7D%5Cleft(1+%5Cfrac%7Bx%5E%7B2%7D%7D%7B2%7D%5Cright)%5E%7B-%5Cfrac%7B3%7D%7B2%7D%7D%20%5C%5C%0A%5Cend%7Balign*%7D%0A"></p>
-<p>Wegen <img src="https://latex.codecogs.com/png.latex?%5CGamma(1)%20=%200!%20=%201"> und <img src="https://latex.codecogs.com/png.latex?%5CGamma%5Cleft(%5Cfrac%7B3%7D%7B2%7D%5Cright)=%5Cfrac%7B%5Csqrt%7B%5Cpi%7D%7D%7B2%7D"> ergibt sich nun:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign*%7D%0Af_2(x)%20&amp;=%20%5Cfrac%7B1%7D%7B2%5Csqrt%7B2%7D%7D%20%5Ccdot%20%5Cleft(1+%5Cfrac%7Bx%5E%7B2%7D%7D%7B2%7D%5Cright)%5E%7B-%5Cfrac%7B3%7D%7B2%7D%7D%20%5C%5C%0A%20%20&amp;=%20%5Cfrac%7B1%7D%7B%5Csqrt%5B2%5D%7B2%5E3%7D%20%5Ccdot%20%5Csqrt%5B2%5D%7B%5Cleft(1+%5Cfrac%7Bx%5E%7B2%7D%7D%7B2%7D%5Cright)%5E3%7D%7D%20%20%5C%5C%0A%20%20&amp;=%20%5Cfrac%7B1%7D%7B(x%5E2+2)%5E%7B%5Cfrac%7B3%7D%7B2%7D%7D%7D%20%5C%5C%0A%20%20&amp;=%20%5Cfrac%7B1%7D%7B%5Csqrt%7B(x%5E2+2)%5E3%7D%7D%0A%5Cend%7Balign*%7D%0A"></p>
-<p>Wegen</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign*%7D%0A%5Clim_%7Bx%20%5Cto%20+%5Cinfty%7D%20%5Cfrac%7Bf_2(k%20%5Ccdot%20x)%7D%7Bf_2(x)%7D%0A%20%20%20%20&amp;=%20%5Clim_%7Bx%20%5Cto%20+%5Cinfty%7D%20%5Cfrac%7B%5Cfrac%7B1%7D%7B%5Csqrt%7B((k%5Ccdot%20x)%5E2+2)%5E3%7D%7D%7D%7B%5Cfrac%7B1%7D%7B%5Csqrt%7B(x%5E2+2)%5E3%7D%7D%7D%20=%20%5Clim_%7Bx%20%5Cto%20+%5Cinfty%7D%20%5Cfrac%7B%5Csqrt%7B(x%5E2+2)%5E3%7D%7D%7B%5Csqrt%7B((k%5Ccdot%20x)%5E2+2)%5E3%7D%7D%20%5C%5C%0A%20%20%20%20&amp;=%20%5Clim_%7Bx%20%5Cto%20+%5Cinfty%7D%20%5Cleft(%5Cfrac%7Bx%5E2+2%7D%7Bk%5E2x%5E2+2%7D%5Cright)%5E%5Cfrac%7B3%7D%7B2%7D=%5Clim_%7Bx%20%5Cto%20+%5Cinfty%7D%20%5Cleft(%5Cfrac%7B%5Cfrac%7Bx%5E2%7D%7Bx%5E2%7D+%5Cfrac%7B2%7D%7Bx%5E2%7D%7D%7Bk%5E2%5Cfrac%7Bx%5E2%7D%7Bx%5E2%7D+%5Cfrac%7B2%7D%7Bx%5E2%7D%7D%5Cright)%5E%5Cfrac%7B3%7D%7B2%7D%20%5C%5C%0A%20%20%20%20&amp;=%5Cleft(%5Cfrac%7B1%7D%7Bk%5E2%7D%5Cright)%5E%5Cfrac%7B3%7D%7B2%7D=%5Cfrac%7B1%7D%7Bk%5E3%7D=k%5E%7B-3%7D%0A%5Cend%7Balign*%7D%0A"></p>
-<p>für alle reellen <img src="https://latex.codecogs.com/png.latex?k%3E0"> ist <img src="https://latex.codecogs.com/png.latex?f_2(x)"> eine regulär variierende Funktion mit Variationsindex <img src="https://latex.codecogs.com/png.latex?%5Crho%20=%20-3">.</p>
-<p>Die Überlebensfunktion zur t-Verteilung mit einem Freiheitsgrad lautet nun:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign*%7D%0A%5Coverline%7BF%7D_2(x)%20&amp;=%20%5Cint_x%5E%5Cinfty%20f_2(t)%20%5Coperatorname%7Bd%7Dt%20=%20%5Cint_x%5E%5Cinfty%20%5Cfrac%7B1%7D%7B%5Csqrt%7B(t%5E2+2)%5E3%7D%7D%20%5Coperatorname%7Bd%7Dt%20%5C%5C%0A%20%20&amp;=%20%5Cfrac%7Bx%7D%7B2%20%5Ccdot%20%5Csqrt%7Bx%5E2+2%7D%7D%0A%5Cend%7Balign*%7D%0A"></p>
-<p>da wir das optionale <img src="https://latex.codecogs.com/png.latex?+C"> mit <img src="https://latex.codecogs.com/png.latex?C=0"> annehmen dürfen.</p>
-<p>Es gilt für jedes feste <img src="https://latex.codecogs.com/png.latex?k%3E0">:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign*%7D%0A%5Clim%5Climits_%7Bx%20%5Cto%20%5Cinfty%7D%20%5Cfrac%7B%5Coverline%7BF%7D_2(k%20x)%7D%7B%5Coverline%7BF%7D_2(x)%7D%20&amp;=%20%5Clim%5Climits_%7Bx%20%5Cto%20%5Cinfty%7Dk%20%5Ccdot%20%5Csqrt%7B%5Cfrac%7Bx%5E2+2%7D%7Bk%5E2x%5E2+2%7D%7D%20%5C%5C%0A%20%20&amp;=%20%20k%20%5Ccdot%20%5Clim%5Climits_%7Bx%20%5Cto%20%5Cinfty%7D%20%20%5Csqrt%7B%5Cfrac%7B1%7D%7Bk%5E2%7D%20%5Ccdot%20%5Cfrac%7Bx%5E2+2%7D%7Bx%5E2+%5Cfrac%7B2%7D%7Bk%5E2%7D%7D%7D%20%5C%5C%0A%20%20&amp;=%20%5Cfrac%7Bk%7D%7Bk%7D%20%5Ccdot%20%5Clim%5Climits_%7Bx%20%5Cto%20%5Cinfty%7D%20%20%5Csqrt%7B%20%5Cfrac%7Bx%5E2+2%7D%7Bx%5E2+%5Cfrac%7B2%7D%7Bk%5E2%7D%7D%7D%20=%201%5Cend%7Balign*%7D%0A"></p>
-<p>Wegen</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Clim_%7Bx%20%5Cto%20%5Cinfty%7D%20%5Cfrac%7B%5Cfrac%7B1%7D%7B%5Csqrt%7B(x%5E2+2)%5E3%7D%7D%7D%7B%5Cfrac%7B1%7D%7Bx%5E3%7D%7D%20=%5Clim%5Climits_%7Bx%20%5Cto%20%5Cinfty%7D%20%5Cfrac%7Bx%5E3%7D%7B(%5Csqrt%7Bx%5E2+2%7D)%5E3%7D%20=%20%5Clim%5Climits_%7Bx%20%5Cto%20%5Cinfty%7D%20%5Cleft(%5Cfrac%7Bx%7D%7B%5Csqrt%7Bx%5E2+2%7D%7D%5Cright)%5E3=%201%0A"></p>
-<p>ist <img src="https://latex.codecogs.com/png.latex?f_2%20%5Csim%20f%5E*_2"> und somit auch <img src="https://latex.codecogs.com/png.latex?%5Clog(f_2)%20%5Csim%20%5Clog(f%5E*_2)">.</p>
-<p>Aus <img src="https://latex.codecogs.com/png.latex?%5Clog%5Cleft(%5Cfrac%7B1%7D%7Bx%5E3%7D%5Cright)%20=%20%5Clog(1)-%203%5Ccdot%5Clog(x)"> können wir daher auf <img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%203"> und <img src="https://latex.codecogs.com/png.latex?C=1"> schliesse und schreiben:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Af_2%5E*(x)%20=%20C%20%5Ccdot%20x%5E%7B-%5Calpha%7D%20=%20x%5E%7B-3%7D%0A"></p>
-<p>Schauen wir uns das einmal als Grafik an:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">lower_bound <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span></span>
-<span id="cb5-2">upper_bound <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">100</span></span>
-<span id="cb5-3">dfree <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span></span>
-<span id="cb5-4"></span>
-<span id="cb5-5">f_star <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">function</span>(x) {</span>
-<span id="cb5-6">  alpha <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span></span>
-<span id="cb5-7">  C <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span></span>
-<span id="cb5-8">  C <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span> x<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">**</span>(<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span>alpha)</span>
-<span id="cb5-9">}</span>
-<span id="cb5-10"></span>
-<span id="cb5-11">x <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">seq</span>(lower_bound, upper_bound, <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.1</span>)</span>
-<span id="cb5-12"></span>
-<span id="cb5-13"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"t"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">df =</span> dfree, </span>
-<span id="cb5-14">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">xlim =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">c</span>(lower_bound, upper_bound), </span>
-<span id="cb5-15">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkred"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb5-16">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_line</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">f_star</span>(x) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> x, </span>
-<span id="cb5-17">          <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkgreen"</span>)</span></code></pre></div></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/index_files/figure-html/unnamed-chunk-5-1.webp" class="img-fluid figure-img" width="384"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Hier eine doppelt-logarithmische Darstellung:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"t"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">df =</span> dfree, </span>
-<span id="cb6-2">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">xlim =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">c</span>(lower_bound, upper_bound), </span>
-<span id="cb6-3">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkred"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb6-4">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_line</span>( <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">f_star</span>(x) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> x, </span>
-<span id="cb6-5">           <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkgreen"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb6-6">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_refine</span>(</span>
-<span id="cb6-7">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_x_log10</span>(),</span>
-<span id="cb6-8">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_y_log10</span>()</span>
-<span id="cb6-9">  )</span></code></pre></div></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/index_files/figure-html/unnamed-chunk-6-1.webp" class="img-fluid figure-img" width="384"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Wie groß ist nun der absolute Fehler zwischen <img src="https://latex.codecogs.com/png.latex?f_2%5E*"> und <img src="https://latex.codecogs.com/png.latex?f_2"> genau?</p>
-<p>Eine Grafik zeigt von <img src="https://latex.codecogs.com/png.latex?f_2%5E*-2_1"> zeigt:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">x <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">seq</span>(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1000</span>,<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>)</span>
-<span id="cb7-2">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_line</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">f_star</span>(x) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">dt</span>(x,<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">df=</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> x, </span>
-<span id="cb7-3">           <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"darkgreen"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb7-4">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">gf_refine</span>(</span>
-<span id="cb7-5">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_x_log10</span>(),</span>
-<span id="cb7-6">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_y_log10</span>()</span>
-<span id="cb7-7">  )</span></code></pre></div></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/index_files/figure-html/unnamed-chunk-7-1.webp" class="img-fluid figure-img" width="384"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="fussnoten" class="level2">
-<h2 class="anchored" data-anchor-id="fussnoten">Fussnoten</h2>
-
-
-</section>
-
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Fußnoten</h2>
-
-<ol>
-<li id="fn1"><p><a href="https://de.wikipedia.org/wiki/Nicolaas_Govert_de_Bruijn">de Bruijn, N. G.</a> (1981), <a href="https://books.google.com/books?id=Oqj9AgAAQBAJ">Asymptotic Methods in Analysis</a>, Dover Publications, ISBN 9780486642215↩︎</p></li>
-</ol>
-</section></div> ]]></description>
-  <category>Statistik</category>
-  <guid>https://www.sefiroth.de/posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/</guid>
-  <pubDate>Tue, 16 Feb 2021 23:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

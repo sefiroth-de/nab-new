@@ -222,6 +222,22 @@ F(\omega) = \int_{-\infty}^{\infty} f(t) e^{-i \omega t} dt
   F(\omega) = \int_{-\infty}^{\infty} (a \sin(t) + b \cos(t)) e^{-i \omega t} dt
 \]</span></p>
 <p>Durch die Anwendung der Identität können wir diesen Ausdruck vereinfachen und die Fourier-Koeffizienten berechnen, was uns wichtige Informationen über das Signal liefert, wie z.B. seine Frequenzkomponenten und Phasenverschiebungen. Dies zeigt, wie eine scheinbar einfache trigonometrische Identität in der Praxis eine wichtige Rolle spielt und weitreichende Auswirkungen hat.</p>
+<p>Die Fourier-Reihenentwicklung eines Signals <span class="math inline">\(f(t)\)</span> kann auch durch die Anwendung dieser Identität vereinfacht werden. Wenn wir das Signal als eine Summe von Sinus- und Kosinusfunktionen darstellen, können wir die Identität verwenden, um die Koeffizienten der Fourier-Reihe zu berechnen und die Frequenz und Phase der einzelnen Komponenten zu bestimmen. Dies ist besonders nützlich in der Analyse von periodischen Signalen, wo es wichtig ist, die Eigenschaften der einzelnen Frequenzkomponenten zu verstehen.</p>
+<p><span class="math display">\[  
+  f(t) = \frac{a_0}{2} + \sum_{n=1}^{\infty} (a_n \cos(nt) + b_n \sin(nt))  
+\]</span></p>
+<p>Durch die Anwendung der Identität können wir die Koeffizienten <span class="math inline">\(a_n\)</span> und <span class="math inline">\(b_n\)</span> berechnen und die Frequenz und Phase der einzelnen Komponenten der Fourier-Reihe bestimmen, was uns wichtige Informationen über das Signal liefert. Dies zeigt, wie eine einfache trigonometrische Identität in der Praxis eine wichtige Rolle spielt und weitreichende Auswirkungen hat.</p>
+<p>Wir können die Fourier-Reihe nun nur mit Sinus (oder nur mit Kosinus) schreiben: <span class="math display">\[
+  \begin{align*}
+  f(t) &amp;= \frac{a_0}{2} + \sum_{n=1}^{\infty} \sqrt{a_n^2 + b_n^2} \cdot \sin\left(nt + \arctan\left(\frac{b_n}{a_n}\right)\right) \\
+      &amp;= \frac{a_0}{2} + \sum_{n=1}^{\infty} \sqrt{a_n^2 + b_n^2} \cdot \cos\left(nt - \arctan\left(\frac{b_n}{a_n}\right)\right)
+  \end{align*}
+\]</span> Setzen wir <span class="math inline">\(A_n = \sqrt{a_n^2 + b_n^2}\)</span> und <span class="math inline">\(\phi_n = \arctan\left(\frac{b_n}{a_n}\right)\)</span>, so können wir die Fourier-Reihe in der folgenden Form schreiben: <span class="math display">\[  
+  f(t) = \frac{a_0}{2} + \sum_{n=1}^{\infty} A_n \cdot \sin(nt + \phi_n)
+\]</span></p>
+<p>oder <span class="math display">\[
+  f(t) = \frac{a_0}{2} + \sum_{n=1}^{\infty} A_n \cdot \cos(nt - \phi_n)
+\]</span> Diese Form der Fourier-Reihe zeigt, dass jedes Signal als eine Summe von Sinus- oder Kosinusfunktionen dargestellt werden kann, wobei die Amplitude <span class="math inline">\(A_n\)</span> und die Phase <span class="math inline">\(\phi_n\)</span> der einzelnen Komponenten durch die Koeffizienten der ursprünglichen Fourier-Reihe bestimmt werden. Dies ist ein weiteres Beispiel dafür, wie eine einfache trigonometrische Identität in der Praxis eine wichtige Rolle spielt und weitreichende Auswirkungen hat.</p>
 
 
 </section>
