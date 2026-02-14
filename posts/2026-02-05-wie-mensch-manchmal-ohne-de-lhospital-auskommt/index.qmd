@@ -14,16 +14,20 @@ categories:
 Brauchen wir um das folgende Problem zu lösen immer die Regel von de L’Hospital?
 
 $$
-\lim\limits_{x \to 1} \frac{x^{\frac{1}{3}}-1}{x^{\frac{1}{2}}-1}
+  \lim\limits_{x \to 1} \frac{x^{\frac{1}{3}}-1}{x^{\frac{1}{2}}-1}
 $$
 
-Die Antwort ist ganz klar: Nein.
+Die Antwort ist ganz klar: **Nein**.
 
 Manchmal, so wie in diesem Fall, reicht eine geschickte Substitution.
 
 Ersetzen wir nämlich $x^{\frac{1}{6}}$ durch $t$, so beobachten wir:
 $$
-  t^2 = \left(x^{\frac{1}{6}}\right)^2 =x^{\frac{1}{3}} \quad \text{bzw.} \quad t^3 = \left(x^{\frac{1}{6}}\right)^3 =x^{\frac{1}{2}} 
+  t^2 = \left(x^{\frac{1}{6}}\right)^2 
+      = x^{\frac{1}{3}}
+  \quad \text{bzw.} \quad 
+  t^3 = \left(x^{\frac{1}{6}}\right)^3 
+      = x^{\frac{1}{2}} 
 $$
 
 Ersetzen wir das nun in unserer Ursprünglichen Aufgabe so erhalten wir:
@@ -33,29 +37,30 @@ $$
 $$
 Sowohl der Zähler, als auch der Nenner lassen sich nun wie folgt umformulieren:
 $$
-  t^2 - 1 = (t-1) (t+1) 
+  t^2 - 1 = (t-1) (t+1)
 $$
 $$
-  t^3 - 1 = (t-1)(t^2+t+1)
+  t^3 - 1 = (t-1)\left(t^2+t+1\right)
 $$
 
 Der Bruch lässt sich somit umformen zu:
 
 $$
-  \frac{t^2-1}{t^3-1}=\frac{(t-1)(t+1)}{(t-1)(t^2+t+1)}=\frac{t+1}{t^2+t+1}
+  \frac{t^2-1}{t^3-1} = \frac{(t-1)(t+1)}{(t-1)\left(t^2+t+1\right)}
+                      = \frac{t+1}{t^2+t+1}
 $$
 Und in die rechte Seite können wir $t=1$ ohne Probleme einsetzen und erhalten:
 
 $$
-  \lim\limits_{x \to 1} \frac{x^{\frac{1}{3}}-1}{x^{\frac{1}{2}}-1}
- =\lim\limits_{t \to 1} \frac{t^2-1}{t^3-1}
- =\lim\limits_{t \to 1} \frac{t+1}{t^2+t+1}
- =
- \frac{1+1}{1^2+1+1} 
+   \lim\limits_{x \to 1} \frac{x^{\frac{1}{3}}-1}{x^{\frac{1}{2}}-1}
+ = \lim\limits_{t \to 1} \frac{t^2-1}{t^3-1}
+ = \lim\limits_{t \to 1} \frac{t+1}{t^2+t+1}
+ = \frac{1+1}{1^2+1+1} 
  = \frac{2}{3}
 $$
 
-Die Idee ist klar. Da die Laufvariable gegen eine Nullstelle von Zähler und Nenner geht, müssen wir diese Nullstelle oben wie unten auskammern und wegkürzen.
+Die Idee ist klar. 
+Da die Laufvariable gegen eine Nullstelle von Zähler und Nenner geht, müssen wir diese Nullstelle oben wie unten auskammern und wegkürzen.
 Um das zu erreichen muss unsere Substitution passen.
 
 Im Hinterkopf haben wir dabei die Binomischen Formeln, insbesondere die 3. Binomische Formel:

@@ -183,7 +183,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Geändert</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">13. Februar 2026</p>
+        <p class="date-modified">14. Februar 2026</p>
       </div>
     </div>
       
@@ -205,12 +205,16 @@ window.Quarto = {
 <h1>Wie mensch manchmal ohne de L’Hospital auskommt</h1>
 <p>Brauchen wir um das folgende Problem zu lösen immer die Regel von de L’Hospital?</p>
 <p><span class="math display">\[
-\lim\limits_{x \to 1} \frac{x^{\frac{1}{3}}-1}{x^{\frac{1}{2}}-1}
+  \lim\limits_{x \to 1} \frac{x^{\frac{1}{3}}-1}{x^{\frac{1}{2}}-1}
 \]</span></p>
-<p>Die Antwort ist ganz klar: Nein.</p>
+<p>Die Antwort ist ganz klar: <strong>Nein</strong>.</p>
 <p>Manchmal, so wie in diesem Fall, reicht eine geschickte Substitution.</p>
 <p>Ersetzen wir nämlich <span class="math inline">\(x^{\frac{1}{6}}\)</span> durch <span class="math inline">\(t\)</span>, so beobachten wir: <span class="math display">\[
-  t^2 = \left(x^{\frac{1}{6}}\right)^2 =x^{\frac{1}{3}} \quad \text{bzw.} \quad t^3 = \left(x^{\frac{1}{6}}\right)^3 =x^{\frac{1}{2}}
+  t^2 = \left(x^{\frac{1}{6}}\right)^2
+      = x^{\frac{1}{3}}
+  \quad \text{bzw.} \quad
+  t^3 = \left(x^{\frac{1}{6}}\right)^3
+      = x^{\frac{1}{2}}
 \]</span></p>
 <p>Ersetzen wir das nun in unserer Ursprünglichen Aufgabe so erhalten wir:</p>
 <p><span class="math display">\[
@@ -218,18 +222,18 @@ window.Quarto = {
 \]</span> Sowohl der Zähler, als auch der Nenner lassen sich nun wie folgt umformulieren: <span class="math display">\[
   t^2 - 1 = (t-1) (t+1)
 \]</span> <span class="math display">\[
-  t^3 - 1 = (t-1)(t^2+t+1)
+  t^3 - 1 = (t-1)\left(t^2+t+1\right)
 \]</span></p>
 <p>Der Bruch lässt sich somit umformen zu:</p>
 <p><span class="math display">\[
-  \frac{t^2-1}{t^3-1}=\frac{(t-1)(t+1)}{(t-1)(t^2+t+1)}=\frac{t+1}{t^2+t+1}
+  \frac{t^2-1}{t^3-1} = \frac{(t-1)(t+1)}{(t-1)\left(t^2+t+1\right)}
+                      = \frac{t+1}{t^2+t+1}
 \]</span> Und in die rechte Seite können wir <span class="math inline">\(t=1\)</span> ohne Probleme einsetzen und erhalten:</p>
 <p><span class="math display">\[
-  \lim\limits_{x \to 1} \frac{x^{\frac{1}{3}}-1}{x^{\frac{1}{2}}-1}
-=\lim\limits_{t \to 1} \frac{t^2-1}{t^3-1}
-=\lim\limits_{t \to 1} \frac{t+1}{t^2+t+1}
-=
-\frac{1+1}{1^2+1+1}
+   \lim\limits_{x \to 1} \frac{x^{\frac{1}{3}}-1}{x^{\frac{1}{2}}-1}
+= \lim\limits_{t \to 1} \frac{t^2-1}{t^3-1}
+= \lim\limits_{t \to 1} \frac{t+1}{t^2+t+1}
+= \frac{1+1}{1^2+1+1}
 = \frac{2}{3}
 \]</span></p>
 <p>Die Idee ist klar. Da die Laufvariable gegen eine Nullstelle von Zähler und Nenner geht, müssen wir diese Nullstelle oben wie unten auskammern und wegkürzen. Um das zu erreichen muss unsere Substitution passen.</p>
