@@ -8,7 +8,7 @@
 
 <meta name="author" content="Norman Markgraf">
 
-<title>Wie mensch manchmal ohne de L’Hospital auskommt – Norman’s Academic Blog</title>
+<title>Einfach eine gute Seite zum Thema RaspberryPi Pico – Norman’s Academic Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,35 +70,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -154,11 +125,10 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Wie mensch manchmal ohne de L’Hospital auskommt</h1>
+      <h1 class="title">Einfach eine gute Seite zum Thema RaspberryPi Pico</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">de L'Hospital</div>
-                <div class="quarto-category">Binomische Formeln</div>
-                <div class="quarto-category">Mathematik</div>
+                <div class="quarto-category">RasperryPi</div>
+                <div class="quarto-category">RaspberryPi Pico</div>
               </div>
                   </div>
   </div>
@@ -176,14 +146,14 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Veröffentlichungsdatum</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">5. Februar 2026</p>
+        <p class="date">20. Februar 2026</p>
       </div>
     </div>
     
       <div>
       <div class="quarto-title-meta-heading">Geändert</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">15. Februar 2026</p>
+        <p class="date-modified">20. Februar 2026</p>
       </div>
     </div>
       
@@ -201,53 +171,24 @@ window.Quarto = {
 
 
 
-<section id="wie-mensch-manchmal-ohne-de-lhospital-auskommt" class="level1">
-<h1>Wie mensch manchmal ohne de L’Hospital auskommt</h1>
-<p>Brauchen wir um das folgende Problem zu lösen immer die Regel von de L’Hospital?</p>
-<p><span class="math display">\[
-  \lim\limits_{x \to 1} \frac{x^{\frac{1}{3}}-1}{x^{\frac{1}{2}}-1}
-\]</span></p>
-<p>Die Antwort ist ganz klar: <strong>Nein</strong>.</p>
-<p>Manchmal, so wie in diesem Fall, reicht eine geschickte Substitution.</p>
-<p>Ersetzen wir nämlich <span class="math inline">\(x^{\frac{1}{6}}\)</span> durch <span class="math inline">\(t\)</span>, so beobachten wir: <span class="math display">\[
-  t^2 = \left(x^{\frac{1}{6}}\right)^2
-      = x^{\frac{1}{3}}
-  \quad \text{bzw.} \quad
-  t^3 = \left(x^{\frac{1}{6}}\right)^3
-      = x^{\frac{1}{2}}
-\]</span></p>
-<p>Ersetzen wir das nun in unserer Ursprünglichen Aufgabe so erhalten wir:</p>
-<p><span class="math display">\[
-  \lim\limits_{t \to 1} \frac{t^2-1}{t^3-1}
-\]</span> Sowohl der Zähler, als auch der Nenner lassen sich nun wie folgt umformulieren: <span class="math display">\[
-  t^2 - 1 = (t-1) (t+1)
-\]</span> <span class="math display">\[
-  t^3 - 1 = (t-1)\left(t^2+t+1\right)
-\]</span></p>
-<p>Der Bruch lässt sich somit umformen zu:</p>
-<p><span class="math display">\[
-  \frac{t^2-1}{t^3-1} = \frac{(t-1)(t+1)}{(t-1)\left(t^2+t+1\right)}
-                      = \frac{t+1}{t^2+t+1}
-\]</span> Und in die rechte Seite können wir <span class="math inline">\(t=1\)</span> ohne Probleme einsetzen und erhalten:</p>
-<p><span class="math display">\[
-   \lim\limits_{x \to 1} \frac{x^{\frac{1}{3}}-1}{x^{\frac{1}{2}}-1}
-= \lim\limits_{t \to 1} \frac{t^2-1}{t^3-1}
-= \lim\limits_{t \to 1} \frac{t+1}{t^2+t+1}
-= \frac{1+1}{1^2+1+1}
-= \frac{2}{3}
-\]</span></p>
-<p>Die Idee ist klar. Da die Laufvariable gegen eine Nullstelle von Zähler und Nenner geht, müssen wir diese Nullstelle oben wie unten auskammern und wegkürzen. Um das zu erreichen muss unsere Substitution passen.</p>
-<p>Im Hinterkopf haben wir dabei die Binomischen Formeln, insbesondere die 3. Binomische Formel: <span class="math display">\[
-  x^2-y^2 = (x-y)(x+y)
-\]</span> Wir nutzen hier aber auch die Verallgemeinerung dieser Formel: <span class="math display">\[
-  x^3-y^3 = (x-y)\left(x^2+xy+y^2\right)
-  \quad\text{ und }\quad
-  x^4-y^4 = (x-y)\left(x^3+x^2y+xy^2+y^3\right)
-\]</span> Oder für noch größere Exponenten: <span class="math display">\[
-  x^n-y^n = (x-y) \cdot\left(\sum\limits_{k=0}^{n-1}x^ky^{n-k}\right)
-\]</span></p>
+<section id="einfach-eine-gute-seite-zum-thema-raspberrypi-pico" class="level1">
+<h1>Einfach eine gute Seite zum Thema RaspberryPi Pico</h1>
+<p>Ich habe auf den Seiten von LHlab Wiki <a href="https://lhlab.wiki/wiki/Kategorie:RaspberryPiPico">hier</a> ein paar Seiten zum Thema RaspberryPi Pico gefunden die ich für recht interessant halte.</p>
+<p>Für die ersten Schritte mit dem RaspberryPi Pico könnte die Seite <a href="https://www.elektronik-kompendium.de/sites/raspberry-pi/2612191.htm">https://www.elektronik-kompendium.de/sites/raspberry-pi/2612191.htm</a> sehr hilfreich sein.</p>
+<p>Informationen zu den Anschlüssen des RaspberryPi Pico finden wir auf der Seite <a href="https://www.elektronik-kompendium.de/sites/raspberry-pi/2611031.htm">https://www.elektronik-kompendium.de/sites/raspberry-pi/2611031.htm</a>.</p>
+<p>Eine guter Belegungsplan der GPIO Pins des RaspberryPi Pico findet sich auf der Seite <a href="https://www.elektronik-kompendium.de/sites/raspberry-pi/2611051.htm">https://www.elektronik-kompendium.de/sites/raspberry-pi/2611051.htm</a>.</p>
+<p>Informationen zum Schlafmodues des RaspberryPi Pico findet sich auf der Seite <a href="https://www.elektronik-kompendium.de/sites/raspberry-pi/2802131.htm">https://www.elektronik-kompendium.de/sites/raspberry-pi/2802131.htm</a>.</p>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<p>Unter <a href="https://raw.githubusercontent.com/alaub81/rpi_pico_scripts/main/config_sample.py">https://raw.githubusercontent.com/alaub81/rpi_pico_scripts/main/config_sample.py</a> gibt es eine Beispielkonfiguration für die Nutzung von MicroPython auf dem RaspberryPi Pico. Das könnte für Einsteiger sehr hilfreich sein, um schnell loszulegen und die ersten Schritte mit dem Pico zu machen.</p>
+<p><a href="https://raw.githubusercontent.com/alaub81/rpi_pico_scripts/main/wificonnection.py">https://raw.githubusercontent.com/alaub81/rpi_pico_scripts/main/wificonnection.py</a></p>
+</section>
+<section id="raspberry-pi-os-download" class="level2">
+<h2 class="anchored" data-anchor-id="raspberry-pi-os-download">Raspberry Pi OS download</h2>
+<p><a href="https://www.raspberrypi.com/software/operating-systems/">https://www.raspberrypi.com/software/operating-systems/</a></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

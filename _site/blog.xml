@@ -10,7 +10,43 @@
 <atom:link href="https://www.sefiroth.de/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Norman&#39;s Academic Blog</description>
 <generator>quarto-1.8.27</generator>
-<lastBuildDate>Sun, 08 Feb 2026 23:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 19 Feb 2026 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>Einfach eine gute Seite zum Thema RaspberryPi Pico</title>
+  <dc:creator>Norman Markgraf</dc:creator>
+  <link>https://www.sefiroth.de/posts/2026-02-20-einfach-eine-gute-seite-zum-thema-raspberrypi/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="einfach-eine-gute-seite-zum-thema-raspberrypi-pico" class="level1">
+<h1>Einfach eine gute Seite zum Thema RaspberryPi Pico</h1>
+<p>Ich habe auf den Seiten von LHlab Wiki <a href="https://lhlab.wiki/wiki/Kategorie:RaspberryPiPico">hier</a> ein paar Seiten zum Thema RaspberryPi Pico gefunden die ich für recht interessant halte.</p>
+<p>Für die ersten Schritte mit dem RaspberryPi Pico könnte die Seite <a href="https://www.elektronik-kompendium.de/sites/raspberry-pi/2612191.htm">https://www.elektronik-kompendium.de/sites/raspberry-pi/2612191.htm</a> sehr hilfreich sein.</p>
+<p>Informationen zu den Anschlüssen des RaspberryPi Pico finden wir auf der Seite <a href="https://www.elektronik-kompendium.de/sites/raspberry-pi/2611031.htm">https://www.elektronik-kompendium.de/sites/raspberry-pi/2611031.htm</a>.</p>
+<p>Eine guter Belegungsplan der GPIO Pins des RaspberryPi Pico findet sich auf der Seite <a href="https://www.elektronik-kompendium.de/sites/raspberry-pi/2611051.htm">https://www.elektronik-kompendium.de/sites/raspberry-pi/2611051.htm</a>.</p>
+<p>Informationen zum Schlafmodues des RaspberryPi Pico findet sich auf der Seite <a href="https://www.elektronik-kompendium.de/sites/raspberry-pi/2802131.htm">https://www.elektronik-kompendium.de/sites/raspberry-pi/2802131.htm</a>.</p>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<p>Unter <a href="https://raw.githubusercontent.com/alaub81/rpi_pico_scripts/main/config_sample.py">https://raw.githubusercontent.com/alaub81/rpi_pico_scripts/main/config_sample.py</a> gibt es eine Beispielkonfiguration für die Nutzung von MicroPython auf dem RaspberryPi Pico. Das könnte für Einsteiger sehr hilfreich sein, um schnell loszulegen und die ersten Schritte mit dem Pico zu machen.</p>
+<p><a href="https://raw.githubusercontent.com/alaub81/rpi_pico_scripts/main/wificonnection.py">https://raw.githubusercontent.com/alaub81/rpi_pico_scripts/main/wificonnection.py</a></p>
+</section>
+<section id="raspberry-pi-os-download" class="level2">
+<h2 class="anchored" data-anchor-id="raspberry-pi-os-download">Raspberry Pi OS download</h2>
+<p><a href="https://www.raspberrypi.com/software/operating-systems/">https://www.raspberrypi.com/software/operating-systems/</a></p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>RasperryPi</category>
+  <category>RaspberryPi Pico</category>
+  <guid>https://www.sefiroth.de/posts/2026-02-20-einfach-eine-gute-seite-zum-thema-raspberrypi/</guid>
+  <pubDate>Thu, 19 Feb 2026 23:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Eine interessante trigonometrische Identität mit weitreichender Wirkung</title>
   <dc:creator>Norman Markgraf</dc:creator>
@@ -7223,171 +7259,6 @@ font-style: inherit;">#&gt; 3 Idee 1  151.  1126.</span></span></code></pre></di
   <category>Statistik</category>
   <guid>https://www.sefiroth.de/posts/2021-06-09-ueber-die-koeffizienten-einer-linearen-regression/</guid>
   <pubDate>Tue, 08 Jun 2021 22:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>GraalPy , PyPy und (C)Python im kurzen Geschwindigkeitstest</title>
-  <dc:creator>Norman Markgraf</dc:creator>
-  <link>https://www.sefiroth.de/posts/2021-04-08-graalpy-pypy--und-python-geschwindigkeitstest/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<section id="kleiner-geschwindigkeitstest-mit-python3-pypy-und-graalpython" class="level2">
-<h2 class="anchored" data-anchor-id="kleiner-geschwindigkeitstest-mit-python3-pypy-und-graalpython">Kleiner Geschwindigkeitstest mit Python3, PyPy und GraalPython</h2>
-<p>Heute habe ich mit Hilfe von Pyenv einen kompakten Performance-Vergleich zwischen (C)Python3, PyPy und GraalPython durchgeführt.</p>
-<p>Als Testfall diente das klassische n-Damen-Problem, dessen Lösungsalgorithmus ich als Basis verwendet habe.</p>
-<p>Den Quellcode findet man hier: <a href="https://github.com/sol-prog/N-Queens-Puzzle" class="uri">https://github.com/sol-prog/N-Queens-Puzzle</a></p>
-<section id="die-ergebnisse-des-test-vom-8.4.2021" class="level3">
-<h3 class="anchored" data-anchor-id="die-ergebnisse-des-test-vom-8.4.2021">Die Ergebnisse des Test vom 8.4.2021</h3>
-<ul>
-<li>CPython (3.9.4): Calculation took 316.97 seconds</li>
-<li>PyPy (3.7-7.3.3): Calculation took 10.14 seconds</li>
-<li>GraalPython (21.0.0): Calculation took 15.75 seconds</li>
-</ul>
-</section>
-</section>
-<section id="neues-setup" class="level2">
-<h2 class="anchored" data-anchor-id="neues-setup">Neues Setup</h2>
-<p>Die Ergebnisse für n = 1 wurden mit der Zeile</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">python</span> <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-m</span> timeit <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-r</span> 50 <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-n</span> 1 ‘import nqueens<span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">;</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">nqueens.main()</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">’</span></span></code></pre></div></div>
-<p>erzeugt.</p>
-<!-- Unglaubwürdige Ergebnisse!!!
-
-### Die Ergebnisse des Test vom 8.6.2021
-
-- CPython (3.9.4): 1 loops, best of 5: 7.03 sec per loop
-- PyPy (3.7-7.3.4): ***keine Ergebnisse***
-- GraalPython (21.1.0): 1 loops, best of 5: 7.01 sec per loop
-
--->
-<section id="die-ergebnisse-des-test-vom-20.7.2025" class="level3">
-<h3 class="anchored" data-anchor-id="die-ergebnisse-des-test-vom-20.7.2025">Die Ergebnisse des Test vom 20.7.2025</h3>
-<ul>
-<li>CPython:
-<ul>
-<li>3.13.1: 1 loop, best of 50: 673 msec per loop</li>
-<li>3.13.5: 1 loop, best of 50: 661 msec per loop</li>
-</ul></li>
-<li>PyPy:
-<ul>
-<li>3.10-7.3.17: 1 loops, average of 50: 75.6 +- 2.9 msec per loop (using standard deviation)</li>
-<li>3.11-7.3.19: 1 loops, average of 50: 74.9 +- 2.89 msec per loop (using standard deviation)</li>
-</ul></li>
-<li>GraalPython/GraalPy
-<ul>
-<li>GraalPy 3.11.7 (Oracle GraalVM Native 24.1.1):1 loop, best of 50: 24.9 msec per loop</li>
-<li>GraalPy 3.11.7 (GraalVM CE Native 24.1.1): 1 loop, best of 50: 30 msec per loop</li>
-<li>GraalPy 3.11.7 (Oracle GraalVM Native 24.2.1): 1 loop, best of 50: 24.5 msec per loop</li>
-<li>GraalPy 3.11.7 (GraalVM CE Native 24.2.1): 1 loop, best of 50: 28.1 msec per loop</li>
-</ul></li>
-</ul>
-</section>
-</section>
-<section id="neues-setup-1" class="level2">
-<h2 class="anchored" data-anchor-id="neues-setup-1">Neues Setup</h2>
-<p>Die Ergebnisse für n = 5 wurden mit der Zeile</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">python</span> <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-m</span> timeit <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-r</span> 50 <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-n</span> 1 ‘import nqueens<span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">;</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">nqueens.main()</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">’</span></span></code></pre></div></div>
-<p>erzeugt.</p>
-<section id="die-ergebnisse-des-test-vom-4.12.2025-imac-24.6.0-x86_64-i386" class="level3">
-<h3 class="anchored" data-anchor-id="die-ergebnisse-des-test-vom-4.12.2025-imac-24.6.0-x86_64-i386">Die Ergebnisse des Test vom 4.12.2025 (iMac 24.6.0 x86_64 i386)</h3>
-<ul>
-<li>CPython:
-<ul>
-<li>Python 3.13.5: 5 loops, best of 50: 656 msec per loop</li>
-<li>Python 3.13.10: 5 loops, best of 50: 647 msec per loop</li>
-<li>Python 3.14.0: 5 loops, best of 50: 665 msec per loop</li>
-<li>Python 3.14.1: 5 loops, best of 50: 701 msec per loop</li>
-</ul></li>
-<li>PyPy:
-<ul>
-<li>Python 3.11.11 (0253c85bf5f8, Feb 26 2025, 10:43:06) [PyPy 7.3.19 with GCC Apple LLVM 15.0.0 (clang-1500.3.9.4)]: 5 loops, average of 50: 85.7 +- 2.08 msec per loop (using standard deviation)</li>
-<li>Python 3.11.13 (413c9b7f57f5, Jul 03 2025, 18:04:31) [PyPy 7.3.20 with GCC Apple LLVM 16.0.0 (clang-1600.0.26.6)]: 5 loops, average of 50: 87.6 +- 3.06 msec per loop (using standard deviation)</li>
-</ul></li>
-<li>GraalPy(thon):
-<ul>
-<li>GraalPy 3.11.7 (Oracle GraalVM Native 24.1.1): 5 loops, best of 50: 25.5 msec per loop</li>
-<li>GraalPy 3.11.7 (GraalVM CE Native 24.1.1): 5 loops, best of 50: 33.6 msec per loop</li>
-<li>GraalPy 3.11.7 (Oracle GraalVM Native 24.2.1): 5 loops, best of 50: 24.4 msec per loop</li>
-<li>GraalPy 3.11.7 (GraalVM CE Native 24.2.1): 5 loops, best of 50: 32.2 msec per loop</li>
-<li>GraalPy 3.11.7 (Oracle GraalVM Native 24.2.2): 5 loops, best of 50: 24.4 msec per loop</li>
-<li>GraalPy 3.11.7 (GraalVM CE Native 24.2.2): 5 loops, best of 50: 32.3 msec per loop</li>
-<li>GraalPy 3.12.8 (Oracle GraalVM Native 25.0.1): 5 loops, best of 50: 23.6 msec per loop</li>
-<li>GraalPy 3.12.8 (GraalVM CE Native 25.0.1): 5 loops, best of 50: 29.6 msec per loop</li>
-</ul></li>
-</ul>
-</section>
-</section>
-<section id="die-ergebnisse-des-test-vom-4.12.2025-macbookpro-24.6.0-arm64-arm" class="level2">
-<h2 class="anchored" data-anchor-id="die-ergebnisse-des-test-vom-4.12.2025-macbookpro-24.6.0-arm64-arm">Die Ergebnisse des Test vom 4.12.2025 (MacBookPro 24.6.0 arm64 arm)</h2>
-<ul>
-<li>CPython:
-<ul>
-<li>Python 3.13.5: 5 loops, best of 50: 661 msec per loop</li>
-<li>Python 3.13.10: 5 loops, best of 50: 653 msec per loop</li>
-<li>Python 3.14.0: 5 loops, best of 50: 469 msec per loop</li>
-<li>Python 3.14.1: 5 loops, best of 50: 469 msec per loop</li>
-</ul></li>
-<li>PyPy:
-<ul>
-<li>Python 3.11.11 (0253c85bf5f8, Feb 26 2025, 10:42:49) [PyPy 7.3.19 with GCC Apple LLVM 15.0.0 (clang-1500.3.9.4)]: 5 loops, average of 50: 74.2 +- 0.681 msec per loop (using standard deviation)</li>
-<li>Python 3.11.13 (413c9b7f57f5, Jul 03 2025, 18:04:06) [PyPy 7.3.20 with GCC Apple LLVM 16.0.0 (clang-1600.0.26.6)]: 5 loops, average of 50: 73.3 +- 0.688 msec per loop (using standard deviation)</li>
-</ul></li>
-<li>GraalPy(thon):
-<ul>
-<li>GraalPy 3.11.7 (Oracle GraalVM Native 24.1.1): 5 loops, best of 50: 24.9 msec per loop</li>
-<li>GraalPy 3.11.7 (GraalVM CE Native 24.1.1): 5 loops, best of 50: 29.1 msec per loop</li>
-<li>GraalPy 3.11.7 (Oracle GraalVM Native 24.2.1): 5 loops, best of 50: 23.6 msec per loop</li>
-<li>GraalPy 3.11.7 (GraalVM CE Native 24.2.1): 5 loops, best of 50: 27.3 msec per loop</li>
-<li>GraalPy 3.11.7 (Oracle GraalVM Native 24.2.2): 5 loops, best of 50: 23.6 msec per loop</li>
-<li>GraalPy 3.11.7 (GraalVM CE Native 24.2.2): 5 loops, best of 50: 27.2 msec per loop</li>
-<li>GraalPy 3.12.8 (Oracle GraalVM Native 25.0.1): 5 loops, best of 50: 23.6 msec per loop</li>
-<li>GraalPy 3.12.8 (GraalVM CE Native 25.0.1): 5 loops, best of 50: 24.9 msec per loop</li>
-</ul></li>
-</ul>
-
-
-</section>
-
- ]]></description>
-  <category>Python</category>
-  <category>PyPy</category>
-  <category>GraalPython</category>
-  <category>GraalPy</category>
-  <category>Speedtest</category>
-  <guid>https://www.sefiroth.de/posts/2021-04-08-graalpy-pypy--und-python-geschwindigkeitstest/</guid>
-  <pubDate>Wed, 07 Apr 2021 22:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
