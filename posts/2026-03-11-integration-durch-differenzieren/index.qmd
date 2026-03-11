@@ -1,0 +1,170 @@
+---
+title: "Integrieren durch Differenzieren"
+author: "Norman Markgraf"
+lang: de-DE
+date: "2026-03-11"
+date-modified: last-modified
+word-count: true
+reading-time: true
+draft: true
+categories: 
+  - Mathematik
+  - HOAX!!!
+---
+
+Ein etwas anderer Weg um $\int_a^b (x^3+2) \,\text{d} x$ zu bestimmen.
+
+Der klassische Weg wäre hier sicher über die Stammfunktion $F(x) = \frac{x^4}{4} + 2 \cdot x$. 
+Wir erhalten so die Lösung:
+
+$$
+\begin{align*}
+  \int_a^b (x^3+2) \,\text{d} x 
+    &= F(b) - F(a) \\
+    &= \frac{b^4}{4}+ 2\cdot b - \frac{a^4}{4} - 2\cdot a \\
+    &= \frac{1}{4} \left[b^4-a^4+8\cdot b-8\cdot a\right]
+\end{align*}
+$$
+
+Ein etwas anderer Weg wird in <quelle> verfolgt. Multiplizieren wir $f(x)=x^3+2$ mit einer geschickten $1 = \lim\limits_{\varepsilon \to 0} e^{\varepsilon x}$.
+
+Dann ist:
+$$
+\begin{aligned}
+\int_a^b (x^3+2) \,\text{d} x &= 
+\int_a^b (x^3+2) \cdot \lim\limits_{\varepsilon \to 0} e^{\varepsilon x} \,\text{d}x \\
+&= \lim\limits_{\varepsilon \to 0} \int_a^b (x^3+2) \cdot  e^{\varepsilon x} \,\text{d}x \\
+&= \lim\limits_{\varepsilon \to 0} \left(\left(\left(\frac{d}{d \varepsilon}\right)^3 + 2 \cdot \left(\frac{d}{d \varepsilon}\right)^0\right) \cdot \frac{e^{b \varepsilon} - e^{a \varepsilon}}{\varepsilon}\right) \\
+&= \lim\limits_{\varepsilon \to 0} \left(\frac{d^3}{d\varepsilon^3} \frac{e^{b \varepsilon} - e^{a \varepsilon}}{\varepsilon} + 2 \cdot \frac{e^{b \varepsilon} - e^{a \varepsilon}}{\varepsilon}\right)
+\end{aligned}
+$$
+
+Nun ist 
+$$
+\begin{aligned}
+\frac{d^3}{d \varepsilon^3} \frac{e^{b \varepsilon} - e^{a \varepsilon}}{\varepsilon} 
+  &= \frac{b^3 e^{b \varepsilon} - a^3 e^{a \varepsilon}}{\varepsilon} - 3\cdot
+     \frac{b^2 e^{b \varepsilon} - a^2 e^{a \varepsilon}}{\varepsilon^2} + 6\cdot
+     \frac{b e^{b \varepsilon} - a e^{a \varepsilon}}{\varepsilon^3} - 6\cdot
+     \frac{e^{b \varepsilon} - e^{a \varepsilon}}{\varepsilon^4}
+\end{aligned}
+$$ 
+
+und wir erhalten somit:
+
+$$
+\begin{aligned}
+\int_a^b (x^3+2) \,\text{d} x &=\lim\limits_{\varepsilon \to 0} \left(
+    \frac{b^3 e^{b \varepsilon} - a^3 e^{a \varepsilon}}{\varepsilon} - 3 \cdot
+    \frac{b^2 e^{b \varepsilon} - a^2 e^{a \varepsilon}}{\varepsilon^2} + 6 \cdot
+     \frac{b e^{b \varepsilon} - a e^{a \varepsilon}}{\varepsilon^3} - 6 \cdot
+     \frac{e^{b \varepsilon} - e^{a \varepsilon}}{\varepsilon^4} + 2 \cdot \frac{e^{b \varepsilon} - e^{a \varepsilon}}{\varepsilon}\right)
+\end{aligned}
+$$ 
+
+Für jeden einzelnen Bruch entwickeln wir nun (formal) die Taylor-Reihe an der Stelle $\varepsilon=0$ und schauen und davon nur die Termine an, die kein $\varepsilon$ mehr im Zähler enthalten:
+
+$$
+\frac{b^3 e^{b \varepsilon} - a^3 e^{a \varepsilon}}{\varepsilon} = \frac{b^3-a^3}{\varepsilon} + (b^4-a^4) + \frac{\varepsilon}2 \cdot (b^5-a^5) + \cdots
+$$
+
+Für uns interessant ist nur der Teil $\frac{b^3-a^3}{\varepsilon} + (b^4-a^4)$.
+
+$$
+- 3 \cdot \frac{b^2 e^{b \varepsilon} - a^2 e^{a \varepsilon}}{\varepsilon^2} = -3 \cdot \left(\frac{b^2-a^2}{\varepsilon^2} + \frac{b^3-a^3}{\varepsilon} + \frac{b^4-a^4}2 + \frac{\varepsilon}6 \cdot (b^5-a^5) + \cdots\right)
+$$
+
+Hier interessiert uns  wieder nur der Teil $-3 \cdot \frac{b^2-a^2}{\varepsilon^2} -3 \cdot \frac{b^3-a^3}{\varepsilon} -3 \cdot \frac{b^4-a^4}2$.
+
+$$
+6 \cdot \frac{b e^{b \varepsilon} - a e^{a \varepsilon}}{\varepsilon^3} = 6 \cdot \left( \frac{b-a}{\varepsilon^3} + \frac{b^2-a^2}{\varepsilon^2} + \frac{b^3-a^3}{2 \cdot \varepsilon}+ \frac{b^4-a^4}6+\cdots \right)
+$$
+
+Wir erhalten somit $6 \cdot \frac{b-a}{\varepsilon^3} + 6 \cdot \frac{b^2-a^2}{\varepsilon^2} + 3 \cdot\frac{b^3-a^3}{\varepsilon} + b^4-a^4$.
+
+Für 
+$$
+- 6 \cdot \frac{e^{b \varepsilon} - e^{a \varepsilon}}{\varepsilon^4} = -6 \cdot \left(\frac{b-a}{\varepsilon^3} + \frac{b^2-a^2}{2 \cdot \varepsilon^2} + \frac{b^3-a^3}{6 \cdot \varepsilon}+ \frac{b^4-a^4}{24} + \cdots \right)
+$$ 
+erhalten wir 
+$$
+-6 \cdot \frac{b-a}{\varepsilon^3} -3 \cdot \frac{b^2-a^2}{\varepsilon^2} - \frac{b^3-a^3}{\varepsilon}- \frac{b^4-a^4}{4}
+$$ 
+
+und für
+
+$$
+2 \cdot \frac{e^{b \varepsilon} - e^{a \varepsilon}}{\varepsilon} = 2\cdot\left((b-a) + \frac{\varepsilon}{2} \cdot (b^2-a^2) + \cdots\right)
+$$
+
+den Ausdruck $2 \cdot (b-a)$.
+
+Fassen wir nun die gefundenen Ausdrücke zusammen, so erhalten wir für die Terme mit $\varepsilon$ im Nenner:
+
+$$
+\begin{aligned}
+\frac{b^3-a^3}{\varepsilon} &-3 \cdot \frac{b^2-a^2}{\varepsilon^2} -3 \cdot \frac{b^3-a^3}{\varepsilon} + 6 \cdot \frac{b-a}{\varepsilon^3} + 6 \cdot \frac{b^2-a^2}{\varepsilon^2} \\ &+ 3 \cdot\frac{b^3-a^3}{\varepsilon} -6 \cdot \frac{b-a}{\varepsilon^3} -3 \cdot \frac{b^2-a^2}{\varepsilon^2} - \frac{b^3-a^3}{\varepsilon} \\
+= 0
+\end{aligned}
+$$ 
+
+Fassen wir nun noch die Terme ohne $\varepsilon$ zusammen, so erhalten wir:
+
+$$
+\begin{aligned}
+\int_a^b (x^3+2) \,\text{d} x &= (b^4-a^4) -\frac{3}{2}\cdot(b^4-a^4) + b^4-a^4 -\frac{6}{24}\cdot(b^4-a^4) + 2 \cdot (b-a) \\
+  &= \left(1-\frac32+1-\frac14\right)\cdot\left(b^4-a^4\right) + 2 \cdot (b-a) \\
+  &= \frac14\cdot(b^4-a^4) + 2 \cdot (b-a) \\
+  &= \frac14\cdot(b^4-a^4+8\cdot b-8\cdot a)
+\end{aligned}
+$$
+
+### Ein weiteres Beispiel
+
+
+Wir berechnen
+
+$$
+  \int_a^b x^2 +3 \,\text{d} x
+$$
+
+Es ist also
+
+$$
+\begin{aligned}
+\int_a^b x^2 +3 \,\text{d} x &= \
+\lim\limits_{\varepsilon \to 0} \left(\frac{d^2}{d\varepsilon^2} \frac{e^{b \varepsilon} - e^{a \varepsilon}}{\varepsilon} + 3 \cdot \frac{e^{b \varepsilon} - e^{a \varepsilon}}{\varepsilon}\right) \\
+&= \lim\limits_{\varepsilon \to 0} \left(\frac{
+b^2 e^{b \varepsilon} - a^2 e^{a \varepsilon}}{\varepsilon} - 2\cdot
+     \frac{b e^{b \varepsilon} - a e^{a \varepsilon}}{\varepsilon^2} + 2\cdot
+     \frac{e^{b \varepsilon} - e^{a \varepsilon}}{\varepsilon^3} + 3 \cdot \frac{e^{b \varepsilon} - e^{a \varepsilon}}{\varepsilon}\right)  
+\end{aligned} 
+$$
+
+Die Taylor-Entwicklung der einzelnen Brüche liefert:
+$$
+\begin{aligned}
+\frac{b^2 e^{b \varepsilon} - a^2 e^{ a \varepsilon}}{\varepsilon} &= \frac{b^2-a^2}{\varepsilon} + (b^3-a^3) + \frac{\varepsilon}2 \cdot (b^4-a^4) + \cdots = \frac{b^2-a^2}{\varepsilon} + (b^3-a^3) \\
+- 2\cdot \frac{b e^{b \varepsilon} - a e^{a \varepsilon}}{\varepsilon^2} &= -2 \cdot \left(\frac{b-a}{\varepsilon^2} + \frac{b^2-a^2}{\varepsilon} + \frac{b^3-a^3}{2} + \cdots\right) = -2 \frac{b-a}{\varepsilon^2} -2 \frac{b^2-a^2}{\varepsilon} - 2 \frac{b^3-a^3}{2}\\
+2\cdot \frac{e^{b \varepsilon} - e^{a \varepsilon}}{\varepsilon^3} &= 2 \cdot \left(\frac{b-a}{\varepsilon^3} + \frac{b^2-a^2}{2 \cdot \varepsilon^2} + \frac{b^3-a^3}{6 \cdot \varepsilon}+ \frac{b^4-a^4}{24} + \cdots\right) = 2\\
+3 \cdot \frac{e^{b \varepsilon} - e^{a \varepsilon}}{\varepsilon} &= 3 \cdot \left((b-a) + \frac{\varepsilon}{2} \cdot (b^2-a^2) + \cdots\right)
+\end{aligned}
+$$
+
+
+S
+$$
+\begin{aligned}
+\int_a^b x^2 +3 \,\text{d} x 
+  &= \lim\limits_{\varepsilon \to 0} \Big(\frac{b^2-a^2}{\varepsilon} + (b^3-a^3) + \frac{\varepsilon}2 \cdot (b^4-a^4) -2 \cdot \frac{b-a}{\varepsilon^2} \\ 
+  &- 2 \cdot \frac{b^2-a^2}{\varepsilon} - (b^3-a^3) + 2 \cdot \frac{b-a}{\varepsilon^3} + \frac{b^2-a^2}{\varepsilon^2} \\ 
+  &+ \frac{b^3-a^3}{3 \cdot \varepsilon}+ \frac{b^4-a^4}{12} + 3 \cdot (b-a) \\ 
+  & \frac{3\varepsilon}{2} \cdot (b^2-a^2) + \cdots\Big) \\
+  &= \lim\limits_{\varepsilon \to 0} \Big(-\frac{b-a}{\varepsilon^2} - \frac{b^2-a^2}{\varepsilon} + \frac{b^4-a^4}{12} + 3 \cdot (b-a) + \cdots\Big) \\
+\end{aligned}
+$$
+
+
+
+Sei $f(x)= \frac1x$, dann ist
+
