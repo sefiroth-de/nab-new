@@ -1,0 +1,375 @@
+---
+title: "NumPy und Pandas: Warum, wieso, weshalb?"
+author: "Norman Markgraf"
+lang: de-DE
+date: "2026-03-27"
+date-modified: last-modified
+word-count: true
+reading-time: true
+categories: 
+  - Python
+  - NumPy
+  - Pandas
+---
+
+# NumPy und Pandas: Warum, wieso, weshalb?
+
+In der Welt der Datenanalyse und wissenschaftlichen Berechnung sind NumPy und Pandas zwei unverzichtbare Bibliotheken in Python. Aber warum sind sie so wichtig? In diesem Artikel werden wir die Gründe untersuchen, warum NumPy und Pandas in der Datenanalyse so weit verbreitet sind, welche Vorteile sie bieten und wie sie sich voneinander unterscheiden.
+
+## Warum NumPy?
+
+NumPy, kurz für "Numerical Python", ist eine Bibliothek, die effiziente Operationen auf großen, mehrdimensionalen Arrays und Matrizen ermöglicht. Hier sind einige Gründe, warum NumPy so beliebt ist:
+
+1. **Leistung**: NumPy ist in C und Fortran geschrieben, was es extrem schnell macht. Es bietet Funktionen, die auf Vektorisierung basieren, wodurch Operationen auf Arrays viel schneller ausgeführt werden können als mit herkömmlichen Python-Listen.
+
+2. **Funktionalität**: NumPy bietet eine breite Palette von Funktionen für mathem
+atische Operationen, lineare Algebra, Fourier-Transformationen und vieles mehr. Es ist die Grundlage für viele andere Bibliotheken wie SciPy, Matplotlib und Pandas.
+
+3. **Kompatibilität**: Viele andere Bibliotheken in der Datenwissenschaft und maschinellen Lernen basieren auf NumPy, was es zu einem unverzichtbaren Werkzeug für die Arbeit mit Daten macht.
+
+4. **Einfachheit**: NumPy bietet eine einfache und intuitive Syntax für die Arbeit mit Arrays, was es Anfängern leicht macht, sich in die Welt der Datenanalyse einzuarbeiten
+
+
+*Kurz:*
+
+**"NumPy = schnelle Mathematik + feste Typen + große Reihungen" in Python**
+
+### Beispiel
+
+Stellen wir uns vor, wir wollen 1 Millionen Zahlen in einer Python Liste speichern.
+
+Eine Python Liste aber:
+
+- Speichert die Werte irgendwo im Speicher und nicht unmittelbar hintereinander.
+- Speichert die Werte als Objekte, was zusätzlichen Speicherplatz benötigt.
+- Ist nicht für numerische Berechnungen optimiert, da jedes Objekt individuell behandelt werden muss.
+
+Stellen wir uns vor, wie wollen zu jeder Zahl 10 hinzuaddieren. Mit einer Python Liste müssten wir eine Schleife verwenden, um durch die Liste zu iterieren und die Addition für jedes Element durchzuführen, was sehr langsam sein kann.
+
+```{python}
+import time
+# Erstellen einer Liste mit 1 Million Zahlen
+my_list = list(range(1_000_000))
+# Startzeit
+start_time = time.time()
+# Hinzufügen von 10 zu jedem Element in der Liste
+for i in range(len(my_list)):
+    my_list[i] += 10
+# Endzeit
+end_time = time.time()
+print(f"Zeit für die Addition in der Liste: {end_time - start_time:0.4} Sekunden")
+```
+
+Der Grund wieso das alles so langsam ist, liegt unter anderem daran, dass die Python Liste 1.000.000 in der Schleife durchlaufen wird. Und das ist langsamn.
+
+Die Lösung dieses Problems ist NumPy.
+
+Mit NumPy  können wir ein Array erstellen, das die Zahlen direkt hintereinander im Speicher speichert und die Werte als numerische Datentypen behandelt. Dadurch können wir die Addition von 10 zu jedem Element in einem einzigen Schritt durchführen, ohne eine Schleife zu verwenden, was viel schneller ist.
+Das geht u.a. daher, dass in einem Array alle Werte vom selben Datentyp sind, was die Verarbeitung optimiert. NumPy nutzt auch Vektorisierung, um Operationen auf Arrays effizienter durchzuführen, indem es sie in C oder Fortran ausführt, anstatt in Python.
+
+```{python}
+import numpy as np
+import time
+# Erstellen eines NumPy-Arrays mit 1 Million Zahlen
+my_array = np.arange(1_000_000)
+# Startzeit
+start_time = time.time()
+# Hinzufügen von 10 zu jedem Element im Array
+my_array += 10
+# Endzeit
+end_time = time.time()
+print(f"Zeit für die Addition im NumPy-Array: {end_time - start_time:0.4} Sekunden.")
+```
+
+Darum ist NumPy die Grundlage für die Pakete:
+
+- Tensoflow
+- PyTorch
+- Scikid-learn
+- SciPy
+- JAX
+- u.v.m.
+
+
+### Ein paar Numpy Grundlagen
+
+#### NumPy Arrays erstellen
+
+```{python}
+import numpy as np
+# Erstellen eines 1D-Arrays
+array_1d = np.array([1, 2, 3, 4, 5])
+# Erstellen eines 2D-Arrays
+array_2d = np.array([[1, 2, 3], [4, 5, 6]])
+# Erstellen eines Arrays mit Nullen
+zeros_array = np.zeros((3, 3))
+# Erstellen eines Arrays mit Einsen
+ones_array = np.ones((2, 4))
+# Erstellen eines Arrays mit einem bestimmten Wert
+full_array = np.full((2, 3), 7)
+# Erstellen eines Arrays mit zufälligen Werten
+random_array = np.random.rand(4, 4)
+# Erstellen eines Arrays der ersten 10 natürlichen Zahlen
+arange_array = np.arange(10)
+# Erstellen eines Arrays mit fünf gleichmäßig verteilten Werten zwischen 0 und 1
+linspace_array = np.linspace(0, 1, 5)
+```
+
+#### NumPy Array Gestalt (shape), Größe (size) und Dimensionen (ndim)
+
+```{python}
+import numpy as np
+# Erstellen eines 2D-Arrays
+array_2d = np.array([[1, 2, 3], [4, 5, 6]])
+print("Array:\n", array_2d)
+# Form des Arrays
+print("Shape:", array_2d.shape)
+# Größe des Arrays
+print("Size:", array_2d.size)
+# Anzahl der Dimensionen
+print("Number of dimensions:", array_2d.ndim)
+```
+
+#### NumPy Array Indexierung und Slicing
+
+```{python}
+import numpy as np
+# Erstellen eines 2D-Arrays
+array_2d = np.array([[1, 2, 3], [4, 5, 6]])
+print("Ein 2D-Array:",array_2d)
+
+# Zugriff auf ein Element
+print("Element at (0, 1):", array_2d[0, 1])
+# Zugriff auf eine Zeile
+print("First row:", array_2d[0])
+# Zugriff auf eine Spalte
+print("Second column:", array_2d[:, 1])
+# Slicing eines Subarrays
+print("Subarray (first two rows and first two columns):\n", array_2d[:2, :2])
+# Slicing eines Submatrix
+print("Submatrix (last row and last two columns):\n", array_2d[1:, 1:])
+```
+
+```{python}
+import numpy as np
+# Erstellen eines 1D-Arrays
+array_1d = np.array([1, 2, 3, 4, 5])
+print("Ein 1D-Array:", array_1d)
+
+# Zugriff auf ein Element
+print("Element at index 2:", array_1d[2])
+# Slicing eines Subarrays
+print("Subarray (die ersten 3 Elemente):", array_1d[:3])
+print("Subarray (die Elemente an der 2. und 3. Stelle):", array_1d[2:4])
+
+```
+
+#### NumPy Array vektorisierte Operationen
+
+```{python}
+import numpy as np
+# Erstellen eines 1D-Arrays
+array_1d = np.array([1, 2, 3, 4, 5])
+print("Ein 1D-Array:", array_1d)
+# Vektorisierte Operationen
+print("Array + 10:", array_1d + 10)
+print("Array * 2:", array_1d * 2)
+print("Array - 1:", array_1d - 1)
+print("Array / 2:", array_1d / 2)
+print("Wurzel aus einem Array", np.sqrt(array_1d))
+```
+
+```{python}
+import numpy as np
+# Erstellen zweier 1D-Arrays
+a = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+b = np.array([10, 9, 8, 7, 6, 5, 4, 3, 2, 1])
+print("Array a:", a)
+print("Array b:", b)
+
+# Vektorisierte Operationen zwischen Arrays
+a + b
+a * b
+a - b
+a / b
+```
+
+#### Warum ist NumPy so schnell?
+
+Intern werden optimierte C- oder Fortran-Code ausgeführt, der direkt auf die Daten im Speicher zugreift. Dies ermöglicht es NumPy, Operationen auf großen Arrays viel schneller durchzuführen als herkömmliche Python-Listen, die in einer Schleife verarbeitet werden müssen.
+
+Deshalb werden im ML und DL die meisten Operationen auf NumPy Arrays ausgeführt. Dinge wie "scaling" und Matrix-Operationen werden so sehr viel schneller als im reinen Python.
+
+#### Reshaping (umorganisieren von NumPy Arrays)
+
+```{python}
+import numpy as np
+# Erstellen eines 1D-Arrays mit 12 Elementen
+array_1d = np.arange(12) + 1
+print("Ein 1D-Array:", array_1d)
+# Reshaping in ein 2D-Array mit 3 Zeilen und 4
+array_2d = array_1d.reshape(3, 4)
+print("Reshaped Array (3x4):\n", array_2d)
+# Reshaping in ein 2D-Array mit 4 Zeilen und 3
+array_2d_4x3 = array_1d.reshape(4, 3)
+print("Reshaped Array (4x3):\n", array_2d_4x3)
+# Reshaping in ein 3D-Array mit 2 Blöcken, 2 Zeilen und 3 Spalten
+array_3d = array_1d.reshape(2, 2, 3)
+print("Reshaped Array (2x2x3):\n", array_3d)
+```
+
+Nahezu alle ML und DL modelle nutzen das Reshaping von Arrays, um die Daten in die richtige Form zu bringen, damit sie von den Modellen verarbeitet werden können. Zum Beispiel müssen Bilder oft in 4D-Arrays umgeformt werden, bevor sie in ein Convolutional Neural Network (CNN) eingespeist werden können.
+
+Jedoch wird dabei niemals die Daten ansich verändert, sondern nur die Art und Weise, wie sie organisiert und interpretiert werden. Das Reshaping ermöglicht es, die Daten in einer Form zu präsentieren, die für die Verarbeitung durch ML-Modelle optimal ist, ohne die zugrunde liegenden Werte zu verändern.
+
+Natürlich geht das nur, wenn die Anzahl der Elemente im ursprünglichen Array mit der Anzahl der Elemente im neuen Array übereinstimmt. Das bedeutet, dass die Gesamtzahl der Elemente vor und nach dem Reshaping gleich sein muss, damit die Daten korrekt umorganisiert werden können.
+
+Das wird oft in der Praxis genutzt in der Vorverarbeitung von Daten (pre-processing), um sicherzustellen, dass die Daten die richtige Form haben, bevor sie in ein ML-Modell eingespeist werden.
+
+
+## Warum Pandas?
+
+Pandas ist eine Bibliothek, die speziell für die Datenanalyse und -manipulation entwickelt wurde. Hier sind einige Gründe, warum Pandas so wichtig ist:
+
+1. **Datenstrukturen**: Pandas bietet zwei Hauptdatenstrukturen, den DataFrame und die Series, die es ermöglichen, Daten in tabellarischer Form zu organisieren und zu manipulieren. Diese Strukturen sind besonders nützlich für die Arbeit mit heterogenen Daten.
+
+2. **Datenmanipulation**: Pandas bietet eine Vielzahl von Funktionen für die Datenmanipulation, einschließlich Filtern, Gruppieren, Pivot-Tabellen und mehr. Es ermöglicht es Benutzern, komplexe Datenoperationen mit Leichtigkeit durchzuführen.
+
+3. **Datenbereinigung**: Pandas bietet leistungsstarke Werkzeuge zur Bereinigung von Daten, einschließlich Funktionen zum Umgang mit fehlenden Werten, Duplikaten und Inkonstanzen in den Daten.
+
+4. **Integration**: Pandas lässt sich nahtlos mit anderen Bibliotheken wie NumPy, Matplotlib und Scikit-learn integrieren, was es zu einem unverzichtbaren Werkzeug für die Datenanalyse macht.
+
+*Kurz:*
+
+**"Pandas = Tabellenkalkulation + SQL + NumPy" in Python**
+
+
+### Beispiel
+
+NumPy ist wundervoll für mathematische Probleme, aber die Daten in der realen Welt sind oft unstrukturiert und heterogen. Hier kommt Pandas ins Spiel, um diese Daten in eine strukturierte Form zu bringen, die leichter zu analysieren ist.
+
+
+Es gibt zwei grundlegende Datenstrukturen in Pandas: Series und DataFrame.
+
+- Eine Series ist eine eindimensionale, beschriftete Datenstruktur, die eine Liste von Werten enthält. Sie kann als eine Art erweiterte Liste betrachtet werden, die zusätzlich zu den Werten auch Indizes hat.
+
+- Ein DataFrame ist eine zweidimensionale, tabellarische Datenstruktur, die aus mehreren Series besteht. Es ist vergleichbar mit einer Tabelle in einer Datenbank oder einem Arbeitsblatt in Excel, wobei Zeilen und Spalten beschriftet sind.
+
+```{python}
+import pandas as pd
+# Erstellen einer Series
+my_series = pd.Series([10, 20, 30, 40, 50], index=['a', 'b', 'c', 'd', 'e'])
+print("Eine Series:\n", my_series)
+# Erstellen eines DataFrames
+my_dataframe = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve'],
+    'Alter': [25, 30, 35, 40, 45],
+    'Stadt': ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix']
+})
+print("Ein DataFrame:\n", my_dataframe)
+```
+
+#### Anschauen der Daten in einem DataFrame
+
+```{python}
+import pandas as pd
+# Erstellen eines DataFrames
+my_dataframe = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve'],
+    'Alter': [25, 30, 35, 40, 45],
+    'Stadt': ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix']
+})
+print("Ein DataFrame:\n", my_dataframe)
+# Anzeigen der ersten 3 Zeilen
+print("Die ersten 3 Zeilen:\n", my_dataframe.head(3))
+# Anzeigen der letzten 2 Zeilen
+print("Die letzten 2 Zeilen:\n", my_dataframe.tail(2))
+# Anzeigen der Spaltennamen
+print("Spaltennamen:", my_dataframe.columns)
+# Anzeigen der Datenarten jeder Spalte
+print("Datenarten:\n", my_dataframe.dtypes)
+# Anzeigen der Anzahl der Zeilen und Spalten
+print("Anzahl der Zeilen und Spalten:", my_dataframe.shape)
+# Anzeigen von statistischen Zusammenfassungen der numerischen Spalten
+print("Statistische Zusammenfassung:\n", my_dataframe.describe())
+# Anzeigen der Informationen über den DataFrame 
+print("Informationen:\n", my_dataframe.info())
+```
+
+### Datenselektierung mit Pandas
+Pandas bietet verschiedene Möglichkeiten, um Daten aus einem DataFrame auszuwählen, einschließlich der Verwendung
+von Spaltennamen, Zeilenindizes und Bedingungen. Hier sind einige Beispiele:
+```{python}
+import pandas as pd
+# Erstellen eines DataFrames
+my_dataframe = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve'],
+    'Alter': [25, 30, 35, 40, 45],
+    'Stadt': ['New York', 'Los Angeles', 'Chicago', 'Houston',
+    'Phoenix']
+})
+print("Ein DataFrame:\n", my_dataframe)
+# Auswahl einer Spalte
+print("Spalte 'Name':\n", my_dataframe['Name'])
+# Auswahl mehrerer Spalten
+print("Spalten 'Name' und 'Alter':\n", my_dataframe[['Name', 'Alter']])
+# Auswahl einer Zeile basierend auf dem Index
+print("Zeile mit Index 2:\n", my_dataframe.loc[2])
+# Auswahl von Zeilen basierend auf ihrer Position
+print("Die ersten 3 Zeilen:\n", my_dataframe.iloc[:3])
+# Auswahl von Zeilen basierend auf einer Bedingung
+print("Zeilen, in denen das Alter größer als 30 ist:\n", my_dataframe[my_dataframe['Alter'] > 30])
+# Auswahl von Zeilen basierend auf einer Bedingung
+print("Zeilen, in denen das Alter größer als 30 und kleiner gleich 40 ist:\n", my_dataframe[(my_dataframe['Alter'] > 30) & (my_dataframe['Alter'] <= 40)])
+```
+
+
+### Datenmanipulation mit Pandas
+
+Pandas bietet eine Vielzahl von Funktionen für die Datenmanipulation, einschließlich Filtern, Gruppieren, Pivot-Tabellen und mehr. Hier sind einige Beispiele:
+
+```{python}
+import pandas as pd
+# Erstellen eines DataFrames
+my_dataframe = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve'],
+    'Alter': [25, 30, 35, 40, 45],
+    'Stadt': ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix']
+})
+print("Ein DataFrame:\n", my_dataframe)
+# Filtern von Zeilen basierend auf einer Bedingung
+filtered_df = my_dataframe[my_dataframe['Alter'] > 30]
+print("Gefilterter DataFrame (Alter > 30):\n", filtered_df)
+# Gruppieren von Daten und Berechnen von Durchschnittsalter pro Stadt
+grouped_df = my_dataframe.groupby('Stadt')['Alter'].mean()
+print("Durchschnittsalter pro Stadt:\n", grouped_df)
+# Erstellen einer Pivot-Tabelle
+pivot_table = my_dataframe.pivot_table(values='Alter', index='Stadt', aggfunc='mean')
+print("Pivot-Tabelle (Durchschnittsalter pro Stadt):\n", pivot_table)
+```
+
+### Hinzufügen von Daten zu einem DataFrame
+```{python}
+import pandas as pd
+# Erstellen eines DataFrames
+my_dataframe = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve'],
+    'Alter': [25, 30, 35, 40, 45],
+    'Stadt': ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix']
+})
+print("Ein DataFrame:\n", my_dataframe)
+
+# Hinzufügen einer neuen Spalte
+my_dataframe['Beruf'] = ['Ingenieur', 'Arzt', 'Lehrer', 'Künstler', 'Anwalt']
+print("DataFrame mit neuer Spalte 'Beruf':\n", my_dataframe)
+
+# Hinzufügen einer neuen Zeile
+new_row = pd.Series({'Name': 'Frank', 'Alter': 50, 'Stadt': 'Miami', 'Beruf': 'Architekt'})
+my_dataframe = pd.concat([my_dataframe, new_row.to_frame().T], ignore_index=True)
+print("DataFrame mit neuer Zeile:\n", my_dataframe)
+```
+
+
+## Fazit
+
+NumPy und Pandas sind zwei der wichtigsten Bibliotheken in der Python-Datenanalyse. NumPy bietet eine leistungsstarke Grundlage für die Arbeit mit Arrays und mathematischen Operationen, während Pandas speziell für die Datenmanipulation und -analyse entwickelt wurde. Beide Bibliotheken ergänzen sich hervorragend und sind unverzichtbar für jeden, der in der Welt der Datenanalyse tätig ist.

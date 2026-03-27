@@ -38,23 +38,27 @@
   </url>
   <url>
     <loc>https://www.sefiroth.de/posts/2026-02-04-warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik/index.html</loc>
-    <lastmod>2026-02-04T13:37:31.485Z</lastmod>
+    <lastmod>2026-03-27T11:01:07.116Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/posts/2021-02-14-ueber-die-t-verteilung-mit-einem-bzw-zwei-freiheitsgraden/index.html</loc>
     <lastmod>2025-12-03T10:02:23.343Z</lastmod>
   </url>
   <url>
-    <loc>https://www.sefiroth.de/posts/2026-01-30-kitty-der_schnelle_gpu_basierte_terminal_emulator/index.html</loc>
-    <lastmod>2026-01-30T11:20:47.668Z</lastmod>
+    <loc>https://www.sefiroth.de/posts/2026-03-27-numpy-und-pandas-warum-wieso-wesshalb/index.html</loc>
+    <lastmod>2026-03-27T12:21:20.471Z</lastmod>
   </url>
   <url>
-    <loc>https://www.sefiroth.de/posts/2026-01-04-b-baeume-und-mehr/index.html</loc>
-    <lastmod>2026-01-12T11:44:00.056Z</lastmod>
+    <loc>https://www.sefiroth.de/posts/Willkommen/index.html</loc>
+    <lastmod>2025-12-03T10:02:23.373Z</lastmod>
   </url>
   <url>
-    <loc>https://www.sefiroth.de/posts/2025-08-09-brotli-statt-gzip-konfigurieren/index.html</loc>
-    <lastmod>2025-12-03T10:16:38.181Z</lastmod>
+    <loc>https://www.sefiroth.de/posts/2021-06-09-ueber-die-koeffizienten-einer-linearen-regression/index.html</loc>
+    <lastmod>2025-12-03T10:02:23.344Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.sefiroth.de/posts/2026-02-20-einfach-eine-gute-seite-zum-thema-raspberrypi/index.html</loc>
+    <lastmod>2026-02-20T11:02:15.803Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/posts/2021-02-12-ein-paar-gedanken-ueber-potenzgesetzliche-verteilungen-power-law-distributions/index.html</loc>
@@ -105,12 +109,16 @@
     <lastmod>2025-12-03T10:02:23.342Z</lastmod>
   </url>
   <url>
-    <loc>https://www.sefiroth.de/posts/2021-06-09-ueber-die-koeffizienten-einer-linearen-regression/index.html</loc>
-    <lastmod>2025-12-03T10:02:23.344Z</lastmod>
+    <loc>https://www.sefiroth.de/posts/2025-08-09-brotli-statt-gzip-konfigurieren/index.html</loc>
+    <lastmod>2025-12-03T10:16:38.181Z</lastmod>
   </url>
   <url>
-    <loc>https://www.sefiroth.de/posts/Willkommen/index.html</loc>
-    <lastmod>2025-12-03T10:02:23.373Z</lastmod>
+    <loc>https://www.sefiroth.de/posts/2026-01-04-b-baeume-und-mehr/index.html</loc>
+    <lastmod>2026-01-12T11:44:00.056Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.sefiroth.de/posts/2026-01-30-kitty-der_schnelle_gpu_basierte_terminal_emulator/index.html</loc>
+    <lastmod>2026-01-30T11:20:47.668Z</lastmod>
   </url>
   <url>
     <loc>https://www.sefiroth.de/posts/2021-02-12-gedankenstütze-zu-wichtigen-funktionsbegriffen-in-der-statistik/index.html</loc>
@@ -151,13 +159,5 @@
   <url>
     <loc>https://www.sefiroth.de/Datenschutzerklaerung.html</loc>
     <lastmod>2025-12-03T10:02:23.286Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.sefiroth.de/posts/2026-02-20-einfach-eine-gute-seite-zum-thema-raspberrypi/index.html</loc>
-    <lastmod>2026-02-20T11:02:15.803Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.sefiroth.de/posts/2026-03-11-integration-durch-differenzieren/index.html</loc>
-    <lastmod>2026-03-11T12:24:38.833Z</lastmod>
   </url>
 </urlset>
