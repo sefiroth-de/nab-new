@@ -18,7 +18,7 @@ In der Welt der Datenanalyse und wissenschaftlichen Berechnung sind NumPy und Pa
 
 ## Warum NumPy?
 
-NumPy, kurz für "Numerical Python", ist eine Bibliothek, die effiziente Operationen auf großen, mehrdimensionalen Arrays und Matrizen ermöglicht. Hier sind einige Gründe, warum NumPy so beliebt ist:
+NumPy, kurz für "**Num**erical **Py**thon", ist eine Bibliothek, die effiziente Operationen auf großen, mehrdimensionalen Arrays und Matrizen ermöglicht. Hier sind einige Gründe, warum NumPy so beliebt ist:
 
 1. **Leistung**: NumPy ist in C und Fortran geschrieben, was es extrem schnell macht. Es bietet Funktionen, die auf Vektorisierung basieren, wodurch Operationen auf Arrays viel schneller ausgeführt werden können als mit herkömmlichen Python-Listen.
 
@@ -229,7 +229,8 @@ Das wird oft in der Praxis genutzt in der Vorverarbeitung von Daten (pre-process
 
 ## Warum Pandas?
 
-Pandas ist eine Bibliothek, die speziell für die Datenanalyse und -manipulation entwickelt wurde. Hier sind einige Gründe, warum Pandas so wichtig ist:
+Pandas ist eine Bibliothek, die speziell für die Datenanalyse und -manipulation entwickelt wurde.  Der Name leitet sich vom englischen "**pan**el **da**ta**s**", eine ökonometrischen Bezeichnung für Datentabellen, ab. 
+Hier sind einige Gründe, warum Pandas so wichtig ist:
 
 1. **Datenstrukturen**: Pandas bietet zwei Hauptdatenstrukturen, den DataFrame und die Series, die es ermöglichen, Daten in tabellarischer Form zu organisieren und zu manipulieren. Diese Strukturen sind besonders nützlich für die Arbeit mit heterogenen Daten.
 

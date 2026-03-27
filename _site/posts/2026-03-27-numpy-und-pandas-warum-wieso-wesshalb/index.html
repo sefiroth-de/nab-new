@@ -214,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In der Welt der Datenanalyse und wissenschaftlichen Berechnung sind NumPy und Pandas zwei unverzichtbare Bibliotheken in Python. Aber warum sind sie so wichtig? In diesem Artikel werden wir die Gründe untersuchen, warum NumPy und Pandas in der Datenanalyse so weit verbreitet sind, welche Vorteile sie bieten und wie sie sich voneinander unterscheiden.</p>
 <section id="warum-numpy" class="level2">
 <h2 class="anchored" data-anchor-id="warum-numpy">Warum NumPy?</h2>
-<p>NumPy, kurz für “Numerical Python”, ist eine Bibliothek, die effiziente Operationen auf großen, mehrdimensionalen Arrays und Matrizen ermöglicht. Hier sind einige Gründe, warum NumPy so beliebt ist:</p>
+<p>NumPy, kurz für “<strong>Num</strong>erical <strong>Py</strong>thon”, ist eine Bibliothek, die effiziente Operationen auf großen, mehrdimensionalen Arrays und Matrizen ermöglicht. Hier sind einige Gründe, warum NumPy so beliebt ist:</p>
 <ol type="1">
 <li><p><strong>Leistung</strong>: NumPy ist in C und Fortran geschrieben, was es extrem schnell macht. Es bietet Funktionen, die auf Vektorisierung basieren, wodurch Operationen auf Arrays viel schneller ausgeführt werden können als mit herkömmlichen Python-Listen.</p></li>
 <li><p><strong>Funktionalität</strong>: NumPy bietet eine breite Palette von Funktionen für mathem atische Operationen, lineare Algebra, Fourier-Transformationen und vieles mehr. Es ist die Grundlage für viele andere Bibliotheken wie SciPy, Matplotlib und Pandas.</p></li>
@@ -233,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Ist nicht für numerische Berechnungen optimiert, da jedes Objekt individuell behandelt werden muss.</li>
 </ul>
 <p>Stellen wir uns vor, wie wollen zu jeder Zahl 10 hinzuaddieren. Mit einer Python Liste müssten wir eine Schleife verwenden, um durch die Liste zu iterieren und die Addition für jedes Element durchzuführen, was sehr langsam sein kann.</p>
-<div id="959e3bb3" class="cell" data-execution_count="1">
+<div id="fa0aeda7" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Erstellen einer Liste mit 1 Million Zahlen</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1_000_000</span>))</span>
@@ -246,13 +246,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>end_time <span class="op">=</span> time.time()</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Zeit für die Addition in der Liste: </span><span class="sc">{</span>end_time <span class="op">-</span> start_time<span class="sc">:0.4}</span><span class="ss"> Sekunden"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Zeit für die Addition in der Liste: 0.08804 Sekunden</code></pre>
+<pre><code>Zeit für die Addition in der Liste: 0.09087 Sekunden</code></pre>
 </div>
 </div>
 <p>Der Grund wieso das alles so langsam ist, liegt unter anderem daran, dass die Python Liste 1.000.000 in der Schleife durchlaufen wird. Und das ist langsamn.</p>
 <p>Die Lösung dieses Problems ist NumPy.</p>
 <p>Mit NumPy können wir ein Array erstellen, das die Zahlen direkt hintereinander im Speicher speichert und die Werte als numerische Datentypen behandelt. Dadurch können wir die Addition von 10 zu jedem Element in einem einzigen Schritt durchführen, ohne eine Schleife zu verwenden, was viel schneller ist. Das geht u.a. daher, dass in einem Array alle Werte vom selben Datentyp sind, was die Verarbeitung optimiert. NumPy nutzt auch Vektorisierung, um Operationen auf Arrays effizienter durchzuführen, indem es sie in C oder Fortran ausführt, anstatt in Python.</p>
-<div id="d292429d" class="cell" data-execution_count="2">
+<div id="5ea31310" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Erstellen eines NumPy-Arrays mit 1 Million Zahlen</span></span>
@@ -265,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>end_time <span class="op">=</span> time.time()</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Zeit für die Addition im NumPy-Array: </span><span class="sc">{</span>end_time <span class="op">-</span> start_time<span class="sc">:0.4}</span><span class="ss"> Sekunden."</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Zeit für die Addition im NumPy-Array: 0.000495 Sekunden.</code></pre>
+<pre><code>Zeit für die Addition im NumPy-Array: 0.0005662 Sekunden.</code></pre>
 </div>
 </div>
 <p>Darum ist NumPy die Grundlage für die Pakete:</p>
@@ -282,7 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="ein-paar-numpy-grundlagen">Ein paar Numpy Grundlagen</h3>
 <section id="numpy-arrays-erstellen" class="level4">
 <h4 class="anchored" data-anchor-id="numpy-arrays-erstellen">NumPy Arrays erstellen</h4>
-<div id="7e46760d" class="cell" data-execution_count="3">
+<div id="054d5b68" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Erstellen eines 1D-Arrays</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>array_1d <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
@@ -304,7 +304,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="numpy-array-gestalt-shape-größe-size-und-dimensionen-ndim" class="level4">
 <h4 class="anchored" data-anchor-id="numpy-array-gestalt-shape-größe-size-und-dimensionen-ndim">NumPy Array Gestalt (shape), Größe (size) und Dimensionen (ndim)</h4>
-<div id="d00a80c4" class="cell" data-execution_count="4">
+<div id="de076398" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Erstellen eines 2D-Arrays</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>array_2d <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]])</span>
@@ -327,7 +327,7 @@ Number of dimensions: 2</code></pre>
 </section>
 <section id="numpy-array-indexierung-und-slicing" class="level4">
 <h4 class="anchored" data-anchor-id="numpy-array-indexierung-und-slicing">NumPy Array Indexierung und Slicing</h4>
-<div id="8036561b" class="cell" data-execution_count="5">
+<div id="41b04db3" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Erstellen eines 2D-Arrays</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>array_2d <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]])</span>
@@ -356,7 +356,7 @@ Submatrix (last row and last two columns):
  [[5 6]]</code></pre>
 </div>
 </div>
-<div id="0be1ca99" class="cell" data-execution_count="6">
+<div id="136084cc" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Erstellen eines 1D-Arrays</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>array_1d <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
@@ -377,7 +377,7 @@ Subarray (die Elemente an der 2. und 3. Stelle): [3 4]</code></pre>
 </section>
 <section id="numpy-array-vektorisierte-operationen" class="level4">
 <h4 class="anchored" data-anchor-id="numpy-array-vektorisierte-operationen">NumPy Array vektorisierte Operationen</h4>
-<div id="0ef9ebc6" class="cell" data-execution_count="7">
+<div id="9b7b6098" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Erstellen eines 1D-Arrays</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>array_1d <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
@@ -397,7 +397,7 @@ Array / 2: [0.5 1.  1.5 2.  2.5]
 Wurzel aus einem Array [1.         1.41421356 1.73205081 2.         2.23606798]</code></pre>
 </div>
 </div>
-<div id="608021c8" class="cell" data-execution_count="8">
+<div id="19c1f5bf" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Erstellen zweier 1D-Arrays</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>])</span>
@@ -427,7 +427,7 @@ Array b: [10  9  8  7  6  5  4  3  2  1]</code></pre>
 </section>
 <section id="reshaping-umorganisieren-von-numpy-arrays" class="level4">
 <h4 class="anchored" data-anchor-id="reshaping-umorganisieren-von-numpy-arrays">Reshaping (umorganisieren von NumPy Arrays)</h4>
-<div id="0c9a8b4b" class="cell" data-execution_count="9">
+<div id="5c96e556" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Erstellen eines 1D-Arrays mit 12 Elementen</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>array_1d <span class="op">=</span> np.arange(<span class="dv">12</span>) <span class="op">+</span> <span class="dv">1</span></span>
@@ -469,7 +469,7 @@ Reshaped Array (2x2x3):
 </section>
 <section id="warum-pandas" class="level2">
 <h2 class="anchored" data-anchor-id="warum-pandas">Warum Pandas?</h2>
-<p>Pandas ist eine Bibliothek, die speziell für die Datenanalyse und -manipulation entwickelt wurde. Hier sind einige Gründe, warum Pandas so wichtig ist:</p>
+<p>Pandas ist eine Bibliothek, die speziell für die Datenanalyse und -manipulation entwickelt wurde. Der Name leitet sich vom englischen “<strong>pan</strong>el <strong>da</strong>ta<strong>s</strong>”, eine ökonometrischen Bezeichnung für Datentabellen, ab. Hier sind einige Gründe, warum Pandas so wichtig ist:</p>
 <ol type="1">
 <li><p><strong>Datenstrukturen</strong>: Pandas bietet zwei Hauptdatenstrukturen, den DataFrame und die Series, die es ermöglichen, Daten in tabellarischer Form zu organisieren und zu manipulieren. Diese Strukturen sind besonders nützlich für die Arbeit mit heterogenen Daten.</p></li>
 <li><p><strong>Datenmanipulation</strong>: Pandas bietet eine Vielzahl von Funktionen für die Datenmanipulation, einschließlich Filtern, Gruppieren, Pivot-Tabellen und mehr. Es ermöglicht es Benutzern, komplexe Datenoperationen mit Leichtigkeit durchzuführen.</p></li>
@@ -486,7 +486,7 @@ Reshaped Array (2x2x3):
 <li><p>Eine Series ist eine eindimensionale, beschriftete Datenstruktur, die eine Liste von Werten enthält. Sie kann als eine Art erweiterte Liste betrachtet werden, die zusätzlich zu den Werten auch Indizes hat.</p></li>
 <li><p>Ein DataFrame ist eine zweidimensionale, tabellarische Datenstruktur, die aus mehreren Series besteht. Es ist vergleichbar mit einer Tabelle in einer Datenbank oder einem Arbeitsblatt in Excel, wobei Zeilen und Spalten beschriftet sind.</p></li>
 </ul>
-<div id="a7435325" class="cell" data-execution_count="10">
+<div id="a9af7c6f" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Erstellen einer Series</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>my_series <span class="op">=</span> pd.Series([<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>], index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>, <span class="st">'e'</span>])</span>
@@ -517,7 +517,7 @@ Ein DataFrame:
 </div>
 <section id="anschauen-der-daten-in-einem-dataframe" class="level4">
 <h4 class="anchored" data-anchor-id="anschauen-der-daten-in-einem-dataframe">Anschauen der Daten in einem DataFrame</h4>
-<div id="547d4690" class="cell" data-execution_count="11">
+<div id="84c11faf" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Erstellen eines DataFrames</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>my_dataframe <span class="op">=</span> pd.DataFrame({</span>
@@ -593,7 +593,7 @@ Informationen:
 <section id="datenselektierung-mit-pandas" class="level3">
 <h3 class="anchored" data-anchor-id="datenselektierung-mit-pandas">Datenselektierung mit Pandas</h3>
 <p>Pandas bietet verschiedene Möglichkeiten, um Daten aus einem DataFrame auszuwählen, einschließlich der Verwendung von Spaltennamen, Zeilenindizes und Bedingungen. Hier sind einige Beispiele:</p>
-<div id="608e5534" class="cell" data-execution_count="12">
+<div id="b9948549" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Erstellen eines DataFrames</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>my_dataframe <span class="op">=</span> pd.DataFrame({</span>
@@ -662,7 +662,7 @@ Zeilen, in denen das Alter größer als 30 und kleiner gleich 40 ist:
 <section id="datenmanipulation-mit-pandas" class="level3">
 <h3 class="anchored" data-anchor-id="datenmanipulation-mit-pandas">Datenmanipulation mit Pandas</h3>
 <p>Pandas bietet eine Vielzahl von Funktionen für die Datenmanipulation, einschließlich Filtern, Gruppieren, Pivot-Tabellen und mehr. Hier sind einige Beispiele:</p>
-<div id="cc66af2c" class="cell" data-execution_count="13">
+<div id="d67d0112" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Erstellen eines DataFrames</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>my_dataframe <span class="op">=</span> pd.DataFrame({</span>
@@ -714,7 +714,7 @@ Phoenix       45.0</code></pre>
 </section>
 <section id="hinzufügen-von-daten-zu-einem-dataframe" class="level3">
 <h3 class="anchored" data-anchor-id="hinzufügen-von-daten-zu-einem-dataframe">Hinzufügen von Daten zu einem DataFrame</h3>
-<div id="6428aa73" class="cell" data-execution_count="14">
+<div id="ecfc53e2" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Erstellen eines DataFrames</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>my_dataframe <span class="op">=</span> pd.DataFrame({</span>
