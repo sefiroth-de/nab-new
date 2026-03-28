@@ -60,12 +60,15 @@ end_time = time.time()
 print(f"Zeit für die Addition in der Liste: {end_time - start_time:0.4} Sekunden")
 ```
 
-Der Grund wieso das alles so langsam ist, liegt unter anderem daran, dass die Python Liste 1.000.000 in der Schleife durchlaufen wird. Und das ist langsamn.
+Der Grund wieso das alles so langsam ist, liegt unter anderem daran, dass die 1.000.000 Einträge in der Python Liste in der Schleife durchlaufen wird. Und das ist langsam, denn die ergentliche Liste ist eine Liste von Verweisen auf die in einem Objekt gespeicherten eigentlichen Werte. Python geht also (schnell) eine Liste von Referenzen durch, muss aber jedesmal (irgendwo) im Speicher den eigentlichen Werte suchen, dann anpassen und dann in der (Referenz-)Liste den nächsten suchen.
 
 Die Lösung dieses Problems ist NumPy.
 
-Mit NumPy  können wir ein Array erstellen, das die Zahlen direkt hintereinander im Speicher speichert und die Werte als numerische Datentypen behandelt. Dadurch können wir die Addition von 10 zu jedem Element in einem einzigen Schritt durchführen, ohne eine Schleife zu verwenden, was viel schneller ist.
-Das geht u.a. daher, dass in einem Array alle Werte vom selben Datentyp sind, was die Verarbeitung optimiert. NumPy nutzt auch Vektorisierung, um Operationen auf Arrays effizienter durchzuführen, indem es sie in C oder Fortran ausführt, anstatt in Python.
+Mit NumPy können wir ein Array erstellen, das die Zahlen direkt hintereinander im Speicher speichert und die Werte als numerische Datentypen behandelt, da es davon ausgeht, dass diese alle vom selben Datentyp sind. (Python schaut erst in den Metadaten des Objekts nach, ob dem so ist. Das kostet auch Zeit.) 
+Dadurch können wir die Addition von 10 zu jedem Element in einem einzigen Schritt durchführen, ohne eine Python-Schleife zu verwenden, was viel schneller ist.
+
+Okay, wir durchlaufen schon eine Schleife, aber diese muss nicht nach dem eigentlichen Objekt mit dem Eintrag in Speicher suchen. Denn im Array sind alle Objekte vom selbern Datentyp und belegen immer den selber Speicherplatz und das hintereinander. Wir springen also direkt zum nächsten Eintrag, ändern und gehen weiter. Das ist deutlich schneller und ermöglicht das die Verarbeitung optimiert ist. 
+NumPy nutzt auch Vektorisierung, um Operationen auf Arrays effizienter durchzuführen, indem es sie in C (oder Fortran) ausführt, anstatt in Python.
 
 ```{python}
 import numpy as np
@@ -85,13 +88,13 @@ Darum ist NumPy die Grundlage für die Pakete:
 
 - Tensoflow
 - PyTorch
-- Scikid-learn
+- Scikit-learn
 - SciPy
 - JAX
 - u.v.m.
 
 
-### Ein paar Numpy Grundlagen
+### Ein paar NumPy Grundlagen
 
 #### NumPy Arrays erstellen
 
