@@ -45,13 +45,13 @@
 <li>Ist nicht für numerische Berechnungen optimiert, da jedes Objekt individuell behandelt werden muss.</li>
 </ul>
 <p>Stellen wir uns vor, wie wollen zu jeder Zahl 10 hinzuaddieren. Mit einer Python Liste müssten wir eine Schleife verwenden, um durch die Liste zu iterieren und die Addition für jedes Element durchzuführen, was sehr langsam sein kann.</p>
-<div id="1e900d6d" class="cell" data-execution_count="1">
+<div id="93d9f354" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> time</span>
 <span id="cb1-2"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Erstellen einer Liste mit 1 Million Zahlen</span></span>
+font-style: inherit;"># Erstellen einer Liste mit 10 Million Zahlen</span></span>
 <span id="cb1-3">my_list <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="bu" style="color: null;
@@ -106,14 +106,15 @@ font-style: inherit;">:0.4}</span><span class="ss" style="color: #20794D;
 background-color: null;
 font-style: inherit;"> Sekunden"</span>)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Zeit für die Addition in der Liste: 0.8917 Sekunden</code></pre>
+<pre><code>Zeit für die Addition in der Liste: 0.6944 Sekunden</code></pre>
 </div>
 </div>
+<p>Die angegebe Laufzeit hängen natürlich von den Rechner und den Versionen der Software ab.</p>
 <p>Der Grund wieso das alles so langsam ist, liegt unter anderem daran, dass die 10.000.000 Einträge in der Python Liste in der Schleife durchlaufen wird. Und das ist langsam, denn die ergentliche Liste ist eine Liste von Verweisen auf die in einem Objekt gespeicherten eigentlichen Werte. Python geht also (schnell) eine Liste von Referenzen durch, muss aber jedesmal (irgendwo) im Speicher den eigentlichen Werte suchen, dann anpassen und dann in der (Referenz-)Liste den nächsten suchen.</p>
 <p>Die Lösung dieses Problems ist NumPy.</p>
 <p>Mit NumPy können wir ein Array erstellen, das die Zahlen direkt hintereinander im Speicher speichert und die Werte als numerische Datentypen behandelt, da es davon ausgeht, dass diese alle vom selben Datentyp sind. (Python schaut erst in den Metadaten des Objekts nach, ob dem so ist. Das kostet auch Zeit.) Dadurch können wir die Addition von 10 zu jedem Element in einem einzigen Schritt durchführen, ohne eine Python-Schleife zu verwenden, was viel schneller ist.</p>
 <p>Okay, wir durchlaufen schon eine Schleife, aber diese muss nicht nach dem eigentlichen Objekt mit dem Eintrag in Speicher suchen. Denn im Array sind alle Objekte vom selbern Datentyp und belegen immer den selber Speicherplatz und das hintereinander. Wir springen also direkt zum nächsten Eintrag, ändern und gehen weiter. Das ist deutlich schneller und ermöglicht das die Verarbeitung optimiert ist. NumPy nutzt auch Vektorisierung, um Operationen auf Arrays effizienter durchzuführen, indem es sie in C (oder Fortran) ausführt, anstatt in Python.</p>
-<div id="159b36f0" class="cell" data-execution_count="2">
+<div id="680ff8f1" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
@@ -124,7 +125,7 @@ background-color: null;
 font-style: inherit;">import</span> time</span>
 <span id="cb3-3"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Erstellen eines NumPy-Arrays mit 1 Million Zahlen</span></span>
+font-style: inherit;"># Erstellen eines NumPy-Arrays mit 10 Million Zahlen</span></span>
 <span id="cb3-4">my_array <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.arange(<span class="dv" style="color: #AD0000;
@@ -164,9 +165,10 @@ font-style: inherit;">:0.4}</span><span class="ss" style="color: #20794D;
 background-color: null;
 font-style: inherit;"> Sekunden."</span>)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Zeit für die Addition im NumPy-Array: 0.006094 Sekunden.</code></pre>
+<pre><code>Zeit für die Addition im NumPy-Array: 0.009774 Sekunden.</code></pre>
 </div>
 </div>
+<p>Auch hier hängt die angegebene Laufzeit vom Rechner und den Software Versionen ab. Aber die Tendenzen zeigen sich hier schon klar. NumPy ist deutlich schneller als reines Python.</p>
 <p>Darum ist NumPy die Grundlage für die Pakete:</p>
 <ul>
 <li>Tensoflow</li>
@@ -181,7 +183,7 @@ font-style: inherit;"> Sekunden."</span>)</span></code></pre></div></div>
 <h3 class="anchored" data-anchor-id="ein-paar-numpy-grundlagen">Ein paar NumPy Grundlagen</h3>
 <section id="numpy-arrays-erstellen" class="level4">
 <h4 class="anchored" data-anchor-id="numpy-arrays-erstellen">NumPy Arrays erstellen</h4>
-<div id="5075883c" class="cell" data-execution_count="3">
+<div id="64d42b37" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
@@ -203,10 +205,18 @@ background-color: null;
 font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">5</span>])</span>
-<span id="cb5-4"><span class="co" style="color: #5E5E5E;
+<span id="cb5-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(array_1d)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1 2 3 4 5]</code></pre>
+</div>
+</div>
+<div id="933d0fa9" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen eines 2D-Arrays</span></span>
-<span id="cb5-5">array_2d <span class="op" style="color: #5E5E5E;
+<span id="cb7-2">array_2d <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.array([[<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -221,30 +231,58 @@ background-color: null;
 font-style: inherit;">5</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">6</span>]])</span>
-<span id="cb5-6"><span class="co" style="color: #5E5E5E;
+<span id="cb7-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(array_2d)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1 2 3]
+ [4 5 6]]</code></pre>
+</div>
+</div>
+<div id="a3e522bd" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen eines Arrays mit Nullen</span></span>
-<span id="cb5-7">zeros_array <span class="op" style="color: #5E5E5E;
+<span id="cb9-2">zeros_array <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.zeros((<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">3</span>))</span>
-<span id="cb5-8"><span class="co" style="color: #5E5E5E;
+<span id="cb9-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(zeros_array)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[0. 0. 0.]
+ [0. 0. 0.]
+ [0. 0. 0.]]</code></pre>
+</div>
+</div>
+<div id="57952010" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen eines Arrays mit Einsen</span></span>
-<span id="cb5-9">ones_array <span class="op" style="color: #5E5E5E;
+<span id="cb11-2">ones_array <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.ones((<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">4</span>))</span>
-<span id="cb5-10"><span class="co" style="color: #5E5E5E;
+<span id="cb11-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(ones_array)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1. 1. 1. 1.]
+ [1. 1. 1. 1.]]</code></pre>
+</div>
+</div>
+<div id="f4b928b7" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen eines Arrays mit einem bestimmten Wert</span></span>
-<span id="cb5-11">full_array <span class="op" style="color: #5E5E5E;
+<span id="cb13-2">full_array <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.full((<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -253,28 +291,56 @@ background-color: null;
 font-style: inherit;">3</span>), <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">7</span>)</span>
-<span id="cb5-12"><span class="co" style="color: #5E5E5E;
+<span id="cb13-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(full_array)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[7 7 7]
+ [7 7 7]]</code></pre>
+</div>
+</div>
+<div id="74002a82" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen eines Arrays mit zufälligen Werten</span></span>
-<span id="cb5-13">random_array <span class="op" style="color: #5E5E5E;
+<span id="cb15-2">random_array <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.random.rand(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">4</span>)</span>
-<span id="cb5-14"><span class="co" style="color: #5E5E5E;
+<span id="cb15-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(random_array)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[0.2424124  0.36481336 0.6578541  0.94303291]
+ [0.14924699 0.4103965  0.17397575 0.81790553]
+ [0.15089817 0.82787736 0.25031211 0.53856544]
+ [0.6382477  0.19304652 0.05265733 0.52864991]]</code></pre>
+</div>
+</div>
+<div id="15b545ae" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen eines Arrays der ersten 10 natürlichen Zahlen</span></span>
-<span id="cb5-15">arange_array <span class="op" style="color: #5E5E5E;
+<span id="cb17-2">arange_array <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.arange(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">10</span>)</span>
-<span id="cb5-16"><span class="co" style="color: #5E5E5E;
+<span id="cb17-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(arange_array)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0 1 2 3 4 5 6 7 8 9]</code></pre>
+</div>
+</div>
+<div id="ad151654" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen eines Arrays mit fünf gleichmäßig verteilten Werten zwischen 0 und 1</span></span>
-<span id="cb5-17">linspace_array <span class="op" style="color: #5E5E5E;
+<span id="cb19-2">linspace_array <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.linspace(<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -282,21 +348,27 @@ font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">5</span>)</span></code></pre></div></div>
+font-style: inherit;">5</span>)</span>
+<span id="cb19-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(linspace_array)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0.   0.25 0.5  0.75 1.  ]</code></pre>
+</div>
 </div>
 </section>
-<section id="numpy-array-gestalt-shape-größe-size-und-dimensionen-ndim" class="level4">
-<h4 class="anchored" data-anchor-id="numpy-array-gestalt-shape-größe-size-und-dimensionen-ndim">NumPy Array Gestalt (shape), Größe (size) und Dimensionen (ndim)</h4>
-<div id="e448fa53" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="im" style="color: #00769E;
+<section id="gestalt-shape-größe-size-und-dimensionen-ndim-von-numpy-arrays" class="level4">
+<h4 class="anchored" data-anchor-id="gestalt-shape-größe-size-und-dimensionen-ndim-von-numpy-arrays">Gestalt (shape), Größe (size) und Dimensionen (ndim) von NumPy Arrays</h4>
+<div id="70c8cd91" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> np</span>
-<span id="cb6-2"><span class="co" style="color: #5E5E5E;
+<span id="cb21-2"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen eines 2D-Arrays</span></span>
-<span id="cb6-3">array_2d <span class="op" style="color: #5E5E5E;
+<span id="cb21-3">array_2d <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.array([[<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -311,7 +383,7 @@ background-color: null;
 font-style: inherit;">5</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">6</span>]])</span>
-<span id="cb6-4"><span class="bu" style="color: null;
+<span id="cb21-4"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -319,53 +391,65 @@ font-style: inherit;">"Array:</span><span class="ch" style="color: #20794D;
 background-color: null;
 font-style: inherit;">\n</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"</span>, array_2d)</span>
-<span id="cb6-5"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">"</span>, array_2d)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Array:
+ [[1 2 3]
+ [4 5 6]]</code></pre>
+</div>
+</div>
+<div id="bd985762" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Form des Arrays</span></span>
-<span id="cb6-6"><span class="bu" style="color: null;
+<span id="cb23-2"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Shape:"</span>, array_2d.shape)</span>
-<span id="cb6-7"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">"Shape:"</span>, array_2d.shape)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Shape: (2, 3)</code></pre>
+</div>
+</div>
+<div id="4ba90be4" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Größe des Arrays</span></span>
-<span id="cb6-8"><span class="bu" style="color: null;
+<span id="cb25-2"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Size:"</span>, array_2d.size)</span>
-<span id="cb6-9"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">"Size:"</span>, array_2d.size)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Size: 6</code></pre>
+</div>
+</div>
+<div id="f456747c" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Anzahl der Dimensionen</span></span>
-<span id="cb6-10"><span class="bu" style="color: null;
+<span id="cb27-2"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Number of dimensions:"</span>, array_2d.ndim)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Array:
- [[1 2 3]
- [4 5 6]]
-Shape: (2, 3)
-Size: 6
-Number of dimensions: 2</code></pre>
+<pre><code>Number of dimensions: 2</code></pre>
 </div>
 </div>
 </section>
 <section id="numpy-array-indexierung-und-slicing" class="level4">
 <h4 class="anchored" data-anchor-id="numpy-array-indexierung-und-slicing">NumPy Array Indexierung und Slicing</h4>
-<div id="1b554c1f" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><span class="im" style="color: #00769E;
+<div id="42d96bb5" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> np</span>
-<span id="cb8-2"><span class="co" style="color: #5E5E5E;
+<span id="cb29-2"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen eines 2D-Arrays</span></span>
-<span id="cb8-3">array_2d <span class="op" style="color: #5E5E5E;
+<span id="cb29-3">array_2d <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.array([[<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -380,48 +464,88 @@ background-color: null;
 font-style: inherit;">5</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">6</span>]])</span>
-<span id="cb8-4"><span class="bu" style="color: null;
+<span id="cb29-4"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Ein 2D-Array:"</span>,array_2d)</span>
-<span id="cb8-5"></span>
-<span id="cb8-6"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">"Ein 2D-Array:</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>,array_2d)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Ein 2D-Array:
+ [[1 2 3]
+ [4 5 6]]</code></pre>
+</div>
+</div>
+<div id="d40bb130" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Zugriff auf ein Element</span></span>
-<span id="cb8-7"><span class="bu" style="color: null;
+<span id="cb31-2"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Element at (0, 1):"</span>, array_2d[<span class="dv" style="color: #AD0000;
+font-style: inherit;">"Element at (0, 1):</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, array_2d[<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1</span>])</span>
-<span id="cb8-8"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">1</span>])</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Element at (0, 1):
+ 2</code></pre>
+</div>
+</div>
+<div id="af8b465e" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Zugriff auf eine Zeile</span></span>
-<span id="cb8-9"><span class="bu" style="color: null;
+<span id="cb33-2"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"First row:"</span>, array_2d[<span class="dv" style="color: #AD0000;
+font-style: inherit;">"First row:</span><span class="ch" style="color: #20794D;
 background-color: null;
-font-style: inherit;">0</span>])</span>
-<span id="cb8-10"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, array_2d[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>])</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>First row:
+ [1 2 3]</code></pre>
+</div>
+</div>
+<div id="2bce713a" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Zugriff auf eine Spalte</span></span>
-<span id="cb8-11"><span class="bu" style="color: null;
+<span id="cb35-2"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Second column:"</span>, array_2d[:, <span class="dv" style="color: #AD0000;
+font-style: inherit;">"Second column:</span><span class="ch" style="color: #20794D;
 background-color: null;
-font-style: inherit;">1</span>])</span>
-<span id="cb8-12"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, array_2d[:, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>])</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Second column:
+ [2 5]</code></pre>
+</div>
+</div>
+<div id="3b5cc8cc" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Slicing eines Subarrays</span></span>
-<span id="cb8-13"><span class="bu" style="color: null;
+<span id="cb37-2"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -433,11 +557,18 @@ font-style: inherit;">"</span>, array_2d[:<span class="dv" style="color: #AD0000
 background-color: null;
 font-style: inherit;">2</span>, :<span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">2</span>])</span>
-<span id="cb8-14"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">2</span>])</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Subarray (first two rows and first two columns):
+ [[1 2]
+ [4 5]]</code></pre>
+</div>
+</div>
+<div id="0d69e026" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Slicing eines Submatrix</span></span>
-<span id="cb8-15"><span class="bu" style="color: null;
+<span id="cb39-2"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -451,28 +582,20 @@ font-style: inherit;">1</span>:, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>:])</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Ein 2D-Array: [[1 2 3]
- [4 5 6]]
-Element at (0, 1): 2
-First row: [1 2 3]
-Second column: [2 5]
-Subarray (first two rows and first two columns):
- [[1 2]
- [4 5]]
-Submatrix (last row and last two columns):
+<pre><code>Submatrix (last row and last two columns):
  [[5 6]]</code></pre>
 </div>
 </div>
-<div id="31fd84d7" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><span class="im" style="color: #00769E;
+<div id="7f0d024f" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> np</span>
-<span id="cb10-2"><span class="co" style="color: #5E5E5E;
+<span id="cb41-2"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen eines 1D-Arrays</span></span>
-<span id="cb10-3">array_1d <span class="op" style="color: #5E5E5E;
+<span id="cb41-3">array_1d <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.array([<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -485,61 +608,92 @@ background-color: null;
 font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">5</span>])</span>
-<span id="cb10-4"><span class="bu" style="color: null;
+<span id="cb41-4"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Ein 1D-Array:"</span>, array_1d)</span>
-<span id="cb10-5"></span>
-<span id="cb10-6"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">"Ein 1D-Array:</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, array_1d)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Ein 1D-Array:
+ [1 2 3 4 5]</code></pre>
+</div>
+</div>
+<div id="8b2fb1a7" class="cell" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Zugriff auf ein Element</span></span>
-<span id="cb10-7"><span class="bu" style="color: null;
+<span id="cb43-2"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Element at index 2:"</span>, array_1d[<span class="dv" style="color: #AD0000;
+font-style: inherit;">"Element at index 2:</span><span class="ch" style="color: #20794D;
 background-color: null;
-font-style: inherit;">2</span>])</span>
-<span id="cb10-8"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, array_1d[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>])</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Element at index 2:
+ 3</code></pre>
+</div>
+</div>
+<div id="f17c2389" class="cell" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Slicing eines Subarrays</span></span>
-<span id="cb10-9"><span class="bu" style="color: null;
+<span id="cb45-2"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Subarray (die ersten 3 Elemente):"</span>, array_1d[:<span class="dv" style="color: #AD0000;
+font-style: inherit;">"Subarray (die ersten 3 Elemente):</span><span class="ch" style="color: #20794D;
 background-color: null;
-font-style: inherit;">3</span>])</span>
-<span id="cb10-10"><span class="bu" style="color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, array_1d[:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>])</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Subarray (die ersten 3 Elemente):
+ [1 2 3]</code></pre>
+</div>
+</div>
+<div id="f23496bf" class="cell" data-execution_count="24">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Subarray (die Elemente an der 2. und 3. Stelle):"</span>, array_1d[<span class="dv" style="color: #AD0000;
+font-style: inherit;">"Subarray (die Elemente an der 2. und 3. Stelle):</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, array_1d[<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>:<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">4</span>])</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Ein 1D-Array: [1 2 3 4 5]
-Element at index 2: 3
-Subarray (die ersten 3 Elemente): [1 2 3]
-Subarray (die Elemente an der 2. und 3. Stelle): [3 4]</code></pre>
+<pre><code>Subarray (die Elemente an der 2. und 3. Stelle):
+ [3 4]</code></pre>
 </div>
 </div>
 </section>
-<section id="numpy-array-vektorisierte-operationen" class="level4">
-<h4 class="anchored" data-anchor-id="numpy-array-vektorisierte-operationen">NumPy Array vektorisierte Operationen</h4>
-<div id="c21e45e1" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><span class="im" style="color: #00769E;
+<section id="vektorisierte-operationen-auf-numpy-arrays" class="level4">
+<h4 class="anchored" data-anchor-id="vektorisierte-operationen-auf-numpy-arrays">Vektorisierte Operationen auf NumPy Arrays</h4>
+<div id="f0df1229" class="cell" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> np</span>
-<span id="cb12-2"><span class="co" style="color: #5E5E5E;
+<span id="cb49-2"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen eines 1D-Arrays</span></span>
-<span id="cb12-3">array_1d <span class="op" style="color: #5E5E5E;
+<span id="cb49-3">array_1d <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.array([<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -552,74 +706,124 @@ background-color: null;
 font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">5</span>])</span>
-<span id="cb12-4"><span class="bu" style="color: null;
+<span id="cb49-4"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Ein 1D-Array:"</span>, array_1d)</span>
-<span id="cb12-5"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">"Ein 1D-Array:</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, array_1d)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Ein 1D-Array:
+ [1 2 3 4 5]</code></pre>
+</div>
+</div>
+<div id="403a5a78" class="cell" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Vektorisierte Operationen</span></span>
-<span id="cb12-6"><span class="bu" style="color: null;
+<span id="cb51-2"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Array + 10:"</span>, array_1d <span class="op" style="color: #5E5E5E;
+font-style: inherit;">"Array + 10:</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, array_1d <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">10</span>)</span>
-<span id="cb12-7"><span class="bu" style="color: null;
+font-style: inherit;">10</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Array + 10:
+ [11 12 13 14 15]</code></pre>
+</div>
+</div>
+<div id="eff43fcb" class="cell" data-execution_count="27">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Array * 2:"</span>, array_1d <span class="op" style="color: #5E5E5E;
+font-style: inherit;">"Array * 2:</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, array_1d <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">2</span>)</span>
-<span id="cb12-8"><span class="bu" style="color: null;
+font-style: inherit;">2</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Array * 2:
+ [ 2  4  6  8 10]</code></pre>
+</div>
+</div>
+<div id="f3bbf0cb" class="cell" data-execution_count="28">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Array - 1:"</span>, array_1d <span class="op" style="color: #5E5E5E;
+font-style: inherit;">"Array - 1:</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, array_1d <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1</span>)</span>
-<span id="cb12-9"><span class="bu" style="color: null;
+font-style: inherit;">1</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Array - 1:
+ [0 1 2 3 4]</code></pre>
+</div>
+</div>
+<div id="8e9e761f" class="cell" data-execution_count="29">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Array / 2:"</span>, array_1d <span class="op" style="color: #5E5E5E;
+font-style: inherit;">"Array / 2:</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, array_1d <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">2</span>)</span>
-<span id="cb12-10"><span class="bu" style="color: null;
+font-style: inherit;">2</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Array / 2:
+ [0.5 1.  1.5 2.  2.5]</code></pre>
+</div>
+</div>
+<div id="9911f332" class="cell" data-execution_count="30">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Wurzel aus einem Array"</span>, np.sqrt(array_1d))</span></code></pre></div></div>
+font-style: inherit;">"Wurzel aus einem Array:</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, np.sqrt(array_1d))</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Ein 1D-Array: [1 2 3 4 5]
-Array + 10: [11 12 13 14 15]
-Array * 2: [ 2  4  6  8 10]
-Array - 1: [0 1 2 3 4]
-Array / 2: [0.5 1.  1.5 2.  2.5]
-Wurzel aus einem Array [1.         1.41421356 1.73205081 2.         2.23606798]</code></pre>
+<pre><code>Wurzel aus einem Array:
+ [1.         1.41421356 1.73205081 2.         2.23606798]</code></pre>
 </div>
 </div>
-<div id="60e55ea5" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><span class="im" style="color: #00769E;
+<div id="1b8eb056" class="cell" data-execution_count="31">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> np</span>
-<span id="cb14-2"><span class="co" style="color: #5E5E5E;
+<span id="cb61-2"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen zweier 1D-Arrays</span></span>
-<span id="cb14-3">a <span class="op" style="color: #5E5E5E;
+<span id="cb61-3">a <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.array([<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -642,7 +846,7 @@ background-color: null;
 font-style: inherit;">9</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">10</span>])</span>
-<span id="cb14-4">b <span class="op" style="color: #5E5E5E;
+<span id="cb61-4">b <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.array([<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -664,38 +868,70 @@ font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1</span>])</span>
-<span id="cb14-5"><span class="bu" style="color: null;
+font-style: inherit;">1</span>])</span></code></pre></div></div>
+</div>
+<div id="f9d3099c" class="cell" data-execution_count="32">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Array a:"</span>, a)</span>
-<span id="cb14-6"><span class="bu" style="color: null;
+font-style: inherit;">"Array a:</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, a)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Array a:
+ [ 1  2  3  4  5  6  7  8  9 10]</code></pre>
+</div>
+</div>
+<div id="969b71e1" class="cell" data-execution_count="33">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Array b:"</span>, b)</span>
-<span id="cb14-7"></span>
-<span id="cb14-8"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">"Array b:</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, b)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Array b:
+ [10  9  8  7  6  5  4  3  2  1]</code></pre>
+</div>
+</div>
+<div id="543f7b41" class="cell" data-execution_count="34">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Vektorisierte Operationen zwischen Arrays</span></span>
-<span id="cb14-9">a <span class="op" style="color: #5E5E5E;
+<span id="cb66-2">a <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">+</span> b</span>
-<span id="cb14-10">a <span class="op" style="color: #5E5E5E;
+font-style: inherit;">+</span> b</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="122">
+<pre><code>array([11, 11, 11, 11, 11, 11, 11, 11, 11, 11])</code></pre>
+</div>
+</div>
+<div id="e1168a53" class="cell" data-execution_count="35">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1">a <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">*</span> b</span>
-<span id="cb14-11">a <span class="op" style="color: #5E5E5E;
+font-style: inherit;">*</span> b</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="123">
+<pre><code>array([10, 18, 24, 28, 30, 30, 28, 24, 18, 10])</code></pre>
+</div>
+</div>
+<div id="5060564b" class="cell" data-execution_count="36">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1">a <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">-</span> b</span>
-<span id="cb14-12">a <span class="op" style="color: #5E5E5E;
+font-style: inherit;">-</span> b</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="124">
+<pre><code>array([-9, -7, -5, -3, -1,  1,  3,  5,  7,  9])</code></pre>
+</div>
+</div>
+<div id="1b19cf62" class="cell" data-execution_count="37">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1">a <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">/</span> b</span></code></pre></div></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Array a: [ 1  2  3  4  5  6  7  8  9 10]
-Array b: [10  9  8  7  6  5  4  3  2  1]</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="125">
 <pre><code>array([ 0.1       ,  0.22222222,  0.375     ,  0.57142857,  0.83333333,
         1.2       ,  1.75      ,  2.66666667,  4.5       , 10.        ])</code></pre>
 </div>
@@ -708,16 +944,16 @@ Array b: [10  9  8  7  6  5  4  3  2  1]</code></pre>
 </section>
 <section id="reshaping-umorganisieren-von-numpy-arrays" class="level4">
 <h4 class="anchored" data-anchor-id="reshaping-umorganisieren-von-numpy-arrays">Reshaping (umorganisieren von NumPy Arrays)</h4>
-<div id="7cb504c3" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><span class="im" style="color: #00769E;
+<div id="475d90bc" class="cell" data-execution_count="38">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> np</span>
-<span id="cb17-2"><span class="co" style="color: #5E5E5E;
+<span id="cb74-2"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen eines 1D-Arrays mit 12 Elementen</span></span>
-<span id="cb17-3">array_1d <span class="op" style="color: #5E5E5E;
+<span id="cb74-3">array_1d <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.arange(<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -726,22 +962,27 @@ background-color: null;
 font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span></span>
-<span id="cb17-4"><span class="bu" style="color: null;
+<span id="cb74-4"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Ein 1D-Array:"</span>, array_1d)</span>
-<span id="cb17-5"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">"Ein 1D-Array:"</span>, array_1d)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Ein 1D-Array: [ 1  2  3  4  5  6  7  8  9 10 11 12]</code></pre>
+</div>
+</div>
+<div id="7126277c" class="cell" data-execution_count="39">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Reshaping in ein 2D-Array mit 3 Zeilen und 4</span></span>
-<span id="cb17-6">array_2d <span class="op" style="color: #5E5E5E;
+<span id="cb76-2">array_2d <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> array_1d.reshape(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">4</span>)</span>
-<span id="cb17-7"><span class="bu" style="color: null;
+<span id="cb76-3"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -749,18 +990,26 @@ font-style: inherit;">"Reshaped Array (3x4):</span><span class="ch" style="color
 background-color: null;
 font-style: inherit;">\n</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"</span>, array_2d)</span>
-<span id="cb17-8"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">"</span>, array_2d)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reshaped Array (3x4):
+ [[ 1  2  3  4]
+ [ 5  6  7  8]
+ [ 9 10 11 12]]</code></pre>
+</div>
+</div>
+<div id="86f66e3b" class="cell" data-execution_count="40">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Reshaping in ein 2D-Array mit 4 Zeilen und 3</span></span>
-<span id="cb17-9">array_2d_4x3 <span class="op" style="color: #5E5E5E;
+<span id="cb78-2">array_2d_4x3 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> array_1d.reshape(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">3</span>)</span>
-<span id="cb17-10"><span class="bu" style="color: null;
+<span id="cb78-3"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -768,11 +1017,20 @@ font-style: inherit;">"Reshaped Array (4x3):</span><span class="ch" style="color
 background-color: null;
 font-style: inherit;">\n</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"</span>, array_2d_4x3)</span>
-<span id="cb17-11"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">"</span>, array_2d_4x3)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reshaped Array (4x3):
+ [[ 1  2  3]
+ [ 4  5  6]
+ [ 7  8  9]
+ [10 11 12]]</code></pre>
+</div>
+</div>
+<div id="dfab525f" class="cell" data-execution_count="41">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Reshaping in ein 3D-Array mit 2 Blöcken, 2 Zeilen und 3 Spalten</span></span>
-<span id="cb17-12">array_3d <span class="op" style="color: #5E5E5E;
+<span id="cb80-2">array_3d <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> array_1d.reshape(<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -781,7 +1039,7 @@ background-color: null;
 font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">3</span>)</span>
-<span id="cb17-13"><span class="bu" style="color: null;
+<span id="cb80-3"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -791,17 +1049,7 @@ font-style: inherit;">\n</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span>, array_3d)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Ein 1D-Array: [ 1  2  3  4  5  6  7  8  9 10 11 12]
-Reshaped Array (3x4):
- [[ 1  2  3  4]
- [ 5  6  7  8]
- [ 9 10 11 12]]
-Reshaped Array (4x3):
- [[ 1  2  3]
- [ 4  5  6]
- [ 7  8  9]
- [10 11 12]]
-Reshaped Array (2x2x3):
+<pre><code>Reshaped Array (2x2x3):
  [[[ 1  2  3]
   [ 4  5  6]]
 
@@ -835,16 +1083,16 @@ Reshaped Array (2x2x3):
 <li><p>Eine Series ist eine eindimensionale, beschriftete Datenstruktur, die eine Liste von Werten enthält. Sie kann als eine Art erweiterte Liste betrachtet werden, die zusätzlich zu den Werten auch Indizes hat.</p></li>
 <li><p>Ein DataFrame ist eine zweidimensionale, tabellarische Datenstruktur, die aus mehreren Series besteht. Es ist vergleichbar mit einer Tabelle in einer Datenbank oder einem Arbeitsblatt in Excel, wobei Zeilen und Spalten beschriftet sind.</p></li>
 </ul>
-<div id="c4e31b98" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><span class="im" style="color: #00769E;
+<div id="d1229944" class="cell" data-execution_count="42">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb82" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> pd</span>
-<span id="cb19-2"><span class="co" style="color: #5E5E5E;
+<span id="cb82-2"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen einer Series</span></span>
-<span id="cb19-3">my_series <span class="op" style="color: #5E5E5E;
+<span id="cb82-3">my_series <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.Series([<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -869,7 +1117,7 @@ background-color: null;
 font-style: inherit;">'d'</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'e'</span>])</span>
-<span id="cb19-4"><span class="bu" style="color: null;
+<span id="cb82-4"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -878,13 +1126,13 @@ background-color: null;
 font-style: inherit;">\n</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span>, my_series)</span>
-<span id="cb19-5"><span class="co" style="color: #5E5E5E;
+<span id="cb82-5"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen eines DataFrames</span></span>
-<span id="cb19-6">my_dataframe <span class="op" style="color: #5E5E5E;
+<span id="cb82-6">my_dataframe <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.DataFrame({</span>
-<span id="cb19-7">    <span class="st" style="color: #20794D;
+<span id="cb82-7">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Name'</span>: [<span class="st" style="color: #20794D;
 background-color: null;
@@ -897,7 +1145,7 @@ background-color: null;
 font-style: inherit;">'David'</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Eve'</span>],</span>
-<span id="cb19-8">    <span class="st" style="color: #20794D;
+<span id="cb82-8">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Alter'</span>: [<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -910,7 +1158,7 @@ background-color: null;
 font-style: inherit;">40</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">45</span>],</span>
-<span id="cb19-9">    <span class="st" style="color: #20794D;
+<span id="cb82-9">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Stadt'</span>: [<span class="st" style="color: #20794D;
 background-color: null;
@@ -923,8 +1171,8 @@ background-color: null;
 font-style: inherit;">'Houston'</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Phoenix'</span>]</span>
-<span id="cb19-10">})</span>
-<span id="cb19-11"><span class="bu" style="color: null;
+<span id="cb82-10">})</span>
+<span id="cb82-11"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -952,19 +1200,19 @@ Ein DataFrame:
 </div>
 <section id="anschauen-der-daten-in-einem-dataframe" class="level4">
 <h4 class="anchored" data-anchor-id="anschauen-der-daten-in-einem-dataframe">Anschauen der Daten in einem DataFrame</h4>
-<div id="76629ea0" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><span class="im" style="color: #00769E;
+<div id="10b16479" class="cell" data-execution_count="43">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb84" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> pd</span>
-<span id="cb21-2"><span class="co" style="color: #5E5E5E;
+<span id="cb84-2"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen eines DataFrames</span></span>
-<span id="cb21-3">my_dataframe <span class="op" style="color: #5E5E5E;
+<span id="cb84-3">my_dataframe <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.DataFrame({</span>
-<span id="cb21-4">    <span class="st" style="color: #20794D;
+<span id="cb84-4">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Name'</span>: [<span class="st" style="color: #20794D;
 background-color: null;
@@ -977,7 +1225,7 @@ background-color: null;
 font-style: inherit;">'David'</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Eve'</span>],</span>
-<span id="cb21-5">    <span class="st" style="color: #20794D;
+<span id="cb84-5">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Alter'</span>: [<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -990,7 +1238,7 @@ background-color: null;
 font-style: inherit;">40</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">45</span>],</span>
-<span id="cb21-6">    <span class="st" style="color: #20794D;
+<span id="cb84-6">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Stadt'</span>: [<span class="st" style="color: #20794D;
 background-color: null;
@@ -1003,8 +1251,8 @@ background-color: null;
 font-style: inherit;">'Houston'</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Phoenix'</span>]</span>
-<span id="cb21-7">})</span>
-<span id="cb21-8"><span class="bu" style="color: null;
+<span id="cb84-7">})</span>
+<span id="cb84-8"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1013,10 +1261,10 @@ background-color: null;
 font-style: inherit;">\n</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span>, my_dataframe)</span>
-<span id="cb21-9"><span class="co" style="color: #5E5E5E;
+<span id="cb84-9"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Anzeigen der ersten 3 Zeilen</span></span>
-<span id="cb21-10"><span class="bu" style="color: null;
+<span id="cb84-10"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1027,10 +1275,10 @@ background-color: null;
 font-style: inherit;">"</span>, my_dataframe.head(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">3</span>))</span>
-<span id="cb21-11"><span class="co" style="color: #5E5E5E;
+<span id="cb84-11"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Anzeigen der letzten 2 Zeilen</span></span>
-<span id="cb21-12"><span class="bu" style="color: null;
+<span id="cb84-12"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1041,18 +1289,18 @@ background-color: null;
 font-style: inherit;">"</span>, my_dataframe.tail(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>))</span>
-<span id="cb21-13"><span class="co" style="color: #5E5E5E;
+<span id="cb84-13"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Anzeigen der Spaltennamen</span></span>
-<span id="cb21-14"><span class="bu" style="color: null;
+<span id="cb84-14"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Spaltennamen:"</span>, my_dataframe.columns)</span>
-<span id="cb21-15"><span class="co" style="color: #5E5E5E;
+<span id="cb84-15"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Anzeigen der Datenarten jeder Spalte</span></span>
-<span id="cb21-16"><span class="bu" style="color: null;
+<span id="cb84-16"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1061,18 +1309,18 @@ background-color: null;
 font-style: inherit;">\n</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span>, my_dataframe.dtypes)</span>
-<span id="cb21-17"><span class="co" style="color: #5E5E5E;
+<span id="cb84-17"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Anzeigen der Anzahl der Zeilen und Spalten</span></span>
-<span id="cb21-18"><span class="bu" style="color: null;
+<span id="cb84-18"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Anzahl der Zeilen und Spalten:"</span>, my_dataframe.shape)</span>
-<span id="cb21-19"><span class="co" style="color: #5E5E5E;
+<span id="cb84-19"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Anzeigen von statistischen Zusammenfassungen der numerischen Spalten</span></span>
-<span id="cb21-20"><span class="bu" style="color: null;
+<span id="cb84-20"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1081,10 +1329,10 @@ background-color: null;
 font-style: inherit;">\n</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span>, my_dataframe.describe())</span>
-<span id="cb21-21"><span class="co" style="color: #5E5E5E;
+<span id="cb84-21"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Anzeigen der Informationen über den DataFrame </span></span>
-<span id="cb21-22"><span class="bu" style="color: null;
+<span id="cb84-22"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1146,19 +1394,19 @@ Informationen:
 <section id="datenselektierung-mit-pandas" class="level3">
 <h3 class="anchored" data-anchor-id="datenselektierung-mit-pandas">Datenselektierung mit Pandas</h3>
 <p>Pandas bietet verschiedene Möglichkeiten, um Daten aus einem DataFrame auszuwählen, einschließlich der Verwendung von Spaltennamen, Zeilenindizes und Bedingungen. Hier sind einige Beispiele:</p>
-<div id="8c4d45ed" class="cell" data-execution_count="12">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><span class="im" style="color: #00769E;
+<div id="b85bc0e1" class="cell" data-execution_count="44">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb86" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> pd</span>
-<span id="cb23-2"><span class="co" style="color: #5E5E5E;
+<span id="cb86-2"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen eines DataFrames</span></span>
-<span id="cb23-3">my_dataframe <span class="op" style="color: #5E5E5E;
+<span id="cb86-3">my_dataframe <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.DataFrame({</span>
-<span id="cb23-4">    <span class="st" style="color: #20794D;
+<span id="cb86-4">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Name'</span>: [<span class="st" style="color: #20794D;
 background-color: null;
@@ -1171,7 +1419,7 @@ background-color: null;
 font-style: inherit;">'David'</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Eve'</span>],</span>
-<span id="cb23-5">    <span class="st" style="color: #20794D;
+<span id="cb86-5">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Alter'</span>: [<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -1184,7 +1432,7 @@ background-color: null;
 font-style: inherit;">40</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">45</span>],</span>
-<span id="cb23-6">    <span class="st" style="color: #20794D;
+<span id="cb86-6">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Stadt'</span>: [<span class="st" style="color: #20794D;
 background-color: null;
@@ -1195,11 +1443,11 @@ background-color: null;
 font-style: inherit;">'Chicago'</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Houston'</span>,</span>
-<span id="cb23-7">    <span class="st" style="color: #20794D;
+<span id="cb86-7">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Phoenix'</span>]</span>
-<span id="cb23-8">})</span>
-<span id="cb23-9"><span class="bu" style="color: null;
+<span id="cb86-8">})</span>
+<span id="cb86-9"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1208,10 +1456,10 @@ background-color: null;
 font-style: inherit;">\n</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span>, my_dataframe)</span>
-<span id="cb23-10"><span class="co" style="color: #5E5E5E;
+<span id="cb86-10"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Auswahl einer Spalte</span></span>
-<span id="cb23-11"><span class="bu" style="color: null;
+<span id="cb86-11"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1222,10 +1470,10 @@ background-color: null;
 font-style: inherit;">"</span>, my_dataframe[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Name'</span>])</span>
-<span id="cb23-12"><span class="co" style="color: #5E5E5E;
+<span id="cb86-12"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Auswahl mehrerer Spalten</span></span>
-<span id="cb23-13"><span class="bu" style="color: null;
+<span id="cb86-13"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1238,10 +1486,10 @@ background-color: null;
 font-style: inherit;">'Name'</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Alter'</span>]])</span>
-<span id="cb23-14"><span class="co" style="color: #5E5E5E;
+<span id="cb86-14"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Auswahl einer Zeile basierend auf dem Index</span></span>
-<span id="cb23-15"><span class="bu" style="color: null;
+<span id="cb86-15"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1252,10 +1500,10 @@ background-color: null;
 font-style: inherit;">"</span>, my_dataframe.loc[<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>])</span>
-<span id="cb23-16"><span class="co" style="color: #5E5E5E;
+<span id="cb86-16"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Auswahl von Zeilen basierend auf ihrer Position</span></span>
-<span id="cb23-17"><span class="bu" style="color: null;
+<span id="cb86-17"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1266,10 +1514,10 @@ background-color: null;
 font-style: inherit;">"</span>, my_dataframe.iloc[:<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">3</span>])</span>
-<span id="cb23-18"><span class="co" style="color: #5E5E5E;
+<span id="cb86-18"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Auswahl von Zeilen basierend auf einer Bedingung</span></span>
-<span id="cb23-19"><span class="bu" style="color: null;
+<span id="cb86-19"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1284,10 +1532,10 @@ background-color: null;
 font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">30</span>])</span>
-<span id="cb23-20"><span class="co" style="color: #5E5E5E;
+<span id="cb86-20"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Auswahl von Zeilen basierend auf einer Bedingung</span></span>
-<span id="cb23-21"><span class="bu" style="color: null;
+<span id="cb86-21"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1357,19 +1605,19 @@ Zeilen, in denen das Alter größer als 30 und kleiner gleich 40 ist:
 <section id="datenmanipulation-mit-pandas" class="level3">
 <h3 class="anchored" data-anchor-id="datenmanipulation-mit-pandas">Datenmanipulation mit Pandas</h3>
 <p>Pandas bietet eine Vielzahl von Funktionen für die Datenmanipulation, einschließlich Filtern, Gruppieren, Pivot-Tabellen und mehr. Hier sind einige Beispiele:</p>
-<div id="04953b97" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><span class="im" style="color: #00769E;
+<div id="8422cb1d" class="cell" data-execution_count="45">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb88" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> pd</span>
-<span id="cb25-2"><span class="co" style="color: #5E5E5E;
+<span id="cb88-2"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen eines DataFrames</span></span>
-<span id="cb25-3">my_dataframe <span class="op" style="color: #5E5E5E;
+<span id="cb88-3">my_dataframe <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.DataFrame({</span>
-<span id="cb25-4">    <span class="st" style="color: #20794D;
+<span id="cb88-4">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Name'</span>: [<span class="st" style="color: #20794D;
 background-color: null;
@@ -1382,7 +1630,7 @@ background-color: null;
 font-style: inherit;">'David'</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Eve'</span>],</span>
-<span id="cb25-5">    <span class="st" style="color: #20794D;
+<span id="cb88-5">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Alter'</span>: [<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -1395,7 +1643,7 @@ background-color: null;
 font-style: inherit;">40</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">45</span>],</span>
-<span id="cb25-6">    <span class="st" style="color: #20794D;
+<span id="cb88-6">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Stadt'</span>: [<span class="st" style="color: #20794D;
 background-color: null;
@@ -1408,8 +1656,8 @@ background-color: null;
 font-style: inherit;">'Houston'</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Phoenix'</span>]</span>
-<span id="cb25-7">})</span>
-<span id="cb25-8"><span class="bu" style="color: null;
+<span id="cb88-7">})</span>
+<span id="cb88-8"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1418,10 +1666,10 @@ background-color: null;
 font-style: inherit;">\n</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span>, my_dataframe)</span>
-<span id="cb25-9"><span class="co" style="color: #5E5E5E;
+<span id="cb88-9"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Filtern von Zeilen basierend auf einer Bedingung</span></span>
-<span id="cb25-10">filtered_df <span class="op" style="color: #5E5E5E;
+<span id="cb88-10">filtered_df <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> my_dataframe[my_dataframe[<span class="st" style="color: #20794D;
 background-color: null;
@@ -1430,7 +1678,7 @@ background-color: null;
 font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">30</span>]</span>
-<span id="cb25-11"><span class="bu" style="color: null;
+<span id="cb88-11"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1439,17 +1687,17 @@ background-color: null;
 font-style: inherit;">\n</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span>, filtered_df)</span>
-<span id="cb25-12"><span class="co" style="color: #5E5E5E;
+<span id="cb88-12"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Gruppieren von Daten und Berechnen von Durchschnittsalter pro Stadt</span></span>
-<span id="cb25-13">grouped_df <span class="op" style="color: #5E5E5E;
+<span id="cb88-13">grouped_df <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> my_dataframe.groupby(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Stadt'</span>)[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Alter'</span>].mean()</span>
-<span id="cb25-14"><span class="bu" style="color: null;
+<span id="cb88-14"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1458,10 +1706,10 @@ background-color: null;
 font-style: inherit;">\n</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span>, grouped_df)</span>
-<span id="cb25-15"><span class="co" style="color: #5E5E5E;
+<span id="cb88-15"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen einer Pivot-Tabelle</span></span>
-<span id="cb25-16">pivot_table <span class="op" style="color: #5E5E5E;
+<span id="cb88-16">pivot_table <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> my_dataframe.pivot_table(values<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1476,7 +1724,7 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'mean'</span>)</span>
-<span id="cb25-17"><span class="bu" style="color: null;
+<span id="cb88-17"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1519,19 +1767,19 @@ Phoenix       45.0</code></pre>
 </section>
 <section id="hinzufügen-von-daten-zu-einem-dataframe" class="level3">
 <h3 class="anchored" data-anchor-id="hinzufügen-von-daten-zu-einem-dataframe">Hinzufügen von Daten zu einem DataFrame</h3>
-<div id="a040c4f1" class="cell" data-execution_count="14">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><span class="im" style="color: #00769E;
+<div id="510b19dd" class="cell" data-execution_count="46">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> pd</span>
-<span id="cb27-2"><span class="co" style="color: #5E5E5E;
+<span id="cb90-2"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Erstellen eines DataFrames</span></span>
-<span id="cb27-3">my_dataframe <span class="op" style="color: #5E5E5E;
+<span id="cb90-3">my_dataframe <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.DataFrame({</span>
-<span id="cb27-4">    <span class="st" style="color: #20794D;
+<span id="cb90-4">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Name'</span>: [<span class="st" style="color: #20794D;
 background-color: null;
@@ -1544,7 +1792,7 @@ background-color: null;
 font-style: inherit;">'David'</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Eve'</span>],</span>
-<span id="cb27-5">    <span class="st" style="color: #20794D;
+<span id="cb90-5">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Alter'</span>: [<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -1557,7 +1805,7 @@ background-color: null;
 font-style: inherit;">40</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">45</span>],</span>
-<span id="cb27-6">    <span class="st" style="color: #20794D;
+<span id="cb90-6">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Stadt'</span>: [<span class="st" style="color: #20794D;
 background-color: null;
@@ -1570,8 +1818,8 @@ background-color: null;
 font-style: inherit;">'Houston'</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Phoenix'</span>]</span>
-<span id="cb27-7">})</span>
-<span id="cb27-8"><span class="bu" style="color: null;
+<span id="cb90-7">})</span>
+<span id="cb90-8"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1580,11 +1828,11 @@ background-color: null;
 font-style: inherit;">\n</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span>, my_dataframe)</span>
-<span id="cb27-9"></span>
-<span id="cb27-10"><span class="co" style="color: #5E5E5E;
+<span id="cb90-9"></span>
+<span id="cb90-10"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Hinzufügen einer neuen Spalte</span></span>
-<span id="cb27-11">my_dataframe[<span class="st" style="color: #20794D;
+<span id="cb90-11">my_dataframe[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Beruf'</span>] <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1599,7 +1847,7 @@ background-color: null;
 font-style: inherit;">'Künstler'</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Anwalt'</span>]</span>
-<span id="cb27-12"><span class="bu" style="color: null;
+<span id="cb90-12"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1608,11 +1856,11 @@ background-color: null;
 font-style: inherit;">\n</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span>, my_dataframe)</span>
-<span id="cb27-13"></span>
-<span id="cb27-14"><span class="co" style="color: #5E5E5E;
+<span id="cb90-13"></span>
+<span id="cb90-14"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Hinzufügen einer neuen Zeile</span></span>
-<span id="cb27-15">new_row <span class="op" style="color: #5E5E5E;
+<span id="cb90-15">new_row <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.Series({<span class="st" style="color: #20794D;
 background-color: null;
@@ -1631,14 +1879,14 @@ background-color: null;
 font-style: inherit;">'Beruf'</span>: <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Architekt'</span>})</span>
-<span id="cb27-16">my_dataframe <span class="op" style="color: #5E5E5E;
+<span id="cb90-16">my_dataframe <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.concat([my_dataframe, new_row.to_frame().T], ignore_index<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>)</span>
-<span id="cb27-17"><span class="bu" style="color: null;
+<span id="cb90-17"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1688,16 +1936,6 @@ DataFrame mit neuer Zeile:
   <category>Pandas</category>
   <guid>https://www.sefiroth.de/posts/2026-03-27-numpy-und-pandas-warum-wieso-wesshalb/</guid>
   <pubDate>Thu, 26 Mar 2026 23:00:00 GMT</pubDate>
-</item>
-<item>
-  <title></title>
-  <dc:creator>Norman Markgraf</dc:creator>
-  <link>https://www.sefiroth.de/posts/2026-03-11-integration-durch-differenzieren/</link>
-  <description><![CDATA[ undefined ]]></description>
-  <category>Mathematik</category>
-  <category>HOAX!!!</category>
-  <guid>https://www.sefiroth.de/posts/2026-03-11-integration-durch-differenzieren/</guid>
-  <pubDate>Tue, 10 Mar 2026 23:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Einfach ein paar gute Seite zum Thema RaspberryPi Pico</title>
@@ -1812,7 +2050,7 @@ DataFrame mit neuer Zeile:
   <pubDate>Wed, 04 Feb 2026 23:00:00 GMT</pubDate>
 </item>
 <item>
-  <title>Warum Exponentiation und Logarithmen wichtig sind in der Statistik.</title>
+  <title>Warum Exponentiation und Logarithmen in der Statistik wichtig sind.</title>
   <dc:creator>Norman Markgraf</dc:creator>
   <link>https://www.sefiroth.de/posts/2026-02-04-warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik/</link>
   <description><![CDATA[ 
@@ -1821,8 +2059,8 @@ DataFrame mit neuer Zeile:
 
 
 
-<section id="warum-exponentiation-und-logarithmen-wichtig-sind-in-der-statistik" class="level1">
-<h1>Warum Exponentiation und Logarithmen wichtig sind in der Statistik</h1>
+<section id="warum-exponentiation-und-logarithmen-in-der-statistik-wichtig-sind" class="level1">
+<h1>Warum Exponentiation und Logarithmen in der Statistik wichtig sind</h1>
 <p>Die Exponentiation und der Logarithmus sind wichtig in der Statistik, weil sie helfen, komplexe Zusammenhänge zu verstehen und zu modellieren. Hier sind einige Gründe, warum sie so wichtig sind:</p>
 <ol type="1">
 <li><p><strong>Daten Transformation</strong>: Viele statistische Modelle setzen voraus, dass die Daten normalverteilt sind. Durch die Anwendung von Logarithmen können schiefe Verteilungen in eine normalverteilte Form transformiert werden, was die Analyse erleichtert.</p></li>
@@ -2886,7 +3124,7 @@ font-style: inherit;">"</span></span></code></pre></div></div>
 <item>
   <title>B-Bäume und mehr: Ein Vergleich von Python-Implementierungen</title>
   <dc:creator>Norman Markgraf</dc:creator>
-  <link>https://www.sefiroth.de/posts/2026-01-04-b-baeume-und-mehr/</link>
+  <link>https://www.sefiroth.de/posts/2026-01-04-B-Baeume-und-mehr/</link>
   <description><![CDATA[ 
 
 
@@ -3017,13 +3255,13 @@ font-style: inherit;"> Sekunden"</span>)</span></code></pre></div></div>
 
  ]]></description>
   <category>Python</category>
-  <guid>https://www.sefiroth.de/posts/2026-01-04-b-baeume-und-mehr/</guid>
+  <guid>https://www.sefiroth.de/posts/2026-01-04-B-Baeume-und-mehr/</guid>
   <pubDate>Sat, 03 Jan 2026 23:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Das Lotto-Abbildungsproblem</title>
   <dc:creator>Norman Markgraf</dc:creator>
-  <link>https://www.sefiroth.de/posts/2025-12-22-das-lotto-abbildungs-problem/</link>
+  <link>https://www.sefiroth.de/posts/2025-12-22-Das-Lotto-Abbildungs-Problem/</link>
   <description><![CDATA[ 
 
 
@@ -3607,13 +3845,13 @@ font-style: inherit;"># Zurückgewonnene Zahlen</span></span></code></pre></div>
   <category>Quarto</category>
   <category>Python</category>
   <category>R</category>
-  <guid>https://www.sefiroth.de/posts/2025-12-22-das-lotto-abbildungs-problem/</guid>
+  <guid>https://www.sefiroth.de/posts/2025-12-22-Das-Lotto-Abbildungs-Problem/</guid>
   <pubDate>Sun, 21 Dec 2025 23:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Quarto-Dokumente mit WebP anstatt PNG Bilddateien erstellen</title>
   <dc:creator>Norman Markgraf</dc:creator>
-  <link>https://www.sefiroth.de/posts/2025-12-03-quarto-dokumente-mit-webp-anstatt-png/</link>
+  <link>https://www.sefiroth.de/posts/2025-12-03-Quarto-Dokumente-mit-webp-anstatt-png/</link>
   <description><![CDATA[ 
 
 
@@ -3691,7 +3929,7 @@ font-style: inherit;">false</span></span></code></pre></div></div>
 
  ]]></description>
   <category>Quarto</category>
-  <guid>https://www.sefiroth.de/posts/2025-12-03-quarto-dokumente-mit-webp-anstatt-png/</guid>
+  <guid>https://www.sefiroth.de/posts/2025-12-03-Quarto-Dokumente-mit-webp-anstatt-png/</guid>
   <pubDate>Tue, 02 Dec 2025 23:00:00 GMT</pubDate>
 </item>
 <item>
@@ -3923,7 +4161,7 @@ font-style: inherit;">/home/norman/netflixdb-postgres.sql</span></span></code></
 <item>
   <title>Beweisverfahren in der Mathematik</title>
   <dc:creator>Norman Markgraf</dc:creator>
-  <link>https://www.sefiroth.de/posts/2025-07-27-beweisverfahren/</link>
+  <link>https://www.sefiroth.de/posts/2025-07-27-Beweisverfahren/</link>
   <description><![CDATA[ 
 
 
@@ -3973,7 +4211,7 @@ font-style: inherit;">/home/norman/netflixdb-postgres.sql</span></span></code></
 
  ]]></description>
   <category>Mathematik</category>
-  <guid>https://www.sefiroth.de/posts/2025-07-27-beweisverfahren/</guid>
+  <guid>https://www.sefiroth.de/posts/2025-07-27-Beweisverfahren/</guid>
   <pubDate>Sat, 26 Jul 2025 22:00:00 GMT</pubDate>
 </item>
 <item>
@@ -6417,6 +6655,976 @@ font-style: inherit;">"male"</span>) </span>
   <category>Statistik</category>
   <guid>https://www.sefiroth.de/posts/2021-06-23-interaktionseffekte-leichter-interpretieren-durch-transformationen/</guid>
   <pubDate>Tue, 22 Jun 2021 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Wege zur Normalverteilung</title>
+  <dc:creator>Norman Markgraf</dc:creator>
+  <link>https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Der fairen Wurf einer fairen Münze, also eine Münze bei der Kopf und Zahl gleich wahrscheinlich geworfen wird, sei der Ausgang des ersten Weges.</p>
+<p>Wir können den Münzwurf mit R simulieren:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(mosaic)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2009</span>)</span>
+<span id="cb1-3"></span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rflip</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Flipping 1 coin [ Prob(Heads) = 0.5 ] ...
+
+T
+
+Number of Heads: 0 [Proportion Heads: 0]</code></pre>
+</div>
+</div>
+<p>Genauso wie den Wurf zweier Münzen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rflip</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Flipping 2 coins [ Prob(Heads) = 0.5 ] ...
+
+H H
+
+Number of Heads: 2 [Proportion Heads: 1]</code></pre>
+</div>
+</div>
+<p>Oder auch von 20 Münzwürfen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rflip</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Flipping 20 coins [ Prob(Heads) = 0.5 ] ...
+
+T T T T H H T T T H H H H T H T T H H H
+
+Number of Heads: 10 [Proportion Heads: 0.5]</code></pre>
+</div>
+</div>
+<p>Wir wollen uns dafür interessieren, wie der Zufall auf jeweils <img src="https://latex.codecogs.com/png.latex?n"> Münzwürfe einwirkt</p>
+<p>Und wieder holen dafür die drei Experiment jeweils <img src="https://latex.codecogs.com/png.latex?N=10%5E%7B4%7D"> mal und schauen uns danach anwie die Anzahl der <em>Kopf</em> Würfe variiert:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">N <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10000</span></span></code></pre></div></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">n <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb8-2">vrtlg_1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">do</span>(N) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rflip</span>(n)</span>
+<span id="cb8-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_bar</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> heads, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> vrtlg_1) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb8-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_refine</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_x_continuous</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">breaks =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span>n, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">limits =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>,n <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)))</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/index_files/figure-html/unnamed-chunk-5-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><img src="https://latex.codecogs.com/png.latex?n=2"></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">n <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb9-2">vrtlg_2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">do</span>(N) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rflip</span>(n)</span>
+<span id="cb9-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_bar</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> heads, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> vrtlg_2) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb9-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_refine</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_x_continuous</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">breaks =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span>n, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">limits =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, n <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)))</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/index_files/figure-html/unnamed-chunk-6-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><img src="https://latex.codecogs.com/png.latex?n=20"></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">n <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span></span>
+<span id="cb10-2">vrtlg_20 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">do</span>(N) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rflip</span>(n)</span>
+<span id="cb10-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_bar</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> heads, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> vrtlg_20) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb10-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_refine</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_x_continuous</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">breaks =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span>n, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">limits =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, n <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)))</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/index_files/figure-html/unnamed-chunk-7-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><img src="https://latex.codecogs.com/png.latex?n=50"></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">n <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span></span>
+<span id="cb11-2">vrtlg_50 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">do</span>(N) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rflip</span>(n)</span>
+<span id="cb11-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_bar</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> heads, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> vrtlg_50) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb11-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_refine</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_x_continuous</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">breaks =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span>n, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">limits =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, n <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)))</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/index_files/figure-html/unnamed-chunk-8-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Der faire Wurf eine fairen Münze <img src="https://latex.codecogs.com/png.latex?X"> ist aber vorallem ein Gedanken-Expermiment, bei dem wir davon ausgehen, dass die Wahrscheinlichkeit für Kopf gleich der Wahrscheinlichkeit für Zahl ist:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AP(X%20=%20%5Ctext%7B%22Kopf%22%7D)%20=%20P(X%20=%20%5Ctext%7B%22Zahl%22%7D)%20=%2050%5C,%5C%25%20=%200%7B,%7D5%0A"></p>
+<p>Wir wollen die beiden Ergebnisse kodieren: <img src="https://latex.codecogs.com/png.latex?%5Ctext%7B%22Kopf%22%7D"> mit <img src="https://latex.codecogs.com/png.latex?1"> und <img src="https://latex.codecogs.com/png.latex?%5Ctext%7B%22Zahl%22%7D"> mit <img src="https://latex.codecogs.com/png.latex?0">. Somit können wir schreiben:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AP(X%20=%200)%20%20=%200%7B,%7D5%20=%20P(X%20=%201)%0A"></p>
+<p>Für denn Fall, dass die Münze nicht mehr fair ist wollen wir vereinbaren, dass wir mit <img src="https://latex.codecogs.com/png.latex?q%20=%20P(X%20=%200)"> und <img src="https://latex.codecogs.com/png.latex?p%20=%20P(X%20=%201)"> die jeweiligen Wahrscheinlichkeiten bezeichnen wollen. Es gilt aber immer, dass <img src="https://latex.codecogs.com/png.latex?q+p%20=%201"> ist!</p>
+<p>Eine Variable <img src="https://latex.codecogs.com/png.latex?X"> die dem Zufall ein Wert <img src="https://latex.codecogs.com/png.latex?x"> zuweist, wollen wir <strong>Zufallsvariable</strong> nennen.<sup>1</sup></p>
+<p>Ausgehen von der Annahme können wir uns diese theoretischen Verteilungen auch einmal ansehen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">p <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span></span>
+<span id="cb12-2">n <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb12-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"binom"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> n, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">prob =</span> p)</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/index_files/figure-html/unnamed-chunk-9-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">n <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb13-2">tab <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tally</span>( <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> heads, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">format =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"proportion"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> vrtlg_2)</span>
+<span id="cb13-3">dist_2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(</span>
+<span id="cb13-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">names</span>(tab)),</span>
+<span id="cb13-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">density =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(tab)</span>
+<span id="cb13-6">) </span>
+<span id="cb13-7"></span>
+<span id="cb13-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"binom"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> n, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">prob =</span> p) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb13-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_point</span>(density <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> dist_2, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lightgreen"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">alpha =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7</span>)</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/index_files/figure-html/unnamed-chunk-10-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1">n <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span></span>
+<span id="cb14-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"binom"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> n, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">prob =</span> p)</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/index_files/figure-html/unnamed-chunk-11-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">n <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span></span>
+<span id="cb15-2">tab <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tally</span>( <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> heads, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">format =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"proportion"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> vrtlg_20)</span>
+<span id="cb15-3">dist_20 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(</span>
+<span id="cb15-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">names</span>(tab)),</span>
+<span id="cb15-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">density =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(tab)</span>
+<span id="cb15-6">) </span>
+<span id="cb15-7"></span>
+<span id="cb15-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"binom"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> n, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">prob =</span> p) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb15-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_point</span>(density <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> dist_20, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lightgreen"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">alpha =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7</span>)</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/index_files/figure-html/unnamed-chunk-12-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1">n <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span></span>
+<span id="cb16-2">tab <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tally</span>( <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> heads, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">format =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"proportion"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> vrtlg_50)</span>
+<span id="cb16-3">dist_50 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(</span>
+<span id="cb16-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">names</span>(tab)),</span>
+<span id="cb16-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">density =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(tab)</span>
+<span id="cb16-6">) </span>
+<span id="cb16-7"></span>
+<span id="cb16-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"binom"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> n, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">prob =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb16-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_point</span>(density <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> dist_50, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lightgreen"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">alpha =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7</span>)</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/index_files/figure-html/unnamed-chunk-13-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1">n <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span></span>
+<span id="cb17-2">N <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> n<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb17-3">vrtlg_100 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">do</span>(N) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rflip</span>(n)</span>
+<span id="cb17-4">tab <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tally</span>( <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> heads, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">format =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"proportion"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> vrtlg_100)</span>
+<span id="cb17-5">dist_100 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(</span>
+<span id="cb17-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">names</span>(tab)),</span>
+<span id="cb17-7">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">density =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(tab)</span>
+<span id="cb17-8">) </span>
+<span id="cb17-9"></span>
+<span id="cb17-10"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"binom"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> n, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">prob =</span> p) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb17-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_point</span>(density <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> dist_100, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lightgreen"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">alpha =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7</span>)</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/index_files/figure-html/unnamed-chunk-14-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">n <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span></span>
+<span id="cb18-2">N <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> n<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb18-3">vrtlg_300 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">do</span>(N) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rflip</span>(n)</span>
+<span id="cb18-4">tab <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tally</span>( <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> heads, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">format =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"proportion"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> vrtlg_300)</span>
+<span id="cb18-5">dist_300 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(</span>
+<span id="cb18-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">names</span>(tab)),</span>
+<span id="cb18-7">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">density =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(tab)</span>
+<span id="cb18-8">) </span>
+<span id="cb18-9"></span>
+<span id="cb18-10"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"binom"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> n, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">prob =</span> p) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb18-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_point</span>(density <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> dist_300, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lightgreen"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">alpha =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7</span>)</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/index_files/figure-html/unnamed-chunk-15-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Zeichnen wir nun die <em>Gauß’sche Glockenkurve</em> in rot dazu:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"binom"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> n, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">prob =</span> p) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb19-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_point</span>(density <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> dist_300, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lightgreen"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">alpha =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb19-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"norm"</span>, mean <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> n<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>p, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(n<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>p<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> p)), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span>)</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/index_files/figure-html/unnamed-chunk-16-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Die <em>Gauß’sche Glockenkurve</em> ist die <strong>Dichtefunktion</strong> der Normalverteilung und ist definiert durch:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Af(x)%20=%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%20%5Cpi%20%5Csigma%5E2%7D%7D%20e%5E%7B-%20%5Cfrac%7B(x-%5Cmu)%5E2%7D%7B2%5Csigma%5E2%7D%7D%0A"></p>
+<p>Mit den beiden Parameter <img src="https://latex.codecogs.com/png.latex?%5Cmu"> und <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"> kann man den <em>Mittelwert der Verteilung</em> (auch <strong>Erwartungswert</strong> genannt) und die <em>Varianz der Verteilung</em> einstellen.</p>
+<p>Wir haben diese Werte oben mit den theoretischen Werten der <em>Binomialverteilung</em> <img src="https://latex.codecogs.com/png.latex?%5Cmu%20=%20E%5BX%5D%20=%20p%20%5Ccdot%20n"> und <img src="https://latex.codecogs.com/png.latex?%5Csigma%20=%20%5Csqrt%7B%5Csigma%5E2%7D=%20%5Csqrt%7BVar%5BX%5D%7D%20=%20%5Csqrt%7Bn%20%5Ccdot%20p%20%5Ccdot%20(1-p)%7D"> belegt.</p>
+<p>Wir sehen, die (simulierten) relativen Häufigkeiten der Münzwürfe streben mit steigendem <img src="https://latex.codecogs.com/png.latex?N"> mehr und mehr in Richtung der (theoretischen) Wahrscheinlichkeiten der Binomialverteilung und diese (mit steigendem <img src="https://latex.codecogs.com/png.latex?n">) gegen die Gauß’sche Glockenkurve der Normalverteilung.</p>
+<p>Eine <strong>Verteilungsfunktion</strong> <img src="https://latex.codecogs.com/png.latex?F(x)"> gibt an, wie wahrscheinlich es ist, einen Wert <img src="https://latex.codecogs.com/png.latex?%5Cleq%20x"> zu beobachten:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AF(x)%20=%20P(X%20%5Cleq%20x)%0A"></p>
+<p>Natürlich ist damit immer <img src="https://latex.codecogs.com/png.latex?0%20%5Cleq%20F(x)%20%5Cleq%201">.</p>
+<p>Eine <em>empirische Verteilungsfunktion</em> <img src="https://latex.codecogs.com/png.latex?F_n(x)">gibt an, wie groß die relative Häufigkeit des eintretens von Werten <img src="https://latex.codecogs.com/png.latex?%5Cleq%20x"> bei einem Stichprobenumfang von <img src="https://latex.codecogs.com/png.latex?n"> waren: <img src="https://latex.codecogs.com/png.latex?F_n(x)%20=%20%5Cfrac%7B%5Ctext%7BAnzahl%20der%20Werte%7D%20%5Cleq%20x%7D%7Bn%7D"></p>
+<p>Betrachen wir nun <em>empirische Verteilungsfunktion</em> unserer Experimente:</p>
+<p>n = 2</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_ecdf</span>( <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> heads, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>vrtlg_2)</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/index_files/figure-html/unnamed-chunk-17-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>n = 20</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_ecdf</span>( <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> heads, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>vrtlg_20)</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/index_files/figure-html/unnamed-chunk-18-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>n = 50</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_ecdf</span>( <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> heads, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>vrtlg_50)</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/index_files/figure-html/unnamed-chunk-19-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>n = 300</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_ecdf</span>( <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> heads, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>vrtlg_300)</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/index_files/figure-html/unnamed-chunk-20-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Tragen wir zur <em>empirische Verteilungsfunktion</em> auch die <em>Verteilungsfunktion</em> der Normalverteilung von oben ein:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1">n <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span></span>
+<span id="cb24-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_ecdf</span>( <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> heads, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> vrtlg_300) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb24-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gf_dist</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"norm"</span>, mean <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> n<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>p, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(n<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>p<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> p)), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">kind=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cdf"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span>)</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/index_files/figure-html/unnamed-chunk-21-1.webp" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Die <em>empirische Verteilungsfunktion</em> strebt also gegen die (theoretisch) <em>Verteilungsfunktion</em> der Normalverteilung. Sie lautet:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AF(x)%20=%20%5Cint_%7B-%5Cinfty%7D%5Ex%20f(u)%5C,%20%5Ctext%7Bd%7D%20u%20=%20%5Cint_%7B-%5Cinfty%7D%5Ex%5Cfrac%7B1%7D%7B%5Csqrt%7B2%20%5Cpi%20%5Csigma%5E2%7D%7D%20e%5E%7B-%20%5Cfrac%7B(x-%5Cmu)%5E2%7D%7B2%5Csigma%5E2%7D%7D%0A"></p>
+
+
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Fußnoten</h2>
+
+<ol>
+<li id="fn1"><p>Eigentlich handelt es sich damit strenggenommen um eine Funktion. Und es müssen noch weitere Eigenschaften erfüllt sein. Aber darauf gehen wir hier nicht weiter ein.↩︎</p></li>
+</ol>
+</section></div> ]]></description>
+  <category>Statistik</category>
+  <guid>https://www.sefiroth.de/posts/2021-06-11-wege-zur-normalverteilung/</guid>
+  <pubDate>Thu, 10 Jun 2021 22:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

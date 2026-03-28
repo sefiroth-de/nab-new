@@ -60,6 +60,8 @@ end_time = time.time()
 print(f"Zeit für die Addition in der Liste: {end_time - start_time:0.4} Sekunden")
 ```
 
+Die angegebe Laufzeit hängen natürlich von den Rechner und den Versionen der Software ab.
+
 Der Grund wieso das alles so langsam ist, liegt unter anderem daran, dass die 10.000.000 Einträge in der Python Liste in der Schleife durchlaufen wird. Und das ist langsam, denn die ergentliche Liste ist eine Liste von Verweisen auf die in einem Objekt gespeicherten eigentlichen Werte. Python geht also (schnell) eine Liste von Referenzen durch, muss aber jedesmal (irgendwo) im Speicher den eigentlichen Werte suchen, dann anpassen und dann in der (Referenz-)Liste den nächsten suchen.
 
 Die Lösung dieses Problems ist NumPy.
@@ -84,6 +86,9 @@ end_time = time.time()
 print(f"Zeit für die Addition im NumPy-Array: {end_time - start_time:0.4} Sekunden.")
 ```
 
+Auch hier hängt die angegebene Laufzeit vom Rechner und den Software Versionen ab.
+Aber die Tendenzen zeigen sich hier schon klar. NumPy ist deutlich schneller als reines Python.
+
 Darum ist NumPy die Grundlage für die Pakete:
 
 - Tensoflow
@@ -102,33 +107,61 @@ Darum ist NumPy die Grundlage für die Pakete:
 import numpy as np
 # Erstellen eines 1D-Arrays
 array_1d = np.array([1, 2, 3, 4, 5])
+print(array_1d)
+```
+```{python}
 # Erstellen eines 2D-Arrays
 array_2d = np.array([[1, 2, 3], [4, 5, 6]])
+print(array_2d)
+```
+```{python}
 # Erstellen eines Arrays mit Nullen
 zeros_array = np.zeros((3, 3))
+print(zeros_array)
+```
+```{python}
 # Erstellen eines Arrays mit Einsen
 ones_array = np.ones((2, 4))
+print(ones_array)
+```
+```{python}
 # Erstellen eines Arrays mit einem bestimmten Wert
 full_array = np.full((2, 3), 7)
+print(full_array)
+```
+```{python}
 # Erstellen eines Arrays mit zufälligen Werten
 random_array = np.random.rand(4, 4)
+print(random_array)
+```
+```{python}
 # Erstellen eines Arrays der ersten 10 natürlichen Zahlen
 arange_array = np.arange(10)
+print(arange_array)
+```
+```{python}
 # Erstellen eines Arrays mit fünf gleichmäßig verteilten Werten zwischen 0 und 1
 linspace_array = np.linspace(0, 1, 5)
+print(linspace_array)
 ```
 
-#### NumPy Array Gestalt (shape), Größe (size) und Dimensionen (ndim)
+#### Gestalt (shape), Größe (size) und Dimensionen (ndim) von NumPy Arrays 
 
 ```{python}
 import numpy as np
 # Erstellen eines 2D-Arrays
 array_2d = np.array([[1, 2, 3], [4, 5, 6]])
 print("Array:\n", array_2d)
+```
+```{python}
 # Form des Arrays
 print("Shape:", array_2d.shape)
+```
+```{python}
 # Größe des Arrays
 print("Size:", array_2d.size)
+```
+```{python}
 # Anzahl der Dimensionen
 print("Number of dimensions:", array_2d.ndim)
 ```
@@ -139,16 +172,25 @@ print("Number of dimensions:", array_2d.ndim)
 import numpy as np
 # Erstellen eines 2D-Arrays
 array_2d = np.array([[1, 2, 3], [4, 5, 6]])
-print("Ein 2D-Array:",array_2d)
-
+print("Ein 2D-Array:\n",array_2d)
+```
+```{python}
 # Zugriff auf ein Element
-print("Element at (0, 1):", array_2d[0, 1])
+print("Element at (0, 1):\n", array_2d[0, 1])
+```
+```{python}
 # Zugriff auf eine Zeile
-print("First row:", array_2d[0])
+print("First row:\n", array_2d[0])
+```
+```{python}
 # Zugriff auf eine Spalte
-print("Second column:", array_2d[:, 1])
+print("Second column:\n", array_2d[:, 1])
+```
+```{python}
 # Slicing eines Subarrays
 print("Subarray (first two rows and first two columns):\n", array_2d[:2, :2])
+```
+```{python}
 # Slicing eines Submatrix
 print("Submatrix (last row and last two columns):\n", array_2d[1:, 1:])
 ```
@@ -157,29 +199,43 @@ print("Submatrix (last row and last two columns):\n", array_2d[1:, 1:])
 import numpy as np
 # Erstellen eines 1D-Arrays
 array_1d = np.array([1, 2, 3, 4, 5])
-print("Ein 1D-Array:", array_1d)
-
+print("Ein 1D-Array:\n", array_1d)
+```
+```{python}
 # Zugriff auf ein Element
-print("Element at index 2:", array_1d[2])
+print("Element at index 2:\n", array_1d[2])
+```
+```{python}
 # Slicing eines Subarrays
-print("Subarray (die ersten 3 Elemente):", array_1d[:3])
-print("Subarray (die Elemente an der 2. und 3. Stelle):", array_1d[2:4])
-
+print("Subarray (die ersten 3 Elemente):\n", array_1d[:3])
+```
+```{python}
+print("Subarray (die Elemente an der 2. und 3. Stelle):\n", array_1d[2:4])
 ```
 
-#### NumPy Array vektorisierte Operationen
+#### Vektorisierte Operationen auf NumPy Arrays
 
 ```{python}
 import numpy as np
 # Erstellen eines 1D-Arrays
 array_1d = np.array([1, 2, 3, 4, 5])
-print("Ein 1D-Array:", array_1d)
+print("Ein 1D-Array:\n", array_1d)
+```
+```{python}
 # Vektorisierte Operationen
-print("Array + 10:", array_1d + 10)
-print("Array * 2:", array_1d * 2)
-print("Array - 1:", array_1d - 1)
-print("Array / 2:", array_1d / 2)
-print("Wurzel aus einem Array", np.sqrt(array_1d))
+print("Array + 10:\n", array_1d + 10)
+```
+```{python}
+print("Array * 2:\n", array_1d * 2)
+```
+```{python}
+print("Array - 1:\n", array_1d - 1)
+```
+```{python}
+print("Array / 2:\n", array_1d / 2)
+```
+```{python}
+print("Wurzel aus einem Array:\n", np.sqrt(array_1d))
 ```
 
 ```{python}
@@ -187,13 +243,24 @@ import numpy as np
 # Erstellen zweier 1D-Arrays
 a = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 b = np.array([10, 9, 8, 7, 6, 5, 4, 3, 2, 1])
-print("Array a:", a)
-print("Array b:", b)
-
+```
+```{python}
+print("Array a:\n", a)
+```
+```{python}
+print("Array b:\n", b)
+```
+```{python}
 # Vektorisierte Operationen zwischen Arrays
 a + b
+```
+```{python}
 a * b
+```
+```{python}
 a - b
+```
+```{python}
 a / b
 ```
 
@@ -210,12 +277,18 @@ import numpy as np
 # Erstellen eines 1D-Arrays mit 12 Elementen
 array_1d = np.arange(12) + 1
 print("Ein 1D-Array:", array_1d)
+```
+```{python}
 # Reshaping in ein 2D-Array mit 3 Zeilen und 4
 array_2d = array_1d.reshape(3, 4)
 print("Reshaped Array (3x4):\n", array_2d)
+```
+```{python}
 # Reshaping in ein 2D-Array mit 4 Zeilen und 3
 array_2d_4x3 = array_1d.reshape(4, 3)
 print("Reshaped Array (4x3):\n", array_2d_4x3)
+```
+```{python}
 # Reshaping in ein 3D-Array mit 2 Blöcken, 2 Zeilen und 3 Spalten
 array_3d = array_1d.reshape(2, 2, 3)
 print("Reshaped Array (2x2x3):\n", array_3d)
