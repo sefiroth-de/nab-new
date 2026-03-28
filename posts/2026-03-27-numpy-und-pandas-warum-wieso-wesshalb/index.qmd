@@ -36,7 +36,7 @@ atische Operationen, lineare Algebra, Fourier-Transformationen und vieles mehr. 
 
 ### Beispiel
 
-Stellen wir uns vor, wir wollen 1 Millionen Zahlen in einer Python Liste speichern.
+Stellen wir uns vor, wir wollen 10 Millionen Zahlen in einer Python Liste speichern.
 
 Eine Python Liste aber:
 
@@ -49,7 +49,7 @@ Stellen wir uns vor, wie wollen zu jeder Zahl 10 hinzuaddieren. Mit einer Python
 ```{python}
 import time
 # Erstellen einer Liste mit 1 Million Zahlen
-my_list = list(range(1_000_000))
+my_list = list(range(10_000_000))
 # Startzeit
 start_time = time.time()
 # Hinzufügen von 10 zu jedem Element in der Liste
@@ -60,7 +60,7 @@ end_time = time.time()
 print(f"Zeit für die Addition in der Liste: {end_time - start_time:0.4} Sekunden")
 ```
 
-Der Grund wieso das alles so langsam ist, liegt unter anderem daran, dass die 1.000.000 Einträge in der Python Liste in der Schleife durchlaufen wird. Und das ist langsam, denn die ergentliche Liste ist eine Liste von Verweisen auf die in einem Objekt gespeicherten eigentlichen Werte. Python geht also (schnell) eine Liste von Referenzen durch, muss aber jedesmal (irgendwo) im Speicher den eigentlichen Werte suchen, dann anpassen und dann in der (Referenz-)Liste den nächsten suchen.
+Der Grund wieso das alles so langsam ist, liegt unter anderem daran, dass die 10.000.000 Einträge in der Python Liste in der Schleife durchlaufen wird. Und das ist langsam, denn die ergentliche Liste ist eine Liste von Verweisen auf die in einem Objekt gespeicherten eigentlichen Werte. Python geht also (schnell) eine Liste von Referenzen durch, muss aber jedesmal (irgendwo) im Speicher den eigentlichen Werte suchen, dann anpassen und dann in der (Referenz-)Liste den nächsten suchen.
 
 Die Lösung dieses Problems ist NumPy.
 
@@ -74,7 +74,7 @@ NumPy nutzt auch Vektorisierung, um Operationen auf Arrays effizienter durchzuf�
 import numpy as np
 import time
 # Erstellen eines NumPy-Arrays mit 1 Million Zahlen
-my_array = np.arange(1_000_000)
+my_array = np.arange(10_000_000)
 # Startzeit
 start_time = time.time()
 # Hinzufügen von 10 zu jedem Element im Array

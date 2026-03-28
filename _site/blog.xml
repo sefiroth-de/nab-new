@@ -37,7 +37,7 @@
 <p><strong>“NumPy = schnelle Mathematik + feste Typen + große Reihungen” in Python</strong></p>
 <section id="beispiel" class="level3">
 <h3 class="anchored" data-anchor-id="beispiel">Beispiel</h3>
-<p>Stellen wir uns vor, wir wollen 1 Millionen Zahlen in einer Python Liste speichern.</p>
+<p>Stellen wir uns vor, wir wollen 10 Millionen Zahlen in einer Python Liste speichern.</p>
 <p>Eine Python Liste aber:</p>
 <ul>
 <li>Speichert die Werte irgendwo im Speicher und nicht unmittelbar hintereinander.</li>
@@ -45,7 +45,7 @@
 <li>Ist nicht für numerische Berechnungen optimiert, da jedes Objekt individuell behandelt werden muss.</li>
 </ul>
 <p>Stellen wir uns vor, wie wollen zu jeder Zahl 10 hinzuaddieren. Mit einer Python Liste müssten wir eine Schleife verwenden, um durch die Liste zu iterieren und die Addition für jedes Element durchzuführen, was sehr langsam sein kann.</p>
-<div id="b375b61a" class="cell" data-execution_count="1">
+<div id="1e900d6d" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> time</span>
@@ -60,7 +60,7 @@ font-style: inherit;">list</span>(<span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1_000_000</span>))</span>
+font-style: inherit;">10_000_000</span>))</span>
 <span id="cb1-4"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Startzeit</span></span>
@@ -106,14 +106,14 @@ font-style: inherit;">:0.4}</span><span class="ss" style="color: #20794D;
 background-color: null;
 font-style: inherit;"> Sekunden"</span>)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Zeit für die Addition in der Liste: 0.09399 Sekunden</code></pre>
+<pre><code>Zeit für die Addition in der Liste: 0.8917 Sekunden</code></pre>
 </div>
 </div>
-<p>Der Grund wieso das alles so langsam ist, liegt unter anderem daran, dass die 1.000.000 Einträge in der Python Liste in der Schleife durchlaufen wird. Und das ist langsam, denn die ergentliche Liste ist eine Liste von Verweisen auf die in einem Objekt gespeicherten eigentlichen Werte. Python geht also (schnell) eine Liste von Referenzen durch, muss aber jedesmal (irgendwo) im Speicher den eigentlichen Werte suchen, dann anpassen und dann in der (Referenz-)Liste den nächsten suchen.</p>
+<p>Der Grund wieso das alles so langsam ist, liegt unter anderem daran, dass die 10.000.000 Einträge in der Python Liste in der Schleife durchlaufen wird. Und das ist langsam, denn die ergentliche Liste ist eine Liste von Verweisen auf die in einem Objekt gespeicherten eigentlichen Werte. Python geht also (schnell) eine Liste von Referenzen durch, muss aber jedesmal (irgendwo) im Speicher den eigentlichen Werte suchen, dann anpassen und dann in der (Referenz-)Liste den nächsten suchen.</p>
 <p>Die Lösung dieses Problems ist NumPy.</p>
 <p>Mit NumPy können wir ein Array erstellen, das die Zahlen direkt hintereinander im Speicher speichert und die Werte als numerische Datentypen behandelt, da es davon ausgeht, dass diese alle vom selben Datentyp sind. (Python schaut erst in den Metadaten des Objekts nach, ob dem so ist. Das kostet auch Zeit.) Dadurch können wir die Addition von 10 zu jedem Element in einem einzigen Schritt durchführen, ohne eine Python-Schleife zu verwenden, was viel schneller ist.</p>
 <p>Okay, wir durchlaufen schon eine Schleife, aber diese muss nicht nach dem eigentlichen Objekt mit dem Eintrag in Speicher suchen. Denn im Array sind alle Objekte vom selbern Datentyp und belegen immer den selber Speicherplatz und das hintereinander. Wir springen also direkt zum nächsten Eintrag, ändern und gehen weiter. Das ist deutlich schneller und ermöglicht das die Verarbeitung optimiert ist. NumPy nutzt auch Vektorisierung, um Operationen auf Arrays effizienter durchzuführen, indem es sie in C (oder Fortran) ausführt, anstatt in Python.</p>
-<div id="9aa07531" class="cell" data-execution_count="2">
+<div id="159b36f0" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
@@ -129,7 +129,7 @@ font-style: inherit;"># Erstellen eines NumPy-Arrays mit 1 Million Zahlen</span>
 background-color: null;
 font-style: inherit;">=</span> np.arange(<span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1_000_000</span>)</span>
+font-style: inherit;">10_000_000</span>)</span>
 <span id="cb3-5"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Startzeit</span></span>
@@ -164,7 +164,7 @@ font-style: inherit;">:0.4}</span><span class="ss" style="color: #20794D;
 background-color: null;
 font-style: inherit;"> Sekunden."</span>)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Zeit für die Addition im NumPy-Array: 0.0004673 Sekunden.</code></pre>
+<pre><code>Zeit für die Addition im NumPy-Array: 0.006094 Sekunden.</code></pre>
 </div>
 </div>
 <p>Darum ist NumPy die Grundlage für die Pakete:</p>
@@ -181,7 +181,7 @@ font-style: inherit;"> Sekunden."</span>)</span></code></pre></div></div>
 <h3 class="anchored" data-anchor-id="ein-paar-numpy-grundlagen">Ein paar NumPy Grundlagen</h3>
 <section id="numpy-arrays-erstellen" class="level4">
 <h4 class="anchored" data-anchor-id="numpy-arrays-erstellen">NumPy Arrays erstellen</h4>
-<div id="60bc5037" class="cell" data-execution_count="3">
+<div id="5075883c" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
@@ -287,7 +287,7 @@ font-style: inherit;">5</span>)</span></code></pre></div></div>
 </section>
 <section id="numpy-array-gestalt-shape-größe-size-und-dimensionen-ndim" class="level4">
 <h4 class="anchored" data-anchor-id="numpy-array-gestalt-shape-größe-size-und-dimensionen-ndim">NumPy Array Gestalt (shape), Größe (size) und Dimensionen (ndim)</h4>
-<div id="91e76224" class="cell" data-execution_count="4">
+<div id="e448fa53" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
@@ -356,7 +356,7 @@ Number of dimensions: 2</code></pre>
 </section>
 <section id="numpy-array-indexierung-und-slicing" class="level4">
 <h4 class="anchored" data-anchor-id="numpy-array-indexierung-und-slicing">NumPy Array Indexierung und Slicing</h4>
-<div id="5c55619a" class="cell" data-execution_count="5">
+<div id="1b554c1f" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
@@ -463,7 +463,7 @@ Submatrix (last row and last two columns):
  [[5 6]]</code></pre>
 </div>
 </div>
-<div id="8ace27ac" class="cell" data-execution_count="6">
+<div id="31fd84d7" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
@@ -530,7 +530,7 @@ Subarray (die Elemente an der 2. und 3. Stelle): [3 4]</code></pre>
 </section>
 <section id="numpy-array-vektorisierte-operationen" class="level4">
 <h4 class="anchored" data-anchor-id="numpy-array-vektorisierte-operationen">NumPy Array vektorisierte Operationen</h4>
-<div id="5656b7db" class="cell" data-execution_count="7">
+<div id="c21e45e1" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
@@ -610,7 +610,7 @@ Array / 2: [0.5 1.  1.5 2.  2.5]
 Wurzel aus einem Array [1.         1.41421356 1.73205081 2.         2.23606798]</code></pre>
 </div>
 </div>
-<div id="3d24af07" class="cell" data-execution_count="8">
+<div id="60e55ea5" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
@@ -708,7 +708,7 @@ Array b: [10  9  8  7  6  5  4  3  2  1]</code></pre>
 </section>
 <section id="reshaping-umorganisieren-von-numpy-arrays" class="level4">
 <h4 class="anchored" data-anchor-id="reshaping-umorganisieren-von-numpy-arrays">Reshaping (umorganisieren von NumPy Arrays)</h4>
-<div id="5ed6ba5d" class="cell" data-execution_count="9">
+<div id="7cb504c3" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
@@ -835,7 +835,7 @@ Reshaped Array (2x2x3):
 <li><p>Eine Series ist eine eindimensionale, beschriftete Datenstruktur, die eine Liste von Werten enthält. Sie kann als eine Art erweiterte Liste betrachtet werden, die zusätzlich zu den Werten auch Indizes hat.</p></li>
 <li><p>Ein DataFrame ist eine zweidimensionale, tabellarische Datenstruktur, die aus mehreren Series besteht. Es ist vergleichbar mit einer Tabelle in einer Datenbank oder einem Arbeitsblatt in Excel, wobei Zeilen und Spalten beschriftet sind.</p></li>
 </ul>
-<div id="31ee9788" class="cell" data-execution_count="10">
+<div id="c4e31b98" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
@@ -952,7 +952,7 @@ Ein DataFrame:
 </div>
 <section id="anschauen-der-daten-in-einem-dataframe" class="level4">
 <h4 class="anchored" data-anchor-id="anschauen-der-daten-in-einem-dataframe">Anschauen der Daten in einem DataFrame</h4>
-<div id="f65887a0" class="cell" data-execution_count="11">
+<div id="76629ea0" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
@@ -1146,7 +1146,7 @@ Informationen:
 <section id="datenselektierung-mit-pandas" class="level3">
 <h3 class="anchored" data-anchor-id="datenselektierung-mit-pandas">Datenselektierung mit Pandas</h3>
 <p>Pandas bietet verschiedene Möglichkeiten, um Daten aus einem DataFrame auszuwählen, einschließlich der Verwendung von Spaltennamen, Zeilenindizes und Bedingungen. Hier sind einige Beispiele:</p>
-<div id="c19cded7" class="cell" data-execution_count="12">
+<div id="8c4d45ed" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
@@ -1357,7 +1357,7 @@ Zeilen, in denen das Alter größer als 30 und kleiner gleich 40 ist:
 <section id="datenmanipulation-mit-pandas" class="level3">
 <h3 class="anchored" data-anchor-id="datenmanipulation-mit-pandas">Datenmanipulation mit Pandas</h3>
 <p>Pandas bietet eine Vielzahl von Funktionen für die Datenmanipulation, einschließlich Filtern, Gruppieren, Pivot-Tabellen und mehr. Hier sind einige Beispiele:</p>
-<div id="7d895032" class="cell" data-execution_count="13">
+<div id="04953b97" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
@@ -1519,7 +1519,7 @@ Phoenix       45.0</code></pre>
 </section>
 <section id="hinzufügen-von-daten-zu-einem-dataframe" class="level3">
 <h3 class="anchored" data-anchor-id="hinzufügen-von-daten-zu-einem-dataframe">Hinzufügen von Daten zu einem DataFrame</h3>
-<div id="d55400d3" class="cell" data-execution_count="14">
+<div id="a040c4f1" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
