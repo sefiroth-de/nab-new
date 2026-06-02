@@ -1,0 +1,456 @@
+---
+title: "Lineare und logistische Regression in Python"
+author: "Norman Markgraf"
+lang: de-DE
+date: "2026-05-30"
+date-modified: last-modified
+word-count: true
+reading-time: true
+#draft: true
+categories: 
+  - Statistik
+  - Lineare Regression
+  - Logistische Regression
+  - Python
+---
+
+## Vorbereitung
+
+Wir laden die Schwertlinien Datentabelle (engl. _iris flower data set_) von Anderson bzw. Fisher. ^[vgl.: <https://de.wikipedia.org/wiki/Schwertlilien-Datensatz>]
+
+Die Datentabelle enthält 150 Messungen von fünf Attributen: 
+
+- Länge des Kelchblatts (sepal length in cm), 
+- Breite des Kelchblatts (sepal width in cm), 
+- Länge des Kronblatts (petal length in cm), 
+- Breite des Kronblatts (petal width in cm) sowie 
+- Spezies (Iris setosa = 0, Iris versicolor = 1 und  Iris virginica = 2)
+
+Wir laden sie aus dem Paket `sklearn.datasets` mit dem Befehl `load_iris()`:
+
+```{python}
+from sklearn.datasets import load_iris
+import pandas as pd
+
+iris = load_iris()
+X = pd.DataFrame(iris.data, columns=iris.feature_names)
+y = iris.target
+
+X.head()
+```
+```{python}
+y
+```
+
+## (Einfache) Lineare Regression
+
+Wir beginnen mit einer einfachen linearen Regression. 
+Dabei erstellen wir ein Model, bei dem wir die Länge des Kronblatts (_petal length_) auf Grundlage der Länge des Kelchblatts (_sepal length_) modellieren wollen.
+
+```{python}
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
+
+# Zielvariable y_reg: Petal Length
+y_reg = X["petal length (cm)"]
+# Modellierungsvariable X_reg: Sepal Legth
+X_reg = X.drop(columns=["petal length (cm)", "sepal width (cm)", "petal width (cm)"])
+```
+
+Wir teilen nun unsere Daten in Test- und Trainingsdaten auf. Dabei sollen $0.2=20\,\%$ der Daten zu Testdaten werden und $1-0.2=0.8=80\,\%$ zu Trainingsdaten.
+
+Die Auswahl erfolgt zufällig. Wobei wir hier einen mit `random_state=2009` dafür sorgen, dass dieser Zufall reproduzierbar ist.
+
+```{python}
+# Aufteilen in Test- und Trainingsdaten
+X_train, X_test, y_train, y_test = train_test_split(X_reg, y_reg, test_size=0.2, random_state=2009)
+```
+
+Nun erstellen wir das lineare Regressionmodell und trainieren dieses mit den Daten `X_train` und `y_train`
+
+```{python}
+# Modell
+linreg = LinearRegression()
+linreg.fit(X_train, y_train)
+```
+
+Um das Modell zu prüfen lassen wir es nun aus unseren Testdaten (`X_test`) die Zieldaten (`y_pred`) modellieren:
+
+```{python}
+# Vorhersage
+y_pred = linreg.predict(X_test)
+```
+
+Da wir mit `y_test` die tatsächlichen Daten kennen, können wir das nun mit unserem vom Modell modellierten Werten vergleichen und so unsere Modell bewerten.
+
+Wir nutzen dazu das die mittlere quadratische Abweichung (engl. _mean squared error_, kurz _MSE_) und das Bestimmtheitsmaß $R^2$.
+
+```{python}
+print("MSE:", mean_squared_error(y_test, y_pred))
+print("R^2:", linreg.score(X_reg, y_reg))
+```
+
+Wir können die Regressiongerade mit Hilfe der Koeffizienten und der Ordinate (engl.: _Intercept_) bestimmen:
+
+```{python}
+#| echo: false
+print("Koeffizienten:", linreg.coef_)
+print("Intercept:", linreg.intercept_)
+```
+
+
+```{python}
+#| echo: false
+from IPython.display import Markdown;
+a = round(linreg.coef_[0].item(), 4)
+b = round(linreg.intercept_.item(), 4)
+pm = Markdown("+") if b >= 0 else Markdown("-")
+absb = abs(b)
+```
+
+Daraus ergibt sich für die Regressiongerade die Darstellung:
+
+$$
+  \hat{y} = \hat{f}(x) \approx `{python} a` \cdot x `{python} pm`  `{python} absb`
+$$
+
+Schauen wir uns das Streudiagramm unserer Test-und Trainingsdaten mit der Regressiongeraden an:
+
+```{python}
+#| warning: false
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+plt.figure(figsize=(8, 5))
+
+# Streudiagramm der Trainingsdaten
+plt.scatter(X_train, y_train, color="blue", label="Trainingswerte")
+plt.scatter(X_test, y_test, color="green", label="Testwerte")
+
+# Regressionsgerade
+xp = np.linspace(4,8,200)
+yp = a * xp + b
+pm = "+" if b >= 0 else "-"
+plt.plot(xp, yp, label=r'$\hat{y}$'+f'= {a}x {pm} {absb}', color='red')
+
+
+plt.xlabel("Länge des Kelchblatts (cm)")
+plt.ylabel("Länge des Kronblatts (cm)")
+plt.title("Lineare Regression auf den Liliendaten")
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+
+## (Multiple) Lineare Regression 
+
+Wir wollen nun bei der Modellierung auf alle drei anderen numerischen Variabeln zurpückgreifen. Das führt zu einer multiplen linearen Regression.
+
+
+```{python}
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
+
+# Zielvariable: Petal Length
+y_reg = X["petal length (cm)"]
+
+# Modellierungsvariablen: Sepal Width, Petal Length und Petal Width
+X_reg = X.drop(columns=["petal length (cm)"])
+
+# Aufteilen in Test- und Trainingsdaten
+X_train, X_test, y_train, y_test = train_test_split(X_reg, y_reg, test_size=0.20, random_state=2009)
+
+# Modell
+linreg = LinearRegression()
+linreg.fit(X_train, y_train)
+
+# Vorhersage
+y_pred = linreg.predict(X_test)
+
+print("MSE:", mean_squared_error(y_test, y_pred))
+print("R^2:", linreg.score(X_reg, y_reg))
+```
+
+```{python}
+print("Koeffizienten:", linreg.coef_)
+print("Intercept:", linreg.intercept_)
+```
+
+Wir erhalten somit die folgende Regressionsfunktion:
+```{python}
+#| echo: false
+from IPython.display import Markdown;
+a1 = round(linreg.coef_[0].item(), 4)
+a2 = round(linreg.coef_[1].item(), 4)
+a3 = round(linreg.coef_[2].item(), 4)
+b = round(linreg.intercept_.item(), 4)
+pm1 = Markdown("+") if a1 >= 0 else Markdown("-")
+pm2 = Markdown("+") if a2 >= 0 else Markdown("-")
+pm3 = Markdown("+") if a3 >= 0 else Markdown("-")
+pmb = Markdown("+") if b >= 0 else Markdown("-")
+```
+
+$$
+  \hat{y} = \hat{f}(x_1, x_2, x_3) 
+          = `{python} a1` \cdot x_1 `{python} pm2` 
+            `{python} abs(a2)` \cdot x_2 `{python} pm3` 
+            `{python} abs(a3)` \cdot x_3 `{python} pmb` `{python} abs(b)`  
+$$
+
+
+
+## Einfache Logistische Regression 
+
+
+Unsere Liliendaten bestehen aus den Längen und Breiten der Kelch- bzw. Korbblüten von drei Lilienarten. 
+In der Variable `y` sind diese Arten  wie folgt kodiert:
+
+0 = setosa
+
+1 = versicolor
+
+2 = virginica
+
+Wir schauen uns zunächst nur die Iris setosa an, dafür setzen wir 'y' immer dann auf 1, wenn eine solche Lilienart vorliegt, sonst auf 0:
+
+```{python}
+y_setosa = np.where( y == 0, 1, 0)
+y_setosa
+X_setosa = X.drop(columns=["petal length (cm)", "sepal width (cm)", "petal width (cm)"])
+X_setosa
+```
+
+Betrachten wir nun unsere Situation als Streudiagramm:
+
+```{python}
+plt.figure(figsize=(8, 5))
+
+plt.subplot(1,2,1)
+setosa = X_setosa[y_setosa == 1]
+notsetosa = X_setosa[y_setosa == 0]
+plt.ylim(3,8)
+setosa.boxplot()
+plt.title("Iris setosa")
+plt.subplot(1, 2, 2)
+notsetosa.boxplot()
+plt.ylim(3, 8)
+plt.title("Nicht Iris setosa")
+
+
+#grp =[X_setosa[y_setosa == g] for g in (0, 1)]
+#plt.boxplot(grp, tick_labels=["I. setosa", "Nicht I. setosa"])
+plt.show()
+```
+
+
+Wenn wir eine lineare Regression nur der ??? durchführen würden, so sähe das wie folgt aus:
+
+```{python}
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
+
+# Aufteilen in Test- und Trainingsdaten
+X_train, X_test, y_train, y_test = train_test_split(X_setosa, y_setosa, test_size=0.2, random_state=2009)
+#X_train
+#y_train
+```
+
+```{python}
+linmod_linreg = LinearRegression()
+linmod_linreg.fit(X_train, y_train)
+```
+```{python}
+#| echo: false
+print("Koeffizienten:", linmod_linreg.coef_)
+print("Intercept:", linmod_linreg.intercept_)
+```
+
+
+```{python}
+#| echo: false
+from IPython.display import Markdown;
+a = round(linmod_linreg.coef_[0].item(), 4)
+b = round(linmod_linreg.intercept_.item(), 4)
+pm = Markdown("+") if b >= 0 else Markdown("-")
+absb = abs(b)
+```
+
+Das Streudiagramm
+
+```{python}
+#| warning: false
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+plt.figure(figsize=(8, 5))
+
+# Streudiagramm der Trainingsdaten
+plt.scatter(X_train, y_train, color="blue", label="Trainingswerte")
+# plt.scatter(X_test, y_test, color="green", label="Testwerte")
+
+# Regressionsgerade
+xp = np.linspace(4,8,200)
+yp = a * xp + b
+pm = "+" if b >= 0 else "-"
+plt.plot(xp, yp, label=r'$\hat{y}$'+f'= {a}x {pm} {absb}', color='red')
+
+
+plt.xlabel("Länge des Kelchblatts (cm)")
+plt.ylabel("Länge des Kronblatts (cm)")
+plt.title("Lineare Regression auf den Liliendaten")
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+Statt des linearen Ansatzes, wollen wir eine Wahrscheinlichkeit modellieren ob eine entsprechende Länge des Kelchsblattes für oder gegen eine Iris setosa spricht.
+
+```{python}
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+
+# Modell
+logreg = LogisticRegression(max_iter=200)
+logreg.fit(X_train, y_train)
+```
+```{python}
+a = round(logreg.coef_.item(), 4)
+b = round(logreg.intercept_.item(), 4)
+```
+
+```{python}
+#| warning: false
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+plt.figure(figsize=(8, 5))
+
+# Streudiagramm der Trainingsdaten
+plt.scatter(X_train, y_train, color="blue", label="Trainingswerte")
+plt.scatter(X_test, y_test, color="green", label="Testwerte")
+
+# Regressionsfunktion ermitteln
+import pandas as pd
+
+xp = pd.DataFrame(
+    np.linspace(4, 8, 200),
+    columns=["sepal length (cm)"]
+)
+yp = logreg.predict_proba(xp)[:,1] 
+pm = "+" if b >= 0 else "-"
+plt.plot(xp, yp, label=r'$P(y = 1) = $'+f'expit({a}x {pm} {absb})', color='red')
+
+
+plt.xlabel("Länge des Kelchblatts (cm)")
+plt.ylabel("Wahrscheinlichkeit für Iris setosa")
+plt.title("Logistische Regression auf den Liliendaten")
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+
+Dabei bezeichnet $expit(x)$ die logistische Funktion (auch sigmonide Funktion genannt) und ist die Umkehrfunktion der $logit$-Funktion.
+
+
+Wir können an der Grafik schon erkennen, das unser Ansatz so nicht unbedingt optimal ist. Schauen wir uns aber dennoch die Gütemaße an:
+
+```{python}
+y_test
+y_pred = logreg.predict(X_test)
+y_pred
+```
+
+```{python}
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+print("Precision:", precision_score(y_test, y_pred))
+
+print("Recall:", recall_score(y_test, y_pred))
+
+print("F1-Score:", f1_score(y_test, y_pred))
+```
+Etwas detailierter können wir uns das mit dem folgenden Befehl komplett ansehen:
+
+```{python}
+print(classification_report(y_test, y_pred, target_names=["positiv", "negativ"], digits=3))
+```
+
+Wagen wir kurz einen Blick auf alle Daten (Test- wie Trainingsdaten):
+
+```{python}
+print(classification_report(y_setosa, logreg.predict(X_setosa), target_names=["negativ", "positiv"], digits=3))
+```
+
+
+
+## Multinomiale Logistische Regression
+
+```{python}
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report
+```
+
+Wir teilen unsere Daten wieder in Test- und Trainingsdaten auf:
+
+```{python}
+# Klassifikationsdaten
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=2009)
+```
+
+Erstelen wir nun ein logistisches Regressionsmodell und trainieren dieses.
+
+```{python}
+# Modell
+logreg = LogisticRegression(max_iter=200)
+logreg.fit(X_train, y_train)
+```
+
+Erzeugen wir nun aus unserem Modell eine Vorhersage für die Testdaten:
+
+```{python}
+# Vorhersage
+y_pred = logreg.predict(X_test)
+```
+
+Schauen wir uns für die Testdaten einmal die echten und vorhergesagten Werte an:
+
+```{python}
+# Vergleich der Testdaten
+y_test
+y_pred
+```
+
+Berechnen wir die üblichen Gütemaße:
+
+```{python}
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+print("Precision:", precision_score(y_test, y_pred, average='weighted'))
+
+print("Recall:", recall_score(y_test, y_pred, average='weighted'))
+
+print("F1-Score:", f1_score(y_test, y_pred, average='weighted'))
+```
+
+Etwas detailierter können wir uns das mit dem folgenden Befehl komplett ansehen:
+
+```{python}
+print(classification_report(y_test, y_pred, target_names=iris.target_names, digits=3))
+```
+
+Wagen wir kurz einen Blick auf alle Daten (Test- wie Trainingsdaten):
+
+```{python}
+print(classification_report(y, logreg.predict(X), target_names=iris.target_names, digits=3))
+```

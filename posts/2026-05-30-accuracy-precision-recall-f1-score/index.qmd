@@ -1,0 +1,125 @@
+---
+title: "Accuracy, Precision, Recall und F1-Score kurz erklärt"
+author: "Norman Markgraf"
+lang: de-DE
+date: "2026-05-30"
+date-modified: last-modified
+word-count: true
+reading-time: true
+draft: true
+categories: 
+  - Statistik
+  - Gütemaße
+  - Accuracy
+  - Precision
+  - Recall
+  - F1-Score
+  - F1-Maß
+---
+
+## Tatsächlich Positiv
+
+Die Anzahl der *tatsächlich positiven* Objekte (engl. **real positiv**) wird mit $P$ bezeichnet.
+
+
+## Tatsächlich Negativ
+
+Die Anzahl der *tatsächlich negativen* Objekte (engl. **real negativ**) wird mit $N$ bezeichnet.
+
+
+## Gesamtanzahl
+
+Die Gesamtanzahl (engl. **total population**) ist die Summe aus $P$ und $N$.
+
+
+## Prävalenz
+
+Die Prävalenz (engl. **prevalence**) ist definiert als:
+
+$$
+  prevalence = \frac{P}{P+N} = \frac{\text{tatsächlich Positive}}{\text{Gesamtanzahl}}
+$$
+
+Damit ergibt sich folgende Tabelle:
+
+```{r}
+#| echo: false
+# aus: https://en.wikipedia.org/wiki/Precision_and_recall
+library(gt)
+library(gtExtras)
+library(tibble)
+
+tab <- tibble(
+  "name" = c("Tatsächlich Positiv <br> $P$", "Tatsächlich Negativ <br>$N$"),
+  "Vorhergesagt Positiv  (predicted positive)" = c("$r_p$ <br>(korrekt getroffen)", "$f_p$ <br> (falscher Alarm, overestimation)"),
+  "Vorhergesagt Negativ  (predicted negative)" = c("$f_n$ <br> (verpasster Alarm, underestimation)", "$r_n$ <br> (korrekt abgelehnt)")
+)
+
+tab |>
+  gt(rowname_col = "name") |>
+  fmt_markdown() |>
+  tab_spanner(
+    label = "Predicted condition",
+    columns = c(2,3)
+  ) |>
+  tab_header(
+    title = "Übersicht"
+  ) -> gt_tab #|>
+#  gt_theme_dot_matrix() -> gt_tab
+
+
+gt_tab
+
+```
+
+Daraus folgt sofort: 
+
+$P = r_p + f_p$, $N = f_p + r_n$ sowie $N+P = r_p + r_n + f_p + f_n$.
+
+
+## Accuracy
+
+Die **Accuracy** (auch **Genauigkeit **) gibt das Verhälnis der korrekten Klassifikation zu allen Klassifikationen an.  
+
+$$
+  acc = \frac{\text{korrekte Klassifikation}}{\text{totale Klassifikation}}
+      = \frac{r_p + r_n}{r_p + r_n + f_p + f_n}
+      = \frac{r_p + r_n}{P+N}
+
+$$
+
+
+## Precision
+
+Die **Precision** (oder **Präzision**, **Positive Prediction Value**, kurz: **PPV**) ist der Anteil aller positiven Klassifizierungen des Modells, die tatsächlich positiv sind. Mathematisch wird sie so definiert:
+
+$$
+  precision = PPV
+            = \frac{\text{korrekt positive klassifizierte Objekte}}{\text{alle positiv klassifitierte Objekte}} 
+            = \frac{r_p}{r_p + f_p}
+$$
+Die Precision ist intuitive die Fähigkeit des Klassifikators ein Objekt nicht als positiv zu klassifizieren, wenn es negativ ist.
+
+
+## Recall
+
+Der **Recall** (oder auch **Rate richtig positiver Ergebnisse**, **true positive rate**, kurz: **TPR**, oder **Trefferquote** bzw. **Trefferrate** oder **Erkennungswahrscheinlichkeit** oder **Sensitivität**, kurz: *SEN*) ist definiert als
+
+$$
+  recall = \frac{\text{positive klassifizierte Objekte}}{\text{tatsächlich positive Objekte}} 
+         = \frac{r_p}{r_p + f_n} = \frac{r_p}{P}
+$$
+Der Recall ist intuitiv die Fähigkeit des Klassifikators alle positiven Objekt zu finden.
+
+
+## F1-Score
+
+Der **F1-Score** (auch **$F_1$-Score** oder **$F_1$-Maß**) kann interpretiert werden als das harmonische Mittel von Precision und Recall. 
+Es erreicht seinen Bestwert bei 1 und den schlechtesten Wert bei 0. 
+Relativ gesehen sind die Beiträge von Precision und Recall zum F1-Score gleich.
+
+$$
+  \text{F1-score} = 2\cdot\frac{\text{Recall} \cdot \text{Precision}}{\text{Recall} + \text{Precision}} 
+                  = \frac{2 \cdot r_p}{2 \cdot r_p +f_p + f_n}
+$$
+

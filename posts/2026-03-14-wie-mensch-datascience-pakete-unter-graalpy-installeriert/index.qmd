@@ -1,0 +1,76 @@
+---
+title: "index"
+format: html
+---
+
+
+Ich nutze **GraalPy 3.12.8 (Oracle GraalVM Native 25.0.1)**. Installiert über 
+
+```batch
+pyenv install graalpy-25.0.1 
+```
+und mittels
+
+```batch
+pyenv global graalpy-25.0.1
+```
+aktiviert.
+
+### Vorbereitung mittels HomeBrew
+
+Ich lade die folgenden Programme via HomeBrew:
+
+- clang
+
+- flang
+
+- cmake
+
+- bazel (für tensorflow)
+
+- OpenBLAS (0.3.31_1.arm64_tahoe)
+
+
+Vielleicht wichtig:
+```
+For compilers to find openblas you may need to set:
+  export LDFLAGS="-L/opt/homebrew/opt/openblas/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/openblas/include"
+
+For pkgconf to find openblas you may need to set:
+  export PKG_CONFIG_PATH="/opt/homebrew/opt/openblas/lib/pkgconfig"
+
+For cmake to find openblas you may need to set:
+  export CMAKE_PREFIX_PATH="/opt/homebrew/opt/openblas"
+```
+
+Daher:
+
+```batch
+brew install clang flang cmake
+export CMAKE_PREFIX_PATH="/opt/homebrew/opt/openblas"
+brew install openblas
+```
+
+### Installieren der Python-Pakete
+
+- numpy 2.2.6
+- pandas
+- scilearn
+- keras
+  Dafür muss h5py installet werden, davor
+  ```
+  brew install hdf5
+  export HDF5_DIR=$(brew --prefix hdf5)
+  python -m pip install h5py
+  ```
+- PyTourch (2.7.0)
+```batch
+python -m pip pandas numpy scikit-learn tourch
+```
+
+- tensorflow (braucht bazel)
+
+*Funktioniert nicht....*
+
+

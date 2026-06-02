@@ -1,0 +1,127 @@
+---
+title: "Ein Überblick über gängige Aktivierungsfunktionen"
+author: "Norman Markgraf"
+lang: de-DE
+date: "2026-02-05"
+categories: 
+  - KI
+  - Aktivierungsfunktion
+  - ReLU
+  - Sigmonide
+  - LeakyReLU
+  - softmax
+  - Mathematik
+---
+```{r}
+library(pracma)
+```
+
+
+# Aktivierungsfunktionen
+
+Beim Aufbau der neuronalen Netzwerke werden Aktivierungsfunktionen eingesetzt, um die Ausgabe der Neuronen zu steuern. 
+
+Dabei werden Aktivierungsfunktionen verwendet, um nichtlineare Beziehungen in den Daten zu erfassen.
+
+Die Eingänge eines Neutron werden dabei über die Aktivierungsfunktion mit dem Ausgang verknüpft. 
+Die Aktivierungsfunktion steuert dabei, wie sehr das Neuron aktiviert wird, das heißt, wie stark (bzw. ob überhaupt) Werte weitergeleitet werden.
+
+Die bekanntesten Aktivierungsfunktionen sind:
+
+- ReLU - **Re**ctified **L**inear **U**nit
+
+- Leaky ReLU - Leaky **Re**ctified **L**inear **U**nit
+
+- Tanh - Tangenz Hyperbolicus
+
+- Sigmoid - Logistische Funktion
+
+<!--
+- Softmax
+-->
+
+Schauen wir uns diese Funktionen einmal kurz an.
+
+```{r}
+show_function <- function(fkt) {
+  x <- seq(-4,4,0.1)
+  y <- fkt(x)
+  plot(x, y)
+}
+```
+
+## ReLU - **Re**ctified **L**inear **U**nit
+
+```{r}
+relu <- function(x) {
+  pmax(x, 0)
+}
+
+show_function(relu)
+```
+
+## Leaky ReLU / Leaky **Re**ctified **L**inear **U**nit
+```{r}
+leakyrelu <- function(x, alpha=0.05) {
+  pmax(x, alpha*x)
+}
+
+show_function(leakyrelu)
+```
+
+
+## Tanh - Tangenz Hyperbolicus
+```{r}
+tanh <- function(x) {
+  p <- exp(x)
+  n <- 1/p         # = exp(-x)
+  (p-n)/(n+p)
+}
+
+show_function(tanh)
+```
+
+
+## Sigmoid - Logistische Funktion
+
+```{r}
+sigmonid <- function(x) {
+  1/(1+exp(-x))
+}
+
+show_function(sigmonid)
+```
+
+## GELU - Gaussian Error Linear Unit
+
+```{r}
+gelu <- function(x) {
+  x * pnorm(x)
+}
+
+show_function(gelu)
+```
+## softplus
+```{r}
+softplus <- function(x) {
+  log(1+exp(x))
+}
+
+show_function(softplus)
+```
+
+
+<!--
+## Softmax
+
+```{r}
+softmax <- function(x,i) {
+  n <- sum(exp(x))
+  pmax(x, 0)
+}
+
+show_function(relu)
+```
+
+-->
+
