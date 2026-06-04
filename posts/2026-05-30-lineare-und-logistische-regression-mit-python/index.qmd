@@ -16,7 +16,12 @@ categories:
 
 ## Vorbereitung
 
-Wir laden die Schwertlinien Datentabelle (engl. _iris flower data set_) von Anderson bzw. Fisher. ^[vgl.: <https://de.wikipedia.org/wiki/Schwertlilien-Datensatz>]
+```{python}
+#| echo: false
+from IPython.display import Markdown;
+```
+
+Wir wollen hier mit den Daten aus der Datentabelle Schwertlinien (engl. _iris flower data set_) von Anderson bzw. Fisher. ^[vgl.: <https://de.wikipedia.org/wiki/Schwertlilien-Datensatz>]
 
 Die Datentabelle enthält 150 Messungen von fünf Attributen: 
 
@@ -24,37 +29,40 @@ Die Datentabelle enthält 150 Messungen von fünf Attributen:
 - Breite des Kelchblatts (sepal width in cm), 
 - Länge des Kronblatts (petal length in cm), 
 - Breite des Kronblatts (petal width in cm) sowie 
-- Spezies (Iris setosa = 0, Iris versicolor = 1 und  Iris virginica = 2)
+- Art (_Spezies_) (Borsten-Schwertlilie (_Iris setosa_) = 0, Verschiedenfarbige  oder Schillernde  Schwertlilie (_Iris versicolor_) = 1 und  Virginische Schwertlilie (_Iris virginica_) = 2)
 
-Wir laden sie aus dem Paket `sklearn.datasets` mit dem Befehl `load_iris()`:
+Finden kann mensch diese im Paket `sklearn.datasets` und laden mit dem Befehl `load_iris()`:
 
 ```{python}
 from sklearn.datasets import load_iris
 import pandas as pd
 
 iris = load_iris()
+
+# Aus den Daten erzeugen wir einen Datenrahmen
 X = pd.DataFrame(iris.data, columns=iris.feature_names)
 y = iris.target
 ```
-Ein Blick auf `X`
+
+Ein Blick auf `X`:
+
 ```{python}
 X.head()
 ```
-Ein Blick auf `y`
+
+Ein Blick auf `y`:
+
 ```{python}
 y
 ```
 
+
 ## (Einfache) Lineare Regression
 
-Wir beginnen mit einer *(einfachen) linearen Regression*. 
-Dabei erstellen wir ein Model, bei dem wir die Länge des Kronblatts (_petal length_) auf Grundlage der Länge des Kelchblatts (_sepal length_) modellieren wollen.
+Am Anfang steht eine *(einfache) linearen Regression*.
+Dabei erstellen wir ein Modell, bei dem wir die Länge des Kronblatts (_petal length_) auf Grundlage der Länge des Kelchblatts (_sepal length_) modellieren wollen. Also eine unabhängige Variable (_UV_, _Prädiktoren_, engl.: _predictors_) und eine (abhängige) Variable (_AV_, _Zielvariable_ engl.: _target_).
 
 ```{python}
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
-
 # Zielvariable y_reg: Petal Length
 y_reg = X["petal length (cm)"]
 # Modellierungsvariable X_reg: Sepal Legth
@@ -66,6 +74,8 @@ Wir teilen nun unsere Daten in Test- und Trainingsdaten auf. Dabei sollen $0.2=2
 Die Auswahl erfolgt zufällig. Wobei wir hier einen mit `random_state=2009` dafür sorgen, dass dieser Zufall reproduzierbar ist.
 
 ```{python}
+from sklearn.model_selection import train_test_split
+
 # Aufteilen in Test- und Trainingsdaten
 X_train, X_test, y_train, y_test = train_test_split(X_reg, y_reg, test_size=0.2, random_state=2009)
 ```
@@ -73,6 +83,8 @@ X_train, X_test, y_train, y_test = train_test_split(X_reg, y_reg, test_size=0.2,
 Nun erstellen wir das lineare Regressionmodell und trainieren dieses mit den Daten `X_train` und `y_train`
 
 ```{python}
+from sklearn.linear_model import LinearRegression
+
 # Modell
 linreg = LinearRegression()
 linreg.fit(X_train, y_train)
@@ -87,32 +99,35 @@ y_pred = linreg.predict(X_test)
 
 Da wir mit `y_test` die tatsächlichen Daten kennen, können wir das nun mit unserem vom Modell modellierten Werten vergleichen und so unsere Modell bewerten.
 
-Wir nutzen dazu das die mittlere quadratische Abweichung (engl. _mean squared error_, kurz _MSE_) und das Bestimmtheitsmaß $R^2$.
+Wir nutzen dazu das die mittlere quadratische Abweichung (engl. _mean squared error_, kurz _MSE_), der mittleren absoluten Abweichung (engl. _mean_absolute_error_, kurz _MAE_) und das Bestimmtheitsmaß $R^2$.
 
 ```{python}
+from sklearn.metrics import mean_squared_error, mean_absolute_error
+
 print("MSE:", mean_squared_error(y_test, y_pred))
+print("MAE:", mean_absolute_error(y_test, y_pred))
 print("R^2:", linreg.score(X_reg, y_reg))
 ```
 
-Wir können die Regressiongerade mit Hilfe der Koeffizienten und der Ordinate (engl.: _Intercept_) bestimmen:
+Wir können die Regressionsgerade mit Hilfe der Koeffizienten und der Ordinate (engl.: _Intercept_) bestimmen:
 
 ```{python}
-#| echo: false
-print("Koeffizienten:", linreg.coef_)
+print("Koeffizienten:", linreg.coef_[0])
 print("Intercept:", linreg.intercept_)
 ```
 
 
 ```{python}
-#| echo: false
-from IPython.display import Markdown;
+# Steigung a
 a = round(linreg.coef_[0].item(), 4)
+# Ordinatenabschnitt b
 b = round(linreg.intercept_.item(), 4)
+# Für eine bessere Ausgabe:
 pm = Markdown("+") if b >= 0 else Markdown("-")
 absb = abs(b)
 ```
 
-Daraus ergibt sich für die Regressiongerade die Darstellung:
+Daraus ergibt sich für die Regressionsgerade die Darstellung:
 
 $$
   \hat{y} = \hat{f}(x) \approx `{python} a` \cdot x `{python} pm`  `{python} absb`
@@ -128,16 +143,15 @@ import numpy as np
 
 plt.figure(figsize=(8, 5))
 
-# Streudiagramm der Trainingsdaten
+# Streudiagramm der Trainings- und Testdaten
 plt.scatter(X_train, y_train, color="blue", label="Trainingswerte")
 plt.scatter(X_test, y_test, color="green", label="Testwerte")
 
-# Regressionsgerade
-xp = np.linspace(4,8,200)
-yp = a * xp + b
+# Regressionsgerade 
+xp = np.linspace(4, 8, 200)  # 200 Messpunkte im Intervall [4; 8]
+yp = a * xp + b  # y= a*x + b -- Werte auf unserer Regressionsgeraden
 pm = "+" if b >= 0 else "-"
 plt.plot(xp, yp, label=r'$\hat{y}$'+f'= {a}x {pm} {absb}', color='red')
-
 
 plt.xlabel("Länge des Kelchblatts (cm)")
 plt.ylabel("Länge des Kronblatts (cm)")
@@ -155,10 +169,6 @@ Das führt zu einer *multiplen linearen Regression*.
 
 
 ```{python}
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
-
 # Zielvariable: Petal Length
 y_reg = X["petal length (cm)"]
 
@@ -176,10 +186,11 @@ linreg.fit(X_train, y_train)
 y_pred = linreg.predict(X_test)
 ```
 
-Wir schauen uns die Gütekriterien _mittlere quadratischer Fehler_ (*MSE*) und das Bestimmtheitsmaß $R^2$ an:
+Wir schauen uns die Gütekriterien _mittlere quadratischer Fehler_ (*MSE*), _mittlere absoluter Fehler_ (*MAE*) und das Bestimmtheitsmaß ($R^2$) an:
 
 ```{python}
 print("MSE:", mean_squared_error(y_test, y_pred))
+print("MAE:", mean_absolute_error(y_test, y_pred))
 print("R^2:", linreg.score(X_reg, y_reg))
 ```
 
@@ -213,26 +224,24 @@ $$
 $$
 
 
-
 ## Einfache Logistische Regression 
 
 
-Unsere Liliendaten bestehen aus den Längen und Breiten der Kelch- bzw. Korbblüten von drei Lilienarten. 
-In der Variable `y` sind diese Arten  wie folgt kodiert:
+Unsere Liliendaten bestehen aus den Längen und Breiten der Kelch- bzw. Korbblättern von drei Lilienarten. 
 
-0 = setosa
+0 : Iris setosa (_Borsten-Schwertlilie_)
 
-1 = versicolor
+1 : Iris versicolor (_Verschiedenfarbige oder Schillernde Schwertlilie_)
 
-2 = virginica
+2 : Iris virginica (_Virginische Schwertlilie_)
 
 Wir schauen uns zunächst nur die _Iris setosa_ an, dafür setzen wir 'y' immer dann auf 1, wenn eine solche Lilienart vorliegt, sonst auf 0:
 
 ```{python}
-y_setosa = np.where( y == 0, 1, 0)
-y_setosa
-X_setosa = X.drop(columns=["petal length (cm)", "sepal width (cm)", "petal width (cm)"])
-X_setosa
+y_logreg = np.where( y == 0, 1, 0)  # y == 0 für Iris setosa
+y_logreg
+X_logreg = X.drop(columns=["petal length (cm)", "sepal width (cm)", "petal width (cm)"])
+X_logreg
 ```
 
 Betrachten wir nun mit Hilfe eines Boxplots, wo unsere Werte für _Iris setose_ bzw _Nicht Iris setosa_ im Bezug auf die Länge des Kelchblatts (_sepal length_) liegen:
@@ -240,8 +249,8 @@ Betrachten wir nun mit Hilfe eines Boxplots, wo unsere Werte für _Iris setose_ 
 ```{python}
 plt.figure(figsize=(8, 5))
 plt.suptitle("Boxplot Länge Kelchblatts Iris setosa bzw. andere")
-setosa = X_setosa[y_setosa == 1]
-notsetosa = X_setosa[y_setosa == 0]
+setosa = X_logreg[y_logreg == 1]
+notsetosa = X_logreg[y_logreg == 0]
 
 plt.subplot(1,2,1)
 plt.ylim(3, 8)
@@ -257,15 +266,11 @@ plt.show()
 ```
 
 
-Wenn wir eine lineare Regression nur der ??? durchführen würden, so sähe das wie folgt aus:
+Wenn wir eine lineare Regression auf diesen Daten durchführen würden, so sähe das wie folgt aus:
 
 ```{python}
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
-
 # Aufteilen in Test- und Trainingsdaten
-X_train, X_test, y_train, y_test = train_test_split(X_setosa, y_setosa, test_size=0.2, random_state=2009)
+X_train, X_test, y_train, y_test = train_test_split(X_logreg, y_logreg, test_size=0.2, random_state=2009)
 ```
 
 Wir erzeugen nun das Modell:
@@ -275,18 +280,14 @@ linmod_linreg = LinearRegression()
 linmod_linreg.fit(X_train, y_train)
 ```
 
-Schauen wir uns nun die Koeffizienten und den Intercept an:
+Schauen wir uns nun die Koeffizienten und den Ordinatenabschnitt an:
 
 ```{python}
-#| echo: false
-print("Koeffizienten:", linmod_linreg.coef_)
+print("Koeffizienten:", linmod_linreg.coef_[0])
 print("Intercept:", linmod_linreg.intercept_)
 ```
 
-
 ```{python}
-#| echo: false
-from IPython.display import Markdown;
 a = round(linmod_linreg.coef_[0].item(), 4)
 b = round(linmod_linreg.intercept_.item(), 4)
 pm = Markdown("+") if b >= 0 else Markdown("-")
@@ -297,10 +298,6 @@ Das dazugehörige Streudiagramm inkl. Regressionsgerade:
 
 ```{python}
 #| warning: false
-
-import matplotlib.pyplot as plt
-import numpy as np
-
 plt.figure(figsize=(8, 5))
 
 # Streudiagramm der Trainingsdaten
@@ -311,7 +308,7 @@ plt.scatter(X_test, y_test, color="green", label="Testwerte")
 xp = np.linspace(4,8,200)
 yp = a * xp + b
 pm = "+" if b >= 0 else "-"
-plt.plot(xp, yp, label=r'$\hat{y}$'+f'= {a}x {pm} {absb}', color='red')
+plt.plot(xp, yp, label=rf'f(x)= {a}x {pm} {absb}', color='red')
 
 plt.xlabel("Länge des Kelchblatts (cm)")
 plt.ylabel("")
@@ -321,7 +318,7 @@ plt.grid(True)
 plt.show()
 ```
 
-Statt des linearen Ansatzes, wollen wir eine Wahrscheinlichkeit modellieren ob eine entsprechende Länge des Kelchsblattes für oder gegen eine Iris setosa spricht.
+Statt des linearen Ansatzes, wollen wir eine Wahrscheinlichkeit modellieren ob eine entsprechende Länge des Kelchblattes für oder gegen eine Borsten-Schwertlilie (_Iris setosa_) spricht.
 
 ```{python}
 from sklearn.linear_model import LogisticRegression
@@ -332,7 +329,6 @@ logreg.fit(X_train, y_train)
 ```
 
 ```{python}
-#| echo: false
 a = round(logreg.coef_.item(), 4)
 b = round(logreg.intercept_.item(), 4)
 absb = abs(b)
@@ -340,9 +336,6 @@ absb = abs(b)
 
 ```{python}
 #| warning: false
-import matplotlib.pyplot as plt
-import numpy as np
-
 plt.figure(figsize=(8, 5))
 
 # Streudiagramm der Trainingsdaten
@@ -369,13 +362,18 @@ plt.show()
 ```
 
 
-Dabei bezeichnet $expit(x)$ die logistische Funktion (auch sigmonide Funktion genannt) und ist die Umkehrfunktion der $logit$-Funktion.
+Dabei bezeichnet $expit(x)$ die _logistische Funktion_ (auch _sigmonide Funktion_ oder kurt _Sigmonide_ genannt) und ist die Umkehrfunktion der $logit$-Funktion.
 
 
 Wir können an der Grafik schon erkennen, das unser Ansatz so nicht unbedingt optimal ist. Schauen wir uns aber dennoch die Gütemaße an:
 
+Die orginalen Testwerte $y_test$:
 ```{python}
 y_test
+```
+
+Die durch die Regression geschätzten Werte $y_pred$:
+```{python}
 y_pred = logreg.predict(X_test)
 y_pred
 ```
@@ -384,34 +382,26 @@ y_pred
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report
 
 print("Accuracy:", accuracy_score(y_test, y_pred))
-
 print("Precision:", precision_score(y_test, y_pred))
-
 print("Recall:", recall_score(y_test, y_pred))
-
 print("F1-Score:", f1_score(y_test, y_pred))
 ```
 
 Etwas detailierter können wir uns das mit dem folgenden Befehl komplett ansehen:
 
 ```{python}
-print(classification_report(y_test, y_pred, target_names=["positiv", "negativ"], digits=3))
+print(classification_report(y_test, y_pred, target_names=["Nicht I. setosa", "Iris setosa"], digits=3))
 ```
 
 Wagen wir kurz einen Blick auf alle Daten (Test- wie Trainingsdaten):
 
 ```{python}
-print(classification_report(y_setosa, logreg.predict(X_setosa), target_names=["negativ", "positiv"], digits=3))
+print(classification_report(y_logreg, logreg.predict(X_logreg), target_names=["Nicht I. setosa", "Iris setosa"], digits=3))
 ```
 
 
 ## Multinomiale Logistische Regression
 
-```{python}
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report
-```
 
 Wir teilen unsere Daten wieder in Test- und Trainingsdaten auf:
 
@@ -436,10 +426,12 @@ y_pred = logreg.predict(X_test)
 ```
 
 Schauen wir uns für die Testdaten einmal die echten und vorhergesagten Werte an:
-
 ```{python}
-# Vergleich der Testdaten
+# Vergleich der Testdaten ...
 y_test
+```
+```{python}
+# ... mit den durch das Modellgeschätzen Daten
 y_pred
 ```
 
@@ -447,11 +439,8 @@ Berechnen wir die üblichen Gütemaße:
 
 ```{python}
 print("Accuracy:", accuracy_score(y_test, y_pred))
-
 print("Precision:", precision_score(y_test, y_pred, average='weighted'))
-
 print("Recall:", recall_score(y_test, y_pred, average='weighted'))
-
 print("F1-Score:", f1_score(y_test, y_pred, average='weighted'))
 ```
 

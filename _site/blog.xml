@@ -23,17 +23,17 @@
 
 <section id="vorbereitung" class="level2">
 <h2 class="anchored" data-anchor-id="vorbereitung">Vorbereitung</h2>
-<p>Wir laden die Schwertlinien Datentabelle (engl. <em>iris flower data set</em>) von Anderson bzw. Fisher. <sup>1</sup></p>
+<p>Wir wollen hier mit den Daten aus der Datentabelle Schwertlinien (engl. <em>iris flower data set</em>) von Anderson bzw. Fisher. <sup>1</sup></p>
 <p>Die Datentabelle enthält 150 Messungen von fünf Attributen:</p>
 <ul>
 <li>Länge des Kelchblatts (sepal length in cm),</li>
 <li>Breite des Kelchblatts (sepal width in cm),</li>
 <li>Länge des Kronblatts (petal length in cm),</li>
 <li>Breite des Kronblatts (petal width in cm) sowie</li>
-<li>Spezies (Iris setosa = 0, Iris versicolor = 1 und Iris virginica = 2)</li>
+<li>Art (<em>Spezies</em>) (Borsten-Schwertlilie (<em>Iris setosa</em>) = 0, Verschiedenfarbige oder Schillernde Schwertlilie (<em>Iris versicolor</em>) = 1 und Virginische Schwertlilie (<em>Iris virginica</em>) = 2)</li>
 </ul>
-<p>Wir laden sie aus dem Paket <code>sklearn.datasets</code> mit dem Befehl <code>load_iris()</code>:</p>
-<div id="106da133" class="cell" data-execution_count="1">
+<p>Finden kann mensch diese im Paket <code>sklearn.datasets</code> und laden mit dem Befehl <code>load_iris()</code>:</p>
+<div id="a08859a8" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> sklearn.datasets <span class="im" style="color: #00769E;
@@ -48,19 +48,23 @@ font-style: inherit;">as</span> pd</span>
 <span id="cb1-4">iris <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> load_iris()</span>
-<span id="cb1-5">X <span class="op" style="color: #5E5E5E;
+<span id="cb1-5"></span>
+<span id="cb1-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Aus den Daten erzeugen wir einen Datenrahmen</span></span>
+<span id="cb1-7">X <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.DataFrame(iris.data, columns<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>iris.feature_names)</span>
-<span id="cb1-6">y <span class="op" style="color: #5E5E5E;
+<span id="cb1-8">y <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> iris.target</span></code></pre></div></div>
 </div>
-<p>Ein Blick auf <code>X</code></p>
-<div id="7b8ed804" class="cell" data-execution_count="2">
+<p>Ein Blick auf <code>X</code>:</p>
+<div id="cf2a8bba" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">X.head()</span></code></pre></div></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
 
@@ -116,10 +120,10 @@ font-style: inherit;">=</span> iris.target</span></code></pre></div></div>
 </div>
 </div>
 </div>
-<p>Ein Blick auf <code>y</code></p>
-<div id="994846ac" class="cell" data-execution_count="3">
+<p>Ein Blick auf <code>y</code>:</p>
+<div id="9863b587" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">y</span></code></pre></div></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
        0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -132,36 +136,20 @@ font-style: inherit;">=</span> iris.target</span></code></pre></div></div>
 </section>
 <section id="einfache-lineare-regression" class="level2">
 <h2 class="anchored" data-anchor-id="einfache-lineare-regression">(Einfache) Lineare Regression</h2>
-<p>Wir beginnen mit einer <em>(einfachen) linearen Regression</em>. Dabei erstellen wir ein Model, bei dem wir die Länge des Kronblatts (<em>petal length</em>) auf Grundlage der Länge des Kelchblatts (<em>sepal length</em>) modellieren wollen.</p>
-<div id="5074483e" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> sklearn.linear_model <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> LinearRegression</span>
-<span id="cb5-2"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> sklearn.model_selection <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> train_test_split</span>
-<span id="cb5-3"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> sklearn.metrics <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> mean_squared_error</span>
-<span id="cb5-4"></span>
-<span id="cb5-5"><span class="co" style="color: #5E5E5E;
+<p>Am Anfang steht eine <em>(einfache) linearen Regression</em>. Dabei erstellen wir ein Modell, bei dem wir die Länge des Kronblatts (<em>petal length</em>) auf Grundlage der Länge des Kelchblatts (<em>sepal length</em>) modellieren wollen. Also eine unabhängige Variable (<em>UV</em>, <em>Prädiktoren</em>, engl.: <em>predictors</em>) und eine (abhängige) Variable (<em>AV</em>, <em>Zielvariable</em> engl.: <em>target</em>).</p>
+<div id="730ed236" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Zielvariable y_reg: Petal Length</span></span>
-<span id="cb5-6">y_reg <span class="op" style="color: #5E5E5E;
+<span id="cb5-2">y_reg <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> X[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"petal length (cm)"</span>]</span>
-<span id="cb5-7"><span class="co" style="color: #5E5E5E;
+<span id="cb5-3"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Modellierungsvariable X_reg: Sepal Legth</span></span>
-<span id="cb5-8">X_reg <span class="op" style="color: #5E5E5E;
+<span id="cb5-4">X_reg <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> X.drop(columns<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -175,11 +163,17 @@ font-style: inherit;">"petal width (cm)"</span>])</span></code></pre></div></div
 </div>
 <p>Wir teilen nun unsere Daten in Test- und Trainingsdaten auf. Dabei sollen <img src="https://latex.codecogs.com/png.latex?0.2=20%5C,%5C%25"> der Daten zu Testdaten werden und <img src="https://latex.codecogs.com/png.latex?1-0.2=0.8=80%5C,%5C%25"> zu Trainingsdaten.</p>
 <p>Die Auswahl erfolgt zufällig. Wobei wir hier einen mit <code>random_state=2009</code> dafür sorgen, dass dieser Zufall reproduzierbar ist.</p>
-<div id="405aea98" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="co" style="color: #5E5E5E;
+<div id="b4a7860d" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> sklearn.model_selection <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> train_test_split</span>
+<span id="cb6-2"></span>
+<span id="cb6-3"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Aufteilen in Test- und Trainingsdaten</span></span>
-<span id="cb6-2">X_train, X_test, y_train, y_test <span class="op" style="color: #5E5E5E;
+<span id="cb6-4">X_train, X_test, y_train, y_test <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> train_test_split(X_reg, y_reg, test_size<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -192,15 +186,21 @@ background-color: null;
 font-style: inherit;">2009</span>)</span></code></pre></div></div>
 </div>
 <p>Nun erstellen wir das lineare Regressionmodell und trainieren dieses mit den Daten <code>X_train</code> und <code>y_train</code></p>
-<div id="ad47708c" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
+<div id="66cc565c" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> sklearn.linear_model <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> LinearRegression</span>
+<span id="cb7-2"></span>
+<span id="cb7-3"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Modell</span></span>
-<span id="cb7-2">linreg <span class="op" style="color: #5E5E5E;
+<span id="cb7-4">linreg <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> LinearRegression()</span>
-<span id="cb7-3">linreg.fit(X_train, y_train)</span></code></pre></div></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<span id="cb7-5">linreg.fit(X_train, y_train)</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
 <style>#sk-container-id-1 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
@@ -942,7 +942,7 @@ forceTheme('sk-container-id-1');</script>
 </div>
 </div>
 <p>Um das Modell zu prüfen lassen wir es nun aus unseren Testdaten (<code>X_test</code>) die Zieldaten (<code>y_pred</code>) modellieren:</p>
-<div id="118a4980" class="cell" data-execution_count="7">
+<div id="bceb4d5e" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Vorhersage</span></span>
@@ -951,57 +951,130 @@ background-color: null;
 font-style: inherit;">=</span> linreg.predict(X_test)</span></code></pre></div></div>
 </div>
 <p>Da wir mit <code>y_test</code> die tatsächlichen Daten kennen, können wir das nun mit unserem vom Modell modellierten Werten vergleichen und so unsere Modell bewerten.</p>
-<p>Wir nutzen dazu das die mittlere quadratische Abweichung (engl. <em>mean squared error</em>, kurz <em>MSE</em>) und das Bestimmtheitsmaß <img src="https://latex.codecogs.com/png.latex?R%5E2">.</p>
-<div id="559e8525" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="bu" style="color: null;
+<p>Wir nutzen dazu das die mittlere quadratische Abweichung (engl. <em>mean squared error</em>, kurz <em>MSE</em>), der mittleren absoluten Abweichung (engl. <em>mean_absolute_error</em>, kurz <em>MAE</em>) und das Bestimmtheitsmaß <img src="https://latex.codecogs.com/png.latex?R%5E2">.</p>
+<div id="34127be4" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> sklearn.metrics <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> mean_squared_error, mean_absolute_error</span>
+<span id="cb9-2"></span>
+<span id="cb9-3"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"MSE:"</span>, mean_squared_error(y_test, y_pred))</span>
-<span id="cb9-2"><span class="bu" style="color: null;
+<span id="cb9-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MAE:"</span>, mean_absolute_error(y_test, y_pred))</span>
+<span id="cb9-5"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"R^2:"</span>, linreg.score(X_reg, y_reg))</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>MSE: 0.7036607653595636
+MAE: 0.6219307508040196
 R^2: 0.7593651994880084</code></pre>
 </div>
 </div>
-<p>Wir können die Regressiongerade mit Hilfe der Koeffizienten und der Ordinate (engl.: <em>Intercept</em>) bestimmen:</p>
-<div id="95580f4a" class="cell" data-execution_count="9">
+<p>Wir können die Regressionsgerade mit Hilfe der Koeffizienten und der Ordinate (engl.: <em>Intercept</em>) bestimmen:</p>
+<div id="af640a5f" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Koeffizienten:"</span>, linreg.coef_[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>])</span>
+<span id="cb11-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Intercept:"</span>, linreg.intercept_)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Koeffizienten: [1.87753167]
+<pre><code>Koeffizienten: 1.8775316749976756
 Intercept: -7.252744633173981</code></pre>
 </div>
 </div>
-<p>Daraus ergibt sich für die Regressiongerade die Darstellung:</p>
+<div id="2880d91b" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Steigung a</span></span>
+<span id="cb13-2">a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">round</span>(linreg.coef_[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>].item(), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>)</span>
+<span id="cb13-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Ordinatenabschnitt b</span></span>
+<span id="cb13-4">b <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">round</span>(linreg.intercept_.item(), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>)</span>
+<span id="cb13-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Für eine bessere Ausgabe:</span></span>
+<span id="cb13-6">pm <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Markdown(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"+"</span>) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> b <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span> Markdown(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"-"</span>)</span>
+<span id="cb13-7">absb <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">abs</span>(b)</span></code></pre></div></div>
+</div>
+<p>Daraus ergibt sich für die Regressionsgerade die Darstellung:</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%20%20%5Chat%7By%7D%20=%20%5Chat%7Bf%7D(x)%20%5Capprox%201.8775%20%5Ccdot%20x%20-%20%207.2527%0A"></p>
 <p>Schauen wir uns das Streudiagramm unserer Test- und Trainingsdaten mit der Regressionsgeraden an:</p>
-<div id="6d996685" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><span class="im" style="color: #00769E;
+<div id="782d0ff9" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> plt</span>
-<span id="cb12-2"><span class="im" style="color: #00769E;
+<span id="cb14-2"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> np</span>
-<span id="cb12-3"></span>
-<span id="cb12-4">plt.figure(figsize<span class="op" style="color: #5E5E5E;
+<span id="cb14-3"></span>
+<span id="cb14-4">plt.figure(figsize<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">8</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">5</span>))</span>
-<span id="cb12-5"></span>
-<span id="cb12-6"><span class="co" style="color: #5E5E5E;
+<span id="cb14-5"></span>
+<span id="cb14-6"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Streudiagramm der Trainingsdaten</span></span>
-<span id="cb12-7">plt.scatter(X_train, y_train, color<span class="op" style="color: #5E5E5E;
+font-style: inherit;"># Streudiagramm der Trainings- und Testdaten</span></span>
+<span id="cb14-7">plt.scatter(X_train, y_train, color<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -1010,7 +1083,7 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Trainingswerte"</span>)</span>
-<span id="cb12-8">plt.scatter(X_test, y_test, color<span class="op" style="color: #5E5E5E;
+<span id="cb14-8">plt.scatter(X_test, y_test, color<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -1019,27 +1092,31 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Testwerte"</span>)</span>
-<span id="cb12-9"></span>
-<span id="cb12-10"><span class="co" style="color: #5E5E5E;
+<span id="cb14-9"></span>
+<span id="cb14-10"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Regressionsgerade</span></span>
-<span id="cb12-11">xp <span class="op" style="color: #5E5E5E;
+font-style: inherit;"># Regressionsgerade </span></span>
+<span id="cb14-11">xp <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.linspace(<span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">4</span>,<span class="dv" style="color: #AD0000;
+font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">8</span>,<span class="dv" style="color: #AD0000;
+font-style: inherit;">8</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">200</span>)</span>
-<span id="cb12-12">yp <span class="op" style="color: #5E5E5E;
+font-style: inherit;">200</span>)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 200 Messpunkte im Intervall [4; 8]</span></span>
+<span id="cb14-12">yp <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> a <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*</span> xp <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">+</span> b</span>
-<span id="cb12-13">pm <span class="op" style="color: #5E5E5E;
+font-style: inherit;">+</span> b  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># y= a*x + b -- Werte auf unserer Regressionsgeraden</span></span>
+<span id="cb14-13">pm <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
@@ -1056,7 +1133,7 @@ font-weight: bold;
 font-style: inherit;">else</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"-"</span></span>
-<span id="cb12-14">plt.plot(xp, yp, label<span class="op" style="color: #5E5E5E;
+<span id="cb14-14">plt.plot(xp, yp, label<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="vs" style="color: #20794D;
 background-color: null;
@@ -1097,26 +1174,25 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'red'</span>)</span>
-<span id="cb12-15"></span>
-<span id="cb12-16"></span>
-<span id="cb12-17">plt.xlabel(<span class="st" style="color: #20794D;
+<span id="cb14-15"></span>
+<span id="cb14-16">plt.xlabel(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Länge des Kelchblatts (cm)"</span>)</span>
-<span id="cb12-18">plt.ylabel(<span class="st" style="color: #20794D;
+<span id="cb14-17">plt.ylabel(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Länge des Kronblatts (cm)"</span>)</span>
-<span id="cb12-19">plt.title(<span class="st" style="color: #20794D;
+<span id="cb14-18">plt.title(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Lineare Regression auf den Liliendaten"</span>)</span>
-<span id="cb12-20">plt.legend()</span>
-<span id="cb12-21">plt.grid(<span class="va" style="color: #111111;
+<span id="cb14-19">plt.legend()</span>
+<span id="cb14-20">plt.grid(<span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>)</span>
-<span id="cb12-22">plt.show()</span></code></pre></div></div>
+<span id="cb14-21">plt.show()</span></code></pre></div></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2026-05-30-lineare-und-logistische-regression-mit-python/index_files/figure-html/cell-12-output-1.webp" width="651" height="449" class="figure-img"></p>
+<p><img src="https://www.sefiroth.de/posts/2026-05-30-lineare-und-logistische-regression-mit-python/index_files/figure-html/cell-13-output-1.webp" width="651" height="449" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1125,47 +1201,31 @@ font-style: inherit;">True</span>)</span>
 <section id="multiple-lineare-regression" class="level2">
 <h2 class="anchored" data-anchor-id="multiple-lineare-regression">(Multiple) Lineare Regression</h2>
 <p>Wir wollen nun bei der Modellierung auf alle drei anderen numerischen Variablen zurückgreifen. Das führt zu einer <em>multiplen linearen Regression</em>.</p>
-<div id="455208a1" class="cell" data-execution_count="12">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> sklearn.linear_model <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> LinearRegression</span>
-<span id="cb13-2"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> sklearn.model_selection <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> train_test_split</span>
-<span id="cb13-3"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> sklearn.metrics <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> mean_squared_error</span>
-<span id="cb13-4"></span>
-<span id="cb13-5"><span class="co" style="color: #5E5E5E;
+<div id="8f61f3b3" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Zielvariable: Petal Length</span></span>
-<span id="cb13-6">y_reg <span class="op" style="color: #5E5E5E;
+<span id="cb15-2">y_reg <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> X[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"petal length (cm)"</span>]</span>
-<span id="cb13-7"></span>
-<span id="cb13-8"><span class="co" style="color: #5E5E5E;
+<span id="cb15-3"></span>
+<span id="cb15-4"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Modellierungsvariablen: Sepal Width, Petal Length und Petal Width</span></span>
-<span id="cb13-9">X_reg <span class="op" style="color: #5E5E5E;
+<span id="cb15-5">X_reg <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> X.drop(columns<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"petal length (cm)"</span>])</span>
-<span id="cb13-10"></span>
-<span id="cb13-11"><span class="co" style="color: #5E5E5E;
+<span id="cb15-6"></span>
+<span id="cb15-7"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Aufteilen in Test- und Trainingsdaten</span></span>
-<span id="cb13-12">X_train, X_test, y_train, y_test <span class="op" style="color: #5E5E5E;
+<span id="cb15-8">X_train, X_test, y_train, y_test <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> train_test_split(X_reg, y_reg, test_size<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1176,47 +1236,53 @@ background-color: null;
 font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2009</span>)</span>
-<span id="cb13-13"></span>
-<span id="cb13-14"><span class="co" style="color: #5E5E5E;
+<span id="cb15-9"></span>
+<span id="cb15-10"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Modell</span></span>
-<span id="cb13-15">linreg <span class="op" style="color: #5E5E5E;
+<span id="cb15-11">linreg <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> LinearRegression()</span>
-<span id="cb13-16">linreg.fit(X_train, y_train)</span>
-<span id="cb13-17"></span>
-<span id="cb13-18"><span class="co" style="color: #5E5E5E;
+<span id="cb15-12">linreg.fit(X_train, y_train)</span>
+<span id="cb15-13"></span>
+<span id="cb15-14"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Vorhersage</span></span>
-<span id="cb13-19">y_pred <span class="op" style="color: #5E5E5E;
+<span id="cb15-15">y_pred <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> linreg.predict(X_test)</span></code></pre></div></div>
 </div>
-<p>Wir schauen uns die Gütekriterien <em>mittlere quadratischer Fehler</em> (<em>MSE</em>) und das Bestimmtheitsmaß <img src="https://latex.codecogs.com/png.latex?R%5E2"> an:</p>
-<div id="cd9825aa" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><span class="bu" style="color: null;
+<p>Wir schauen uns die Gütekriterien <em>mittlere quadratischer Fehler</em> (<em>MSE</em>), <em>mittlere absoluter Fehler</em> (<em>MAE</em>) und das Bestimmtheitsmaß (<img src="https://latex.codecogs.com/png.latex?R%5E2">) an:</p>
+<div id="6e83aaa2" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"MSE:"</span>, mean_squared_error(y_test, y_pred))</span>
-<span id="cb14-2"><span class="bu" style="color: null;
+<span id="cb16-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MAE:"</span>, mean_absolute_error(y_test, y_pred))</span>
+<span id="cb16-3"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"R^2:"</span>, linreg.score(X_reg, y_reg))</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>MSE: 0.11749487412693724
+MAE: 0.2613088348729727
 R^2: 0.9675532979408549</code></pre>
 </div>
 </div>
 <p>Die Regressionsgerade wird durch die Koeffizienten und den Ordinatenabschnitt (<em>Intercept</em>) bestimmt:</p>
-<div id="ea630bfb" class="cell" data-execution_count="14">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><span class="bu" style="color: null;
+<div id="0ebfd88d" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Koeffizienten:"</span>, linreg.coef_)</span>
-<span id="cb16-2"><span class="bu" style="color: null;
+<span id="cb18-2"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1231,13 +1297,13 @@ Intercept: -0.11204676270834568</code></pre>
 </section>
 <section id="einfache-logistische-regression" class="level2">
 <h2 class="anchored" data-anchor-id="einfache-logistische-regression">Einfache Logistische Regression</h2>
-<p>Unsere Liliendaten bestehen aus den Längen und Breiten der Kelch- bzw. Korbblüten von drei Lilienarten. In der Variable <code>y</code> sind diese Arten wie folgt kodiert:</p>
-<p>0 = setosa</p>
-<p>1 = versicolor</p>
-<p>2 = virginica</p>
+<p>Unsere Liliendaten bestehen aus den Längen und Breiten der Kelch- bzw. Korbblättern von drei Lilienarten.</p>
+<p>0 : Iris setosa (<em>Borsten-Schwertlilie</em>)</p>
+<p>1 : Iris versicolor (<em>Verschiedenfarbige oder Schillernde Schwertlilie</em>)</p>
+<p>2 : Iris virginica (<em>Virginische Schwertlilie</em>)</p>
 <p>Wir schauen uns zunächst nur die <em>Iris setosa</em> an, dafür setzen wir ‘y’ immer dann auf 1, wenn eine solche Lilienart vorliegt, sonst auf 0:</p>
-<div id="bfdf9eac" class="cell" data-execution_count="16">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1">y_setosa <span class="op" style="color: #5E5E5E;
+<div id="f56313ca" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1">y_logreg <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.where( y <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1247,9 +1313,11 @@ font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0</span>)</span>
-<span id="cb18-2">y_setosa</span>
-<span id="cb18-3">X_setosa <span class="op" style="color: #5E5E5E;
+font-style: inherit;">0</span>)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># y == 0 für Iris setosa</span></span>
+<span id="cb20-2">y_logreg</span>
+<span id="cb20-3">X_logreg <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> X.drop(columns<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1260,8 +1328,8 @@ background-color: null;
 font-style: inherit;">"sepal width (cm)"</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"petal width (cm)"</span>])</span>
-<span id="cb18-4">X_setosa</span></code></pre></div></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<span id="cb20-4">X_logreg</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
 <div>
 
 
@@ -1325,99 +1393,83 @@ font-style: inherit;">"petal width (cm)"</span>])</span>
 </div>
 </div>
 <p>Betrachten wir nun mit Hilfe eines Boxplots, wo unsere Werte für <em>Iris setose</em> bzw <em>Nicht Iris setosa</em> im Bezug auf die Länge des Kelchblatts (<em>sepal length</em>) liegen:</p>
-<div id="f7fc7789" class="cell" data-execution_count="17">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1">plt.figure(figsize<span class="op" style="color: #5E5E5E;
+<div id="5b58c19c" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1">plt.figure(figsize<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">8</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">5</span>))</span>
-<span id="cb19-2">plt.suptitle(<span class="st" style="color: #20794D;
+<span id="cb21-2">plt.suptitle(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Boxplot Länge Kelchblatts Iris setosa bzw. andere"</span>)</span>
-<span id="cb19-3">setosa <span class="op" style="color: #5E5E5E;
+<span id="cb21-3">setosa <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> X_setosa[y_setosa <span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> X_logreg[y_logreg <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>]</span>
-<span id="cb19-4">notsetosa <span class="op" style="color: #5E5E5E;
+<span id="cb21-4">notsetosa <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> X_setosa[y_setosa <span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> X_logreg[y_logreg <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>]</span>
-<span id="cb19-5"></span>
-<span id="cb19-6">plt.subplot(<span class="dv" style="color: #AD0000;
+<span id="cb21-5"></span>
+<span id="cb21-6">plt.subplot(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>,<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>)</span>
-<span id="cb19-7">plt.ylim(<span class="dv" style="color: #AD0000;
+<span id="cb21-7">plt.ylim(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">8</span>)</span>
-<span id="cb19-8">setosa.boxplot()</span>
-<span id="cb19-9">plt.title(<span class="st" style="color: #20794D;
+<span id="cb21-8">setosa.boxplot()</span>
+<span id="cb21-9">plt.title(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Iris setosa"</span>)</span>
-<span id="cb19-10"></span>
-<span id="cb19-11">plt.subplot(<span class="dv" style="color: #AD0000;
+<span id="cb21-10"></span>
+<span id="cb21-11">plt.subplot(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>)</span>
-<span id="cb19-12">plt.ylim(<span class="dv" style="color: #AD0000;
+<span id="cb21-12">plt.ylim(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">8</span>)</span>
-<span id="cb19-13">notsetosa.boxplot()</span>
-<span id="cb19-14">plt.title(<span class="st" style="color: #20794D;
+<span id="cb21-13">notsetosa.boxplot()</span>
+<span id="cb21-14">plt.title(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Nicht Iris setosa"</span>)</span>
-<span id="cb19-15"></span>
-<span id="cb19-16">plt.show()</span></code></pre></div></div>
+<span id="cb21-15"></span>
+<span id="cb21-16">plt.show()</span></code></pre></div></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2026-05-30-lineare-und-logistische-regression-mit-python/index_files/figure-html/cell-18-output-1.webp" width="632" height="459" class="figure-img"></p>
+<p><img src="https://www.sefiroth.de/posts/2026-05-30-lineare-und-logistische-regression-mit-python/index_files/figure-html/cell-19-output-1.webp" width="632" height="459" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Wenn wir eine lineare Regression nur der ??? durchführen würden, so sähe das wie folgt aus:</p>
-<div id="50ad3ffe" class="cell" data-execution_count="18">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> sklearn.linear_model <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> LinearRegression</span>
-<span id="cb20-2"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> sklearn.model_selection <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> train_test_split</span>
-<span id="cb20-3"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> sklearn.metrics <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> mean_squared_error</span>
-<span id="cb20-4"></span>
-<span id="cb20-5"><span class="co" style="color: #5E5E5E;
+<p>Wenn wir eine lineare Regression auf diesen Daten durchführen würden, so sähe das wie folgt aus:</p>
+<div id="3c33f422" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Aufteilen in Test- und Trainingsdaten</span></span>
-<span id="cb20-6">X_train, X_test, y_train, y_test <span class="op" style="color: #5E5E5E;
+<span id="cb22-2">X_train, X_test, y_train, y_test <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> train_test_split(X_setosa, y_setosa, test_size<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> train_test_split(X_logreg, y_logreg, test_size<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
@@ -1428,12 +1480,12 @@ background-color: null;
 font-style: inherit;">2009</span>)</span></code></pre></div></div>
 </div>
 <p>Wir erzeugen nun das Modell:</p>
-<div id="d48ad998" class="cell" data-execution_count="19">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1">linmod_linreg <span class="op" style="color: #5E5E5E;
+<div id="32dfc714" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1">linmod_linreg <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> LinearRegression()</span>
-<span id="cb21-2">linmod_linreg.fit(X_train, y_train)</span></code></pre></div></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<span id="cb23-2">linmod_linreg.fit(X_train, y_train)</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
 <style>#sk-container-id-2 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
@@ -2174,38 +2226,79 @@ function forceTheme(elementId) {
 forceTheme('sk-container-id-2');</script>
 </div>
 </div>
-<p>Schauen wir uns nun die Koeffizienten und den Intercept an:</p>
-<div id="83c37c91" class="cell" data-execution_count="20">
+<p>Schauen wir uns nun die Koeffizienten und den Ordinatenabschnitt an:</p>
+<div id="1b5aa66b" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Koeffizienten:"</span>, linmod_linreg.coef_[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>])</span>
+<span id="cb24-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Intercept:"</span>, linmod_linreg.intercept_)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Koeffizienten: [-0.40773779]
+<pre><code>Koeffizienten: -0.4077377887146914
 Intercept: 2.729668356199859</code></pre>
 </div>
 </div>
+<div id="7d7eeeeb" class="cell" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1">a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">round</span>(linmod_linreg.coef_[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>].item(), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>)</span>
+<span id="cb26-2">b <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">round</span>(linmod_linreg.intercept_.item(), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>)</span>
+<span id="cb26-3">pm <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Markdown(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"+"</span>) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> b <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span> Markdown(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"-"</span>)</span>
+<span id="cb26-4">absb <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">abs</span>(b)</span></code></pre></div></div>
+</div>
 <p>Das dazugehörige Streudiagramm inkl. Regressionsgerade:</p>
-<div id="a6b73dbd" class="cell" data-execution_count="22">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">as</span> plt</span>
-<span id="cb23-2"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">as</span> np</span>
-<span id="cb23-3"></span>
-<span id="cb23-4">plt.figure(figsize<span class="op" style="color: #5E5E5E;
+<div id="1d6d04e0" class="cell" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1">plt.figure(figsize<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">8</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">5</span>))</span>
-<span id="cb23-5"></span>
-<span id="cb23-6"><span class="co" style="color: #5E5E5E;
+<span id="cb27-2"></span>
+<span id="cb27-3"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Streudiagramm der Trainingsdaten</span></span>
-<span id="cb23-7">plt.scatter(X_train, y_train, color<span class="op" style="color: #5E5E5E;
+<span id="cb27-4">plt.scatter(X_train, y_train, color<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -2214,7 +2307,7 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Trainingswerte"</span>)</span>
-<span id="cb23-8">plt.scatter(X_test, y_test, color<span class="op" style="color: #5E5E5E;
+<span id="cb27-5">plt.scatter(X_test, y_test, color<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -2223,11 +2316,11 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Testwerte"</span>)</span>
-<span id="cb23-9"></span>
-<span id="cb23-10"><span class="co" style="color: #5E5E5E;
+<span id="cb27-6"></span>
+<span id="cb27-7"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Regressionsgerade</span></span>
-<span id="cb23-11">xp <span class="op" style="color: #5E5E5E;
+<span id="cb27-8">xp <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.linspace(<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -2236,14 +2329,14 @@ background-color: null;
 font-style: inherit;">8</span>,<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">200</span>)</span>
-<span id="cb23-12">yp <span class="op" style="color: #5E5E5E;
+<span id="cb27-9">yp <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> a <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*</span> xp <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span> b</span>
-<span id="cb23-13">pm <span class="op" style="color: #5E5E5E;
+<span id="cb27-10">pm <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
@@ -2260,90 +2353,86 @@ font-weight: bold;
 font-style: inherit;">else</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"-"</span></span>
-<span id="cb23-14">plt.plot(xp, yp, label<span class="op" style="color: #5E5E5E;
+<span id="cb27-11">plt.plot(xp, yp, label<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="vs" style="color: #20794D;
 background-color: null;
-font-style: inherit;">r'</span><span class="dv" style="color: #AD0000;
+font-style: inherit;">rf'f</span><span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">$</span><span class="er" style="color: #AD0000;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
 background-color: null;
-font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+font-style: inherit;">x</span><span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">hat{y}</span><span class="dv" style="color: #AD0000;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
 background-color: null;
-font-style: inherit;">$</span><span class="vs" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f'= </span><span class="sc" style="color: #5E5E5E;
+font-style: inherit;">= </span><span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">{</span>a<span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+font-style: inherit;">}</span><span class="vs" style="color: #20794D;
 background-color: null;
 font-style: inherit;">x </span><span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">{</span>pm<span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+font-style: inherit;">}</span><span class="vs" style="color: #20794D;
 background-color: null;
 font-style: inherit;"> </span><span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">{</span>absb<span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+font-style: inherit;">}</span><span class="vs" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'</span>, color<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'red'</span>)</span>
-<span id="cb23-15"></span>
-<span id="cb23-16">plt.xlabel(<span class="st" style="color: #20794D;
+<span id="cb27-12"></span>
+<span id="cb27-13">plt.xlabel(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Länge des Kelchblatts (cm)"</span>)</span>
-<span id="cb23-17">plt.ylabel(<span class="st" style="color: #20794D;
+<span id="cb27-14">plt.ylabel(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">""</span>)</span>
-<span id="cb23-18">plt.title(<span class="st" style="color: #20794D;
+<span id="cb27-15">plt.title(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Lineare Regression auf den Liliendaten"</span>)</span>
-<span id="cb23-19">plt.legend()</span>
-<span id="cb23-20">plt.grid(<span class="va" style="color: #111111;
+<span id="cb27-16">plt.legend()</span>
+<span id="cb27-17">plt.grid(<span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>)</span>
-<span id="cb23-21">plt.show()</span></code></pre></div></div>
+<span id="cb27-18">plt.show()</span></code></pre></div></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2026-05-30-lineare-und-logistische-regression-mit-python/index_files/figure-html/cell-23-output-1.webp" width="656" height="449" class="figure-img"></p>
+<p><img src="https://www.sefiroth.de/posts/2026-05-30-lineare-und-logistische-regression-mit-python/index_files/figure-html/cell-24-output-1.webp" width="656" height="449" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Statt des linearen Ansatzes, wollen wir eine Wahrscheinlichkeit modellieren ob eine entsprechende Länge des Kelchsblattes für oder gegen eine Iris setosa spricht.</p>
-<div id="fc5ecb16" class="cell" data-execution_count="23">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><span class="im" style="color: #00769E;
+<p>Statt des linearen Ansatzes, wollen wir eine Wahrscheinlichkeit modellieren ob eine entsprechende Länge des Kelchblattes für oder gegen eine Borsten-Schwertlilie (<em>Iris setosa</em>) spricht.</p>
+<div id="dfd11054" class="cell" data-execution_count="24">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> sklearn.linear_model <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> LogisticRegression</span>
-<span id="cb24-2"></span>
-<span id="cb24-3"><span class="co" style="color: #5E5E5E;
+<span id="cb28-2"></span>
+<span id="cb28-3"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Modell</span></span>
-<span id="cb24-4">logreg <span class="op" style="color: #5E5E5E;
+<span id="cb28-4">logreg <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> LogisticRegression(max_iter<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">200</span>)</span>
-<span id="cb24-5">logreg.fit(X_train, y_train)</span></code></pre></div></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<span id="cb28-5">logreg.fit(X_train, y_train)</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
 <style>#sk-container-id-3 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
@@ -3257,30 +3346,40 @@ function forceTheme(elementId) {
 forceTheme('sk-container-id-3');</script>
 </div>
 </div>
-<div id="3c19ea98" class="cell" data-execution_count="25">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><span class="im" style="color: #00769E;
+<div id="76860e19" class="cell" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1">a <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
 background-color: null;
-font-style: inherit;">as</span> plt</span>
-<span id="cb25-2"><span class="im" style="color: #00769E;
+font-style: inherit;">round</span>(logreg.coef_.item(), <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
+font-style: inherit;">4</span>)</span>
+<span id="cb29-2">b <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">as</span> np</span>
-<span id="cb25-3"></span>
-<span id="cb25-4">plt.figure(figsize<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">round</span>(logreg.intercept_.item(), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>)</span>
+<span id="cb29-3">absb <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">abs</span>(b)</span></code></pre></div></div>
+</div>
+<div id="9838d3db" class="cell" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1">plt.figure(figsize<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">8</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">5</span>))</span>
-<span id="cb25-5"></span>
-<span id="cb25-6"><span class="co" style="color: #5E5E5E;
+<span id="cb30-2"></span>
+<span id="cb30-3"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Streudiagramm der Trainingsdaten</span></span>
-<span id="cb25-7">plt.scatter(X_train, y_train, color<span class="op" style="color: #5E5E5E;
+<span id="cb30-4">plt.scatter(X_train, y_train, color<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -3289,7 +3388,7 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Trainingswerte"</span>)</span>
-<span id="cb25-8">plt.scatter(X_test, y_test, color<span class="op" style="color: #5E5E5E;
+<span id="cb30-5">plt.scatter(X_test, y_test, color<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -3298,38 +3397,38 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Testwerte"</span>)</span>
-<span id="cb25-9"></span>
-<span id="cb25-10"><span class="co" style="color: #5E5E5E;
+<span id="cb30-6"></span>
+<span id="cb30-7"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Regressionsfunktion ermitteln</span></span>
-<span id="cb25-11"><span class="im" style="color: #00769E;
+<span id="cb30-8"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> pd</span>
-<span id="cb25-12"></span>
-<span id="cb25-13">xp <span class="op" style="color: #5E5E5E;
+<span id="cb30-9"></span>
+<span id="cb30-10">xp <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.DataFrame(</span>
-<span id="cb25-14">    np.linspace(<span class="dv" style="color: #AD0000;
+<span id="cb30-11">    np.linspace(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">8</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">200</span>),</span>
-<span id="cb25-15">    columns<span class="op" style="color: #5E5E5E;
+<span id="cb30-12">    columns<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"sepal length (cm)"</span>]</span>
-<span id="cb25-16">)</span>
-<span id="cb25-17">yp <span class="op" style="color: #5E5E5E;
+<span id="cb30-13">)</span>
+<span id="cb30-14">yp <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> logreg.predict_proba(xp)[:,<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>] </span>
-<span id="cb25-18">pm <span class="op" style="color: #5E5E5E;
+<span id="cb30-15">pm <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
@@ -3346,7 +3445,7 @@ font-weight: bold;
 font-style: inherit;">else</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"-"</span></span>
-<span id="cb25-19">plt.plot(xp, yp, label<span class="op" style="color: #5E5E5E;
+<span id="cb30-16">plt.plot(xp, yp, label<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="vs" style="color: #20794D;
 background-color: null;
@@ -3395,68 +3494,73 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'red'</span>)</span>
-<span id="cb25-20"></span>
-<span id="cb25-21">plt.xlabel(<span class="st" style="color: #20794D;
+<span id="cb30-17"></span>
+<span id="cb30-18">plt.xlabel(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Länge des Kelchblatts (cm)"</span>)</span>
-<span id="cb25-22">plt.ylabel(<span class="st" style="color: #20794D;
+<span id="cb30-19">plt.ylabel(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Wahrscheinlichkeit für Iris setosa"</span>)</span>
-<span id="cb25-23">plt.title(<span class="st" style="color: #20794D;
+<span id="cb30-20">plt.title(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Logistische Regression auf den Liliendaten"</span>)</span>
-<span id="cb25-24">plt.legend()</span>
-<span id="cb25-25">plt.grid(<span class="va" style="color: #111111;
+<span id="cb30-21">plt.legend()</span>
+<span id="cb30-22">plt.grid(<span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>)</span>
-<span id="cb25-26">plt.show()</span></code></pre></div></div>
+<span id="cb30-23">plt.show()</span></code></pre></div></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://www.sefiroth.de/posts/2026-05-30-lineare-und-logistische-regression-mit-python/index_files/figure-html/cell-26-output-1.webp" width="663" height="449" class="figure-img"></p>
+<p><img src="https://www.sefiroth.de/posts/2026-05-30-lineare-und-logistische-regression-mit-python/index_files/figure-html/cell-27-output-1.webp" width="663" height="449" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Dabei bezeichnet <img src="https://latex.codecogs.com/png.latex?expit(x)"> die logistische Funktion (auch sigmonide Funktion genannt) und ist die Umkehrfunktion der <img src="https://latex.codecogs.com/png.latex?logit">-Funktion.</p>
+<p>Dabei bezeichnet <img src="https://latex.codecogs.com/png.latex?expit(x)"> die <em>logistische Funktion</em> (auch <em>sigmonide Funktion</em> oder kurt <em>Sigmonide</em> genannt) und ist die Umkehrfunktion der <img src="https://latex.codecogs.com/png.latex?logit">-Funktion.</p>
 <p>Wir können an der Grafik schon erkennen, das unser Ansatz so nicht unbedingt optimal ist. Schauen wir uns aber dennoch die Gütemaße an:</p>
-<div id="ee38ffe8" class="cell" data-execution_count="26">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1">y_test</span>
-<span id="cb26-2">y_pred <span class="op" style="color: #5E5E5E;
+<p>Die orginalen Testwerte <img src="https://latex.codecogs.com/png.latex?y_test">:</p>
+<div id="2f13a624" class="cell" data-execution_count="27">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1">y_test</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>array([1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1,
+       1, 0, 0, 0, 0, 0, 0, 1])</code></pre>
+</div>
+</div>
+<p>Die durch die Regression geschätzten Werte <img src="https://latex.codecogs.com/png.latex?y_pred">:</p>
+<div id="24d76c33" class="cell" data-execution_count="28">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1">y_pred <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> logreg.predict(X_test)</span>
-<span id="cb26-3">y_pred</span></code></pre></div></div>
-<div class="cell-output cell-output-display" data-execution_count="26">
+<span id="cb33-2">y_pred</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
 <pre><code>array([1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1,
        1, 1, 0, 0, 0, 0, 0, 1])</code></pre>
 </div>
 </div>
-<div id="e28addda" class="cell" data-execution_count="27">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><span class="im" style="color: #00769E;
+<div id="5b4a7fc4" class="cell" data-execution_count="29">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> sklearn.metrics <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> accuracy_score, f1_score, precision_score, recall_score, classification_report</span>
-<span id="cb28-2"></span>
-<span id="cb28-3"><span class="bu" style="color: null;
+<span id="cb35-2"></span>
+<span id="cb35-3"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Accuracy:"</span>, accuracy_score(y_test, y_pred))</span>
-<span id="cb28-4"></span>
-<span id="cb28-5"><span class="bu" style="color: null;
+<span id="cb35-4"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Precision:"</span>, precision_score(y_test, y_pred))</span>
-<span id="cb28-6"></span>
-<span id="cb28-7"><span class="bu" style="color: null;
+<span id="cb35-5"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Recall:"</span>, recall_score(y_test, y_pred))</span>
-<span id="cb28-8"></span>
-<span id="cb28-9"><span class="bu" style="color: null;
+<span id="cb35-6"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -3469,85 +3573,68 @@ F1-Score: 0.8</code></pre>
 </div>
 </div>
 <p>Etwas detailierter können wir uns das mit dem folgenden Befehl komplett ansehen:</p>
-<div id="53cb186a" class="cell" data-execution_count="28">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><span class="bu" style="color: null;
+<div id="59b4e7c7" class="cell" data-execution_count="30">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(classification_report(y_test, y_pred, target_names<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>[<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"positiv"</span>, <span class="st" style="color: #20794D;
+font-style: inherit;">"Nicht I. setosa"</span>, <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"negativ"</span>], digits<span class="op" style="color: #5E5E5E;
+font-style: inherit;">"Iris setosa"</span>], digits<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">3</span>))</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>              precision    recall  f1-score   support
+<pre><code>                 precision    recall  f1-score   support
 
-     positiv      0.955     0.913     0.933        23
-     negativ      0.750     0.857     0.800         7
+Nicht I. setosa      0.955     0.913     0.933        23
+    Iris setosa      0.750     0.857     0.800         7
 
-    accuracy                          0.900        30
-   macro avg      0.852     0.885     0.867        30
-weighted avg      0.907     0.900     0.902        30
+       accuracy                          0.900        30
+      macro avg      0.852     0.885     0.867        30
+   weighted avg      0.907     0.900     0.902        30
 </code></pre>
 </div>
 </div>
 <p>Wagen wir kurz einen Blick auf alle Daten (Test- wie Trainingsdaten):</p>
-<div id="c7a25e0d" class="cell" data-execution_count="29">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><span class="bu" style="color: null;
+<div id="a99fce1e" class="cell" data-execution_count="31">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><span class="bu" style="color: null;
 background-color: null;
-font-style: inherit;">print</span>(classification_report(y_setosa, logreg.predict(X_setosa), target_names<span class="op" style="color: #5E5E5E;
+font-style: inherit;">print</span>(classification_report(y_logreg, logreg.predict(X_logreg), target_names<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>[<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"negativ"</span>, <span class="st" style="color: #20794D;
+font-style: inherit;">"Nicht I. setosa"</span>, <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"positiv"</span>], digits<span class="op" style="color: #5E5E5E;
+font-style: inherit;">"Iris setosa"</span>], digits<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">3</span>))</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>              precision    recall  f1-score   support
+<pre><code>                 precision    recall  f1-score   support
 
-     negativ      0.904     0.940     0.922       100
-     positiv      0.870     0.800     0.833        50
+Nicht I. setosa      0.904     0.940     0.922       100
+    Iris setosa      0.870     0.800     0.833        50
 
-    accuracy                          0.893       150
-   macro avg      0.887     0.870     0.877       150
-weighted avg      0.892     0.893     0.892       150
+       accuracy                          0.893       150
+      macro avg      0.887     0.870     0.877       150
+   weighted avg      0.892     0.893     0.892       150
 </code></pre>
 </div>
 </div>
 </section>
 <section id="multinomiale-logistische-regression" class="level2">
 <h2 class="anchored" data-anchor-id="multinomiale-logistische-regression">Multinomiale Logistische Regression</h2>
-<div id="ca90aab1" class="cell" data-execution_count="30">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> sklearn.linear_model <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> LogisticRegression</span>
-<span id="cb34-2"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> sklearn.model_selection <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> train_test_split</span>
-<span id="cb34-3"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> sklearn.metrics <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> accuracy_score, f1_score, precision_score, recall_score, classification_report</span></code></pre></div></div>
-</div>
 <p>Wir teilen unsere Daten wieder in Test- und Trainingsdaten auf:</p>
-<div id="2f87b637" class="cell" data-execution_count="31">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><span class="co" style="color: #5E5E5E;
+<div id="1e71c890" class="cell" data-execution_count="32">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Klassifikationsdaten</span></span>
-<span id="cb35-2">X_train, X_test, y_train, y_test <span class="op" style="color: #5E5E5E;
+<span id="cb41-2">X_train, X_test, y_train, y_test <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> train_test_split(X, y, test_size<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -3560,19 +3647,19 @@ background-color: null;
 font-style: inherit;">2009</span>)</span></code></pre></div></div>
 </div>
 <p>Erstellen wir nun ein logistisches Regressionsmodell und trainieren dieses.</p>
-<div id="49457300" class="cell" data-execution_count="32">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><span class="co" style="color: #5E5E5E;
+<div id="3a43f713" class="cell" data-execution_count="33">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Modell</span></span>
-<span id="cb36-2">logreg <span class="op" style="color: #5E5E5E;
+<span id="cb42-2">logreg <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> LogisticRegression(max_iter<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">200</span>)</span>
-<span id="cb36-3">logreg.fit(X_train, y_train)</span></code></pre></div></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<span id="cb42-3">logreg.fit(X_train, y_train)</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
 <style>#sk-container-id-4 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
@@ -4487,35 +4574,43 @@ forceTheme('sk-container-id-4');</script>
 </div>
 </div>
 <p>Erzeugen wir nun aus unserem Modell eine Vorhersage für die Testdaten:</p>
-<div id="78511ed2" class="cell" data-execution_count="33">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><span class="co" style="color: #5E5E5E;
+<div id="87e8df89" class="cell" data-execution_count="34">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Vorhersage</span></span>
-<span id="cb37-2">y_pred <span class="op" style="color: #5E5E5E;
+<span id="cb43-2">y_pred <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> logreg.predict(X_test)</span></code></pre></div></div>
 </div>
 <p>Schauen wir uns für die Testdaten einmal die echten und vorhergesagten Werte an:</p>
-<div id="a750859a" class="cell" data-execution_count="34">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><span class="co" style="color: #5E5E5E;
+<div id="786d8d17" class="cell" data-execution_count="35">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Vergleich der Testdaten</span></span>
-<span id="cb38-2">y_test</span>
-<span id="cb38-3">y_pred</span></code></pre></div></div>
-<div class="cell-output cell-output-display" data-execution_count="34">
+font-style: inherit;"># Vergleich der Testdaten ...</span></span>
+<span id="cb44-2">y_test</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<pre><code>array([0, 0, 2, 1, 1, 2, 2, 1, 2, 2, 2, 0, 2, 2, 2, 1, 2, 1, 0, 1, 1, 0,
+       0, 2, 1, 2, 1, 2, 2, 0])</code></pre>
+</div>
+</div>
+<div id="ae779c33" class="cell" data-execution_count="36">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ... mit den durch das Modellgeschätzen Daten</span></span>
+<span id="cb46-2">y_pred</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="36">
 <pre><code>array([0, 0, 2, 1, 1, 2, 2, 1, 2, 2, 2, 0, 2, 2, 2, 1, 2, 1, 0, 1, 1, 0,
        0, 1, 1, 2, 1, 2, 1, 0])</code></pre>
 </div>
 </div>
 <p>Berechnen wir die üblichen Gütemaße:</p>
-<div id="48846d7b" class="cell" data-execution_count="35">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><span class="bu" style="color: null;
+<div id="ace46d55" class="cell" data-execution_count="37">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Accuracy:"</span>, accuracy_score(y_test, y_pred))</span>
-<span id="cb40-2"></span>
-<span id="cb40-3"><span class="bu" style="color: null;
+<span id="cb48-2"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -4524,8 +4619,7 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'weighted'</span>))</span>
-<span id="cb40-4"></span>
-<span id="cb40-5"><span class="bu" style="color: null;
+<span id="cb48-3"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -4534,8 +4628,7 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'weighted'</span>))</span>
-<span id="cb40-6"></span>
-<span id="cb40-7"><span class="bu" style="color: null;
+<span id="cb48-4"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -4552,8 +4645,8 @@ F1-Score: 0.9341025641025641</code></pre>
 </div>
 </div>
 <p>Etwas detailierter können wir uns das mit dem folgenden Befehl komplett ansehen:</p>
-<div id="78961eb1" class="cell" data-execution_count="36">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><span class="bu" style="color: null;
+<div id="9f6de117" class="cell" data-execution_count="38">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(classification_report(y_test, y_pred, target_names<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -4576,8 +4669,8 @@ weighted avg      0.945     0.933     0.934        30
 </div>
 </div>
 <p>Wagen wir kurz einen Blick auf alle Daten (Test- wie Trainingsdaten):</p>
-<div id="180b4c2d" class="cell" data-execution_count="37">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><span class="bu" style="color: null;
+<div id="bdfaa081" class="cell" data-execution_count="39">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(classification_report(y, logreg.predict(X), target_names<span class="op" style="color: #5E5E5E;
 background-color: null;
