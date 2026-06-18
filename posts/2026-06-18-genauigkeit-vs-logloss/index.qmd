@@ -6,7 +6,6 @@ date: "2026-06-18"
 date-modified: last-modified
 word-count: true
 reading-time: true
-draft: true
 categories: 
   - Phyton
   - Metriken der KI
