@@ -1,0 +1,100 @@
+---
+title: "Logarithmischer Verlust oder Genauigkeit?"
+author: "Norman Markgraf"
+lang: de-DE
+date: "2026-06-18"
+date-modified: last-modified
+word-count: true
+reading-time: true
+draft: true
+categories: 
+  - Phyton
+  - Metriken der KI
+  - KI
+  - Machine Learning
+  - Klassifikation
+  - Log Loss
+  - LogLoss
+  - Accuracy
+  - Genauigkeit
+---
+
+
+## Accuracy vs. Log Loss
+
+### Genauigkeit 
+
+Genauigkeit (engl. **Accuracy**) misst nur richtig oder falsch
+Accuracy berechnet den Anteil korrekt vorhergesagter Klassen:
+
+$$
+  \text{Accuracy} = \frac{\text{korrekte Vorhersagen}}{\text{alle Vorhersagen}}
+$$
+
+
+
+- Jede Vorhersage zählt **gleich viel**  
+- Die **Höhe der Wahrscheinlichkeit** spielt **keine Rolle**  
+- Ein Modell mit 51 % Wahrscheinlichkeit für die richtige Klasse gilt als **genauso korrekt** wie eines mit 99 %
+
+**Vorteil:** Einfach zu verstehen  
+**Nachteil:** Ignoriert Unsicherheit und Kalibrierung
+
+
+### Logarithmischer Verlust
+
+Logarithmischer Verlust (engl. **Log Loss**) misst die Qualität der Wahrscheinlichkeiten
+Log Loss bewertet, wie gut die vorhergesagten Wahrscheinlichkeiten zu den tatsächlichen Labels passen.
+
+- Bestraft **selbstbewusst falsche** Vorhersagen stark  
+- Belohnt **gut kalibrierte** Wahrscheinlichkeiten  
+- Nutzt die vollständige Wahrscheinlichkeitsverteilung (z. B. Softmax)
+
+**Vorteil:** Sehr empfindlich gegenüber Unsicherheit  
+**Nachteil:** Schwerer zu interpretieren als Accuracy
+
+
+## Konkretes Beispiel
+
+| Beispiel | Vorhersage | Wahrscheinlichkeit | Richtig? | Accuracy | Log Loss |
+|---------|------------|--------------------|----------|----------|----------|
+| Modell A | Klasse 1 | 0.51 | ✔️ | gut | gut |
+| Modell B | Klasse 1 | 0.99 | ✔️ | gut | **viel besser** |
+
+**Accuracy sagt:** Beide Modelle sind gleich gut.  
+**Log Loss sagt:** Modell B ist deutlich besser, weil es sicherer und besser kalibriert ist.
+
+
+## Wann verwende ich (eher) was?
+
+### Verwende Genauigkeit, wenn:
+
+- nur die Endentscheidung zählt  
+- Wahrscheinlichkeiten egal sind  
+- Klassen ausgewogen sind  
+
+**Beispiele:**
+
+- Spam / Nicht‑Spam  
+- Katzen oder Hunde  
+
+
+### Verwende Logarithmischer Verlust, wenn:
+
+- Wahrscheinlichkeiten wichtig sind  
+- Fehlklassifikationen unterschiedlich teuer sind  
+- du Modelle vergleichen willst, die Wahrscheinlichkeiten ausgeben  
+- du Kalibrierung bewerten willst  
+
+**Beispiele:**
+
+- Medizinische Diagnosen  
+- Kreditrisiko  
+- Unbalancierte Klassen  
+
+
+## Fazit
+
+> **Accuracy misst, ob du richtig liegst.** \
+> **Log Loss misst, wie gut du weißt, dass du richtig liegst.**
+

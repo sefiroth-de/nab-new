@@ -1,0 +1,178 @@
+---
+title: "Die Log-Loss Funktion"
+author: "Norman Markgraf"
+lang: de-DE
+date: "2026-06-18"
+date-modified: last-modified
+word-count: true
+reading-time: true
+draft: true
+categories: 
+  - Phyton
+  - Metriken der KI
+  - KI
+  - Machine Learning
+  - Klassifikation
+  - LogLoss
+  - Log Loss
+  - Cross-Entropy Loss
+---
+
+# Die Log-Loss Funktion 
+
+Der **Logarithmischer Verlust** (engl. **log loss**), allgemein bekannt als *Log Loss* oder *Cross-Entropy Loss*, ist eine zentrale Kennzahl im Machine Learning, insbesondere bei Klassifikationsproblemen. 
+Er bewertet die Leistung eines Klassifikationsmodells, indem er den Unterschied zwischen vorhergesagten Wahrscheinlichkeiten und den tatsächlichen Ergebnissen misst. 
+Wie werfen einen Blick auf das Konzept hinter *Log Loss*, seiner Bedeutung und zeigen ein praktisches Beispiel mit **Python** und `scikit-learn`.
+
+## Was ist Log Loss?  
+
+**Log Loss** ist eine logarithmische Transformation der Likelihood‑Funktion und wird hauptsächlich zur Bewertung der Leistung probabilistischer Klassifikatoren verwendet. 
+Im Gegensatz zu anderen Metriken wie der Genauigkeit berücksichtigt Log Loss die Unsicherheit von Vorhersagen, indem Modelle für selbstbewusst falsche Vorhersagen deutlich stärker bestraft werden.
+
+Die Formal lautet:
+
+$$
+  \begin{align*}
+  LogLoss 
+  &= - \frac{1}{N} \sum_{i=1}^{N} 
+  \begin{cases} 
+      \log(p_i) &: y_i = 1 \\
+      \log(1-p_i) &: y_i = 0
+    \end{cases} \\
+    &= -\frac{1}{N} \sum_{i=1}^{N}  \left(y_i \log(p_i) +  (1-y_i) \log(1-p_i)\right)
+  \end{align*}
+$$
+Wobei:
+
+- $N$ die Anzahl der Beobachtungen ist.
+- $y_i$ ist die binäre Vorhersage (also $0$ oder $1$) der i. Beobachtung.
+- $p_i$ ist die Vorhersagewahrscheinlichkeit, das die i. Beobachtung zur Klasse $1$ gehört.
+
+## Verständnis von Log Loss‑Werten
+
+Ein niedriger Log Loss weist auf eine bessere Modellleistung hin. Ein Log Loss von $0$ bedeutet, dass die vorhergesagten Wahrscheinlichkeiten die tatsächlichen Ergebnisse perfekt widerspiegeln, während höhere Werte auf zunehmende Abweichungen hinweisen. 
+Es ist wichtig zu beachten, dass Log Loss empfindlich auf die Sicherheit der Vorhersagen reagiert, was ihn zu einer leistungsstarken Kennzahl für die Bewertung probabilistischer Modelle macht.
+
+## Log Loss in Klassifikationsproblemen
+
+Log Loss wird häufig in binären und multiklassigen Klassifikationsproblemen verwendet, insbesondere bei Modellen, die Wahrscheinlichkeitswerte für jede Klasse ausgeben (z.B. logistische Regression, neuronale Netze). 
+Er motiviert Modelle dazu, nicht nur korrekt, sondern auch sicher in ihren Vorhersagen zu sein, was ihn besonders nützlich in Szenarien macht, in denen Fehlklassifikationen unterschiedlich hohe Kosten verursachen.
+
+
+### Beispiel in Python
+```{python}
+from sklearn.metrics import log_loss
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import make_classification
+
+# 1. Beispiel-Daten erzeugen (binäre Klassifikation)
+X, y = make_classification(
+    n_samples=500,
+    n_features=4,
+    n_informative=3,
+    n_redundant=1,
+    random_state=2009
+)
+
+# 2. Train/Test-Split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# 3. Modell trainieren
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+# 4. Wahrscheinlichkeiten vorhersagen
+y_pred_proba = model.predict_proba(X_test)
+
+# 5. Log Loss berechnen
+loss = log_loss(y_test, y_pred_proba)
+
+print(f"Log Loss: {loss:.4}")
+```
+
+
+Ein LogLoss von $`python print(f"{loss:.4}"))`$ bedeutet, 
+das Modell relativ gut kalibriert ist.
+Die vorhergesagten Wahrscheinlichkeiten liegen meist nah an den tatsächlichen Werten (**Labels**).
+Es macht wenige selbstbewusst falsche Vorhersagen.
+
+Die LogLoss Funktion gibt es aber auch für nicht-binäre Vorhersagen.
+
+Wir sprechen dann auch von **Multicast-Log-Loss**.
+
+### Beispiel in Python
+
+```{python}
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import log_loss
+
+# 1. Synthetisches Multiclass-Dataset erzeugen
+X, y = make_classification(
+    n_samples=600,
+    n_features=6,
+    n_informative=4,
+    n_redundant=2,
+    n_classes=3,          # Multiclass!
+    n_clusters_per_class=1,
+    random_state=2009
+)
+
+# 2. Train/Test-Split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=42
+)
+
+# 3. Multiclass-Logistische Regression (softmax)
+model = LogisticRegression(solver="lbfgs")
+model.fit(X_train, y_train)
+
+# 4. Wahrscheinlichkeiten für alle Klassen vorhersagen
+y_pred_proba = model.predict_proba(X_test)
+
+# 5. Multiclass Log Loss berechnen
+loss = log_loss(y_test, y_pred_proba)
+
+print(f"Multiclass Log Loss: {loss:.4}")
+
+```
+
+
+## Mathematische Definition
+
+Für ein Klassifikationsproblem mit $N$ Beobachtungen und $K$
+ Klassen lautet der **Logarithmic Loss** (**Cross‑Entropy Loss**):
+
+$$
+  LogLoss = -\frac{1}{N} \sum_{i=1}^{N}  \sum_{k=1}^{K} y_{i,k} \log(p_{i,k})
+$$
+
+wobei:
+
+- $y_{i,k}$ : **One-Hot-Label** der wahren Klasse. (1, wenn Beispiel $i$ zur Klasse $k$ gehört, sonst $0$)
+
+- $p_{i,k}$ : Vorhergesagte Wahrscheinlichkeit, dass Beispiel $i$ zur Klasse $k$ gehört (vom Modell ausgegeben, z.B. durch Softmax)
+
+- $N$ : Anzahl der Datenpunkte
+
+- $K$ : Anzahl der Klassen
+
+## Intuitive Interpätation der Werte
+
+Wenn das Modell hohe Wahrscheinlichkeit für die richtige Klasse vergibt $\Rightarrow$ kleiner Log Loss
+
+Wenn das Modell sicher falsch liegt $\Rightarrow$ großer Log Loss
+
+Perfekte Vorhersagen $\Rightarrow$ Log Loss = 0
+
+Typische Werte liegen zwischen $0.1$ und $0.7$, je nach Schwierigkeit des Problems.
+
+## Fazit  
+
+Log Loss ist eine kraftvolle Kennzahl zur Bewertung der Leistung probabilistischer Klassifikatoren und bietet eine differenzierte Perspektive auf die Modellgenauigkeit. 
+Das Verständnis seiner Bedeutung und die Einbeziehung von Log Loss in die Bewertung deiner Klassifikationsmodelle können zu fundierteren Entscheidungen in verschiedenen Machine‑Learning‑Anwendungen führen.
+
